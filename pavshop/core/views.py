@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def index_view(request):
     return render(request, "core/index.html")
+
+def cart_view(request):
+    return render(request, "core/shopping-cart.html")
