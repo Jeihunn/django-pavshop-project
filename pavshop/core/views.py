@@ -7,3 +7,12 @@ def index_view(request):
 
 def cart_view(request):
     return render(request, "core/shopping-cart.html")
+
+def contact_view(request):
+    return render(request, "core/contact.html")
+
+def checkout_view(request):
+    return render(request, "core/checkout.html")
+
+def about_us_view(request):
+    return render(request, "core/about-us.html")
