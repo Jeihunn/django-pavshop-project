@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = [
 
 MY_APPS = [
     "core.apps.CoreConfig",
+    "blog.apps.BlogConfig",
 ]
 
 INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + MY_APPS
