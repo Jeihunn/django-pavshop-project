@@ -2,7 +2,7 @@
 .DS_Store
 __pycache__/
 *.py[cod]
-*$py.class
+*$py.class 
 
 # C extensions
 *.so
