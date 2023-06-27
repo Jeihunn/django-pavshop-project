@@ -1,27 +1,17 @@
 {% extends 'core/base.html' %}
 {% load static %}
+  
 
 {% block page_title %}
-<title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
+  <title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
 {% endblock page_title %}
-  
+
+
+{% block main %}
   <!--======= SUB BANNER =========-->
-  <section class="sub-bnr" data-stellar-background-ratio="0.5">
-    <div class="position-center-center">
-      <div class="container">
-        <h4>WOOD CHAIR</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
-          Sed feugiat, tellus vel tristique posuere, diam</p>
-        <ol class="breadcrumb">
-          <li><a href="#">Home</a></li>
-          <li class="active">Data</li>
-        </ol>
-      </div>
-    </div>
-  </section>
+  {% include "core/includes/sub-banner.html" %}
   
   <!-- Content -->
-  {% block content %}
   <div id="content"> 
     
     <!-- Popular Products -->
@@ -38,9 +28,9 @@
               <!-- Images Slider -->
               <div class="images-slider">
                 <ul class="slides">
-                  <li data-thumb="{% static 'images/large-img-1.jpg'%}"> <img class="img-responsive" src="{% static 'images/large-img-1.jpg'%}"  alt=""> </li>
-                  <li data-thumb="{% static 'images/large-img-2.jpg'%}"> <img class="img-responsive" src="{% static 'images/large-img-2.jpg'%}"  alt=""> </li>
-                  <li data-thumb="{% static 'images/large-img-3.jpg'%}"> <img class="img-responsive" src="{% static 'images/large-img-3.jpg'%}"  alt=""> </li>
+                  <li data-thumb="{% static 'images/large-img-1.jpg' %}"> <img class="img-responsive" src="{% static 'images/large-img-1.jpg' %}"  alt=""> </li>
+                  <li data-thumb="{% static 'images/large-img-2.jpg' %}"> <img class="img-responsive" src="{% static 'images/large-img-2.jpg' %}"  alt=""> </li>
+                  <li data-thumb="{% static 'images/large-img-3.jpg' %}"> <img class="img-responsive" src="{% static 'images/large-img-3.jpg' %}"  alt=""> </li>
                 </ul>
               </div>
             </div>
@@ -164,7 +154,7 @@
               <div class="media">
                 <div class="media-left"> 
                   <!--  Image -->
-                  <div class="avatar"> <a href="#"> <img class="media-object" src="{% static 'images/avatar-1.jpg'%}" alt=""> </a> </div>
+                  <div class="avatar"> <a href="#"> <img class="media-object" src="{% static 'images/avatar-1.jpg' %}" alt=""> </a> </div>
                 </div>
                 <!--  Details -->
                 <div class="media-body">
@@ -179,7 +169,7 @@
               <div class="media">
                 <div class="media-left"> 
                   <!--  Image -->
-                  <div class="avatar"> <a href="#"> <img class="media-object" src="{% static 'images/avatar-2.jpg'%}" alt=""> </a> </div>
+                  <div class="avatar"> <a href="#"> <img class="media-object" src="{% static 'images/avatar-2.jpg' %}" alt=""> </a> </div>
                 </div>
                 <!--  Details -->
                 <div class="media-body">
@@ -242,11 +232,11 @@
           <!-- Item -->
           <div class="item"> 
             <!-- Item img -->
-            <div class="item-img"> <img class="img-1" src="{% static 'images/product-1.jpg'%}" alt="" > 
+            <div class="item-img"> <img class="img-1" src="{% static 'images/product-1.jpg' %}" alt="" > 
               <!-- Overlay -->
               <div class="overlay">
                 <div class="position-center-center">
-                  <div class="inn"><a href="{% static 'images/product-1.jpg'%}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                  <div class="inn"><a href="{% static 'images/product-1.jpg' %}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
                 </div>
               </div>
             </div>
@@ -260,11 +250,11 @@
           <!-- Item -->
           <div class="item"> 
             <!-- Item img -->
-            <div class="item-img"> <img class="img-1" src="{% static 'images/product-2.jpg'%}" alt="" > 
+            <div class="item-img"> <img class="img-1" src="{% static 'images/product-2.jpg' %}" alt="" > 
               <!-- Overlay -->
               <div class="overlay">
                 <div class="position-center-center">
-                  <div class="inn"><a href="{% static 'images/product-2.jpg'%}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                  <div class="inn"><a href="{% static 'images/product-2.jpg' %}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
                 </div>
               </div>
             </div>
@@ -278,11 +268,11 @@
           <!-- Item -->
           <div class="item"> 
             <!-- Item img -->
-            <div class="item-img"> <img class="img-1" src="{% static 'images/product-3.jpg'%}" alt="" > 
+            <div class="item-img"> <img class="img-1" src="{% static 'images/product-3.jpg' %}" alt="" > 
               <!-- Overlay -->
               <div class="overlay">
                 <div class="position-center-center">
-                  <div class="inn"><a href="{% static 'images/product-3.jpg'%}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                  <div class="inn"><a href="{% static 'images/product-3.jpg' %}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
                 </div>
               </div>
             </div>
@@ -296,11 +286,11 @@
           <!-- Item -->
           <div class="item"> 
             <!-- Item img -->
-            <div class="item-img"> <img class="img-1" src="{% static 'images/product-4.jpg'%}" alt="" > 
+            <div class="item-img"> <img class="img-1" src="{% static 'images/product-4.jpg' %}" alt="" > 
               <!-- Overlay -->
               <div class="overlay">
                 <div class="position-center-center">
-                  <div class="inn"><a href="{% static 'images/product-4.jpg'%}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                  <div class="inn"><a href="{% static 'images/product-4.jpg' %}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
                 </div>
               </div>
             </div>
@@ -316,6 +306,8 @@
     
     <!-- About -->
     {% include "core/includes/about.html" %}
-    </div>
     
-    {% endblock content %}
+    <!-- News Letter -->
+    {% include "core/includes/news-letter.html" %}
+  </div>
+{% endblock main %}

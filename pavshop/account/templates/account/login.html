@@ -1,27 +1,17 @@
 {% extends 'core/base.html' %}
-{% load static %}
+  
+
 {% block page_title %}
-<title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
+  <title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
 {% endblock page_title %}
 
-  
+
+{% block main %}
   <!--======= SUB BANNER =========-->
-  <section class="sub-bnr" data-stellar-background-ratio="0.5">
-    <div class="position-center-center">
-      <div class="container">
-        <h4>LOGIN</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus maximus vehicula. 
-          Sed feugiat, tellus vel tristique posuere, diam</p>
-        <ol class="breadcrumb">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">PAGES</a></li>
-          <li class="active">LOGIN</li>
-        </ol>
-      </div>
-    </div>
-  </section>
+  {% include "core/includes/sub-banner.html" %}
   
-{% block content %}
+  <!-- Content -->
+  <div id="content"> 
     
     <!--======= PAGES INNER =========-->
     <section class="chart-page padding-top-100 padding-bottom-100">
@@ -108,6 +98,9 @@
     </section>
     
     <!-- About -->
-{% include "core/includes/about.html" %}
+    {% include "core/includes/about.html" %}
     
-{% endblock content %}
+    <!-- News Letter -->
+    {% include "core/includes/news-letter.html" %}
+  </div>
+{% endblock main %}  
