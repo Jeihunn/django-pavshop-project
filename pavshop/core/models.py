@@ -25,7 +25,7 @@ class Contact(AbstractModel):
         verbose_name_plural = "Contacts"
 
     def __str__(self):
-        return self.subject
+        return f"{self.subject} - {self.full_name}"
 
 
 class Newsletter(AbstractModel):

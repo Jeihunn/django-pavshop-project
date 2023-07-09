@@ -41,8 +41,8 @@ class BlogTag(AbstractModel):
 class Blog(AbstractModel):
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True)
-    blog_category = models.ManyToManyField(BlogCategory)
-    blog_tag = models.ManyToManyField(BlogTag)
+    blog_categories = models.ManyToManyField(BlogCategory)
+    blog_tags = models.ManyToManyField(BlogTag)
 
     title = models.CharField(max_length=250)
     content = RichTextField()
@@ -57,7 +57,8 @@ class Blog(AbstractModel):
         verbose_name_plural = "Blogs"
 
     def __str__(self):
-        return self.title
+        return f"{self.title} - ({self.author})"
+
 
 
 class BlogReview(AbstractModel):
@@ -86,6 +87,12 @@ class BlogReview(AbstractModel):
 
     def __str__(self):
         if self.user:
-            return f"{self.subject} - ({self.user.username})"
+            user_identifier = self.user.get_username()
         else:
-            return f"{self.subject} - ({self.full_name})"
+            user_identifier = self.full_name
+
+        if self.parent:
+            return f"{self.subject} - {user_identifier} ~~ (Parent: {self.parent})"
+        else:
+            return f"{self.subject} - {user_identifier}"
+

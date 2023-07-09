@@ -48,7 +48,9 @@ class Brand(AbstractModel):
 
 
 class Discount(AbstractModel):
-    name = models.CharField(max_length=30, unique=True)
+    products = models.ManyToManyField("ProductVersion", blank=True)
+
+    name = models.CharField(max_length=50, unique=True)
     percent = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)])
     is_active = models.BooleanField(verbose_name="Active", default=True)
@@ -89,8 +91,8 @@ class ProductTag(AbstractModel):
 
 class Product(AbstractModel):
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True)
-    product_category = models.ManyToManyField(ProductCategory)
-    product_tag = models.ManyToManyField(ProductTag)
+    product_categories = models.ManyToManyField(ProductCategory)
+    product_tags = models.ManyToManyField(ProductTag)
 
     title = models.CharField(max_length=250)
     slug = AutoSlugField(populate_from="title", unique=True)
@@ -107,9 +109,7 @@ class ProductVersion(AbstractModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     designer = models.ForeignKey(
         Designer, on_delete=models.SET_NULL, null=True)
-    color = models.ManyToManyField(Color)
-    discount = models.ForeignKey(
-        Discount, on_delete=models.SET_NULL, null=True)
+    colors = models.ManyToManyField(Color)
 
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField()
@@ -123,12 +123,13 @@ class ProductVersion(AbstractModel):
         verbose_name_plural = "Product Versions"
 
     def __str__(self):
-        return f"{self.product.title} - {self.designer.name} - {self.price}$"
+        return f"{self.product.title} - Designer: {self.designer.name} - Price: {self.price}$"
 
 
 class ProductVersionImage(AbstractModel):
     product_version = models.ForeignKey(
         ProductVersion, on_delete=models.CASCADE)
+
     image = models.ImageField(
         upload_to="product_images", default="product_images/default_product.jpg")
     is_active = models.BooleanField(verbose_name="Active", default=True)
@@ -156,15 +157,22 @@ class ProductVersionReview(AbstractModel):
         verbose_name_plural = "Product Version Reviews"
 
     def __str__(self):
-        if len(self.comment) > 30:
-            return f"{self.comment[:30]}..."
+        if self.user:
+            user_identifier = self.user.get_username()
         else:
-            return self.comment
+            user_identifier = self.full_name
+
+        if len(self.comment) > 30:
+            truncated_comment = self.comment[:30] + "..."
+        else:
+            truncated_comment = self.comment
+
+        return f"{user_identifier} - {truncated_comment}"
 
 
 class Wishlist(AbstractModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    product_version = models.ManyToManyField(ProductVersion)
+    product_versions = models.ManyToManyField(ProductVersion)
 
     class Meta:
         verbose_name = "Wishlist"
