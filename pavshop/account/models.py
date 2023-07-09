@@ -16,20 +16,22 @@ class Country(AbstractModel):
         verbose_name_plural = "Countries"
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.country_code})"
+
 
 
 class City(AbstractModel):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
 
     class Meta:
         verbose_name = "City"
         verbose_name_plural = "Cities"
 
     def __str__(self):
-        return self.name
+        return f"{self.name}, {self.country.name}"
+
 
 
 class Address(AbstractModel):
@@ -43,10 +45,11 @@ class Address(AbstractModel):
         verbose_name_plural = "Addresses"
 
     def __str__(self):
-        if len(self.street_address) > 20:
-            return f"{self.country} - {self.city} - {self.street_address[:20]}..."
+        address_str = f"{self.country.name} - {self.city.name} - {self.street_address}"
+        if len(address_str) > 80:
+            return f"{address_str[:80]}..."
         else:
-            return f"{self.country} - {self.city} - {self.street_address}"
+            return address_str
 
 
 class Position(AbstractModel):

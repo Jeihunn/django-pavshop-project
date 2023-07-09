@@ -18,11 +18,20 @@ from .models import (
 # Register your models here.
 
 
-# Inline
+# ========== Inline ==========
+class DiscountInline(admin.TabularInline):
+    model = Discount.products.through
+    extra = 1
+    verbose_name = "Discount"
+    verbose_name_plural = "Discounts"
+
+
 class ProductVersionImageInline(admin.TabularInline):
     model = ProductVersionImage
     extra = 1
-# END Inline
+    verbose_name = "Image"
+    verbose_name_plural = "Images"
+# ========== END Inline ==========
 
 
 @admin.register(Color)
@@ -42,7 +51,8 @@ class BrandAdmin(admin.ModelAdmin):
 
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
-    pass
+    fields = ["name", "percent", "is_active", "products"]
+    filter_horizontal = ["products"]
 
 
 @admin.register(ProductCategory)
@@ -62,7 +72,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(ProductVersion)
 class ProductVersionAdmin(admin.ModelAdmin):
-    inlines = [ProductVersionImageInline]
+    inlines = [DiscountInline, ProductVersionImageInline]
 
 
 @admin.register(ProductVersionImage)
@@ -77,4 +87,4 @@ class ProductVersionReviewAdmin(admin.ModelAdmin):
 
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
-    pass
+    filter_horizontal = ["product_versions"]

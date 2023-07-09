@@ -29,7 +29,7 @@ class AddressAdmin(admin.ModelAdmin):
 
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "created_at", "updated_at"]
+    pass
 
 
 @admin.register(User)
