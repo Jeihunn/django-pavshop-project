@@ -40,7 +40,11 @@ BASE_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "django_extensions"
+    "django_extensions",
+    "ckeditor",
+    "phonenumber_field",
+    "babel",
+    "smart_selects",
 ]
 
 MY_APPS = [
@@ -87,12 +91,28 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# SQLite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# # PostgreSQL
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'pavshop',
+#         'USER': 'root',
+#         'PASSWORD': 12345,
+#         'HOST': 'localhost',
+#         'PORT': 5432
+#     }
+# }
+
+
+AUTH_USER_MODEL = "account.User"
 
 
 # Password validation
@@ -117,9 +137,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Baku'
 
 USE_I18N = True
 
@@ -141,3 +161,13 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        # 'height': 300,
+        # 'width': '100%',
+    },
+}
