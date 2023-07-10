@@ -48,7 +48,8 @@ class Brand(AbstractModel):
 
 
 class Discount(AbstractModel):
-    products = models.ManyToManyField("ProductVersion", blank=True)
+    products = models.ManyToManyField(
+        "ProductVersion", blank=True, related_name="discounts")
 
     name = models.CharField(max_length=50, unique=True)
     percent = models.PositiveSmallIntegerField(
@@ -90,9 +91,11 @@ class ProductTag(AbstractModel):
 
 
 class Product(AbstractModel):
-    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True)
-    product_categories = models.ManyToManyField(ProductCategory)
-    product_tags = models.ManyToManyField(ProductTag)
+    brand = models.ForeignKey(
+        Brand, on_delete=models.SET_NULL, null=True, related_name="products")
+    product_categories = models.ManyToManyField(
+        ProductCategory, related_name="products")
+    product_tags = models.ManyToManyField(ProductTag, related_name="products")
 
     title = models.CharField(max_length=250)
     slug = AutoSlugField(populate_from="title", unique=True)
@@ -106,10 +109,11 @@ class Product(AbstractModel):
 
 
 class ProductVersion(AbstractModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name="versions")
     designer = models.ForeignKey(
-        Designer, on_delete=models.SET_NULL, null=True)
-    colors = models.ManyToManyField(Color)
+        Designer, on_delete=models.SET_NULL, null=True, related_name="product_versions")
+    colors = models.ManyToManyField(Color, related_name="product_versions")
 
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField()
@@ -128,7 +132,7 @@ class ProductVersion(AbstractModel):
 
 class ProductVersionImage(AbstractModel):
     product_version = models.ForeignKey(
-        ProductVersion, on_delete=models.CASCADE)
+        ProductVersion, on_delete=models.CASCADE, related_name="images")
 
     image = models.ImageField(
         upload_to="product_images", default="product_images/default_product.jpg")
@@ -144,9 +148,9 @@ class ProductVersionImage(AbstractModel):
 
 class ProductVersionReview(AbstractModel):
     product_version = models.ForeignKey(
-        ProductVersion, on_delete=models.CASCADE)
+        ProductVersion, on_delete=models.CASCADE, related_name="reviews")
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True, blank=True)
+        User, on_delete=models.CASCADE, null=True, blank=True, related_name="product_reviews")
 
     full_name = models.CharField(max_length=150, null=True, blank=True)
     email = models.EmailField(max_length=50, null=True, blank=True)
@@ -172,7 +176,8 @@ class ProductVersionReview(AbstractModel):
 
 class Wishlist(AbstractModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    product_versions = models.ManyToManyField(ProductVersion)
+    product_versions = models.ManyToManyField(
+        ProductVersion, related_name="wishlists")
 
     class Meta:
         verbose_name = "Wishlist"

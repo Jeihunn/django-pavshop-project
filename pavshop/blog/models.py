@@ -40,9 +40,10 @@ class BlogTag(AbstractModel):
 
 class Blog(AbstractModel):
     author = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True)
-    blog_categories = models.ManyToManyField(BlogCategory)
-    blog_tags = models.ManyToManyField(BlogTag)
+        User, on_delete=models.SET_NULL, null=True, related_name="blogs")
+    blog_categories = models.ManyToManyField(
+        BlogCategory, related_name="blogs")
+    blog_tags = models.ManyToManyField(BlogTag, related_name="blogs")
 
     title = models.CharField(max_length=250)
     content = RichTextField()
@@ -60,21 +61,22 @@ class Blog(AbstractModel):
         return f"{self.title} - ({self.author})"
 
 
-
 class BlogReview(AbstractModel):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(
+        Blog, on_delete=models.CASCADE, related_name="reviews")
     parent = ChainedForeignKey(
         "self",
         chained_field="blog",
         chained_model_field="blog",
         show_all=False,
-        auto_choose=True,
+        auto_choose=False,
         sort=True,
+        on_delete=models.CASCADE,
         null=True,
-        blank=True
+        blank=True,
     )
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True, blank=True)
+        User, on_delete=models.CASCADE, null=True, blank=True, related_name="blog_reviews")
 
     full_name = models.CharField(max_length=150, null=True, blank=True)
     email = models.EmailField(max_length=50, null=True, blank=True)
@@ -95,4 +97,3 @@ class BlogReview(AbstractModel):
             return f"{self.subject} - {user_identifier} ~~ (Parent: {self.parent})"
         else:
             return f"{self.subject} - {user_identifier}"
-
