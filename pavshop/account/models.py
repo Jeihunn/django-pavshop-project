@@ -19,9 +19,9 @@ class Country(AbstractModel):
         return f"{self.name} ({self.country_code})"
 
 
-
 class City(AbstractModel):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country = models.ForeignKey(
+        Country, on_delete=models.CASCADE, related_name="cities")
 
     name = models.CharField(max_length=100)
 
@@ -31,7 +31,6 @@ class City(AbstractModel):
 
     def __str__(self):
         return f"{self.name}, {self.country.name}"
-
 
 
 class Address(AbstractModel):
@@ -67,7 +66,7 @@ class User(AbstractUser):
     address = models.ForeignKey(
         Address, on_delete=models.SET_NULL, null=True, blank=True)
     position = models.ForeignKey(
-        Position, on_delete=models.SET_NULL, null=True, blank=True)
+        Position, on_delete=models.SET_NULL, null=True, blank=True, related_name="users")
 
     bio = models.TextField(null=True, blank=True)
     phone_number = PhoneNumberField(null=True, blank=True, unique=True)

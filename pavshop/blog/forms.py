@@ -7,6 +7,31 @@ class BlogReviewAdminForm(forms.ModelForm):
         model = BlogReview
         fields = "__all__"
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        instance = kwargs.get("instance")
+
+        if instance:
+            if BlogReview.objects.filter(parent=instance).exists():
+                self.fields["blog"].disabled = True
+
+    def is_recursive_parent(self, parent, target):
+        if parent is None:
+            return False
+        elif parent == target:
+            return True
+        else:
+            return self.is_recursive_parent(parent.parent, target)
+
+    def clean_parent(self):
+        parent = self.cleaned_data.get('parent')
+        if parent == self.instance:
+            raise forms.ValidationError("A comment cannot be its own parent.")
+        elif parent and self.is_recursive_parent(parent, self.instance):
+            raise forms.ValidationError(
+                "This comment cannot be a parent of its own parent.")
+        return parent
+
     def clean(self):
         cleaned_data = super().clean()
         user = cleaned_data.get('user')
