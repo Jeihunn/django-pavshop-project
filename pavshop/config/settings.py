@@ -39,6 +39,10 @@ BASE_APPS = [
     'django.contrib.staticfiles',
 ]
 
+INITIAL_APPS = [
+    "jazzmin",
+]
+
 THIRD_PARTY_APPS = [
     "django_extensions",
     "ckeditor",
@@ -54,7 +58,7 @@ MY_APPS = [
     "blog.apps.BlogConfig",
 ]
 
-INSTALLED_APPS = BASE_APPS + THIRD_PARTY_APPS + MY_APPS
+INSTALLED_APPS = INITIAL_APPS + BASE_APPS + THIRD_PARTY_APPS + MY_APPS
 
 
 MIDDLEWARE = [
@@ -168,5 +172,45 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         # 'height': 300,
         # 'width': '100%',
+    },
+}
+
+
+JAZZMIN_SETTINGS = {
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+
+        # account APP
+        "account.Country": "fas fa-globe",
+        "account.City": "fas fa-city",
+        "account.Address": "fas fa-map-marker-alt",
+        "account.Position": "fas fa-briefcase",
+        "account.User": "fas fa-user",
+
+        # blog APP
+        "blog.BlogCategory": "fas fa-folder",
+        "blog.BlogTag": "fas fa-tag",
+        "blog.Blog": "far fa-newspaper",
+        "blog.BlogReview": "fas fa-comments",
+
+        # core APP
+        "core.Contact": "fas fa-envelope",
+        "core.Newsletter": "fas fa-newspaper",
+
+        # product APP
+        "product.Color": "fas fa-palette",
+        "product.Designer": "fas fa-pencil-ruler",
+        "product.Brand": "fas fa-building",
+        "product.Discount": "fas fa-percent",
+        "product.ProductCategory": "fas fa-folder",
+        "product.ProductTag": "fas fa-tag",
+        "product.Product": "fas fa-cubes",
+        "product.ProductVersion": "fas fa-cube",
+        "product.ProductVersionImage": "fas fa-image",
+        "product.ProductVersionReview": "fas fa-comments",
+        "product.Wishlist": "fas fa-heart",
     },
 }

@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
-from smart_selects.db_fields import ChainedForeignKey
 from core.models import AbstractModel
 from django.contrib.auth import get_user_model
 
@@ -64,17 +63,7 @@ class Blog(AbstractModel):
 class BlogReview(AbstractModel):
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, related_name="reviews")
-    parent = ChainedForeignKey(
-        "self",
-        chained_field="blog",
-        chained_model_field="blog",
-        show_all=False,
-        auto_choose=False,
-        sort=True,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True, related_name="blog_reviews")
 

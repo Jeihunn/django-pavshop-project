@@ -8,9 +8,9 @@ Django==4.2.2
 django-autoslug==1.9.9
 django-ckeditor==6.6.1
 django-extensions==3.2.3
+django-jazzmin==2.6.0
 django-js-asset==2.1.0
 django-phonenumber-field==7.1.0
-django-smart-selects==1.6.0
 executing==1.2.0
 ipython==8.14.0
 jedi==0.18.2
