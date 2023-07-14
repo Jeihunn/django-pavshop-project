@@ -1,0 +1,119 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+{% block page_title %}
+<title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
+{% endblock page_title %}
+
+
+{% block main %}
+<!--======= SUB BANNER =========-->
+{% include "core/includes/sub-banner.html" %}
+
+<!-- Content -->
+<div id="content">
+
+  <!--======= PAGES INNER =========-->
+  <section class="padding-top-100 padding-bottom-100 pages-in chart-page">
+    <div class="container">
+
+      <!-- Payments Steps -->
+      <div class="shopping-cart text-center">
+        <div class="cart-head">
+          <ul class="row">
+            <!-- PRODUCTS -->
+            <li class="col-sm-2 text-left">
+              <h6>PRODUCTS</h6>
+            </li>
+            <!-- NAME -->
+            <li class="col-sm-4 text-left">
+              <h6>NAME</h6>
+            </li>
+            <li class="col-sm-1"> </li>
+          </ul>
+        </div>
+
+        <!-- Cart Details -->
+        <ul class="row cart-details">
+          <li class="col-sm-6">
+            <div class="media">
+              <!-- Media Image -->
+              <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object"
+                    src="{% static 'images/cart-img-1.jpg' %}" alt=""> </a> </div>
+
+              <!-- Item Name -->
+              <div class="media-body">
+                <div class="position-center-center">
+                  <h5>wood chair</h5>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- REMOVE -->
+          <li class="col-sm-1">
+            <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
+          </li>
+        </ul>
+
+        <!-- Cart Details -->
+        <ul class="row cart-details">
+          <li class="col-sm-6">
+            <div class="media">
+              <!-- Media Image -->
+              <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object"
+                    src="{% static 'images/cart-img-1.jpg' %}" alt=""> </a> </div>
+
+              <!-- Item Name -->
+              <div class="media-body">
+                <div class="position-center-center">
+                  <h5>STOOL</h5>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- REMOVE -->
+          <li class="col-sm-1">
+            <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
+          </li>
+        </ul>
+        <!-- Cart Details -->
+        <ul class="row cart-details">
+          <li class="col-sm-6">
+            <div class="media">
+              <!-- Media Image -->
+              <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object"
+                    src="{% static 'images/cart-img-1.jpg' %}" alt=""> </a> </div>
+
+              <!-- Item Name -->
+              <div class="media-body">
+                <div class="position-center-center">
+                  <h5>WOOD SPOON</h5>
+                  <p>Lorem ipsum dolor sit amet</p>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- REMOVE -->
+          <li class="col-sm-1">
+            <div class="position-center-center"> <a href="#."><i class="icon-close"></i></a> </div>
+          </li>
+        </ul>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About -->
+  {% include "core/includes/about.html" %}
+
+  <!-- News Letter -->
+  {% include "core/includes/news-letter.html" %}
+</div>
+{% endblock main %}

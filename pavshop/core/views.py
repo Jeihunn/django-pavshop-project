@@ -11,6 +11,10 @@ def shopping_cart_view(request):
     return render(request, "core/shopping-cart.html")
 
 
+def wishlist_view(request):
+    return render(request, "core/wishlist.html")
+
+
 def contact_view(request):
     return render(request, "core/contact.html")
 
