@@ -48,7 +48,6 @@ THIRD_PARTY_APPS = [
     "ckeditor",
     "phonenumber_field",
     "babel",
-    "smart_selects",
 ]
 
 MY_APPS = [
