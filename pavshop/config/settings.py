@@ -176,7 +176,9 @@ CKEDITOR_CONFIGS = {
 
 
 JAZZMIN_SETTINGS = {
-
+    "site_title": "Pavshop Admin ",
+    "site_header": "Pavshop Admin ",
+    "welcome_sign": "Welcome to Pavshop Admin panel",
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
