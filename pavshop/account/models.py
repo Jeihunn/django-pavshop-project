@@ -9,7 +9,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class Country(AbstractModel):
     name = models.CharField(max_length=100, unique=True)
-    country_code = models.CharField(max_length=2, unique=True)
+    country_code = models.CharField(max_length=3, unique=True)
 
     class Meta:
         verbose_name = "Country"
