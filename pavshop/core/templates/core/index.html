@@ -7,6 +7,11 @@
 {% endblock page_title %}
 
 
+{% block alert %}
+  {% include "core/includes/alert-close-message.html" %}
+{% endblock alert %}
+
+
 {% block main %}
   <!--======= HOME MAIN SLIDER =========-->
   {% include "core/includes/home-main-slider.html" %}

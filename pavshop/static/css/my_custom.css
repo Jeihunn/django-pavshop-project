@@ -1,0 +1,20 @@
+.phone-number {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px;
+}
+
+.phone-number select {
+  margin-top: 15px !important;
+  width: 60% !important;
+}
+
+.phone-number input {
+  margin-top: 15px !important;
+  width: 40% !important;
+}
+
+.errorlist {
+  margin-top: 5px !important;
+  color: red !important;
+}

@@ -28,88 +28,98 @@
               <!-- ESTIMATE SHIPPING & TAX -->
               <div class="col-sm-12">
                 <h6>REGISTER</h6>
-                <form>
+                <form method="post">
+                  {% csrf_token %}
+
                   <ul class="row">
                     
-                    <!-- Name -->
+                    <!-- USERNAME -->
                     <li class="col-md-6">
-                      <label> *FIRST NAME
-                        <input type="text" name="first-name" value="" placeholder="">
+                      <label> *USERNAME
+                        {{ form.username }}
+                        {{ form.username.errors }}
                       </label>
                     </li>
-                    <!-- LAST NAME -->
-                    <li class="col-md-6">
-                      <label> *LAST NAME
-                        <input type="text" name="last-name" value="" placeholder="">
-                      </label>
-                    </li>
-                    
+
                     <!-- EMAIL ADDRESS -->
                     <li class="col-md-6">
                       <label> *EMAIL ADDRESS
-                        <input type="text" name="contry-state" value="" placeholder="">
+                        {{ form.email }}
+                        {{ form.email.errors }}
                       </label>
                     </li>
+
+                    <!-- FIRST NAME -->
+                    <li class="col-md-6">
+                      <label> *FIRST NAME
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
+                      </label>
+                    </li>
+
+                    <!-- LAST NAME -->
+                    <li class="col-md-6">
+                      <label> *LAST NAME
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
+                      </label>
+                    </li>
+
+                    <!-- PASSWORD -->
+                    <li class="col-md-6">
+                      <label> *PASSWORD
+                        {{ form.password1 }}
+                        {{ form.password1.errors }}
+                      </label>
+                    </li>
+                    
+                    <!-- CONFIRM PASSWORD -->
+                    <li class="col-md-6">
+                      <label> *CONFIRM PASSWORD
+                        {{ form.password2 }}
+                        {{ form.password2.errors }}
+                      </label>
+                    </li>
+
                     <!-- PHONE -->
                     <li class="col-md-6">
                       <label> *PHONE
-                        <input type="text" name="postal-code" value="" placeholder="">
+                        <div class="phone-number">
+                          {{ form.phone_number }}
+                        </div>
+                        {{ form.phone_number.errors }}
                       </label>
                     </li>
-                    
-                    <!-- LAST NAME -->
-                    <li class="col-md-6">
-                      <label> *PASSWORD
-                        <input type="password" name="last-name" value="" placeholder="">
-                      </label>
-                    </li>
-                    
-                    <!-- LAST NAME -->
-                    <li class="col-md-6">
-                      <label> *PASSWORD
-                        <input type="password" name="last-name" value="" placeholder="">
-                      </label>
-                    </li>
-                    <li class="col-md-6"> 
-                      <!-- ADDRESS -->
-                      <label>*ADDRESS
-                        <input type="text" name="address" value="" placeholder="">
-                      </label>
-                    </li>
-                    <li class="col-md-6"> 
-                      <!-- ADDRESS -->
-                      <label>*ADDRESS
-                        <input type="text" name="address" value="" placeholder="">
+
+                    <!-- STREET ADDRESS -->
+                    <li class="col-md-12"> 
+                      <label>*STREET ADDRESS
+                        {{ form.street_address }}
+                        {{ form.street_address.errors }}
                       </label>
                     </li>
                     
                     <!-- COUNTRY -->
                     <li class="col-md-6">
-                      <label> COUNTRY
-                        <select class="selectpicker" name="contry-state">
-                          <option>COUNTRY</option>
-                          <option>Country 2</option>
-                          <option>Country 3</option>
-                        </select>
+                      <label>*COUNTRY
+                        {{ form.country }}
+                        {{ form.country.errors }}
                       </label>
                     </li>
                     
                     <!-- TOWN/CITY -->
                     <li class="col-md-6">
                       <label>*TOWN/CITY
-                            <select class="selectpicker" name="town">
-                              <option>TOWN/CITY</option>
-                              <option>Town/City 1</option>
-                              <option>Town/City 2</option>
-                              <option>Town/City 3</option>
-                            </select>
+                        {{ form.city }}
+                        {{ form.city.errors }}
                       </label>
                     </li>
                     
-                    <!-- PHONE -->
-                    <li class="col-md-6">
+                    <!-- Submit -->
+                    <li class="col-md-12">
                       <button type="submit" class="btn">REGISTER NOW</button>
                     </li>
+
                   </ul>
                 </form>
               </div>
@@ -118,6 +128,7 @@
         </div>
       </div>
     </section>
+
     
     <!-- About -->
     {% include "core/includes/about.html" %}
@@ -126,3 +137,48 @@
     {% include "core/includes/news-letter.html" %}
   </div>
 {% endblock main %}
+
+
+{% block js %}
+<script>
+  $(document).ready(function() {
+    // Şəhər və ölkə alanlarını başlanğıcda boşaltın
+    $("#id_city").empty().append('<option value="">Select a city</option>');
+
+    // Öncədən seçilmiş bir ölkə varsa, şəhərlərini yükləyin
+    var countryId = $("#id_country").val();
+    if (countryId !== '') {
+      loadCitiesForCountry(countryId);
+    }
+
+    $("#id_country").change(function() {
+      var countryId = $(this).val();
+
+      // "Select a country" seçildikdə şəhər alanını boşaltın
+      if (countryId === '') {
+        $("#id_city").empty().append('<option value="">Select a city</option>');
+        return;
+      }
+
+      // Seçilən ölkəyə görə şəhərləri yükləyin
+      loadCitiesForCountry(countryId);
+    });
+
+    function loadCitiesForCountry(countryId) {
+      $.ajax({
+        url: "{% url 'account:load_cities_view' %}",
+        data: {
+          'country_id': countryId
+        },
+        success: function(data) {
+          var options = '<option value="">Select a city</option>';
+          for (var i = 0; i < data.length; i++) {
+            options += '<option value="' + data[i][0] + '">' + data[i][1] + '</option>';
+          }
+          $("#id_city").html(options);
+        }
+      });
+    }
+  });
+</script>
+{% endblock js %}

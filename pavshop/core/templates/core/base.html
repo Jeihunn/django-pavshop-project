@@ -31,7 +31,9 @@
     <link href="{% static 'css/main.css' %}" rel="stylesheet" />
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+    
     <!-- MY CSS -->
+    <link rel="stylesheet" href="{% static 'css/my_custom.css' %}">
     {% block css %}{% endblock css %}
 
     <!-- JavaScripts -->
@@ -66,6 +68,10 @@
 
     <!-- Wrap -->
     <div id="wrap">
+
+      <!-- Alert -->
+      {% block alert %}{% endblock alert %}
+
       <!-- header -->
       {% include "core/includes/header.html" %}
 
