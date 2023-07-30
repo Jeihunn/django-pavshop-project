@@ -25,38 +25,53 @@
               <!--======= Success Msg =========-->
               <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You. Your Message has been Submitted</div>
               
+
+              <!--======= Alert =========-->
+              {% include "core/includes/alert-message.html" %}
+              
+
               <!--======= FORM  =========-->
-              <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+              <form role="form" id="contact_form" class="contact-form" method="post">
+                {% csrf_token %}
+
                 <ul class="row">
                   <li class="col-sm-6">
                     <label>full name *
-                      <input type="text" class="form-control" name="name" id="name" placeholder="">
+                      {{ form.full_name }}
+                      {{ form.full_name.errors }}
                     </label>
                   </li>
                   <li class="col-sm-6">
                     <label>Email *
-                      <input type="text" class="form-control" name="email" id="email" placeholder="">
+                      {{ form.email }}
+                      {{ form.email.errors }}
                     </label>
                   </li>
                   <li class="col-sm-6">
                     <label>Phone *
-                      <input type="text" class="form-control" name="company" id="company" placeholder="">
+                      <div class="phone-number">
+                        {{ form.phone_number }}
+                      </div>
+                      {{ form.phone_number.errors }}
                     </label>
                   </li>
                   <li class="col-sm-6">
-                    <label>SUBJECT
-                      <input type="text" class="form-control" name="website" id="website" placeholder="">
+                    <label>SUBJECT *
+                      {{ form.subject }}
+                      {{ form.subject.errors }}
                     </label>
                   </li>
                   <li class="col-sm-12">
-                    <label>Message
-                      <textarea class="form-control" name="message" id="message" rows="5" placeholder=""></textarea>
+                    <label>Message *
+                      {{ form.message }}
+                      {{ form.message.errors }}
                     </label>
                   </li>
                   <li class="col-sm-12">
                     <button type="submit" value="submit" class="btn" id="btn_submit" onClick="proceed();">SEND MAIL</button>
                   </li>
                 </ul>
+
               </form>
             </div>
             

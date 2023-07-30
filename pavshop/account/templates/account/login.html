@@ -6,6 +6,11 @@
 {% endblock page_title %}
 
 
+{% block alert %}
+  {% include "core/includes/alert-close-message.html" %}
+{% endblock alert %}
+
+
 {% block main %}
   <!--======= SUB BANNER =========-->
   {% include "core/includes/sub-banner.html" %}
@@ -27,19 +32,33 @@
               <!-- ESTIMATE SHIPPING & TAX -->
               <div class="col-sm-7">
                 <h6>LOGIN YOUR ACCOUNT</h6>
-                <form>
+
+                <!-- NON FIELD ERRORS -->
+                {% if form.non_field_errors %}
+                  {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                      <strong>{{ error }}</strong>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+
+                <form method="post">
+                  {% csrf_token %}
+
                   <ul class="row">
                     
-                    <!-- Name -->
+                    <!-- USERNAME -->
                     <li class="col-md-12">
                       <label> USERNAME
-                        <input type="text" name="first-name" value="" placeholder="">
+                        {{ form.username }}
+                        {{ form.username.errors }}
                       </label>
                     </li>
-                    <!-- LAST NAME -->
+                    <!-- PASSWORD -->
                     <li class="col-md-12">
                       <label> PASSWORD
-                        <input type="password" name="last-name" value="" placeholder="">
+                        {{ form.password }}
+                        {{ form.password.errors }}
                       </label>
                     </li>
                     
@@ -62,9 +81,10 @@
                         <a href="#.">Forget Password</a>
                       </div>
                     </li>
+
                   </ul>
+
                 </form>
-                
               </div>
               
               <!-- SUB TOTAL -->
