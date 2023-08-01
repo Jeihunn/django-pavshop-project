@@ -33,6 +33,7 @@ class BlogAdmin(admin.ModelAdmin):
     list_display = ["id", "title", "is_active",
                     "publish_date", "get_categories", "get_tags", "author", "created_at", "updated_at"]
     list_display_links = ["id", "title"]
+    list_editable = ["is_active"]
     list_filter = ["is_active", "publish_date",
                    "author", "blog_categories", "blog_tags"]
     search_fields = ["title", "content"]

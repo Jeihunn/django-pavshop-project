@@ -1,0 +1,6 @@
+<h5 class="shop-tittle margin-top-60 margin-bottom-30">PAUPLAR TAGS</h5>
+<ul class="shop-tags">
+    {% for tag in blog_popular_tags %}
+        <li><a href="#.">{{ tag.name }}</a></li>
+    {% endfor %}
+</ul>

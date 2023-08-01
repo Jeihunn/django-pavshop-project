@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{% load static tags %}
 
 
 {% block page_title %}
@@ -23,56 +23,35 @@
             <!-- Article -->
             <article> 
               <!-- Post Img --> 
-              <img class="img-responsive" src="{% static 'images/blog-list-img-2.jpg' %}" alt="" > 
+              <img class="img-responsive" src="{{ blog.cover_image.url }}" alt="" > 
               <!-- Tittle -->
-              <div class="post-tittle left"> <a href="#." class="tittle">Look Beautiful in this Seasons</a> 
+              <div class="post-tittle left"> <a href="#." class="tittle">{{ blog.title }}</a> 
                 <!-- Post Info --> 
-                <span><i class="primary-color icon-user"></i> by admin</span> <span><i class="primary-color icon-calendar"></i> April 27, 2016</span> <span><i class="primary-color icon-bubble"></i> 05</span> <span><i class="primary-color icon-tag"></i> Furniture</span> </div>
+                <span><i class="primary-color icon-user"></i> by {{ blog.author.get_username }}</span> 
+                <span><i class="primary-color icon-calendar"></i> {{ blog.publish_date|date:"F d, Y H:i" }}</span> 
+                <span><i class="primary-color icon-bubble"></i> {{ blog.reviews.count }}</span> 
+                <span><i class="primary-color icon-tag"></i>
+                  {% for category in blog.blog_categories.all %}
+                    {% if category.is_active %}
+                     {{ category.name }}{% if not forloop.last %}, {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </span>
+              </div>
               <!-- Post Content -->
               <div class="text-left">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat dui at lacus aliquet, a consequat enim aliquet. Integer molestie sit amet sem et faucibus. Nunc ornare pharetra dui, vitae auctor orci fringilla eget. Pellentesque in placerat felis. Etiam mollis venenatis luctus. Morbi ac scelerisque mauris. Etiam sodales a nulla ornare viverra. Nunc at blandit neque, bibendum varius purus. <br>
-                  <br>
-                  Nam sit amet sapien vitae enim vehicula tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc faucibus imperdiet vulputate. Morbi volutpat leo iaculis elit vehicula, eu convallis magna finibus. Suspendisse tristique ullamcorper erat a elementum. Cras eget elit non nunc aliquam ullamcorper quis sed metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada, erat in ullamcorper bibendum, elit lacus mattis lorem, quis luctus diam lorem vel ligula.</p>
-                <h6 class="margin-top-80 margin-bottom-30">proeduct history</h6>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat dui at lacus aliquet, a consequat enim aliquet. Integer molestie sit amet sem et faucibus. Nunc ornare pharetra dui, vitae auctor orci fringilla eget. Pellentesque in placerat felis. Etiam mollis venenatis luctus. Morbi ac scelerisque mauris. Etiam sodales a nulla ornare viverra. <br>
-                  <br>
-                  Nam sit amet sapien vitae enim vehicula tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc faucibus imperdiet vulputate. Morbi volutpat leo iaculis elit vehicula, eu convallis magna finibus.  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada, erat in ullamcorper bibendum, elit lacus mattis lorem, quis luctus diam lorem vel ligula.</p>
-                
-                <!-- Post Img --> 
-                <img class="img-responsive margin-top-50 margin-bottom-50" src="{% static 'images/blog-list-img-1.jpg' %}" alt="" >
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat dui at lacus aliquet, a consequat enim aliquet. Integer molestie sit amet sem et faucibus. Nunc ornare pharetra dui, vitae auctor orci fringilla eget. Pellentesque in placerat felis. Etiam mollis venenatis luctus. Morbi ac scelerisque mauris. Etiam sodales a nulla ornare viverra. Nunc at blandit neque, bibendum varius purus. <br>
-                  <br>
-                  Nam sit amet sapien vitae enim vehicula tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc faucibus imperdiet vulputate. Morbi volutpat leo iaculis elit vehicula, eu convallis magna finibus. Suspendisse tristique ullamcorper erat a elementum. Cras eget elit non nunc aliquam ullamcorper quis sed metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada, erat in ullamcorper bibendum, elit lacus mattis lorem, quis luctus diam lorem vel ligula.</p>
-                
-                <!-- LIST STYLE -->
-                <ul class="list-group margin-top-50 margin-top-20">
-                  <li>
-                    <p>Donec sed dictum leo, et posuere felis. </p>
-                  </li>
-                  <li>
-                    <p> Sed pharetra mauris vel varius suscipit. Aliquam lectus velit, </p>
-                  </li>
-                  <li>
-                    <p> Tempus id est ut, volutpat maximus sapien. </p>
-                  </li>
-                </ul>
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat dui aolutpat dui at lacus aliquet, a consequat et lacus aliquet, a consequat enim aliquet. Integer molestie sit ame.</p>
-                
-                <!-- Blockquote -->
-                <blockquote>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat dui at lacus aliquet, a consequat enim aliquet. Integer molestie sit amet sem et faucibus. </blockquote>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. NullamMorbi ac scelerisque mauris. Etiam sodales a nulla ornare viverra. Nunc at blandit neque, bociis natoque penatibus et magnnascetiscing elit. NullamMorbi ac scelerisque miscing elit. NullamMorbi ac scelerisque mur ridic volutpat dui at lacus aliquet, a consequat enim aliquet. Integer molestie sit ame.</p>
+                {{ blog.content|safe }}
                 
                 <!-- Tags -->
                 <div class="row margin-top-50">
                   <div class="col-md-8">
-                    <h5 class="shop-tittle">PRODUCT TAGS</h5>
+                    <h5 class="shop-tittle">BLOG TAGS</h5>
                     <ul class="shop-tags padding-left-15">
-                      <li><a href="#.">Towels</a></li>
-                      <li><a href="#.">Chair</a></li>
-                      <li><a href="#.">Bedsheets</a></li>
-                      <li><a href="#.">Shoe</a></li>
-                      <li><a href="#.">Curtains</a></li>
-                      <li><a href="#.">Clocks</a></li>
+                      {% for tag in blog.blog_tags.all %}
+                        {% if tag.is_active %}
+                          <li><a href="#.">{{ tag.name }}</a></li>
+                        {% endif %}
+                      {% endfor %}
                     </ul>
                   </div>
                   
@@ -89,12 +68,19 @@
                 <!-- ADMIN info -->
                 <div class="admin-info">
                   <div class="media-left">
-                    <div class="admin-pic"> <img src="{% static 'images/admin-avatar.jpg' %}" alt=""> </div>
+                    <div class="admin-pic"> <img class="img-fluid" style="max-width: 100%;" src="{{ blog.author.profile_image.url }}" alt=""> </div>
                   </div>
                   <div class="media-body">
-                    <h6>NATASHA S. <span>Co-Founder</span></h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. NullamMorbi ac scelerisque mauris. Etiam sodales a nulla ornare viverra. Nunc at blandit neque, bociis natoque penatcing e scelerisque miscing elit. </p>
-                    <div class="admin-social"> <a href="#."><i class="icon-social-facebook"></i></a> <a href="#."><i class="icon-social-twitter"></i></a> <a href="#."><i class="icon-social-dribbble"></i></a> <a href="#."><i class="icon-envelope"></i></a> </div>
+                    <h6>{{ blog.author.first_name }} {{ blog.author.last_name|slice:"1" }}. <span>{{ blog.author.position.name }}</span></h6>
+                    <p>
+                      {{ blog.author.bio }}
+                    </p>
+                    <div class="admin-social"> 
+                      <a href="#."><i class="icon-social-facebook"></i></a> 
+                      <a href="#."><i class="icon-social-twitter"></i></a> 
+                      <a href="#."><i class="icon-social-dribbble"></i></a> 
+                      <a href="#."><i class="icon-envelope"></i></a> 
+                    </div>
                   </div>
                 </div>
                 
@@ -178,50 +164,43 @@
             <!--  You May Like -->
             <h5 class="shop-tittle margin-top-50 margin-bottom-50">you may like </h5>
             <div class="alos-like padding-left-15"> 
-              <!-- Article -->
-              <article>
-                <div class="row">
-                  <div class="col-sm-5"> 
-                    <!-- Post Img --> 
-                    <img class="img-responsive" src="{% static 'images/blog-list-img-1-2.jpg' %}" alt="" > </div>
-                  <div class="col-sm-7"> 
-                    <!-- Tittle -->
-                    <div class="post-tittle left"> <a href="#." class="tittle">The unique Chair By PAVSHOP</a> 
-                      <!-- Post Info --> 
-                      <span><i class="primary-color icon-user"></i> by admin</span> <span><i class="primary-color icon-calendar"></i> April 27, 2016</span> <span><i class="primary-color icon-bubble"></i> 05</span> <span><i class="primary-color icon-tag"></i> Furniture</span> </div>
-                    <!-- Post Content -->
-                    <div class="text-left">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat dui at lacus aliquet, a consequat enim aliquet. Integer molestie sit amet sem et faucibus. Nunc ornare pharetra dui, vitae auctor orci fringilla eget. Pellentesque in placerat felis. Etiam mollis venenatis luctus.  
-                        
-                        Nunc at blandit neque, bibendum varius purus.</p>
-                      <a href="#." class="red-more">READ MORE</a> </div>
+              {% for related_blog in related_blogs %}
+                <!-- Article -->
+                <article>
+                  <div class="row">
+                    <div class="col-sm-5"> 
+                      <!-- Post Img --> 
+                      <img class="img-responsive" src="{{ related_blog.cover_image.url }}" alt="" > </div>
+                    <div class="col-sm-7"> 
+                      <!-- Tittle -->
+                      <div class="post-tittle left"> <a href="{% url 'blog:blog_detail_view' related_blog.slug %}" class="tittle">{{ related_blog.title }}</a> 
+                        <!-- Post Info --> 
+                        <span><i class="primary-color icon-user"></i> by {{ related_blog.author.get_username }}</span> 
+                        <span><i class="primary-color icon-calendar"></i> {{ related_blog.publish_date|date:"F d, Y H:i" }}</span> 
+                        <span><i class="primary-color icon-bubble"></i> {{ related_blog.reviews.count }}</span> 
+                        <span><i class="primary-color icon-tag"></i>
+                          {% for category in related_blog.blog_categories.all %}
+                            {% if forloop.last %}
+                              {{ category.name }}
+                            {% else %}
+                              {{ category.name }}, 
+                            {% endif %}
+                          {% endfor %}
+                        </span> 
+                      </div>
+                      <!-- Post Content -->
+                      <div class="text-left">
+                        <p>
+                          {{ related_blog.content|striptags|truncatechars:200|safe }}
+                        </p>
+                        <a href="{% url 'blog:blog_detail_view' related_blog.slug %}" class="red-more">READ MORE</a> </div>
+                    </div>
                   </div>
-                </div>
-              </article>
-              
-              <!-- Article -->
-              <article>
-                <div class="row">
-                  <div class="col-sm-5"> 
-                    <!-- Post Img --> 
-                    <img class="img-responsive" src="{% static 'images/blog-list-img-1-3.jpg' %}" alt="" > </div>
-                  <div class="col-sm-7"> 
-                    <!-- Tittle -->
-                    <div class="post-tittle left"> <a href="#." class="tittle">The unique Chair By PAVSHOP</a> 
-                      <!-- Post Info --> 
-                      <span><i class="primary-color icon-user"></i> by admin</span> <span><i class="primary-color icon-calendar"></i> April 27, 2016</span> <span><i class="primary-color icon-bubble"></i> 05</span> <span><i class="primary-color icon-tag"></i> Furniture</span> </div>
-                    <!-- Post Content -->
-                    <div class="text-left">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat dui at lacus aliquet, a consequat enim aliquet. Integer molestie sit amet sem et faucibus. Nunc ornare pharetra dui, vitae auctor orci fringilla eget. Pellentesque in placerat felis. Etiam mollis venenatis luctus.  
-                        
-                        Nunc at blandit neque, bibendum varius purus.</p>
-                      <a href="#." class="red-more">READ MORE</a> </div>
-                  </div>
-                </div>
-              </article>
+                </article>
+              {% endfor %}
             </div>
           </div>
-          
+
           <!-- Sider Bar -->
           <div class="col-md-3">
             <div class="shop-sidebar"> 
@@ -233,56 +212,16 @@
               </div>
               
               <!-- Category -->
-              <h5 class="shop-tittle margin-bottom-30">category</h5>
-              <ul class="shop-cate">
-                <li><a href="#."> Chair <span>24</span></a></li>
-                <li><a href="#."> Bag <span>122</span></a></li>
-                <li><a href="#."> Soffa <span>09</span></a></li>
-                <li><a href="#."> Bed <span>12</span></a></li>
-                <li><a href="#."> Shoes <span>98</span></a></li>
-                <li><a href="#."> Table <span>34</span></a></li>
-                <li><a href="#."> Bedsheets <span>23</span></a></li>
-                <li><a href="#."> Curtains <span>43</span></a></li>
-                <li><a href="#."> TV Cabinets <span>12</span></a></li>
-                <li><a href="#."> Clocks <span>18</span></a></li>
-                <li><a href="#."> Towels <span>25</span></a></li>
-              </ul>
-              
+              {% include "blog/includes/blog-categories.html" %}
+
               <!-- Recent Post -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">recent post</h5>
-              <ul class="papu-post margin-top-20">
-                <li class="media">
-                  <div class="media-left"> <a href="#"> <img class="media-object" src="{% static 'images/sm-post-1.jpg' %}" alt=""></a> </div>
-                  <div class="media-body"> <a class="media-heading" href="#.">Nullam volutpat dui at 
-                    a consequat enimiquet</a> <span>Posted on Sep 27</span> </div>
-                </li>
-                <li class="media">
-                  <div class="media-left"> <a href="#"> <img class="media-object" src="{% static 'images/sm-post-2.jpg' %}" alt=""></a> </div>
-                  <div class="media-body"> <a class="media-heading" href="#.">Nullam volutpat dui at 
-                    a consequat enimiquet</a> <span>Posted on Sep 27</span> </div>
-                </li>
-                <li class="media">
-                  <div class="media-left"> <a href="#"> <img class="media-object" src="{% static 'images/sm-post-3.jpg' %}" alt=""></a> </div>
-                  <div class="media-body"> <a class="media-heading" href="#.">Nullam volutpat dui at 
-                    a consequat enimiquet</a> <span>Posted on Sep 27</span> </div>
-                </li>
-              </ul>
+              {% get_recently_viewed_blogs request %}
               
               <!-- TAGS -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">PAUPLAR TAGS</h5>
-              <ul class="shop-tags">
-                <li><a href="#.">Towels</a></li>
-                <li><a href="#.">Chair</a></li>
-                <li><a href="#.">Bedsheets</a></li>
-                <li><a href="#.">Shoe</a></li>
-                <li><a href="#.">Curtains</a></li>
-                <li><a href="#.">Clocks</a></li>
-                <li><a href="#.">TV Cabinets</a></li>
-                <li><a href="#.">Best Seller</a></li>
-                <li><a href="#.">Top Selling</a></li>
-              </ul>
+              {% get_blog_popular_tags %}
+
               
-              <!-- BRAND -->
+              <!-- ARCHIVES -->
               <h5 class="shop-tittle margin-top-60 margin-bottom-30">archives</h5>
               <ul class="shop-cate">
                 <li><a href="#."> January 2015 </a></li>
@@ -292,7 +231,7 @@
                 <li><a href="#."> May 2015 </a></li>
               </ul>
               
-              <!-- SIDE BACR BANER -->
+              <!-- SIDE BAR BANER -->
               <div class="side-bnr margin-top-50"> <img class="img-responsive" src="{% static 'images/sidebar-bnr.jpg' %}" alt="">
                 <div class="position-center-center"> <span class="price"><small>$</small>299</span>
                   <div class="bnr-text">look

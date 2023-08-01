@@ -1,0 +1,20 @@
+{% load static %}
+
+{% if recently_viewed_blogs %}
+  <h5 class="shop-tittle margin-top-60 margin-bottom-30">recent post</h5>
+  <ul class="papu-post margin-top-20">
+    {% for blog in recently_viewed_blogs %}
+      <li class="media">
+        <div class="media-left">
+          <a href="{% url 'blog:blog_detail_view' blog.slug %}"> 
+            <img class="media-object" src="{{ blog.cover_image.url }}" alt="">
+          </a> 
+        </div>
+        <div class="media-body"> 
+          <a class="media-heading" href="{% url 'blog:blog_detail_view' blog.slug %}">{{ blog.title }}</a> 
+          <span>Posted on {{ blog.publish_date|date:"F d, Y H:i" }}</span> 
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
