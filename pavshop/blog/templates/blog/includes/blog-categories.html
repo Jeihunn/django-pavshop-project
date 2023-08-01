@@ -1,0 +1,9 @@
+{% load tags %}
+
+<h5 class="shop-tittle margin-bottom-30">category</h5>
+<ul class="shop-cate">
+    {% get_blog_categories as blog_categories %}
+    {% for category in blog_categories %}
+        <li><a href="#."> {{ category.name }} <span>{{ category.blogs.count }}</span></a></li>
+    {% endfor %}
+</ul>
