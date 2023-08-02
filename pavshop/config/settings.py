@@ -48,6 +48,7 @@ THIRD_PARTY_APPS = [
     "ckeditor",
     "phonenumber_field",
     "babel",
+    "social_django",
 ]
 
 MY_APPS = [
@@ -166,6 +167,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# CKEditor configs
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
@@ -175,6 +177,7 @@ CKEDITOR_CONFIGS = {
 }
 
 
+# Jazzmin Settings
 JAZZMIN_SETTINGS = {
     "site_title": "Pavshop Admin",
     "site_header": "Pavshop Admin",
@@ -216,3 +219,27 @@ JAZZMIN_SETTINGS = {
         "product.Wishlist": "fas fa-heart",
     },
 }
+
+
+# Account Activation
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pavshop.project@gmail.com'
+EMAIL_HOST_PASSWORD = 'vfvawfeqwoaaergj'
+EMAIL_PORT = 587
+
+
+# Social Login
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = 'account:login_view'
+LOGIN_REDIRECT_URL = 'core:index_view'
+LOGOUT_URL = 'account:logout_view'
+# LOGOUT_REDIRECT_URL = 'account:login_view'
+
+SOCIAL_AUTH_FACEBOOK_KEY = 1017011629471183   # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = "a94d4384943febcfc3220bd743313651"   # App Secret

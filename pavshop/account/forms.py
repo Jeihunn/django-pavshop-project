@@ -88,6 +88,7 @@ class RegisterForm(UserCreationForm):
         )
 
         user.address = address
+        user.is_active = False
 
         if commit:
             user.save()
