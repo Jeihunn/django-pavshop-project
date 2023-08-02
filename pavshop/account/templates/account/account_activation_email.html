@@ -1,0 +1,16 @@
+{% autoescape off %}
+Hello {{ user.username }},
+
+Thank you for registering with us! To activate your account, please click on the link below:
+
+[Confirm Registration](http://{{ domain }}{% url 'account:activate_view' uidb64=uid token=token %})
+
+If the link does not work, you can also copy and paste the following link into your browser's address bar to complete the activation process:
+
+http://{{ domain }}{% url 'account:activate_view' uidb64=uid token=token %}
+
+If you have any questions or need further assistance, feel free to reach out to our support team.
+
+Best regards,
+Pavshop Team
+{% endautoescape %}
