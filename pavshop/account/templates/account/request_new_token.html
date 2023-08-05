@@ -1,0 +1,135 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Account Activation Token | My Awesome Website</title>
+
+  <!-- Bootstrap v3.3.5 CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      max-width: 500px;
+      margin-top: 25px;
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    h1 {
+      color: #007bff;
+      font-size: 30px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+
+    form {
+      margin-top: 20px;
+      text-align: center; /* Center the form content */
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      transition: border-color 0.2s ease-in-out;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+    }
+
+    .btn-primary {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .back-to-login {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .back-to-login a {
+      color: #007bff;
+    }
+
+    .errorlist {
+        margin-top: 5px !important;
+        color: red !important;
+        text-align: left;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+        <div class="request-token-form">
+            <h1>Request New Account Activation Token</h1>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">Email Address:</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+                </div>
+
+                <div class="form-group">
+                <button type="submit" class="btn btn-primary">Request Token</button>
+                </div>
+
+                <p class="back-to-login">
+                <a href="{% url 'account:login_view' %}">Back to Login</a>
+                </p>
+            </form>
+        
+        </div>
+        <div class="footer">
+            <p>Support Email: pavshop.project@gmail.com</p>
+            <p>&copy; 2023 Pavshop. All rights reserved.</p>
+        </div>
+  </div>
+</body>
+
+</html>

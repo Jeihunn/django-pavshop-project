@@ -60,6 +60,14 @@
         text-align: center;
         color: #888;
       }
+      .link {
+        color: blueviolet;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .link:hover {
+        text-decoration: underline;
+      }
     </style>
     <title>Account Activation Failed</title>
   </head>
@@ -71,9 +79,9 @@
           Oops! Account Activation Failed
         </h1>
         <p>Sorry, the activation link is invalid or has expired.</p>
-        <p>Please contact support to generate a new activation link.</p>
+        <p>Please <a href="{% url 'account:request_new_token_view' %}" class="link">request a new activation token</a> or contact support for assistance.</p>
         <a href="{% url 'core:contact_view' %}" class="button">Contact Support</a>
-        <p>Support Email: pavshop.project@gmail.com</p>
+        <p class="mt-3">Support Email: pavshop.project@gmail.com</p>
       </div>
       <div class="footer">
         <p>&copy; 2023 Pavshop. All rights reserved.</p>

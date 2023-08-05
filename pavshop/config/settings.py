@@ -116,6 +116,7 @@ DATABASES = {
 # }
 
 
+# Custom User model
 AUTH_USER_MODEL = "account.User"
 
 
@@ -221,6 +222,10 @@ JAZZMIN_SETTINGS = {
 }
 
 
+# PasswordResetTokenGenerator token expiration time (6 hour)
+PASSWORD_RESET_TIMEOUT = 6 * 60 * 60
+
+
 # Account Activation
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
@@ -241,5 +246,5 @@ LOGIN_REDIRECT_URL = 'core:index_view'
 LOGOUT_URL = 'account:logout_view'
 # LOGOUT_REDIRECT_URL = 'account:login_view'
 
-SOCIAL_AUTH_FACEBOOK_KEY = 1017011629471183   # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = "a94d4384943febcfc3220bd743313651"   # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = 1017011629471183                         # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = "a94d4384943febcfc3220bd743313651"    # App Secret

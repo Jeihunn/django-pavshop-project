@@ -215,21 +215,14 @@
               {% include "blog/includes/blog-categories.html" %}
 
               <!-- Recent Post -->
-              {% get_recently_viewed_blogs request %}
+              {% get_recently_viewed_blogs %}
               
               <!-- TAGS -->
               {% get_blog_popular_tags %}
 
               
               <!-- ARCHIVES -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">archives</h5>
-              <ul class="shop-cate">
-                <li><a href="#."> January 2015 </a></li>
-                <li><a href="#."> February 2015 </a></li>
-                <li><a href="#."> March 2015 </a></li>
-                <li><a href="#."> April 2015 </a></li>
-                <li><a href="#."> May 2015 </a></li>
-              </ul>
+              {% get_previous_months %}
               
               <!-- SIDE BAR BANER -->
               <div class="side-bnr margin-top-50"> <img class="img-responsive" src="{% static 'images/sidebar-bnr.jpg' %}" alt="">
