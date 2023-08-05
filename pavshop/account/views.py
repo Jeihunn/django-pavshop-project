@@ -8,7 +8,9 @@ from .models import City
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from .tokens import account_activation_token
 
 User = get_user_model()
@@ -57,7 +59,10 @@ def register_view(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            user.email_user(subject, message)
+        # Create EmailMessage instance with HTML content
+            email = EmailMessage(subject, message, to=[user.email])
+            email.content_subtype = 'html'  # Set the content type as HTML
+            email.send()
 
             messages.info(
                 request, "Registration successful! Please confirm your email address to complete the registration. An activation link has been sent to your email.")
@@ -67,7 +72,7 @@ def register_view(request):
 
     context = {
         "form": form,
-    }
+        }
     return render(request, "account/register.html", context)
 
 
