@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render, redirect, get_object_or_404, Http404
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
@@ -52,3 +53,34 @@ def blog_detail_view(request, blog_slug):
         "related_blogs": related_blogs,
     }
     return render(request, "blog/blog-detail.html", context)
+
+
+def blog_archive_view(request, year, month):
+    month = month.lower()
+
+    try:
+        blog_date = datetime.strptime(f"{year}/{month}", "%Y/%B")
+    except ValueError:
+        raise Http404("Invalid date format.")
+
+    blogs = Blog.objects.filter(is_active=True, publish_date__year=year,
+                                publish_date__month=blog_date.month).order_by("-publish_date")
+
+    paginator = Paginator(blogs, 6)
+    page = request.GET.get('page')
+    try:
+        page_number = int(page)
+    except TypeError:
+        page_number = 1
+    except ValueError:
+        raise Http404("Invalid page number.")
+
+    try:
+        blogs = paginator.page(page_number)
+    except EmptyPage:
+        raise Http404("Invalid page number.")
+
+    context = {
+        "blogs": blogs,
+    }
+    return render(request, "blog/blog-list.html", context)

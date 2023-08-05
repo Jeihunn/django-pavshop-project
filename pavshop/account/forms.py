@@ -93,3 +93,25 @@ class RegisterForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class RequestNewTokenForm(forms.Form):
+    email = forms.EmailField(
+        label='Email Address',
+        max_length=100,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'required': True,
+        })
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        user = User.objects.filter(email=email).first()
+
+        if user:
+            if user.is_active:
+                raise forms.ValidationError("A user account associated with this email address is already active. You cannot request new tokens.")
+        else:
+            raise forms.ValidationError("We couldn't find a user with this email address. Please make sure you've entered a valid email address.")
+        return email

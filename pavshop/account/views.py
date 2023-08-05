@@ -1,19 +1,15 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib import messages
 from django.http import JsonResponse
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, RequestNewTokenForm
 from .models import City
-
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
-from django.utils.encoding import force_str
-from django.utils.http import urlsafe_base64_decode
-from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
@@ -70,7 +66,7 @@ def register_view(request):
         form = RegisterForm()
 
     context = {
-        "form": form
+        "form": form,
     }
     return render(request, "account/register.html", context)
 
@@ -95,6 +91,35 @@ def activate_view(request, uidb64, token):
         return redirect(reverse_lazy('account:login_view'))
     else:
         return render(request, 'account/account_activation_invalid.html')
+
+
+def request_new_token_view(request):
+    if request.method == "POST":
+        form = RequestNewTokenForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            user = User.objects.filter(email=email).first()
+
+            current_site = get_current_site(request)
+            subject = 'Activate Your Pavshop Account'
+            message = render_to_string('account/account_activation_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': account_activation_token.make_token(user),
+            })
+            user.email_user(subject, message)
+
+            messages.info(
+                request, "An account activation token has been sent to your email address. Please check your inbox and follow the instructions to activate your account.")
+            return redirect(reverse_lazy('account:login_view'))
+    else:
+        form = RequestNewTokenForm()
+
+    context = {
+        "form": form,
+    }
+    return render(request, "account/request_new_token.html", context)
 
 
 def load_cities_view(request):

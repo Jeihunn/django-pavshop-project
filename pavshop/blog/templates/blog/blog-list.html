@@ -2,6 +2,16 @@
 {% load static tags %}
 
 
+{% block css %}
+<style>
+  ul.shop-cate li.active a {
+    font-weight: bold !important;
+    color: #ffe115 !important;
+  }
+</style>
+{% endblock css %}
+
+
 {% block page_title %}
   <title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
 {% endblock page_title %}
@@ -20,40 +30,47 @@
         <div class="row">
           <div class="col-md-9"> 
             
-            {% for blog in blogs %}
-            <!-- Article -->
-            <article>
-              <div class="row">
-                <div class="col-sm-5"> 
-                  <!-- Post Img --> 
-                  <img class="img-responsive" src="{{ blog.cover_image.url }}" alt="" > </div>
-                <div class="col-sm-7"> 
-                  <!-- Tittle -->
-                  <div class="post-tittle left"> <a href="{% url 'blog:blog_detail_view' blog.slug %}" class="tittle">{{ blog.title }}</a> 
-                    <!-- Post Info --> 
-                    <span><i class="primary-color icon-user"></i> by {{ blog.author.get_username }}</span> 
-                    <span><i class="primary-color icon-calendar"></i> {{ blog.publish_date|date:"F d, Y H:i" }}</span> 
-                    <span><i class="primary-color icon-bubble"></i> {{ blog.reviews.count }}</span> 
-                    <span><i class="primary-color icon-tag"></i>
-                      {% for category in blog.blog_categories.all %}
-                        {% if category.is_active %}
-                          {{ category.name }}{% if not forloop.last %}, {% endif %}
-                        {% endif %}
-                      {% endfor %}
-                    </span>
-                  </div>
-                  <!-- Post Content -->
-                  <div class="text-left">
-                    <p>
-                      {{ blog.content|striptags|truncatechars:200|safe }}
-                    </p>
+            {% if blogs %}
+              {% for blog in blogs %}
+              <!-- Article -->
+              <article>
+                <div class="row">
+                  <div class="col-sm-5"> 
+                    <!-- Post Img --> 
+                    <img class="img-responsive" src="{{ blog.cover_image.url }}" alt="" > </div>
+                  <div class="col-sm-7"> 
+                    <!-- Tittle -->
+                    <div class="post-tittle left"> <a href="{% url 'blog:blog_detail_view' blog.slug %}" class="tittle">{{ blog.title }}</a> 
+                      <!-- Post Info --> 
+                      <span><i class="primary-color icon-user"></i> by {{ blog.author.get_username }}</span> 
+                      <span><i class="primary-color icon-calendar"></i> {{ blog.publish_date|date:"F d, Y H:i" }}</span> 
+                      <span><i class="primary-color icon-bubble"></i> {{ blog.reviews.count }}</span> 
+                      <span><i class="primary-color icon-tag"></i>
+                        {% for category in blog.blog_categories.all %}
+                          {% if category.is_active %}
+                            {{ category.name }}{% if not forloop.last %}, {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </span>
+                    </div>
+                    <!-- Post Content -->
+                    <div class="text-left">
+                      <p>
+                        {{ blog.content|striptags|truncatechars:200|safe }}
+                      </p>
 
-                    <div><a href="{% url 'blog:blog_detail_view' blog.slug %}" class="red-more">READ MORE</a></div>
+                      <div><a href="{% url 'blog:blog_detail_view' blog.slug %}" class="red-more">READ MORE</a></div>
+                    </div>
                   </div>
                 </div>
+              </article>
+              {% endfor %}
+            {% else %}
+              <div class="alert alert-info">
+                <p><strong>Oops!</strong> There are no blog posts available at the moment.</p>
+                <p>Please check back later for exciting content.</p>
               </div>
-            </article>
-            {% endfor %}
+            {% endif %}
 
             
             <!-- Pagination -->
@@ -88,21 +105,14 @@
               {% include "blog/includes/blog-categories.html" %}
               
               <!-- Recent Post -->
-              {% get_recently_viewed_blogs request %}
+              {% get_recently_viewed_blogs %}
               
               <!-- TAGS -->
               {% get_blog_popular_tags %}
               
-              <!-- BRAND -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">archives</h5>
-              <ul class="shop-cate">
-                <li><a href="#."> January 2015 </a></li>
-                <li><a href="#."> February 2015 </a></li>
-                <li><a href="#."> March 2015 </a></li>
-                <li><a href="#."> April 2015 </a></li>
-                <li><a href="#."> May 2015 </a></li>
-              </ul>
-              
+              <!-- ARCHIVES -->
+              {% get_previous_months %}
+
               <!-- SIDE BACR BANER -->
               <div class="side-bnr margin-top-50"> <img class="img-responsive" src="{% static 'images/sidebar-bnr.jpg' %}" alt="">
                 <div class="position-center-center"> <span class="price"><small>$</small>299</span>

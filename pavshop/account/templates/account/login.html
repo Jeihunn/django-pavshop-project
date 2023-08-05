@@ -46,7 +46,6 @@
                   {% csrf_token %}
 
                   <ul class="row">
-                    
                     <!-- USERNAME -->
                     <li class="col-md-12">
                       <label> USERNAME
@@ -74,20 +73,20 @@
                         <label for="checkbox1"> Stay me Login</label>
                       </div>
                     </li>
-                    
-                    <!-- FORGET PASS -->
-                    <li class="col-md-4">
-                      <div class="checkbox margin-0 margin-top-20 text-right">
-                        <a href="#.">Forget Password</a>
-                      </div>
-                    </li>
-
                   </ul>
 
                 </form>
+
+                <div>
+                    <!-- FORGET PASS -->
+                    <a href="#">Forget Password</a>
+                    <span class="margin-10">/</span>
+                    <!-- REQUEST NEW TOKEN -->
+                    <a href="{% url 'account:request_new_token_view' %}">Request New Account Activation Token</a>
+                </div>
               </div>
               
-              <!-- SUB TOTAL -->
+              <!-- SOCIAL LOGIN -->
               <div class="col-sm-5">
                 <h6>LOGIN WITH</h6>
                 
@@ -106,9 +105,7 @@
                     	<a href="#."><i class="fa fa-twitter"></i>TWITTER</a>
                     
                     </li>
-                
                 </ul>
-                
                 
               </div>
             </div>
