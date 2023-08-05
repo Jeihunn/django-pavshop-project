@@ -5,13 +5,10 @@ from django.contrib import messages
 from django.http import JsonResponse
 from .forms import LoginForm, RegisterForm, RequestNewTokenForm
 from .models import City
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
 from .tokens import account_activation_token
+from .utils import send_activation_email
 
 User = get_user_model()
 
@@ -51,19 +48,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
 
-            current_site = get_current_site(request)
-            subject = 'Activate Your Pavshop Account'
-            message = render_to_string('account/account_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-        # Create EmailMessage instance with HTML content
-            email = EmailMessage(subject, message, to=[user.email])
-            email.content_subtype = 'html'  # Set the content type as HTML
-            email.send()
-
+            send_activation_email(request, user)
             messages.info(
                 request, "Registration successful! Please confirm your email address to complete the registration. An activation link has been sent to your email.")
             return redirect(reverse_lazy('account:login_view'))
@@ -72,7 +57,7 @@ def register_view(request):
 
     context = {
         "form": form,
-        }
+    }
     return render(request, "account/register.html", context)
 
 
@@ -105,16 +90,7 @@ def request_new_token_view(request):
             email = form.cleaned_data.get('email')
             user = User.objects.filter(email=email).first()
 
-            current_site = get_current_site(request)
-            subject = 'Activate Your Pavshop Account'
-            message = render_to_string('account/account_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            user.email_user(subject, message)
-
+            send_activation_email(request, user)
             messages.info(
                 request, "An account activation token has been sent to your email address. Please check your inbox and follow the instructions to activate your account.")
             return redirect(reverse_lazy('account:login_view'))
