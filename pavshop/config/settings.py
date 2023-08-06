@@ -45,10 +45,11 @@ INITIAL_APPS = [
 
 THIRD_PARTY_APPS = [
     "django_extensions",
+    "werkzeug_debugger_runserver",
     "ckeditor",
     "phonenumber_field",
     "babel",
-    "social_django",
+    'social_django',
 ]
 
 MY_APPS = [
@@ -238,8 +239,17 @@ EMAIL_PORT = 587
 # Social Login
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
+# Google OAuth2 key and secret configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '729969587540-6t0iamcnlinrhaphs36rt3fjmf4vrob8.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+LOGIN_URL = '/social-auth/login/google-oauth2/'
+
+LOGIN_REDIRECT_URL = '/social-auth/complete/google-oauth2/'
+LOGOUT_REDIRECT_URL = '/'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 LOGIN_URL = 'account:login_view'
 LOGIN_REDIRECT_URL = 'core:index_view'
