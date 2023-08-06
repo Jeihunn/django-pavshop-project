@@ -249,7 +249,7 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 LOGIN_URL = 'account:login_view'
 LOGIN_REDIRECT_URL = 'core:index_view'
 LOGOUT_URL = 'account:logout_view'
-LOGOUT_REDIRECT_URL = 'account:login_view'
+# LOGOUT_REDIRECT_URL = 'account:login_view'
 
 # Github OAuth2 key and secret configuration
 SOCIAL_AUTH_GITHUB_KEY = '8c6f2bf54b5a0c28f4f1'
@@ -261,4 +261,4 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 # Facebook OAuth2 key and secret configuration
 SOCIAL_AUTH_FACEBOOK_KEY = 1017011629471183                         # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = "a94d4384943febcfc3220bd743313651"    # App Secret
+SOCIAL_AUTH_FACEBOOK_SECRET = '139373e2e7a58ccd5a1e6484431a6841'    # App Secret
