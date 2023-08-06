@@ -85,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -240,21 +241,24 @@ EMAIL_PORT = 587
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2',
     'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
-# Google OAuth2 key and secret configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '729969587540-6t0iamcnlinrhaphs36rt3fjmf4vrob8.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
-LOGIN_URL = '/social-auth/login/google-oauth2/'
 
-LOGIN_REDIRECT_URL = '/social-auth/complete/google-oauth2/'
-LOGOUT_REDIRECT_URL = '/'
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-
 LOGIN_URL = 'account:login_view'
 LOGIN_REDIRECT_URL = 'core:index_view'
 LOGOUT_URL = 'account:logout_view'
-# LOGOUT_REDIRECT_URL = 'account:login_view'
+LOGOUT_REDIRECT_URL = 'account:login_view'
 
+# Github OAuth2 key and secret configuration
+SOCIAL_AUTH_GITHUB_KEY = '8c6f2bf54b5a0c28f4f1'
+SOCIAL_AUTH_GITHUB_SECRET = 'c2bf21eeb570b4eb72c75954d11e3169bc8c91bc'
+
+# Google OAuth2 key and secret configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '729969587540-6t0iamcnlinrhaphs36rt3fjmf4vrob8.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+# Facebook OAuth2 key and secret configuration
 SOCIAL_AUTH_FACEBOOK_KEY = 1017011629471183                         # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = "a94d4384943febcfc3220bd743313651"    # App Secret
