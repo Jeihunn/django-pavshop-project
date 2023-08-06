@@ -2,6 +2,7 @@
 env_*/
 *migrations*/
 pgdb/
+*.pem
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/venv,django,windows,python
