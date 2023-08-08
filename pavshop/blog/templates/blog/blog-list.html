@@ -4,7 +4,7 @@
 
 {% block css %}
 <style>
-  ul.shop-cate li.active a {
+  ul.shop li.active a {
     font-weight: bold !important;
     color: #ffe115 !important;
   }
@@ -29,6 +29,26 @@
       <div class="container">
         <div class="row">
           <div class="col-md-9"> 
+
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  {% if category %}
+                    <p class="h5">Category: <strong>{{ category.name }}</strong></p>
+                    <p class="h6">{{ blogs_count }} Results</p>
+                  {% elif tag %}
+                    <p class="h5">Tag: <strong>{{ tag.name }}</strong></p>
+                    <p class="h6">{{ blogs_count }} Results</p>
+                  {% elif query %}
+                    <p class="h5 mb-4">{{ blogs_count }} results for "<strong class="text-danger">{{ query }}</strong>"</p>
+                  {% else %}
+                    <p class="h6">{{ blogs_count }} Results</p>
+                  {% endif %}
+                  
+                </div>
+              </div>
+            </div>
+            
             
             {% if blogs %}
               {% for blog in blogs %}
@@ -48,7 +68,7 @@
                       <span><i class="primary-color icon-tag"></i>
                         {% for category in blog.blog_categories.all %}
                           {% if category.is_active %}
-                            {{ category.name }}{% if not forloop.last %}, {% endif %}
+                            <a href="{% url 'blog:blog_category_view' category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
                           {% endif %}
                         {% endfor %}
                       </span>
@@ -77,28 +97,27 @@
             {% if blogs.paginator.num_pages > 1 %}
               <ul class="pagination in-center">
                 {% if blogs.has_previous %}
-                  <li><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
-                  <li><a href="?page={{ blogs.previous_page_number }}">{{ blogs.previous_page_number }}</a></li>
+                  <li><a href="{% if query %}?query={{ query }}&page=1{% else %}?page=1{% endif %}"><i class="fa fa-angle-double-left"></i></a></li>
+                  <li><a href="{% if query %}?query={{ query }}&page={{ blogs.previous_page_number }}{% else %}?page={{ blogs.previous_page_number }}{% endif %}">{{ blogs.previous_page_number }}</a></li>
                 {% endif %}
-
-                  <li class="active"><a href="?page={{ blogs.number }}">{{ blogs.number }}</a></li>
-
+            
+                <li class="active"><a href="{% if query %}?query={{ query }}&page={{ blogs.number }}{% else %}?page={{ blogs.number }}{% endif %}">{{ blogs.number }}</a></li>
+            
                 {% if blogs.has_next %}
-                  <li><a href="?page={{ blogs.next_page_number }}">{{ blogs.next_page_number }}</i></a></li>
-                  <li><a href="?page={{ blogs.paginator.num_pages }}"><i class="fa fa-angle-double-right"></i></a></li>
+                  <li><a href="{% if query %}?query={{ query }}&page={{ blogs.next_page_number }}{% else %}?page={{ blogs.next_page_number }}{% endif %}">{{ blogs.next_page_number }}</i></a></li>
+                  <li><a href="{% if query %}?query={{ query }}&page={{ blogs.paginator.num_pages }}{% else %}?page={{ blogs.paginator.num_pages }}{% endif %}"><i class="fa fa-angle-double-right"></i></a></li>
                 {% endif %}
               </ul>
             {% endif %}
+          
           </div>
           
           <!-- Sider Bar -->
           <div class="col-md-3"> 
             
             <!-- SEARCH -->
-            <div class="search">
-              <input class="form-control" type="search" placeholder="Search">
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </div>
+            {% include "blog/includes/blog-search.html" %}
+
             <div class="shop-sidebar"> 
               
               <!-- Category -->

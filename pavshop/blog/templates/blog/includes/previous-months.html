@@ -1,7 +1,7 @@
 {% load tags %}
 
 <h5 class="shop-tittle margin-top-60 margin-bottom-30">archives</h5>
-<ul class="shop-cate">
+<ul class="shop shop-cate">
   {% for month in previous_months %}
     <li class="{% if request.path == month.path %}active{% endif %}">
       <a href="{% url 'blog:blog_archive_view' month.year month.month|lower %}">{{ month.month }} {{ month.year }} </a>
