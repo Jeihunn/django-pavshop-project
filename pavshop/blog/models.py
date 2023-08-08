@@ -63,7 +63,8 @@ class Blog(AbstractModel):
 class BlogReview(AbstractModel):
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, related_name="reviews")
-    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
+    parent = models.ForeignKey(
+        "self", on_delete=models.CASCADE, null=True, blank=True, related_name="children")
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, blank=True, related_name="blog_reviews")
 
