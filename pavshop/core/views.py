@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 from .forms import ContactForm
 
 
@@ -15,6 +16,7 @@ def shopping_cart_view(request):
     return render(request, "core/shopping-cart.html")
 
 
+@login_required
 def wishlist_view(request):
     return render(request, "core/wishlist.html")
 
@@ -24,10 +26,12 @@ def contact_view(request):
         form = ContactForm(data=request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Thank You. Your message has been sent successfully!")
+            messages.success(
+                request, "Thank You. Your message has been sent successfully!")
             return redirect(reverse_lazy("core:contact_view"))
         else:
-            messages.error(request, "Oops! Something went wrong. Please review your message and make sure all the required fields are filled correctly.")
+            messages.error(
+                request, "Oops! Something went wrong. Please review your message and make sure all the required fields are filled correctly.")
     else:
         form = ContactForm()
 
