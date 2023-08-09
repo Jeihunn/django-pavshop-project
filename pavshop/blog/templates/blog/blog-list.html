@@ -33,14 +33,14 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-12">
-                  {% if category %}
+                  {% if query %}
+                    <p class="h5 mb-4">{{ blogs_count }} results for "<strong class="text-danger">{{ query }}</strong>"</p>
+                  {% elif category %}
                     <p class="h5">Category: <strong>{{ category.name }}</strong></p>
                     <p class="h6">{{ blogs_count }} Results</p>
                   {% elif tag %}
                     <p class="h5">Tag: <strong>{{ tag.name }}</strong></p>
                     <p class="h6">{{ blogs_count }} Results</p>
-                  {% elif query %}
-                    <p class="h5 mb-4">{{ blogs_count }} results for "<strong class="text-danger">{{ query }}</strong>"</p>
                   {% else %}
                     <p class="h6">{{ blogs_count }} Results</p>
                   {% endif %}
@@ -48,8 +48,7 @@
                 </div>
               </div>
             </div>
-            
-            
+
             {% if blogs %}
               {% for blog in blogs %}
               <!-- Article -->

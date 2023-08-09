@@ -2,6 +2,7 @@ from datetime import datetime
 from django.shortcuts import render, redirect, get_object_or_404, Http404
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
+from django.urls import reverse_lazy
 from .models import Blog, BlogCategory, BlogTag
 
 
@@ -91,7 +92,8 @@ def blog_archive_view(request, year, month):
 
 
 def blog_category_view(request, category_slug):
-    category = get_object_or_404(BlogCategory, slug=category_slug)
+    category = get_object_or_404(
+        BlogCategory, slug=category_slug, is_active=True)
     blogs = Blog.objects.filter(
         is_active=True, blog_categories__slug=category_slug).order_by("-publish_date")
     blogs_count = blogs.count()
@@ -119,7 +121,7 @@ def blog_category_view(request, category_slug):
 
 
 def blog_tag_view(request, tag_slug):
-    tag = get_object_or_404(BlogTag, slug=tag_slug)
+    tag = get_object_or_404(BlogTag, slug=tag_slug, is_active=True)
     blogs = Blog.objects.filter(
         is_active=True, blog_tags__slug=tag_slug).order_by("-publish_date")
     blogs_count = blogs.count()
@@ -148,27 +150,31 @@ def blog_tag_view(request, tag_slug):
 
 def blog_search_view(request):
     query = request.GET.get('query')
-    blogs = Blog.objects.filter(
-        title__icontains=query, is_active=True).order_by("-publish_date")
-    blogs_count = blogs.count()
 
-    paginator = Paginator(blogs, 6)
-    page = request.GET.get('page')
-    try:
-        page_number = int(page)
-    except TypeError:
-        page_number = 1
-    except ValueError:
-        raise Http404("Invalid page number.")
+    if not query:
+        return redirect(reverse_lazy("blog:blog_list_view"))
+    else:
+        blogs = Blog.objects.filter(
+            title__icontains=query, is_active=True).order_by("-publish_date")
+        blogs_count = blogs.count()
 
-    try:
-        blogs = paginator.page(page_number)
-    except EmptyPage:
-        raise Http404("Invalid page number.")
+        paginator = Paginator(blogs, 6)
+        page = request.GET.get('page')
+        try:
+            page_number = int(page)
+        except TypeError:
+            page_number = 1
+        except ValueError:
+            raise Http404("Invalid page number.")
 
-    context = {
-        "blogs": blogs,
-        "query": query,
-        "blogs_count": blogs_count,
-    }
-    return render(request, "blog/blog-list.html", context)
+        try:
+            blogs = paginator.page(page_number)
+        except EmptyPage:
+            raise Http404("Invalid page number.")
+
+        context = {
+            "blogs": blogs,
+            "query": query,
+            "blogs_count": blogs_count,
+        }
+        return render(request, "blog/blog-list.html", context)

@@ -5,7 +5,7 @@
     <div class="container"> 
       
       <!-- Logo -->
-      <div class="logo"> <a href="index.html"><img class="img-responsive" src="{% static 'images/logo.png' %}" alt="" ></a> </div>
+      <div class="logo"> <a href="{% url 'core:index_view' %}"><img class="img-responsive" src="{% static 'images/logo.png' %}" alt="" ></a> </div>
       <nav class="navbar ownmenu">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-open-btn" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"><i class="fa fa-navicon"></i></span> </button>
@@ -14,89 +14,46 @@
          <!-- NAV -->
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav">
-            <li class="dropdown active"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Home</a>
-              <ul class="dropdown-menu">
-                <li> <a href="index.html">Index Default</a> </li>
-                <li> <a href="index-1.html">Index 2</a> </li>
-                <li> <a href="index-2.html">Index 3</a></li>
-                <li> <a href="index-header-1.html">Index Header 1</a></li>
-                <li> <a href="index-header-2.html">Index Header 2</a></li>
-                <li> <a href="index-header-3.html">Index Header 3</a></li>
-                <li> <a href="index-header-4.html">Index Header 4</a></li>
-              </ul>
-            </li>
-            <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Pages</a>
-              <ul class="dropdown-menu">
-                <li> <a href="shop_01.html">Shop 01 </a> </li>
-                <li> <a href="shop_02.html">Shop 02</a> </li>
-                <li> <a href="shop_03.html">Shop 03 </a> </li>
-                <li> <a href="shop_04.html">Shop 04 </a> </li>
-                <li> <a href="product-detail_01.html">Product Detail 01</a> </li>
-                <li> <a href="product-detail_02.html">Product Detail 02</a> </li>
-                <li> <a href="shopping-cart.html">Shopping Cart</a> </li>
-                <li> <a href="checkout.html">Checkout</a> </li>
-                <li> <a href="about-us_01.html">About 01</a> </li>
-                <li> <a href="about-us_02.html">About 02</a> </li>
-                <li> <a href="contact.html">Contact</a> </li>
-                <li> <a href="blog-list_01.html">Blog List 01</a> </li>
-                <li> <a href="blog-list_02.html">Blog List 02</a> </li>
-                <li> <a href="blog-list_03.html">Blog List 03 </a> </li>
-                <li> <a href="blog-detail_01.html">Blog Detail 01 </a> </li>
-              </ul>
-            </li>
-            <li> <a href="about-us_01.html">About </a> </li>
+            <li class="{% if request.resolver_match.view_name == 'core:index_view' %}active{% endif %}"> <a href="{% url 'core:index_view' %}">Home</a> </li>
+            <li class="{% if request.resolver_match.view_name == 'blog:blog_list_view' %}active{% endif %}"> <a href="{% url 'blog:blog_list_view' %}" >Blog</a> </li>
             
             <!-- Two Link Option -->
             <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Designer</a>
               <div class="dropdown-menu two-option">
                 <div class="row">
                   <ul class="col-sm-6">
-                    <li> <a href="shop_01.html">summer store</a></li>
-                    <li> <a href="shop_01.html"> sarees</a></li>
-                    <li> <a href="shop_01.html"> kurtas</a></li>
-                    <li> <a href="shop_01.html"> shorts & tshirts</a></li>
-                    <li> <a href="shop_01.html"> winter wear</a></li>
-                    <li> <a href="shop_01.html"> jeans</a></li>
-                    <li> <a href="shop_01.html"> bra</a></li>
-                    <li> <a href="shop_01.html"> babydools</a> </li>
+                    <li> <a href="#">summer store</a></li>
+                    <li> <a href="#"> sarees</a></li>
+                    <li> <a href="#"> kurtas</a></li>
+                    <li> <a href="#"> shorts & tshirts</a></li>
+                    <li> <a href="#"> winter wear</a></li>
+                    <li> <a href="#"> jeans</a></li>
+                    <li> <a href="#"> bra</a></li>
+                    <li> <a href="#"> babydools</a> </li>
                   </ul>
                   <ul class="col-sm-6">
-                    <li> <a href="shop_01.html">deodornts</a></li>
-                    <li> <a href="shop_01.html"> skin care</a></li>
-                    <li> <a href="shop_01.html"> make up</a></li>
-                    <li> <a href="shop_01.html"> watch</a></li>
-                    <li> <a href="shop_01.html"> siting bags</a></li>
-                    <li> <a href="shop_01.html"> totes</a></li>
-                    <li> <a href="shop_01.html"> gold rings</a></li>
-                    <li> <a href="shop_01.html"> jewellery</a> </li>
+                    <li> <a href="#">deodornts</a></li>
+                    <li> <a href="#"> skin care</a></li>
+                    <li> <a href="#"> make up</a></li>
+                    <li> <a href="#"> watch</a></li>
+                    <li> <a href="#"> siting bags</a></li>
+                    <li> <a href="#"> totes</a></li>
+                    <li> <a href="#"> gold rings</a></li>
+                    <li> <a href="#"> jewellery</a></li>
                   </ul>
                 </div>
               </div>
             </li>
             
             <!-- MEGA MENU -->
-            <li class="dropdown megamenu"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">store</a>
+            <li class="dropdown megamenu {% if request.resolver_match.view_name == 'product:product_list_view' %}active{% endif %}"> 
+              <a href="{% url 'product:product_list_view' %}" class="dropdown-toggle">store</a>
               <div class="dropdown-menu">
                 <div class="row"> 
                   
-                  <!-- Shop Pages -->
-                  <div class="col-md-3">
-                    <h6>Shop Pages</h6>
-                    <ul>
-                      <li> <a href="shop_01.html">Shop 01 </a> </li>
-                      <li> <a href="shop_02.html">Shop 02</a> </li>
-                      <li> <a href="shop_03.html">Shop 03 </a> </li>
-                      <li> <a href="shop_04.html">Shop 04 </a> </li>
-                      <li> <a href="product-detail_01.html">Product Detail 01</a> </li>
-                      <li> <a href="product-detail_02.html">Product Detail 02</a> </li>
-                      <li> <a href="shopping-cart.html">Shopping Cart</a> </li>
-                      <li> <a href="checkout.html">Checkout</a> </li>
-                    </ul>
-                  </div>
-                  
-                  <!-- TOp Rate Products -->
-                  <div class="col-md-4">
-                    <h6>TOp Rate Products</h6>
+                  <!-- Top Rate Products -->
+                  <div class="col-md-7">
+                    <h6>Top Rate Products</h6>
                     <div class="top-rated">
                       <ul>
                         <li>
@@ -142,7 +99,12 @@
                 </div>
               </div>
             </li>
-            <li> <a href="contact.html"> contact</a> </li>
+            <li class="{% if request.resolver_match.view_name == 'core:about_us_view' %}active{% endif %}"> 
+              <a href="{% url 'core:about_us_view' %}">About </a> 
+            </li>
+            <li class="{% if request.resolver_match.view_name == 'core:contact_view' %}active{% endif %}"> 
+              <a href="{% url 'core:contact_view' %}"> contact</a> 
+            </li>
           </ul>
         </div>
         
@@ -151,17 +113,22 @@
           <ul class="navbar-right">
             
             <!-- USER INFO -->
-            <li class="dropdown user-acc"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><i class="icon-user"></i> </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <h6>HELLO! Jhon Smith</h6>
-                </li>
-                <li><a href="#">MY CART</a></li>
-                <li><a href="#">ACCOUNT INFO</a></li>
-                <li><a href="#">LOG OUT</a></li>
-              </ul>
-            </li>
-            
+            {% if request.user.is_authenticated %}
+              <li class="dropdown user-acc"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ><i class="icon-user"></i> </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <h6>HELLO! {{ request.user.get_full_name }}</h6>
+                  </li>
+                  <li><a href="{% url 'core:wishlist_view' %}">FAVORITES</a></li>
+                  <li><a href="#">ACCOUNT INFO</a></li>
+                  <li><a href="{% url 'account:logout_view' %}">LOG OUT</a></li>
+                </ul>
+              </li>
+            {% else %}
+              <li><a href="{% url 'account:login_view' %}"><i class="fa fa-sign-in"></i></a></li>
+              <li><a href="{% url 'account:register_view' %}"><i class="fa fa-user-plus"></i></a></li>  
+            {% endif %}
+
             <!-- USER BASKET -->
             <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i> </a>
               <ul class="dropdown-menu">
@@ -186,8 +153,8 @@
                 </li>
                 <li class="margin-0">
                   <div class="row">
-                    <div class="col-xs-6"> <a href="shopping-cart.html" class="btn">VIEW CART</a></div>
-                    <div class="col-xs-6 "> <a href="checkout.html" class="btn">CHECK OUT</a></div>
+                    <div class="col-xs-6"> <a href="{% url 'core:shopping_cart_view' %}" class="btn">VIEW CART</a></div>
+                    <div class="col-xs-6 "> <a href="{% url 'core:checkout_view' %}" class="btn">CHECK OUT</a></div>
                   </div>
                 </li>
               </ul>
