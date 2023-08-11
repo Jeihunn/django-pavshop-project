@@ -79,10 +79,10 @@
 
               <div>
                 <!-- FORGET PASS -->
-                <a href="#">Forget Password</a>
+                <a href="{% url 'password_reset' %}">Forget Password</a>
                 <span class="margin-10">/</span>
                 <!-- REQUEST NEW TOKEN -->
-                <a href="{% url 'account:request_new_token_view' %}">Request New Account Activation Token</a>
+                <a href="{% url 'request_new_token_view' %}">Request New Account Activation Token</a>
               </div>
             </div>
 

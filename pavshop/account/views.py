@@ -17,8 +17,8 @@ User = get_user_model()
 
 
 def login_view(request):
-    if request.user.is_authenticated:
-        return redirect(reverse_lazy('core:index_view'))
+    # if request.user.is_authenticated:
+    #     return redirect(reverse_lazy('core:index_view'))
 
     if request.method == "POST":
         form = LoginForm(request, data=request.POST)
@@ -40,8 +40,8 @@ def login_view(request):
 
 
 def register_view(request):
-    if request.user.is_authenticated:
-        return redirect(reverse_lazy('core:index_view'))
+    # if request.user.is_authenticated:
+    #     return redirect(reverse_lazy('core:index_view'))
 
     if request.method == "POST":
         form = RegisterForm(data=request.POST)
@@ -51,7 +51,7 @@ def register_view(request):
             send_activation_email(request, user)
             messages.info(
                 request, "Registration successful! Please confirm your email address to complete the registration. An activation link has been sent to your email.")
-            return redirect(reverse_lazy('account:login_view'))
+            return redirect(reverse_lazy('login_view'))
     else:
         form = RegisterForm()
 
@@ -63,7 +63,7 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('account:login_view')
+    return redirect(reverse_lazy('login_view'))
 
 
 def activate_view(request, uidb64, token):
@@ -78,7 +78,7 @@ def activate_view(request, uidb64, token):
         user.save()
         messages.success(
             request, "Your account has been activated successfully. You can now log in.")
-        return redirect(reverse_lazy('account:login_view'))
+        return redirect(reverse_lazy('login_view'))
     else:
         return render(request, 'account/account_activation_invalid.html')
 
@@ -93,7 +93,7 @@ def request_new_token_view(request):
             send_activation_email(request, user)
             messages.info(
                 request, "An account activation token has been sent to your email address. Please check your inbox and follow the instructions to activate your account.")
-            return redirect(reverse_lazy('account:login_view'))
+            return redirect(reverse_lazy('login_view'))
     else:
         form = RequestNewTokenForm()
 

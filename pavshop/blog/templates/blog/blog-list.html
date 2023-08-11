@@ -33,13 +33,13 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-12">
-                  {% if query %}
-                    <p class="h5 mb-4">{{ blogs_count }} results for "<strong class="text-danger">{{ query }}</strong>"</p>
-                  {% elif category %}
-                    <p class="h5">Category: <strong>{{ category.name }}</strong></p>
+                  {% if selected_query %}
+                    <p class="h5 mb-4">{{ blogs_count }} results for "<strong class="text-danger">{{ selected_query }}</strong>"</p>
+                  {% elif selected_category %}
+                    <p class="h5">Category: <strong>{{ selected_category.name }}</strong></p>
                     <p class="h6">{{ blogs_count }} Results</p>
-                  {% elif tag %}
-                    <p class="h5">Tag: <strong>{{ tag.name }}</strong></p>
+                  {% elif selected_tag %}
+                    <p class="h5">Tag: <strong>{{ selected_tag.name  }}</strong></p>
                     <p class="h6">{{ blogs_count }} Results</p>
                   {% else %}
                     <p class="h6">{{ blogs_count }} Results</p>
@@ -67,7 +67,7 @@
                       <span><i class="primary-color icon-tag"></i>
                         {% for category in blog.blog_categories.all %}
                           {% if category.is_active %}
-                            <a href="{% url 'blog:blog_category_view' category.slug %}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
+                            <a href="{% url 'blog:blog_list_view' %}?category={{ category.slug }}">{{ category.name }}</a>{% if not forloop.last %}, {% endif %}
                           {% endif %}
                         {% endfor %}
                       </span>
@@ -91,24 +91,23 @@
               </div>
             {% endif %}
 
-            
             <!-- Pagination -->
             {% if blogs.paginator.num_pages > 1 %}
               <ul class="pagination in-center">
                 {% if blogs.has_previous %}
-                  <li><a href="{% if query %}?query={{ query }}&page=1{% else %}?page=1{% endif %}"><i class="fa fa-angle-double-left"></i></a></li>
-                  <li><a href="{% if query %}?query={{ query }}&page={{ blogs.previous_page_number }}{% else %}?page={{ blogs.previous_page_number }}{% endif %}">{{ blogs.previous_page_number }}</a></li>
+                  <li><a href="?page=1{% if selected_query %}&query={{ selected_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}"><i class="fa fa-angle-double-left"></i></a></li>
+                  <li><a href="?page={{ blogs.previous_page_number }}{% if selected_query %}&query={{ selected_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}">{{ blogs.previous_page_number }}</a></li>
                 {% endif %}
-            
-                <li class="active"><a href="{% if query %}?query={{ query }}&page={{ blogs.number }}{% else %}?page={{ blogs.number }}{% endif %}">{{ blogs.number }}</a></li>
-            
+                
+                <li class="active"><a href="?page={{ blogs.number }}{% if selected_query %}&query={{ selected_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}">{{ blogs.number }}</a></li>
+                
                 {% if blogs.has_next %}
-                  <li><a href="{% if query %}?query={{ query }}&page={{ blogs.next_page_number }}{% else %}?page={{ blogs.next_page_number }}{% endif %}">{{ blogs.next_page_number }}</i></a></li>
-                  <li><a href="{% if query %}?query={{ query }}&page={{ blogs.paginator.num_pages }}{% else %}?page={{ blogs.paginator.num_pages }}{% endif %}"><i class="fa fa-angle-double-right"></i></a></li>
+                  <li><a href="?page={{ blogs.next_page_number }}{% if selected_query %}&query={{ selected_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}">{{ blogs.next_page_number }}</a></li>
+                  <li><a href="?page={{ blogs.paginator.num_pages }}{% if selected_query %}&query={{ selected_query }}{% endif %}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_tag %}&tag={{ selected_tag }}{% endif %}"><i class="fa fa-angle-double-right"></i></a></li>
                 {% endif %}
               </ul>
             {% endif %}
-          
+
           </div>
           
           <!-- Sider Bar -->

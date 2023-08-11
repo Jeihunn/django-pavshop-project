@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from .project_secrets import *
+from . import project_secrets
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -71,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Social Auth
     'social_django.middleware.SocialAuthExceptionMiddleware'
 ]
 
@@ -248,23 +250,22 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-LOGIN_URL = 'account:login_view'
+LOGIN_URL = 'login_view'
 LOGIN_REDIRECT_URL = 'core:index_view'
-LOGOUT_URL = 'account:logout_view'
+LOGOUT_URL = 'logout_view'
 SOCIAL_AUTH_FACEBOOK_SCOPE = [
     'email',
 ]
-# LOGOUT_REDIRECT_URL = 'account:login_view'
+# LOGOUT_REDIRECT_URL = 'login_view'
 
 # Github OAuth2 key and secret configuration
-SOCIAL_AUTH_GITHUB_KEY = github_key
-SOCIAL_AUTH_GITHUB_SECRET = github_secret
+SOCIAL_AUTH_GITHUB_KEY = project_secrets.github_key
+SOCIAL_AUTH_GITHUB_SECRET = project_secrets.github_secret
 
 # Google OAuth2 key and secret configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = google_key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google_secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = project_secrets.google_key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = project_secrets.google_secret
 
 # Facebook OAuth2 key and secret configuration
-SOCIAL_AUTH_FACEBOOK_KEY = facebook_key                       # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = facebook_secret                 # App Secret
-
+SOCIAL_AUTH_FACEBOOK_KEY = project_secrets.facebook_key             # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = project_secrets.facebook_secret       # App Secret

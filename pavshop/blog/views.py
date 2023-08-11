@@ -10,7 +10,27 @@ from .models import Blog, BlogCategory, BlogTag
 
 
 def blog_list_view(request):
+    category_slug = request.GET.get('category')
+    tag_slug = request.GET.get('tag')
+    query = request.GET.get('query')
+
     blogs = Blog.objects.filter(is_active=True).order_by("-publish_date")
+
+    category = None
+    tag = None
+
+    if category_slug:
+        category = get_object_or_404(
+            BlogCategory, slug=category_slug, is_active=True)
+        blogs = blogs.filter(blog_categories__slug=category_slug)
+
+    if tag_slug:
+        tag = get_object_or_404(BlogTag, slug=tag_slug, is_active=True)
+        blogs = blogs.filter(blog_tags__slug=tag_slug)
+
+    if query:
+        blogs = blogs.filter(title__icontains=query)
+
     blogs_count = blogs.count()
 
     paginator = Paginator(blogs, 6)
@@ -30,6 +50,9 @@ def blog_list_view(request):
     context = {
         "blogs": blogs,
         "blogs_count": blogs_count,
+        "selected_category": category,
+        "selected_tag": tag,
+        "selected_query": query,
     }
     return render(request, "blog/blog-list.html", context)
 
@@ -89,92 +112,3 @@ def blog_archive_view(request, year, month):
         "blogs_count": blogs_count,
     }
     return render(request, "blog/blog-list.html", context)
-
-
-def blog_category_view(request, category_slug):
-    category = get_object_or_404(
-        BlogCategory, slug=category_slug, is_active=True)
-    blogs = Blog.objects.filter(
-        is_active=True, blog_categories__slug=category_slug).order_by("-publish_date")
-    blogs_count = blogs.count()
-
-    paginator = Paginator(blogs, 6)
-    page = request.GET.get('page')
-    try:
-        page_number = int(page)
-    except TypeError:
-        page_number = 1
-    except ValueError:
-        raise Http404("Invalid page number.")
-
-    try:
-        blogs = paginator.page(page_number)
-    except EmptyPage:
-        raise Http404("Invalid page number.")
-
-    context = {
-        "blogs": blogs,
-        "category": category,
-        "blogs_count": blogs_count,
-    }
-    return render(request, "blog/blog-list.html", context)
-
-
-def blog_tag_view(request, tag_slug):
-    tag = get_object_or_404(BlogTag, slug=tag_slug, is_active=True)
-    blogs = Blog.objects.filter(
-        is_active=True, blog_tags__slug=tag_slug).order_by("-publish_date")
-    blogs_count = blogs.count()
-
-    paginator = Paginator(blogs, 6)
-    page = request.GET.get('page')
-    try:
-        page_number = int(page)
-    except TypeError:
-        page_number = 1
-    except ValueError:
-        raise Http404("Invalid page number.")
-
-    try:
-        blogs = paginator.page(page_number)
-    except EmptyPage:
-        raise Http404("Invalid page number.")
-
-    context = {
-        "blogs": blogs,
-        "tag": tag,
-        "blogs_count": blogs_count,
-    }
-    return render(request, "blog/blog-list.html", context)
-
-
-def blog_search_view(request):
-    query = request.GET.get('query')
-
-    if not query:
-        return redirect(reverse_lazy("blog:blog_list_view"))
-    else:
-        blogs = Blog.objects.filter(
-            title__icontains=query, is_active=True).order_by("-publish_date")
-        blogs_count = blogs.count()
-
-        paginator = Paginator(blogs, 6)
-        page = request.GET.get('page')
-        try:
-            page_number = int(page)
-        except TypeError:
-            page_number = 1
-        except ValueError:
-            raise Http404("Invalid page number.")
-
-        try:
-            blogs = paginator.page(page_number)
-        except EmptyPage:
-            raise Http404("Invalid page number.")
-
-        context = {
-            "blogs": blogs,
-            "query": query,
-            "blogs_count": blogs_count,
-        }
-        return render(request, "blog/blog-list.html", context)
