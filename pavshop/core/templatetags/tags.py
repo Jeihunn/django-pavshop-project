@@ -10,6 +10,7 @@ register = template.Library()
 @register.inclusion_tag('blog/includes/recent-post.html', takes_context=True)
 def get_recently_viewed_blogs(context):
     request = context['request']
+
     if 'recently_viewed' in request.session:
         blog_ids = request.session['recently_viewed']
         blog_id_positions = {blog_id: index for index,
@@ -31,18 +32,26 @@ def get_recently_viewed_blogs(context):
 @register.inclusion_tag('blog/includes/blog-popular-tags.html', takes_context=True)
 def get_blog_popular_tags(context, limit=10):
     request = context['request']
+
+    try:
+        selected_tag = context['selected_tag']
+    except KeyError:
+        selected_tag = None
+
     tag_count = BlogTag.objects.filter(
         is_active=True).annotate(blog_count=Count('blogs'))
     blog_popular_tags = tag_count.order_by('-blog_count')[:limit]
     return {
         'blog_popular_tags': blog_popular_tags,
-        'request': request
+        'request': request,
+        'selected_tag': selected_tag
     }
 
 
 @register.inclusion_tag('blog/includes/previous-months.html', takes_context=True)
 def get_previous_months(context, limit=6):
     request = context['request']
+    
     today = date.today()
     previous_months_dates = [
         today - timedelta(days=30 * i) for i in range(limit)]

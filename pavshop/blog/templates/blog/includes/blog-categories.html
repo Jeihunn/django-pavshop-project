@@ -4,8 +4,8 @@
 <ul class="shop shop-cate">
     {% get_blog_categories as blog_categories %}
     {% for category in blog_categories %}
-        <li class="{% if request.path == '/blogs/category/'|add:category.slug|add:'/' %}active{% endif %}">
-            <a href="{% url 'blog:blog_category_view' category.slug %}">
+        <li class="{% if selected_category.slug == category.slug %}active{% endif %}">
+            <a href="{% url 'blog:blog_list_view' %}?category={{ category.slug }}">
                 {{ category.name }}
                 <span>{{ category.blogs.count }}</span>
             </a>
