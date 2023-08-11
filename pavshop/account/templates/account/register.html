@@ -166,7 +166,7 @@
 
     function loadCitiesForCountry(countryId) {
       $.ajax({
-        url: "{% url 'account:load_cities_view' %}",
+        url: "{% url 'load_cities_view' %}",
         data: {
           'country_id': countryId
         },

@@ -121,12 +121,13 @@
                   </li>
                   <li><a href="{% url 'core:wishlist_view' %}">FAVORITES</a></li>
                   <li><a href="#">ACCOUNT INFO</a></li>
-                  <li><a href="{% url 'account:logout_view' %}">LOG OUT</a></li>
+                  <li><a href="{% url 'password_change' %}">CHANGE PASSWORD</a></li>
+                  <li><a href="{% url 'logout_view' %}">LOG OUT</a></li>
                 </ul>
               </li>
             {% else %}
-              <li><a href="{% url 'account:login_view' %}"><i class="fa fa-sign-in"></i></a></li>
-              <li><a href="{% url 'account:register_view' %}"><i class="fa fa-user-plus"></i></a></li>  
+              <li><a href="{% url 'login_view' %}"><i class="fa fa-sign-in"></i></a></li>
+              <li><a href="{% url 'register_view' %}"><i class="fa fa-user-plus"></i></a></li>  
             {% endif %}
 
             <!-- USER BASKET -->
