@@ -72,8 +72,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # Social Auth
-    'social_django.middleware.SocialAuthExceptionMiddleware'
+    # ========== MY MIDDLEWARE ==========
+    "core.middleware.LoggingMiddleware",
+    "core.middleware.BlacklistMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -194,6 +195,7 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
+        "admin.LogEntry": "fas fa-history",
 
         # account APP
         "account.Country": "fas fa-globe",
@@ -201,6 +203,7 @@ JAZZMIN_SETTINGS = {
         "account.Address": "fas fa-map-marker-alt",
         "account.Position": "fas fa-briefcase",
         "account.User": "fas fa-user",
+        "account.Blacklist": "fas fa-ban",
 
         # blog APP
         "blog.BlogCategory": "fas fa-folder",
@@ -232,7 +235,7 @@ JAZZMIN_SETTINGS = {
 PASSWORD_RESET_TIMEOUT = 6 * 60 * 60
 
 
-# Account Activation
+# Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -269,3 +272,24 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = project_secrets.google_secret
 # Facebook OAuth2 key and secret configuration
 SOCIAL_AUTH_FACEBOOK_KEY = project_secrets.facebook_key             # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = project_secrets.facebook_secret       # App Secret
+
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'project_logs.log',
+        },
+    },
+    'loggers': {
+        'project_logs': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}

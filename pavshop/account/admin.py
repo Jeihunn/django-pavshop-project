@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Country, City, Address, Position
-
+from .models import Country, City, Address, Position, Blacklist
+from .forms import BlacklistAdminForm
 from django.contrib.auth.admin import UserAdmin
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from django.contrib.admin.widgets import AdminTextInputWidget
@@ -70,3 +70,26 @@ class CustomUserAdmin(UserAdmin):
             kwargs['widget'].widget = AdminTextInputWidget(
                 attrs={'class': 'vTextField'})
         return super().formfield_for_dbfield(db_field, **kwargs)
+
+
+@admin.register(Blacklist)
+class BlacklistAdmin(admin.ModelAdmin):
+    form = BlacklistAdminForm
+    list_display = ["id", "user", "ip_address", "formatted_start_time", "duration", "is_active", "formatted_created_at", "formatted_updated_at"]
+    list_filter = ["is_active", "start_time", "user", "ip_address"]
+    search_fields = ["user__username", "ip_address", "reason"]
+
+    def formatted_start_time(self, obj):
+        return obj.start_time.strftime("%d/%m/%Y %H:%M:%S")
+    formatted_start_time.admin_order_field = "start_time"
+    formatted_start_time.short_description = "Start Time"
+
+    def formatted_created_at(self, obj):
+        return obj.created_at.strftime("%d/%m/%Y %H:%M:%S")
+    formatted_created_at.admin_order_field = "created_at"
+    formatted_created_at.short_description = "Created At"
+
+    def formatted_updated_at(self, obj):
+        return obj.updated_at.strftime("%d/%m/%Y %H:%M:%S")
+    formatted_updated_at.admin_order_field = "updated_at"
+    formatted_updated_at.short_description = "Updated At"

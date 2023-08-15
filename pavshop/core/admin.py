@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Contact, Newsletter
+from django.contrib.admin.models import LogEntry
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from django.contrib.admin.widgets import AdminTextInputWidget
 
@@ -30,3 +31,9 @@ class NewsletterAdmin(admin.ModelAdmin):
     list_editable = ["subscription_status"]
     list_filter = ["subscription_status", "created_at", "updated_at"]
     search_fields = ["email"]
+
+
+@admin.register(LogEntry)
+class LogEntryAdmin(admin.ModelAdmin):
+    list_display = ["action_time", "user", "content_type", "object_id", "object_repr", "action_flag"]
+    list_filter = ["action_time", "user", "action_flag"]
