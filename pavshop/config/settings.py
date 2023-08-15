@@ -75,6 +75,7 @@ MIDDLEWARE = [
     # ========== MY MIDDLEWARE ==========
     "core.middleware.LoggingMiddleware",
     "core.middleware.BlacklistMiddleware",
+    "core.middleware.AddUserIpsMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'

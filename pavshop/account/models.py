@@ -73,6 +73,7 @@ class User(AbstractUser):
     phone_number = PhoneNumberField(null=True, blank=True, unique=True)
     profile_image = models.ImageField(
         upload_to="profile_images", default="profile_images/default_profile.jpg")
+    ips = models.JSONField(default=list, null=True, blank=True)
 
 
 class Blacklist(AbstractModel):

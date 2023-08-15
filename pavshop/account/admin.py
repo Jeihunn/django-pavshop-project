@@ -52,10 +52,11 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ["is_active", "is_staff", "is_superuser", "position"]
     search_fields = ["username", "email",
                      "first_name", "last_name", "phone_number"]
+    readonly_fields = ["ips"]
     ordering = ["-date_joined"]
 
     fieldsets = (
-        (None, {'fields': ('username', 'password')}),
+        (None, {'fields': ('username', 'password', 'ips')}),
         ('Personal Info', {'fields': ('first_name', 'last_name', 'email',
          'address', 'position', 'bio', 'phone_number', 'profile_image')}),
         ('Permissions', {'fields': ('is_active', 'is_staff',
