@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from core.models import AbstractModel
 from phonenumber_field.modelfields import PhoneNumberField
@@ -72,3 +73,22 @@ class User(AbstractUser):
     phone_number = PhoneNumberField(null=True, blank=True, unique=True)
     profile_image = models.ImageField(
         upload_to="profile_images", default="profile_images/default_profile.jpg")
+
+
+class Blacklist(AbstractModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    ip_address = models.GenericIPAddressField(protocol="both", unpack_ipv4=False, null=True, blank=True)
+    start_time = models.DateTimeField(default=timezone.now)
+    duration = models.DurationField()
+    reason = models.TextField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Blacklist Entry"
+        verbose_name_plural = "Blacklist Entries"
+
+    def __str__(self):
+        if self.user:
+            return f"Blacklist for {self.user.username}"
+        elif self.ip_address:
+            return f"Blacklist for IP {self.ip_address}"

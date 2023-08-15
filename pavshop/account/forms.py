@@ -1,11 +1,34 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import Country, City, Address
+from .models import Country, City, Address, Blacklist
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+
+
+class BlacklistAdminForm(forms.ModelForm):
+    class Meta:
+        model = Blacklist
+        fields = "__all__"
+
+    def clean(self):
+        cleaned_data = super().clean()
+        user = cleaned_data.get('user')
+        ip_address = cleaned_data.get('ip_address')
+
+        if not user and not ip_address:
+            raise forms.ValidationError({
+                'user': ["Either select a User or provide an IP Address."],
+                'ip_address': ["Either select a User or provide an IP Address."]
+            })
+
+        if user and ip_address:
+            raise forms.ValidationError({
+                'user': ["You cannot select both a User and provide an IP Address at the same time."],
+                'ip_address': ["You cannot select both a User and provide an IP Address at the same time."]
+            })
 
 
 class LoginForm(AuthenticationForm):
