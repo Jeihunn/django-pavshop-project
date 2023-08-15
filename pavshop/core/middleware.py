@@ -6,6 +6,28 @@ from django.http import HttpResponse
 from django.template import loader
 
 
+class AddUserIpsMiddleware(MiddlewareMixin):
+    def process_request(self, request):
+        if request.user.is_authenticated:
+            ip_address = self.get_client_ip(request)
+
+            if not request.user.ips:
+                request.user.ips = []
+
+            if ip_address not in request.user.ips:
+                request.user.ips.append(ip_address)
+                request.user.save()
+        return None
+    
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
+
+
 class LoggingMiddleware(MiddlewareMixin):
     def process_request(self, request):
         logger = logging.getLogger('project_logs')
