@@ -51,7 +51,7 @@ THIRD_PARTY_APPS = [
     "ckeditor",
     "phonenumber_field",
     "babel",
-    'social_django',
+    "social_django",
 ]
 
 MY_APPS = [
@@ -83,7 +83,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "templates",
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
