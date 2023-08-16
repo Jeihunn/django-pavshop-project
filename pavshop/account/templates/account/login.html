@@ -2,7 +2,7 @@
 
 
 {% block page_title %}
-<title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
+<title>Login | Pavshop</title>
 {% endblock page_title %}
 
 
@@ -78,11 +78,11 @@
               </form>
 
               <div>
-                <!-- FORGET PASS -->
-                <a href="{% url 'password_reset' %}">Forget Password</a>
+                <!-- FORGOT PASS -->
+                <a href="{% url 'password_reset' %}">Forgot Password</a>
                 <span class="margin-10">/</span>
                 <!-- REQUEST NEW TOKEN -->
-                <a href="{% url 'request_new_token_view' %}">Request New Account Activation Token</a>
+                <a href="{% url 'request_new_token_view' %}">Get New Account Activation Link</a>
               </div>
             </div>
 

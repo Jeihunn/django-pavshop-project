@@ -1,5 +1,11 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm,
+    PasswordChangeForm,
+    PasswordResetForm,
+    SetPasswordForm
+)
 from .models import Country, City, Address, Blacklist
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
@@ -20,14 +26,14 @@ class BlacklistAdminForm(forms.ModelForm):
 
         if not user and not ip_address:
             raise forms.ValidationError({
-                'user': ["Either select a User or provide an IP Address."],
-                'ip_address': ["Either select a User or provide an IP Address."]
+                'user': ["Both User and IP Address fields cannot be left empty at the same time. Please either select a User or provide an IP Address."],
+                'ip_address': ["Both User and IP Address fields cannot be left empty at the same time. Please either select a User or provide an IP Address."]
             })
 
         if user and ip_address:
             raise forms.ValidationError({
-                'user': ["You cannot select both a User and provide an IP Address at the same time."],
-                'ip_address': ["You cannot select both a User and provide an IP Address at the same time."]
+                'user': ["You cannot select both a User and provide an IP Address at the same time. Please either select a User or provide an IP Address."],
+                'ip_address': ["You cannot select both a User and provide an IP Address at the same time. Please either select a User or provide an IP Address."]
             })
 
 
@@ -134,7 +140,62 @@ class RequestNewTokenForm(forms.Form):
 
         if user:
             if user.is_active:
-                raise forms.ValidationError("A user account associated with this email address is already active. You cannot request new tokens.")
+                raise forms.ValidationError(
+                    "A user account associated with this email address is already active. You cannot request new tokens.")
         else:
-            raise forms.ValidationError("We couldn't find a user with this email address. Please make sure you've entered a valid email address.")
+            raise forms.ValidationError(
+                "We couldn't find a user with this email address. Please make sure you've entered a valid email address.")
         return email
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label=("Old password"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+        }),
+    )
+    new_password1 = forms.CharField(
+        label=("New password"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+        }),
+    )
+    new_password2 = forms.CharField(
+        label=("New password confirmation"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+        }),
+    )
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(
+        label=("Email"),
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+        }),
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+
+        if not User.objects.filter(email=email, is_active=True).exists():
+            raise forms.ValidationError(
+                "No active users were found with this email address. Please enter a valid email address.")
+        return email
+
+
+class CustomSetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label=("New password"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+        }),
+    )
+    new_password2 = forms.CharField(
+        label=("New password confirmation"),
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+        }),
+    )

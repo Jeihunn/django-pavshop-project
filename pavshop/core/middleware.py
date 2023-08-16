@@ -18,7 +18,7 @@ class AddUserIpsMiddleware(MiddlewareMixin):
                 request.user.ips.append(ip_address)
                 request.user.save()
         return None
-    
+
     def get_client_ip(self, request):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
@@ -53,11 +53,13 @@ class BlacklistMiddleware(MiddlewareMixin):
         user = request.user
         ip_address = self.get_client_ip(request)
 
-        blacklist_entry = Blacklist.objects.filter(ip_address=ip_address, is_active=True).first()
-        
+        blacklist_entry = Blacklist.objects.filter(
+            ip_address=ip_address, is_active=True).first()
+
         if not blacklist_entry:
             if user.is_authenticated:
-                blacklist_entry = Blacklist.objects.filter(user=user, is_active=True).first()
+                blacklist_entry = Blacklist.objects.filter(
+                    user=user, is_active=True).first()
 
         if blacklist_entry:
             if timezone.now() > blacklist_entry.start_time:
