@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <header>
   <div class="sticky">
@@ -14,11 +14,11 @@
          <!-- NAV -->
         <div class="collapse navbar-collapse" id="nav-open-btn">
           <ul class="nav">
-            <li class="{% if request.resolver_match.view_name == 'core:index_view' %}active{% endif %}"> <a href="{% url 'core:index_view' %}">Home</a> </li>
+            <li class="{% if request.resolver_match.view_name == 'core:index_view' %}active{% endif %}"> <a href="{% url 'core:index_view' %}">{% trans "Home" %}</a> </li>
             <li class="{% if request.resolver_match.view_name == 'blog:blog_list_view' %}active{% endif %}"> <a href="{% url 'blog:blog_list_view' %}" >Blog</a> </li>
             
             <!-- Two Link Option -->
-            <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">Designer</a>
+            <li class="dropdown"> <a href="#." class="dropdown-toggle" data-toggle="dropdown">{% trans "Designer" %}</a>
               <div class="dropdown-menu two-option">
                 <div class="row">
                   <ul class="col-sm-6">
@@ -47,7 +47,7 @@
             
             <!-- MEGA MENU -->
             <li class="dropdown megamenu {% if request.resolver_match.view_name == 'product:product_list_view' %}active{% endif %}"> 
-              <a href="{% url 'product:product_list_view' %}" class="dropdown-toggle">store</a>
+              <a href="{% url 'product:product_list_view' %}" class="dropdown-toggle">{% trans "store" %}</a>
               <div class="dropdown-menu">
                 <div class="row"> 
                   
@@ -160,7 +160,7 @@
                 </li>
               </ul>
             </li>
-            
+          
             <!-- SEARCH BAR -->
             <li class="dropdown"> <a href="javascript:void(0);" class="search-open"><i class=" icon-magnifier"></i></a>
               <div class="search-inside animated bounceInUp"> <i class="icon-close search-close"></i>
@@ -175,6 +175,27 @@
                 </div>
               </div>
             </li>
+
+            <!-- MULTILANGUAGE  -->
+            <li style="margin-left: 20px;">
+              <div style="display: flex; align-items: center;">
+                <i class="fa fa-globe" style="margin-right: 5px; color: #2ecc71"></i>
+                <form action="{% url 'set_language' %}" method="post">
+                  {% csrf_token %}
+                  <select name="language" onchange="this.form.submit()">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                      <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                        {{ language.code|upper }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                </form>
+              </div>
+            </li>
+
           </ul>
         </div>
       </nav>

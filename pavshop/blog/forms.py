@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from .models import BlogReview
 
 
@@ -26,10 +27,9 @@ class BlogReviewAdminForm(forms.ModelForm):
     def clean_parent(self):
         parent = self.cleaned_data.get('parent')
         if parent == self.instance:
-            raise forms.ValidationError("A comment cannot be its own parent.")
+            raise forms.ValidationError(_("A comment cannot be its own parent."))
         elif parent and self.is_recursive_parent(parent, self.instance):
-            raise forms.ValidationError(
-                "This comment cannot be a parent of its own parent.")
+            raise forms.ValidationError(_("This comment cannot be a parent of its own parent."))
         return parent
 
     def clean(self):
@@ -41,15 +41,11 @@ class BlogReviewAdminForm(forms.ModelForm):
         if user:
             if full_name or email:
                 if full_name:
-                    self.add_error('full_name', forms.ValidationError(
-                        "Full name field should be empty when user is specified.", code='invalid_full_name'))
+                    self.add_error('full_name', forms.ValidationError(_("Full name field should be empty when user is specified.")))
                 if email:
-                    self.add_error('email', forms.ValidationError(
-                        "Email field should be empty when user is specified.", code='invalid_email'))
+                    self.add_error('email', forms.ValidationError(_("Email field should be empty when user is specified.")))
         else:
             if not full_name:
-                self.add_error('full_name', forms.ValidationError(
-                    "Full name field is required when user is not specified.", code='required_full_name'))
+                self.add_error('full_name', forms.ValidationError(_("Full name field is required when user is not specified.")))
             if not email:
-                self.add_error('email', forms.ValidationError(
-                    "Email field is required when user is not specified.", code='required_email'))
+                self.add_error('email', forms.ValidationError(_("Email field is required when user is not specified.")))

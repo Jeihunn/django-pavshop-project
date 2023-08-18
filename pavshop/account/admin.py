@@ -4,6 +4,8 @@ from .forms import BlacklistAdminForm
 from django.contrib.auth.admin import UserAdmin
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from django.contrib.admin.widgets import AdminTextInputWidget
+from django.utils.translation import gettext_lazy as _
+from modeltranslation.admin import TranslationAdmin
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -13,18 +15,38 @@ User = get_user_model()
 
 
 @admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
+class CountryAdmin(TranslationAdmin):
     list_display = ["id", "name", "country_code", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     search_fields = ["name", "country_code"]
 
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+
 
 @admin.register(City)
-class CityAdmin(admin.ModelAdmin):
+class CityAdmin(TranslationAdmin):
     list_display = ["id", "name", "country", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     list_filter = ["country"]
     search_fields = ["name", "country__name"]
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 
 @admin.register(Address)
@@ -38,10 +60,20 @@ class AddressAdmin(admin.ModelAdmin):
 
 
 @admin.register(Position)
-class PositionAdmin(admin.ModelAdmin):
+class PositionAdmin(TranslationAdmin):
     list_display = ["id", "name", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     search_fields = ["name"]
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 
 @admin.register(User)
@@ -57,11 +89,11 @@ class CustomUserAdmin(UserAdmin):
 
     fieldsets = (
         (None, {'fields': ('username', 'password', 'ips')}),
-        ('Personal Info', {'fields': ('first_name', 'last_name', 'email',
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email',
          'address', 'position', 'bio', 'phone_number', 'profile_image')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff',
+        (_('Permissions'), {'fields': ('is_active', 'is_staff',
          'is_superuser', 'groups', 'user_permissions')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
 
     def formfield_for_dbfield(self, db_field, **kwargs):
@@ -76,21 +108,7 @@ class CustomUserAdmin(UserAdmin):
 @admin.register(Blacklist)
 class BlacklistAdmin(admin.ModelAdmin):
     form = BlacklistAdminForm
-    list_display = ["id", "user", "ip_address", "formatted_start_time", "duration", "is_active", "formatted_created_at", "formatted_updated_at"]
+    list_display = ["id", "user", "ip_address", "start_time",
+                    "duration", "is_active", "created_at", "updated_at"]
     list_filter = ["is_active", "start_time", "user", "ip_address"]
     search_fields = ["user__username", "ip_address", "reason"]
-
-    def formatted_start_time(self, obj):
-        return obj.start_time.strftime("%d/%m/%Y %H:%M:%S")
-    formatted_start_time.admin_order_field = "start_time"
-    formatted_start_time.short_description = "Start Time"
-
-    def formatted_created_at(self, obj):
-        return obj.created_at.strftime("%d/%m/%Y %H:%M:%S")
-    formatted_created_at.admin_order_field = "created_at"
-    formatted_created_at.short_description = "Created At"
-
-    def formatted_updated_at(self, obj):
-        return obj.updated_at.strftime("%d/%m/%Y %H:%M:%S")
-    formatted_updated_at.admin_order_field = "updated_at"
-    formatted_updated_at.short_description = "Updated At"

@@ -1,0 +1,491 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-18 23:33+0400\n"
+"PO-Revision-Date: 2023-08-18 17:39+0400\n"
+"Last-Translator: Admin Super <admin@mail.ru>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
+
+#: .\account\admin.py:92
+msgid "Personal info"
+msgstr "Şəxsi məlumat"
+
+#: .\account\admin.py:94
+msgid "Permissions"
+msgstr "İcazələr"
+
+#: .\account\admin.py:96
+msgid "Important dates"
+msgstr "Vacib tarixlər"
+
+#: .\account\forms.py:30 .\account\forms.py:31
+msgid ""
+"Both User and IP Address fields cannot be left empty at the same time. "
+"Please either select a User or provide an IP Address."
+msgstr ""
+"Həm İstifadəçi, həm də IP Ünvanı sahələri eyni vaxtda boş qala bilməz. "
+"Lütfən, ya İstifadəçi seçin, ya da IP ünvanı göstərin."
+
+#: .\account\forms.py:36 .\account\forms.py:37
+msgid ""
+"You cannot select both a User and provide an IP Address at the same time. "
+"Please either select a User or provide an IP Address."
+msgstr ""
+"Siz eyni anda həm İstifadəçi seçə, həm də IP Ünvanını təqdim edə "
+"bilməzsiniz. Lütfən, ya İstifadəçi seçin, ya da IP ünvanı göstərin."
+
+#: .\account\forms.py:104
+msgid "A user with that email already exists."
+msgstr "Həmin e-poçtu olan istifadəçi artıq mövcuddur."
+
+#: .\account\forms.py:145
+msgid ""
+"A user account associated with this email address is already active. You "
+"cannot request new tokens."
+msgstr ""
+"Bu e-poçt ünvanı ilə əlaqəli istifadəçi hesabı artıq aktivdir. Siz yeni "
+"nişanlar tələb edə bilməzsiniz."
+
+#: .\account\forms.py:148
+msgid ""
+"We couldn't find a user with this email address. Please make sure you've "
+"entered a valid email address."
+msgstr ""
+"Bu e-poçt ünvanı ilə istifadəçi tapa bilmədik. Lütfən, düzgün e-poçt ünvanı "
+"daxil etdiyinizə əmin olun."
+
+#: .\account\forms.py:186
+msgid ""
+"No active users were found with this email address. Please enter a valid "
+"email address."
+msgstr ""
+"Bu e-poçt ünvanı ilə aktiv istifadəçi tapılmadı. Etibarlı e-poçt ünvanı "
+"daxil edin."
+
+#: .\account\models.py:14 .\account\models.py:30 .\account\models.py:63
+#: .\blog\models.py:16 .\blog\models.py:29 .\product\models.py:59
+#: .\product\models.py:73 .\product\models.py:86
+msgid "Name"
+msgstr "Ad"
+
+#: .\account\models.py:16
+msgid "Country Code"
+msgstr "Ölkə kodu"
+
+#: .\account\models.py:19 .\account\models.py:28 .\account\models.py:42
+msgid "Country"
+msgstr "Ölkə"
+
+#: .\account\models.py:20
+msgid "Countries"
+msgstr "Ölkələr"
+
+#: .\account\models.py:33 .\account\models.py:44
+msgid "City"
+msgstr "Şəhər"
+
+#: .\account\models.py:34
+msgid "Cities"
+msgstr "Şəhərlər"
+
+#: .\account\models.py:47
+msgid "Street Address"
+msgstr "Küçə ünvanı"
+
+#: .\account\models.py:50 .\account\models.py:75
+msgid "Address"
+msgstr "Ünvan"
+
+#: .\account\models.py:51
+msgid "Addresses"
+msgstr "Ünvanlar"
+
+#: .\account\models.py:66 .\account\models.py:77
+msgid "Position"
+msgstr "Vəzifə"
+
+#: .\account\models.py:67
+msgid "Positions"
+msgstr "Vəzifələr"
+
+#: .\account\models.py:79
+msgid "Bio"
+msgstr "Bio"
+
+#: .\account\models.py:81 .\core\models.py:20
+msgid "Phone Number"
+msgstr "Telefon nömrəsi"
+
+#: .\account\models.py:83
+msgid "Profile Image"
+msgstr "Profil şəkli"
+
+#: .\account\models.py:85
+msgid "Ips"
+msgstr "IP-lər"
+
+#: .\account\models.py:90 .\blog\models.py:72 .\product\models.py:162
+#: .\product\models.py:190
+msgid "User"
+msgstr "İstifadəçi"
+
+#: .\account\models.py:93
+msgid "IP Address"
+msgstr "IP ünvanı"
+
+#: .\account\models.py:95
+msgid "Start Time"
+msgstr "Başlama vaxtı"
+
+#: .\account\models.py:96
+msgid "Duration"
+msgstr "Müddət"
+
+#: .\account\models.py:97
+msgid "Reason"
+msgstr "Səbəb"
+
+#: .\account\models.py:98 .\blog\models.py:17 .\blog\models.py:30
+#: .\blog\models.py:55 .\product\models.py:17 .\product\models.py:30
+#: .\product\models.py:43 .\product\models.py:62 .\product\models.py:74
+#: .\product\models.py:87 .\product\models.py:132 .\product\models.py:148
+msgid "Active"
+msgstr "Aktiv"
+
+#: .\account\models.py:101
+msgid "Blacklist Entry"
+msgstr "Qara siyahıya giriş"
+
+#: .\account\models.py:102
+msgid "Blacklist Entries"
+msgstr "Qara siyahı girişləri"
+
+#: .\account\views.py:32
+msgid "Login successful. Welcome!"
+msgstr "Giriş uğurlu oldu. Xoş gəldiniz!"
+
+#: .\account\views.py:54
+msgid ""
+"Registration successful! Please confirm your email address to complete the "
+"registration. An activation link has been sent to your email."
+msgstr ""
+"Qeydiyyat uğurlu oldu! Qeydiyyatı tamamlamaq üçün e-poçt ünvanınızı "
+"təsdiqləyin. Aktivləşdirmə linki e-poçtunuza göndərildi."
+
+#: .\account\views.py:81
+msgid "Your account has been activated successfully. You can now log in."
+msgstr "Hesabınız uğurla aktivləşdirildi. İndi daxil ola bilərsiniz."
+
+#: .\account\views.py:96
+msgid ""
+"An account activation token has been sent to your email address. Please "
+"check your inbox and follow the instructions to activate your account."
+msgstr ""
+"E-poçt ünvanınıza hesab aktivləşdirmə nişanı göndərildi. Zəhmət olmasa, "
+"gələnlər qutusunu yoxlayın və hesabınızı aktivləşdirmək üçün təlimatlara "
+"əməl edin."
+
+#: .\blog\admin.py:58 .\product\admin.py:139
+msgid "Categories"
+msgstr "Kateqoriyalar"
+
+#: .\blog\admin.py:65 .\product\admin.py:146
+msgid "Tags"
+msgstr "Etiketlər"
+
+#: .\blog\admin.py:90 .\blog\models.py:59 .\blog\models.py:68
+msgid "Blog"
+msgstr "Bloq"
+
+#: .\blog\forms.py:30
+msgid "A comment cannot be its own parent."
+msgstr "Şərh öz valideyni ola bilməz."
+
+#: .\blog\forms.py:32
+msgid "This comment cannot be a parent of its own parent."
+msgstr "Bu şərh öz valideyninin valideyni ola bilməz."
+
+#: .\blog\forms.py:44 .\product\forms.py:21
+msgid "Full name field should be empty when user is specified."
+msgstr "İstifadəçi göstərildikdə tam ad sahəsi boş olmalıdır."
+
+#: .\blog\forms.py:46 .\product\forms.py:24
+msgid "Email field should be empty when user is specified."
+msgstr "İstifadəçi qeyd edildikdə e-poçt sahəsi boş olmalıdır."
+
+#: .\blog\forms.py:49 .\product\forms.py:28
+msgid "Full name field is required when user is not specified."
+msgstr "İstifadəçi göstərilmədikdə tam ad sahəsi tələb olunur."
+
+#: .\blog\forms.py:51 .\product\forms.py:31
+msgid "Email field is required when user is not specified."
+msgstr "İstifadəçi göstərilmədikdə e-poçt sahəsi tələb olunur."
+
+#: .\blog\models.py:21
+msgid "Blog Category"
+msgstr "Bloq kateqoriyası"
+
+#: .\blog\models.py:22 .\blog\models.py:45
+msgid "Blog Categories"
+msgstr "Bloq kateqoriyaları"
+
+#: .\blog\models.py:34
+msgid "Blog Tag"
+msgstr "Bloq etiketi"
+
+#: .\blog\models.py:35 .\blog\models.py:47
+msgid "Blog Tags"
+msgstr "Bloq etiketləri"
+
+#: .\blog\models.py:43
+msgid "Author"
+msgstr "Müəllif"
+
+#: .\blog\models.py:49 .\product\models.py:106
+msgid "Title"
+msgstr "Başlıq"
+
+#: .\blog\models.py:50
+msgid "Content"
+msgstr "Məzmun"
+
+#: .\blog\models.py:52 .\product\models.py:131
+msgid "Cover Image"
+msgstr "Qapaq şəkli"
+
+#: .\blog\models.py:54
+msgid "Publish Date"
+msgstr "Yayımlanma tarixi"
+
+#: .\blog\models.py:60
+msgid "Blogs"
+msgstr "Bloqlar"
+
+#: .\blog\models.py:70
+msgid "Parent"
+msgstr "Valideyn"
+
+#: .\blog\models.py:75 .\core\models.py:18 .\product\models.py:165
+msgid "Full Name"
+msgstr "Tam ad"
+
+#: .\blog\models.py:77 .\core\models.py:19 .\core\models.py:33
+#: .\product\models.py:167
+msgid "Email"
+msgstr "Email"
+
+#: .\blog\models.py:78 .\core\models.py:21
+msgid "Subject"
+msgstr "Mövzu"
+
+#: .\blog\models.py:79 .\product\models.py:168
+msgid "Comment"
+msgstr "Şərh"
+
+#: .\blog\models.py:82
+msgid "Blog Review"
+msgstr "Bloq rəyi"
+
+#: .\blog\models.py:83
+msgid "Blog Reviews"
+msgstr "Bloq rəyləri"
+
+#: .\blog\views.py:44 .\blog\views.py:49 .\blog\views.py:104
+#: .\blog\views.py:109
+msgid "Invalid page number."
+msgstr "Yanlış səhifə nömrəsi."
+
+#: .\blog\views.py:91
+msgid "Invalid date format."
+msgstr "Yanlış tarix formatı."
+
+#: .\core\models.py:10
+msgid "Created At"
+msgstr "Yaradılma vaxtı"
+
+#: .\core\models.py:11
+msgid "Updated At"
+msgstr "Yenilənmə vaxtı"
+
+#: .\core\models.py:22
+msgid "Message"
+msgstr "Mesaj"
+
+#: .\core\models.py:25
+msgid "Contact"
+msgstr "Əlaqə"
+
+#: .\core\models.py:26
+msgid "Contacts"
+msgstr "Əlaqələr"
+
+#: .\core\models.py:34
+msgid "Subscription Status"
+msgstr "Abunəlik statusu"
+
+#: .\core\models.py:37
+msgid "Newsletter"
+msgstr "Xəbər bülleteni"
+
+#: .\core\models.py:38
+msgid "Newsletters"
+msgstr "Xəbər bülletenləri"
+
+#: .\core\templates\core\includes\header.html:17
+msgid "Home"
+msgstr "Ana Səhifə"
+
+#: .\core\templates\core\includes\header.html:21 .\product\models.py:28
+#: .\product\models.py:33 .\product\models.py:121
+msgid "Designer"
+msgstr "Dizayner"
+
+#: .\core\templates\core\includes\header.html:50
+msgid "store"
+msgstr "Mağaza"
+
+#: .\core\views.py:31
+msgid "Thank You. Your message has been sent successfully!"
+msgstr "Çox sağ ol. Mesajınız uğurla göndərildi!"
+
+#: .\core\views.py:35
+msgid ""
+"Oops! Something went wrong. Please review your message and make sure all the "
+"required fields are filled correctly."
+msgstr ""
+"Vay! Nəsə xəta baş verdi. Mesajınızı nəzərdən keçirin və bütün tələb olunan "
+"sahələrin düzgün doldurulduğundan əmin olun."
+
+#: .\product\admin.py:27 .\product\models.py:65
+msgid "Discount"
+msgstr "Endirim"
+
+#: .\product\admin.py:28 .\product\admin.py:183 .\product\models.py:66
+msgid "Discounts"
+msgstr "Endirimlər"
+
+#: .\product\admin.py:34 .\product\models.py:147
+msgid "Image"
+msgstr "Şəkil"
+
+#: .\product\admin.py:35
+msgid "Images"
+msgstr "Şəkillər"
+
+#: .\product\admin.py:91 .\product\models.py:61
+msgid "Percent"
+msgstr "Faiz"
+
+#: .\product\admin.py:176 .\product\models.py:21 .\product\models.py:123
+msgid "Colors"
+msgstr "Rənglər"
+
+#: .\product\models.py:16 .\product\models.py:20
+msgid "Color"
+msgstr "Rəng"
+
+#: .\product\models.py:34
+msgid "Designers"
+msgstr "Dizaynerlər"
+
+#: .\product\models.py:42 .\product\models.py:44 .\product\models.py:48
+#: .\product\models.py:100
+msgid "Brand"
+msgstr "Brend"
+
+#: .\product\models.py:49
+msgid "Brands"
+msgstr "Brendlər"
+
+#: .\product\models.py:57 .\product\models.py:111
+msgid "Products"
+msgstr "Məhsullar"
+
+#: .\product\models.py:78
+msgid "Product Category"
+msgstr "Məhsul kateqoriyası"
+
+#: .\product\models.py:79 .\product\models.py:102
+msgid "Product Categories"
+msgstr "Məhsul kateqoriyaları"
+
+#: .\product\models.py:91
+msgid "Product Tag"
+msgstr "Məhsul etiketi"
+
+#: .\product\models.py:92 .\product\models.py:104
+msgid "Product Tags"
+msgstr "Məhsul etiketləri"
+
+#: .\product\models.py:110 .\product\models.py:119
+msgid "Product"
+msgstr "Məhsul"
+
+#: .\product\models.py:126
+msgid "Price"
+msgstr "Qiymət"
+
+#: .\product\models.py:127
+msgid "Quantity"
+msgstr "Miqdar"
+
+#: .\product\models.py:129
+msgid "Description"
+msgstr "Açıqlama"
+
+#: .\product\models.py:135 .\product\models.py:144 .\product\models.py:160
+msgid "Product Version"
+msgstr "Məhsul versiyası"
+
+#: .\product\models.py:136 .\product\models.py:192
+msgid "Product Versions"
+msgstr "Məhsul versiyaları"
+
+#: .\product\models.py:151
+msgid "Product Version Image"
+msgstr "Məhsul versiyası şəkili"
+
+#: .\product\models.py:152
+msgid "Product Version Images"
+msgstr "Məhsul versiyası şəkilləri"
+
+#: .\product\models.py:171
+msgid "Product Version Review"
+msgstr "Məhsul versiyası rəyi"
+
+#: .\product\models.py:172
+msgid "Product Version Reviews"
+msgstr "Məhsul versiyası rəyləri"
+
+#: .\product\models.py:195
+msgid "Wishlist"
+msgstr "İstək siyahısı"
+
+#: .\product\models.py:196
+msgid "Wishlists"
+msgstr "İstək siyahıları"
+
+#: .\product\views.py:25
+msgid "Your comment has been successfully saved."
+msgstr "Şərhiniz uğurla yadda saxlanıldı."
+
+#: .\product\views.py:28
+msgid ""
+"There was an error saving your comment. Please review the fields and make "
+"sure they are correct."
+msgstr ""
+"Şərhinizi yadda saxlayarkən xəta baş verdi. Sahələri nəzərdən keçirin və "
+"düzgün olduğundan əmin olun."

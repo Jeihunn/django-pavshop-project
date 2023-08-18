@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+from modeltranslation.admin import TranslationAdmin
 from .forms import ProductVersionReviewAdminForm
 from .models import (
     Color,
@@ -22,25 +24,35 @@ from .models import (
 class DiscountInline(admin.TabularInline):
     model = Discount.products.through
     extra = 1
-    verbose_name = "Discount"
-    verbose_name_plural = "Discounts"
+    verbose_name = _("Discount")
+    verbose_name_plural = _("Discounts")
 
 
 class ProductVersionImageInline(admin.TabularInline):
     model = ProductVersionImage
     extra = 1
-    verbose_name = "Image"
-    verbose_name_plural = "Images"
+    verbose_name = _("Image")
+    verbose_name_plural = _("Images")
 # ========== END Inline ==========
 
 
 @admin.register(Color)
-class ColorAdmin(admin.ModelAdmin):
+class ColorAdmin(TranslationAdmin):
     list_display = ["id", "name", "is_active", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     list_editable = ["is_active"]
     list_filter = ["is_active"]
     search_fields = ["name"]
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 
 @admin.register(Designer)
@@ -76,17 +88,27 @@ class DiscountAdmin(admin.ModelAdmin):
     def get_percent(self, obj):
         return f"{obj.percent}%"
     get_percent.admin_order_field = "percent"
-    get_percent.short_description = "Percent"
+    get_percent.short_description = _("Percent")
 
 
 @admin.register(ProductCategory)
-class ProductCategoryAdmin(admin.ModelAdmin):
+class ProductCategoryAdmin(TranslationAdmin):
     list_display = ["id", "name", "is_active",
                     "slug", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     list_editable = ["is_active"]
     list_filter = ["is_active"]
     search_fields = ["name"]
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 
 @admin.register(ProductTag)
@@ -100,7 +122,7 @@ class ProductTagAdmin(admin.ModelAdmin):
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(TranslationAdmin):
     filter_horizontal = ["product_categories", "product_tags"]
 
     list_display = ["id", "title", "brand", "get_categories",
@@ -114,18 +136,28 @@ class ProductAdmin(admin.ModelAdmin):
         for category in obj.product_categories.all():
             arr.append(category)
         return arr
-    get_categories.short_description = "Categories"
+    get_categories.short_description = _("Categories")
 
     def get_tags(self, obj):
         arr = []
         for tag in obj.product_tags.all():
             arr.append(tag)
         return arr
-    get_tags.short_description = "Tags"
+    get_tags.short_description = _("Tags")
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 
 @admin.register(ProductVersion)
-class ProductVersionAdmin(admin.ModelAdmin):
+class ProductVersionAdmin(TranslationAdmin):
     inlines = [DiscountInline, ProductVersionImageInline]
     filter_horizontal = ["colors"]
 
@@ -141,14 +173,24 @@ class ProductVersionAdmin(admin.ModelAdmin):
         for color in obj.colors.all():
             arr.append(color)
         return arr
-    get_colors.short_description = "Colors"
+    get_colors.short_description = _("Colors")
 
     def get_discounts(self, obj):
         arr = []
         for discount in obj.discounts.all():
             arr.append(f"{discount.percent}%")
         return arr
-    get_discounts.short_description = "Discounts"
+    get_discounts.short_description = _("Discounts")
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 
 @admin.register(ProductVersionImage)

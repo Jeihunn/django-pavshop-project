@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from .models import ProductVersionReview
 
 
@@ -17,17 +18,17 @@ class ProductVersionReviewAdminForm(forms.ModelForm):
             if full_name or email:
                 if full_name:
                     self.add_error('full_name', forms.ValidationError(
-                        "Full name field should be empty when user is specified.", code='invalid_full_name'))
+                        _("Full name field should be empty when user is specified.")))
                 if email:
                     self.add_error('email', forms.ValidationError(
-                        "Email field should be empty when user is specified.", code='invalid_email'))
+                        _("Email field should be empty when user is specified.")))
         else:
             if not full_name:
                 self.add_error('full_name', forms.ValidationError(
-                    "Full name field is required when user is not specified.", code='required_full_name'))
+                    _("Full name field is required when user is not specified.")))
             if not email:
                 self.add_error('email', forms.ValidationError(
-                    "Email field is required when user is not specified.", code='required_email'))
+                    _("Email field is required when user is not specified.")))
 
 
 class ProductVersionReviewForm(forms.ModelForm):

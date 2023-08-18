@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import gettext_lazy as _
 from .forms import ContactForm
 
 
@@ -27,11 +28,11 @@ def contact_view(request):
         if form.is_valid():
             form.save()
             messages.success(
-                request, "Thank You. Your message has been sent successfully!")
+                request, _("Thank You. Your message has been sent successfully!"))
             return redirect(reverse_lazy("core:contact_view"))
         else:
             messages.error(
-                request, "Oops! Something went wrong. Please review your message and make sure all the required fields are filled correctly.")
+                request, _("Oops! Something went wrong. Please review your message and make sure all the required fields are filled correctly."))
     else:
         form = ContactForm()
 
