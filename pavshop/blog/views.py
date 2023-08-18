@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404, Http404
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from .models import Blog, BlogCategory, BlogTag
 
 
@@ -40,12 +41,12 @@ def blog_list_view(request):
     except TypeError:
         page_number = 1
     except ValueError:
-        raise Http404("Invalid page number.")
+        raise Http404(_("Invalid page number."))
 
     try:
         blogs = paginator.page(page_number)
     except EmptyPage:
-        raise Http404("Invalid page number.")
+        raise Http404(_("Invalid page number."))
 
     context = {
         "blogs": blogs,
@@ -87,7 +88,7 @@ def blog_archive_view(request, year, month):
     try:
         blog_date = datetime.strptime(f"{year}/{month}", "%Y/%B")
     except ValueError:
-        raise Http404("Invalid date format.")
+        raise Http404(_("Invalid date format."))
 
     blogs = Blog.objects.filter(is_active=True, publish_date__year=year,
                                 publish_date__month=blog_date.month).order_by("-publish_date")
@@ -100,12 +101,12 @@ def blog_archive_view(request, year, month):
     except TypeError:
         page_number = 1
     except ValueError:
-        raise Http404("Invalid page number.")
+        raise Http404(_("Invalid page number."))
 
     try:
         blogs = paginator.page(page_number)
     except EmptyPage:
-        raise Http404("Invalid page number.")
+        raise Http404(_("Invalid page number."))
 
     context = {
         "blogs": blogs,

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 from . import project_secrets
 
 
@@ -42,6 +43,7 @@ BASE_APPS = [
 ]
 
 INITIAL_APPS = [
+    "modeltranslation",
     "jazzmin",
 ]
 
@@ -52,6 +54,7 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
     "babel",
     "social_django",
+    "rosetta",
 ]
 
 MY_APPS = [
@@ -69,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "django.middleware.locale.LocaleMiddleware", # Multilanguage
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -160,6 +164,21 @@ USE_I18N = True
 
 USE_TZ = True
 
+USE_L10N = True
+
+LANGUAGES = [
+    ("en", "English"),
+    ("az", "Azerbaijani"),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+]
+
+# Modeltranslation
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_LANGUAGES = ('en', 'az')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -194,6 +213,7 @@ JAZZMIN_SETTINGS = {
     "site_header": "Pavshop Admin",
     "site_brand": "Pavshop Admin Panel",
     "welcome_sign": "Welcome to Pavshop Admin panel",
+    "language_chooser": True,
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",

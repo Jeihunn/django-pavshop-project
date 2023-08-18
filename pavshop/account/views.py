@@ -9,6 +9,7 @@ from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from .tokens import account_activation_token
 from .utils import send_activation_email
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
@@ -17,8 +18,8 @@ User = get_user_model()
 
 
 def login_view(request):
-    # if request.user.is_authenticated:
-    #     return redirect(reverse_lazy('core:index_view'))
+    if request.user.is_authenticated:
+        return redirect(reverse_lazy('core:index_view'))
 
     if request.method == "POST":
         form = LoginForm(request, data=request.POST)
@@ -28,7 +29,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, 'Login successful. Welcome!')
+                messages.success(request, _('Login successful. Welcome!'))
                 return redirect(reverse_lazy('core:index_view'))
     else:
         form = LoginForm()
@@ -40,8 +41,8 @@ def login_view(request):
 
 
 def register_view(request):
-    # if request.user.is_authenticated:
-    #     return redirect(reverse_lazy('core:index_view'))
+    if request.user.is_authenticated:
+        return redirect(reverse_lazy('core:index_view'))
 
     if request.method == "POST":
         form = RegisterForm(data=request.POST)
@@ -50,7 +51,7 @@ def register_view(request):
 
             send_activation_email(request, user)
             messages.info(
-                request, "Registration successful! Please confirm your email address to complete the registration. An activation link has been sent to your email.")
+                request, _("Registration successful! Please confirm your email address to complete the registration. An activation link has been sent to your email."))
             return redirect(reverse_lazy('login_view'))
     else:
         form = RegisterForm()
@@ -77,7 +78,7 @@ def activate_view(request, uidb64, token):
         user.is_active = True
         user.save()
         messages.success(
-            request, "Your account has been activated successfully. You can now log in.")
+            request, _("Your account has been activated successfully. You can now log in."))
         return redirect(reverse_lazy('login_view'))
     else:
         return render(request, 'account/account_activation_invalid.html')
@@ -92,7 +93,7 @@ def request_new_token_view(request):
 
             send_activation_email(request, user)
             messages.info(
-                request, "An account activation token has been sent to your email address. Please check your inbox and follow the instructions to activate your account.")
+                request, _("An account activation token has been sent to your email address. Please check your inbox and follow the instructions to activate your account."))
             return redirect(reverse_lazy('login_view'))
     else:
         form = RequestNewTokenForm()

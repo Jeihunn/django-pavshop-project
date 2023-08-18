@@ -9,6 +9,7 @@ from django.contrib.auth.forms import (
 from .models import Country, City, Address, Blacklist
 from phonenumber_field.formfields import PhoneNumberField
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -26,14 +27,14 @@ class BlacklistAdminForm(forms.ModelForm):
 
         if not user and not ip_address:
             raise forms.ValidationError({
-                'user': ["Both User and IP Address fields cannot be left empty at the same time. Please either select a User or provide an IP Address."],
-                'ip_address': ["Both User and IP Address fields cannot be left empty at the same time. Please either select a User or provide an IP Address."]
+                'user': [_("Both User and IP Address fields cannot be left empty at the same time. Please either select a User or provide an IP Address.")],
+                'ip_address': [_("Both User and IP Address fields cannot be left empty at the same time. Please either select a User or provide an IP Address.")]
             })
 
         if user and ip_address:
             raise forms.ValidationError({
-                'user': ["You cannot select both a User and provide an IP Address at the same time. Please either select a User or provide an IP Address."],
-                'ip_address': ["You cannot select both a User and provide an IP Address at the same time. Please either select a User or provide an IP Address."]
+                'user': [_("You cannot select both a User and provide an IP Address at the same time. Please either select a User or provide an IP Address.")],
+                'ip_address': [_("You cannot select both a User and provide an IP Address at the same time. Please either select a User or provide an IP Address.")]
             })
 
 
@@ -100,7 +101,7 @@ class RegisterForm(UserCreationForm):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError(
-                "A user with that email already exists.")
+                _("A user with that email already exists."))
         return email
 
     def save(self, commit=True):
@@ -141,10 +142,10 @@ class RequestNewTokenForm(forms.Form):
         if user:
             if user.is_active:
                 raise forms.ValidationError(
-                    "A user account associated with this email address is already active. You cannot request new tokens.")
+                    _("A user account associated with this email address is already active. You cannot request new tokens."))
         else:
             raise forms.ValidationError(
-                "We couldn't find a user with this email address. Please make sure you've entered a valid email address.")
+                _("We couldn't find a user with this email address. Please make sure you've entered a valid email address."))
         return email
 
 
@@ -182,7 +183,7 @@ class CustomPasswordResetForm(PasswordResetForm):
 
         if not User.objects.filter(email=email, is_active=True).exists():
             raise forms.ValidationError(
-                "No active users were found with this email address. Please enter a valid email address.")
+                _("No active users were found with this email address. Please enter a valid email address."))
         return email
 
 

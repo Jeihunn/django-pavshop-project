@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from .models import ProductVersion
 from .forms import ProductVersionReviewForm
 
@@ -21,10 +22,10 @@ def product_detail_view(request):
             if request.user.is_authenticated:
                 review.user = request.user
             form.save()
-            messages.success(request, "Your comment has been successfully saved.")
+            messages.success(request, _("Your comment has been successfully saved."))
             return redirect(reverse_lazy("product:product_detail_view"))
         else:
-            messages.error(request, "There was an error saving your comment. Please review the fields and make sure they are correct.")
+            messages.error(request, _("There was an error saving your comment. Please review the fields and make sure they are correct."))
     else:
         form = ProductVersionReviewForm(user=request.user)
 

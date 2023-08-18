@@ -2,6 +2,7 @@ from django.db import models
 from core.models import AbstractModel
 from autoslug import AutoSlugField
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -11,37 +12,41 @@ User = get_user_model()
 
 
 class Color(AbstractModel):
-    name = models.CharField(max_length=50, unique=True)
-    is_active = models.BooleanField(verbose_name="Active", default=True)
+    name = models.CharField(verbose_name=_(
+        "Color"), max_length=50, unique=True)
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
-        verbose_name = "Color"
-        verbose_name_plural = "Colors"
+        verbose_name = _("Color")
+        verbose_name_plural = _("Colors")
 
     def __str__(self):
         return self.name
 
 
 class Designer(AbstractModel):
-    name = models.CharField(max_length=50, unique=True)
-    is_active = models.BooleanField(verbose_name="Active", default=True)
+    name = models.CharField(verbose_name=_("Designer"),
+                            max_length=50, unique=True)
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
-        verbose_name = "Designer"
-        verbose_name_plural = "Designers"
+        verbose_name = _("Designer")
+        verbose_name_plural = _("Designers")
 
     def __str__(self):
         return self.name
 
 
 class Brand(AbstractModel):
-    name = models.CharField(max_length=50, unique=True)
-    is_active = models.BooleanField(verbose_name="Active", default=True)
-    slug = AutoSlugField(populate_from="name", unique=True)
+    name = models.CharField(verbose_name=_(
+        "Brand"), max_length=50, unique=True)
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
+    slug = AutoSlugField(verbose_name=_("Brand"),
+                         populate_from="name", unique=True)
 
     class Meta:
-        verbose_name = "Brand"
-        verbose_name_plural = "Brands"
+        verbose_name = _("Brand")
+        verbose_name_plural = _("Brands")
 
     def __str__(self):
         return self.name
@@ -49,42 +54,42 @@ class Brand(AbstractModel):
 
 class Discount(AbstractModel):
     products = models.ManyToManyField(
-        "ProductVersion", blank=True, related_name="discounts")
+        "ProductVersion", blank=True, related_name="discounts", verbose_name=_("Products"))
 
-    name = models.CharField(max_length=50, unique=True)
-    percent = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(100)])
-    is_active = models.BooleanField(verbose_name="Active", default=True)
+    name = models.CharField(verbose_name=_("Name"), max_length=50, unique=True)
+    percent = models.PositiveSmallIntegerField(verbose_name=_(
+        "Percent"), validators=[MinValueValidator(0), MaxValueValidator(100)])
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
-        verbose_name = "Discount"
-        verbose_name_plural = "Discounts"
+        verbose_name = _("Discount")
+        verbose_name_plural = _("Discounts")
 
     def __str__(self):
         return f"{self.name} - ({self.percent}%)"
 
 
 class ProductCategory(AbstractModel):
-    name = models.CharField(max_length=50, unique=True)
-    is_active = models.BooleanField(verbose_name="Active", default=True)
+    name = models.CharField(verbose_name=_("Name"), max_length=50, unique=True)
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
     slug = AutoSlugField(populate_from="name", unique=True)
 
     class Meta:
-        verbose_name = "Product Category"
-        verbose_name_plural = "Product Categories"
+        verbose_name = _("Product Category")
+        verbose_name_plural = _("Product Categories")
 
     def __str__(self):
         return self.name
 
 
 class ProductTag(AbstractModel):
-    name = models.CharField(max_length=50, unique=True)
-    is_active = models.BooleanField(verbose_name="Active", default=True)
+    name = models.CharField(verbose_name=_("Name"), max_length=50, unique=True)
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
     slug = AutoSlugField(populate_from="name", unique=True)
 
     class Meta:
-        verbose_name = "Product Tag"
-        verbose_name_plural = "Product Tags"
+        verbose_name = _("Product Tag")
+        verbose_name_plural = _("Product Tags")
 
     def __str__(self):
         return self.name
@@ -92,17 +97,18 @@ class ProductTag(AbstractModel):
 
 class Product(AbstractModel):
     brand = models.ForeignKey(
-        Brand, on_delete=models.SET_NULL, null=True, related_name="products")
+        Brand, on_delete=models.SET_NULL, null=True, related_name="products", verbose_name=_("Brand"))
     product_categories = models.ManyToManyField(
-        ProductCategory, related_name="products")
-    product_tags = models.ManyToManyField(ProductTag, related_name="products")
+        ProductCategory, related_name="products", verbose_name=_("Product Categories"))
+    product_tags = models.ManyToManyField(
+        ProductTag, related_name="products", verbose_name=_("Product Tags"))
 
-    title = models.CharField(max_length=250)
+    title = models.CharField(verbose_name=_("Title"), max_length=250)
     slug = AutoSlugField(populate_from="title", unique=True)
 
     class Meta:
-        verbose_name = "Product"
-        verbose_name_plural = "Products"
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")
 
     def __str__(self):
         return self.title
@@ -110,21 +116,24 @@ class Product(AbstractModel):
 
 class ProductVersion(AbstractModel):
     product = models.ForeignKey(
-        Product, on_delete=models.CASCADE, related_name="versions")
+        Product, on_delete=models.CASCADE, related_name="versions", verbose_name=_("Product"))
     designer = models.ForeignKey(
-        Designer, on_delete=models.SET_NULL, null=True, related_name="product_versions")
-    colors = models.ManyToManyField(Color, related_name="product_versions")
+        Designer, on_delete=models.SET_NULL, null=True, related_name="product_versions", verbose_name=_("Designer"))
+    colors = models.ManyToManyField(
+        Color, related_name="product_versions", verbose_name=_("Colors"))
 
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.PositiveIntegerField()
-    description = models.TextField(null=True, blank=True)
-    cover_image = models.ImageField(
-        upload_to="product_cover_images", default="product_cover_images/default_product_cover.jpg")
-    is_active = models.BooleanField(verbose_name="Active", default=True)
+    price = models.DecimalField(verbose_name=_(
+        "Price"), max_digits=10, decimal_places=2)
+    quantity = models.PositiveIntegerField(verbose_name=_("Quantity"))
+    description = models.TextField(verbose_name=_(
+        "Description"), null=True, blank=True)
+    cover_image = models.ImageField(verbose_name=_(
+        "Cover Image"), upload_to="product_cover_images", default="product_cover_images/default_product_cover.jpg")
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
-        verbose_name = "Product Version"
-        verbose_name_plural = "Product Versions"
+        verbose_name = _("Product Version")
+        verbose_name_plural = _("Product Versions")
 
     def __str__(self):
         return f"{self.product.title} - Designer: {self.designer.name} - Price: {self.price}$"
@@ -132,15 +141,15 @@ class ProductVersion(AbstractModel):
 
 class ProductVersionImage(AbstractModel):
     product_version = models.ForeignKey(
-        ProductVersion, on_delete=models.CASCADE, related_name="images")
+        ProductVersion, on_delete=models.CASCADE, related_name="images", verbose_name=_("Product Version"))
 
-    image = models.ImageField(
-        upload_to="product_images", default="product_images/default_product.jpg")
-    is_active = models.BooleanField(verbose_name="Active", default=True)
+    image = models.ImageField(verbose_name=_(
+        "Image"), upload_to="product_images", default="product_images/default_product.jpg")
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
-        verbose_name = "Product Version Image"
-        verbose_name_plural = "Product Version Images"
+        verbose_name = _("Product Version Image")
+        verbose_name_plural = _("Product Version Images")
 
     def __str__(self):
         return str(self.image)
@@ -148,17 +157,19 @@ class ProductVersionImage(AbstractModel):
 
 class ProductVersionReview(AbstractModel):
     product_version = models.ForeignKey(
-        ProductVersion, on_delete=models.CASCADE, related_name="reviews")
+        ProductVersion, on_delete=models.CASCADE, related_name="reviews", verbose_name=_("Product Version"))
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=True, blank=True, related_name="product_reviews")
+        User, on_delete=models.CASCADE, null=True, blank=True, related_name="product_reviews", verbose_name=_("User"))
 
-    full_name = models.CharField(max_length=150, null=True, blank=True)
-    email = models.EmailField(max_length=50, null=True, blank=True)
-    comment = models.TextField()
+    full_name = models.CharField(verbose_name=_(
+        "Full Name"), max_length=150, null=True, blank=True)
+    email = models.EmailField(verbose_name=_(
+        "Email"), max_length=50, null=True, blank=True)
+    comment = models.TextField(verbose_name=_("Comment"))
 
     class Meta:
-        verbose_name = "Product Version Review"
-        verbose_name_plural = "Product Version Reviews"
+        verbose_name = _("Product Version Review")
+        verbose_name_plural = _("Product Version Reviews")
 
     def __str__(self):
         if self.user:
@@ -175,13 +186,14 @@ class ProductVersionReview(AbstractModel):
 
 
 class Wishlist(AbstractModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="wishlist", verbose_name=_("User"))
     product_versions = models.ManyToManyField(
-        ProductVersion, related_name="wishlists")
+        ProductVersion, related_name="wishlists", verbose_name=_("Product Versions"))
 
     class Meta:
-        verbose_name = "Wishlist"
-        verbose_name_plural = "Wishlists"
+        verbose_name = _("Wishlist")
+        verbose_name_plural = _("Wishlists")
 
     def __str__(self):
         return self.user.username
