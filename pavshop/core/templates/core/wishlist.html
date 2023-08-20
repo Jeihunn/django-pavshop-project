@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{%load static i18n%}
 
 
 {% block page_title %}
@@ -24,11 +24,11 @@
           <ul class="row">
             <!-- PRODUCTS -->
             <li class="col-sm-2 text-left">
-              <h6>PRODUCTS</h6>
+              <h6>{% trans "PRODUCTS " %}</h6>
             </li>
             <!-- NAME -->
             <li class="col-sm-4 text-left">
-              <h6>NAME</h6>
+              <h6>{% trans " NAME" %}</h6>
             </li>
             <li class="col-sm-1"> </li>
           </ul>

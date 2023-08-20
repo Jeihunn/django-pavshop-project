@@ -1,0 +1,80 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block page_title %}
+<title>User Dashboard</title>
+{% endblock page_title %}
+{% block main %}
+
+<!-- Content -->
+<div class="container">
+    <div class="col">
+        <div class="col-md-4">
+            <div class="profile-card">
+                <img class="img-responsive" src="{{ user.profile_image.url }}" alt="Profile Image">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+            {% if user.username%}
+            <p>Username: <b>{{ user.username }}</b></p>
+            {% endif%}
+            {% if user.email%}
+            <p>Email: <b>{{ user.email }}</b></p>
+            {% endif%}
+            {% if user.register_date%}
+            <p>Registered: {{ user.register_date }}</p>
+            {% endif%}
+            {% if user.last_login%}
+            <p>Last Login: {{ user.last_login }}</p>
+            {% endif%}
+            {% if user.position%}
+            <p>Position: {{ user.position }}</p>
+            {% endif%}
+            <div class="dashboard-content">
+                <h6>{{ form.errors }}</h6>
+                <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                    {{ form.first_name }}
+                    <br>
+                    <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                    {{ form.last_name }}
+                    <br>
+                    <label for="{{ form.bio.id_for_label }}">Bio:</label>
+                    {{ form.bio }}
+                    <br>
+                    <label for="{{ form.profile_image.id_for_label }}">Profile Image:</label>
+                    {{ form.profile_image }}
+                    <br>
+                    <label for="{{ form.set_to_default.id_for_label }}">
+                        {{ form.set_to_default }}
+                        Delete profile image
+                    </label>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock main %}
+{% block js%}
+<script>
+    document.getElementById('set-default-photo').addEventListener('click', function () {
+        // Find the profile image input element
+        var profileImageInput = document.getElementById("{{ form.profile_image.id_for_label }}");
+
+        profileImageInput.value = "default_profile.jpg";
+
+        var anchor = document.createElement("a");
+        anchor.href = "#";
+        anchor.click();
+    });
+</script>
+{% endblock js %}

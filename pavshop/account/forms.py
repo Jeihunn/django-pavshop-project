@@ -44,6 +44,46 @@ class LoginForm(AuthenticationForm):
         fields = ('username', 'password')
 
 
+class UpdateUserInfoForm(forms.ModelForm):
+    set_to_default = forms.BooleanField(
+        required=False, initial=False, label="Set to Default Photo"
+    )
+
+    class Meta:
+        model = User
+        fields = (
+            'profile_image',
+            'first_name',
+            'last_name',
+            'phone_number',
+            'address',
+            'bio',
+        )
+        widgets = {
+            'first_name': forms.TextInput(attrs={
+                'class': 'form-control',
+                # 'placeholder': 'First Name',
+            }),
+            'last_name': forms.TextInput(attrs={
+                'class': 'form-control',
+                # 'placeholder': 'Last Name',
+            }),
+            'address': forms.TextInput(attrs={
+                'class': 'form-control',
+                # 'placeholder': 'Address',
+            }),
+            'phone_number': forms.NumberInput(attrs={
+                'class': 'form-control',
+                # 'placeholder': 'Phone Number',
+            }),
+            'profile_image': forms.FileInput,
+            'bio': forms.TextInput(attrs={
+                'class': 'form-control',
+                # 'placeholder': 'Bio',
+            }),
+
+        }
+        
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(
         widget=forms.EmailInput(),
