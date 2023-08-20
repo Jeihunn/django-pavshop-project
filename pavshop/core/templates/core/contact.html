@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{%load static i18n%}
 
 
 {% block page_title %}
@@ -18,12 +18,12 @@
     <section class="contact padding-top-100 padding-bottom-100">
       <div class="container">
         <div class="contact-form">
-          <h5>PLEASE fill-up FEW details</h5>
+          <h5>{% trans " PLEASE fill-up FEW details" %}</h5>
           <div class="row">
             <div class="col-md-8"> 
               
               <!--======= Success Msg =========-->
-              <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You. Your Message has been Submitted</div>
+              <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>{% trans "Thank You. Your Message has been Submitted " %}</div>
               
 
               <!--======= Alert =========-->
@@ -36,19 +36,19 @@
 
                 <ul class="row">
                   <li class="col-sm-6">
-                    <label>full name *
+                    <label> {% trans "full name " %}*
                       {{ form.full_name }}
                       {{ form.full_name.errors }}
                     </label>
                   </li>
                   <li class="col-sm-6">
-                    <label>Email *
+                    <label> {% trans " Email" %}*
                       {{ form.email }}
                       {{ form.email.errors }}
                     </label>
                   </li>
                   <li class="col-sm-6">
-                    <label>Phone *
+                    <label>{% trans " Phone" %} *
                       <div class="phone-number">
                         {{ form.phone_number }}
                       </div>
@@ -56,19 +56,19 @@
                     </label>
                   </li>
                   <li class="col-sm-6">
-                    <label>SUBJECT *
+                    <label>{% trans "SUBJECT " %} *
                       {{ form.subject }}
                       {{ form.subject.errors }}
                     </label>
                   </li>
                   <li class="col-sm-12">
-                    <label>Message *
+                    <label> {% trans "Message " %}*
                       {{ form.message }}
                       {{ form.message.errors }}
                     </label>
                   </li>
                   <li class="col-sm-12">
-                    <button type="submit" value="submit" class="btn" id="btn_submit" onClick="proceed();">SEND MAIL</button>
+                    <button type="submit" value="submit" class="btn" id="btn_submit" onClick="proceed();">{% trans "SEND MAIL " %}</button>
                   </li>
                 </ul>
 
@@ -78,7 +78,7 @@
             <!--======= ADDRESS INFO  =========-->
             <div class="col-md-4">
               <div class="contact-info">
-                <h6>OUR ADDRESS</h6>
+                <h6>{% trans " OUR ADDRESS" %}</h6>
                 <ul>
                   <li> <i class="icon-map-pin"></i> Street No. 12, Newyork 12,<br>
                     MD - 123, USA.</li>

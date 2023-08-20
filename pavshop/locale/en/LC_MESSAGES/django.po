@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-20 15:53+0400\n"
-"PO-Revision-Date: 2023-08-19 21:47+0400\n"
+"PO-Revision-Date: 2023-08-20 15:45+0400\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: .\account\admin.py:92
 msgid "Personal info"
-msgstr "Şəxsi məlumat"
+msgstr "Şəxsi məlumatlar"
 
 #: .\account\admin.py:94
 msgid "Permissions"
@@ -36,44 +36,34 @@ msgid ""
 "Both User and IP Address fields cannot be left empty at the same time. "
 "Please either select a User or provide an IP Address."
 msgstr ""
-"Həm İstifadəçi, həm də IP Ünvanı sahələri eyni vaxtda boş qala bilməz. "
-"Lütfən, ya İstifadəçi seçin, ya da IP ünvanı göstərin."
 
 #: .\account\forms.py:36 .\account\forms.py:37
 msgid ""
 "You cannot select both a User and provide an IP Address at the same time. "
 "Please either select a User or provide an IP Address."
 msgstr ""
-"Siz eyni anda həm İstifadəçi seçə, həm də IP Ünvanını təqdim edə "
-"bilməzsiniz. Lütfən, ya İstifadəçi seçin, ya da IP ünvanı göstərin."
 
 #: .\account\forms.py:144
 msgid "A user with that email already exists."
-msgstr "Həmin e-poçtu olan istifadəçi artıq mövcuddur."
+msgstr "Bu emaillə istifadəçi artıq qeydiyyatdan keçib."
 
 #: .\account\forms.py:185
 msgid ""
 "A user account associated with this email address is already active. You "
 "cannot request new tokens."
 msgstr ""
-"Bu e-poçt ünvanı ilə əlaqəli istifadəçi hesabı artıq aktivdir. Siz yeni "
-"nişanlar tələb edə bilməzsiniz."
 
 #: .\account\forms.py:188
 msgid ""
 "We couldn't find a user with this email address. Please make sure you've "
 "entered a valid email address."
 msgstr ""
-"Bu e-poçt ünvanı ilə istifadəçi tapa bilmədik. Lütfən, düzgün e-poçt ünvanı "
-"daxil etdiyinizə əmin olun."
 
 #: .\account\forms.py:226
 msgid ""
 "No active users were found with this email address. Please enter a valid "
 "email address."
 msgstr ""
-"Bu e-poçt ünvanı ilə aktiv istifadəçi tapılmadı. Etibarlı e-poçt ünvanı "
-"daxil edin."
 
 #: .\account\models.py:14 .\account\models.py:30 .\account\models.py:63
 #: .\blog\models.py:16 .\blog\models.py:29 .\product\models.py:59
@@ -83,270 +73,261 @@ msgstr "Ad"
 
 #: .\account\models.py:16
 msgid "Country Code"
-msgstr "Ölkə kodu"
+msgstr ""
 
 #: .\account\models.py:19 .\account\models.py:28 .\account\models.py:42
 msgid "Country"
-msgstr "Ölkə"
+msgstr ""
 
 #: .\account\models.py:20
 msgid "Countries"
-msgstr "Ölkələr"
+msgstr ""
 
 #: .\account\models.py:33 .\account\models.py:44
 msgid "City"
-msgstr "Şəhər"
+msgstr ""
 
 #: .\account\models.py:34
 msgid "Cities"
-msgstr "Şəhərlər"
+msgstr ""
 
 #: .\account\models.py:47
 msgid "Street Address"
-msgstr "Küçə ünvanı"
+msgstr ""
 
 #: .\account\models.py:50 .\account\models.py:75
 msgid "Address"
-msgstr "Ünvan"
+msgstr ""
 
 #: .\account\models.py:51
 msgid "Addresses"
-msgstr "Ünvanlar"
+msgstr ""
 
 #: .\account\models.py:66 .\account\models.py:77
 msgid "Position"
-msgstr "Vəzifə"
+msgstr ""
 
 #: .\account\models.py:67
 msgid "Positions"
-msgstr "Vəzifələr"
+msgstr ""
 
 #: .\account\models.py:79
 msgid "Bio"
-msgstr "Bio"
+msgstr ""
 
 #: .\account\models.py:81 .\core\models.py:20
 msgid "Phone Number"
-msgstr "Telefon nömrəsi"
+msgstr ""
 
 #: .\account\models.py:83
 msgid "Profile Image"
-msgstr "Profil şəkli"
+msgstr ""
 
 #: .\account\models.py:85
 msgid "Ips"
-msgstr "IP-lər"
+msgstr ""
 
 #: .\account\models.py:90 .\blog\models.py:72 .\product\models.py:162
 #: .\product\models.py:190
 msgid "User"
-msgstr "İstifadəçi"
+msgstr ""
 
 #: .\account\models.py:93
 msgid "IP Address"
-msgstr "IP ünvanı"
+msgstr ""
 
 #: .\account\models.py:95
 msgid "Start Time"
-msgstr "Başlama vaxtı"
+msgstr ""
 
 #: .\account\models.py:96
 msgid "Duration"
-msgstr "Müddət"
+msgstr ""
 
 #: .\account\models.py:97
 msgid "Reason"
-msgstr "Səbəb"
+msgstr ""
 
 #: .\account\models.py:98 .\blog\models.py:17 .\blog\models.py:30
 #: .\blog\models.py:55 .\product\models.py:17 .\product\models.py:30
 #: .\product\models.py:43 .\product\models.py:62 .\product\models.py:74
 #: .\product\models.py:87 .\product\models.py:132 .\product\models.py:148
 msgid "Active"
-msgstr "Aktiv"
+msgstr ""
 
 #: .\account\models.py:101
 msgid "Blacklist Entry"
-msgstr "Qara siyahıya giriş"
+msgstr ""
 
 #: .\account\models.py:102
 msgid "Blacklist Entries"
-msgstr "Qara siyahı girişləri"
+msgstr ""
 
 #: .\account\views.py:32
 msgid "Login successful. Welcome!"
-msgstr "Giriş uğurlu oldu. Xoş gəldiniz!"
+msgstr ""
 
 #: .\account\views.py:54
 msgid ""
 "Registration successful! Please confirm your email address to complete the "
 "registration. An activation link has been sent to your email."
 msgstr ""
-"Qeydiyyat uğurlu oldu! Qeydiyyatı tamamlamaq üçün e-poçt ünvanınızı "
-"təsdiqləyin. Aktivləşdirmə linki e-poçtunuza göndərildi."
 
 #: .\account\views.py:105
 msgid "Your account has been activated successfully. You can now log in."
-msgstr "Hesabınız uğurla aktivləşdirildi. İndi daxil ola bilərsiniz."
+msgstr ""
 
 #: .\account\views.py:120
 msgid ""
 "An account activation token has been sent to your email address. Please "
 "check your inbox and follow the instructions to activate your account."
 msgstr ""
-"E-poçt ünvanınıza hesab aktivləşdirmə nişanı göndərildi. Zəhmət olmasa, "
-"gələnlər qutusunu yoxlayın və hesabınızı aktivləşdirmək üçün təlimatlara "
-"əməl edin."
 
 #: .\blog\admin.py:58 .\product\admin.py:139
 msgid "Categories"
-msgstr "Kateqoriyalar"
+msgstr ""
 
 #: .\blog\admin.py:65 .\product\admin.py:146
 msgid "Tags"
-msgstr "Etiketlər"
+msgstr ""
 
 #: .\blog\admin.py:90 .\blog\models.py:59 .\blog\models.py:68
 msgid "Blog"
-msgstr "Bloq"
+msgstr ""
 
 #: .\blog\forms.py:30
 msgid "A comment cannot be its own parent."
-msgstr "Şərh öz valideyni ola bilməz."
+msgstr ""
 
 #: .\blog\forms.py:32
 msgid "This comment cannot be a parent of its own parent."
-msgstr "Bu şərh öz valideyninin valideyni ola bilməz."
+msgstr ""
 
 #: .\blog\forms.py:44 .\product\forms.py:21
 msgid "Full name field should be empty when user is specified."
-msgstr "İstifadəçi göstərildikdə tam ad sahəsi boş olmalıdır."
+msgstr ""
 
 #: .\blog\forms.py:46 .\product\forms.py:24
 msgid "Email field should be empty when user is specified."
-msgstr "İstifadəçi qeyd edildikdə e-poçt sahəsi boş olmalıdır."
+msgstr ""
 
 #: .\blog\forms.py:49 .\product\forms.py:28
 msgid "Full name field is required when user is not specified."
-msgstr "İstifadəçi göstərilmədikdə tam ad sahəsi tələb olunur."
+msgstr ""
 
 #: .\blog\forms.py:51 .\product\forms.py:31
 msgid "Email field is required when user is not specified."
-msgstr "İstifadəçi göstərilmədikdə e-poçt sahəsi tələb olunur."
+msgstr ""
 
 #: .\blog\models.py:21
 msgid "Blog Category"
-msgstr "Bloq kateqoriyası"
+msgstr ""
 
 #: .\blog\models.py:22 .\blog\models.py:45
 msgid "Blog Categories"
-msgstr "Bloq kateqoriyaları"
+msgstr ""
 
 #: .\blog\models.py:34
 msgid "Blog Tag"
-msgstr "Bloq etiketi"
+msgstr ""
 
 #: .\blog\models.py:35 .\blog\models.py:47
 msgid "Blog Tags"
-msgstr "Bloq etiketləri"
+msgstr ""
 
 #: .\blog\models.py:43
 msgid "Author"
-msgstr "Müəllif"
+msgstr ""
 
 #: .\blog\models.py:49 .\product\models.py:106
 msgid "Title"
-msgstr "Başlıq"
+msgstr ""
 
 #: .\blog\models.py:50
 msgid "Content"
-msgstr "Məzmun"
+msgstr ""
 
 #: .\blog\models.py:52 .\product\models.py:131
 msgid "Cover Image"
-msgstr "Qapaq şəkli"
+msgstr ""
 
 #: .\blog\models.py:54
 msgid "Publish Date"
-msgstr "Yayımlanma tarixi"
+msgstr ""
 
 #: .\blog\models.py:60
 msgid "Blogs"
-msgstr "Bloqlar"
+msgstr ""
 
 #: .\blog\models.py:70
 msgid "Parent"
-msgstr "Valideyn"
+msgstr ""
 
 #: .\blog\models.py:75 .\core\models.py:18 .\product\models.py:165
 msgid "Full Name"
-msgstr "Tam ad"
+msgstr ""
 
 #: .\blog\models.py:77 .\core\models.py:19 .\core\models.py:33
 #: .\product\models.py:167
 msgid "Email"
-msgstr "Email"
+msgstr ""
 
 #: .\blog\models.py:78 .\core\models.py:21
 msgid "Subject"
-msgstr "Mövzu"
+msgstr ""
 
 #: .\blog\models.py:79 .\product\models.py:168
 msgid "Comment"
-msgstr "Şərh"
+msgstr ""
 
 #: .\blog\models.py:82
 msgid "Blog Review"
-msgstr "Bloq rəyi"
+msgstr ""
 
 #: .\blog\models.py:83
 msgid "Blog Reviews"
-msgstr "Bloq rəyləri"
-
-#: .\blog\templates\blog\includes\previous-months.html:3
-msgid "archives"
-msgstr "ARXİVLƏR"
+msgstr ""
 
 #: .\blog\views.py:44 .\blog\views.py:49 .\blog\views.py:104
 #: .\blog\views.py:109
 msgid "Invalid page number."
-msgstr "Yanlış səhifə nömrəsi."
+msgstr ""
 
 #: .\blog\views.py:91
 msgid "Invalid date format."
-msgstr "Yanlış tarix formatı."
+msgstr ""
 
 #: .\core\models.py:10
 msgid "Created At"
-msgstr "Yaradılma vaxtı"
+msgstr ""
 
 #: .\core\models.py:11
 msgid "Updated At"
-msgstr "Yenilənmə vaxtı"
+msgstr ""
 
 #: .\core\models.py:22
 msgid "Message"
-msgstr "Mesaj"
+msgstr ""
 
 #: .\core\models.py:25
 msgid "Contact"
-msgstr "Əlaqə"
+msgstr ""
 
 #: .\core\models.py:26
 msgid "Contacts"
-msgstr "Əlaqələr"
+msgstr ""
 
 #: .\core\models.py:34
 msgid "Subscription Status"
-msgstr "Abunəlik statusu"
+msgstr ""
 
 #: .\core\models.py:37
 msgid "Newsletter"
-msgstr "Xəbər bülleteni"
+msgstr ""
 
 #: .\core\models.py:38
 msgid "Newsletters"
-msgstr "Xəbər bülletenləri"
+msgstr ""
 
 #: .\core\templates\core\checkout.html:30
 msgid " BILLING DETAILS"
@@ -378,10 +359,8 @@ msgid " TOWN/CITY"
 msgstr ""
 
 #: .\core\templates\core\checkout.html:67
-#, fuzzy
-#| msgid "ACCOUNT INFO"
 msgid "COUNTRY "
-msgstr "ŞƏXSİ MƏLUMATLAR"
+msgstr ""
 
 #: .\core\templates\core\checkout.html:74
 msgid " EMAIL ADDRESS"
@@ -413,20 +392,16 @@ msgid "EMAIL ADDRESS "
 msgstr ""
 
 #: .\core\templates\core\checkout.html:158
-#, fuzzy
-#| msgid " SUBTOTAL"
 msgid " SUBMIT"
-msgstr "CƏMİ"
+msgstr ""
 
 #: .\core\templates\core\checkout.html:166
 msgid "YOUR ORDER "
 msgstr ""
 
 #: .\core\templates\core\checkout.html:174
-#, fuzzy
-#| msgid " SUBTOTAL"
 msgid " TOTAL COST"
-msgstr "CƏMİ"
+msgstr ""
 
 #: .\core\templates\core\checkout.html:181
 msgid " DIRECT BANK TRANSFER"
@@ -449,22 +424,16 @@ msgid " PLEASE fill-up FEW details"
 msgstr ""
 
 #: .\core\templates\core\contact.html:26
-#, fuzzy
-#| msgid "Thank You. Your message has been sent successfully!"
 msgid "Thank You. Your Message has been Submitted "
-msgstr "Çox sağ ol. Mesajınız uğurla göndərildi!"
+msgstr ""
 
 #: .\core\templates\core\contact.html:39
-#, fuzzy
-#| msgid "Full Name"
 msgid "full name "
-msgstr "Tam ad"
+msgstr ""
 
 #: .\core\templates\core\contact.html:45
-#, fuzzy
-#| msgid "Email"
 msgid " Email"
-msgstr "Email"
+msgstr ""
 
 #: .\core\templates\core\contact.html:51
 msgid " Phone"
@@ -475,10 +444,8 @@ msgid "SUBJECT "
 msgstr ""
 
 #: .\core\templates\core\contact.html:65
-#, fuzzy
-#| msgid "Message"
 msgid "Message "
-msgstr "Mesaj"
+msgstr ""
 
 #: .\core\templates\core\contact.html:71
 msgid "SEND MAIL "
@@ -494,44 +461,40 @@ msgstr ""
 
 #: .\core\templates\core\includes\header.html:17
 msgid "Home"
-msgstr "Ana Səhifə"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:21 .\product\models.py:28
 #: .\product\models.py:33 .\product\models.py:121
 msgid "Designer"
-msgstr "Dizayner"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:50
 msgid "store"
-msgstr "Mağaza"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:56
-#, fuzzy
-#| msgid "Products"
 msgid "Top Rate Products"
-msgstr "Məhsullar"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:92
 msgid "NEW ARRIVAL"
-msgstr "YENİ MƏHSULLAR"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:92
 msgid "Best Collection"
-msgstr "Ən yaxşı kolleksiya"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:98
 msgid " SHOP NOW "
-msgstr "İNDİ AL"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:103
 msgid " About"
-msgstr "Haqqımızda"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:106
-#, fuzzy
-#| msgid "Contact"
 msgid "contact"
-msgstr "Əlaqə"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:120
 msgid "HELLO"
@@ -539,47 +502,45 @@ msgstr ""
 
 #: .\core\templates\core\includes\header.html:122
 msgid "FAVORITES"
-msgstr "SEÇİLMİŞLƏR"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:123
 msgid "ACCOUNT INFO"
-msgstr "ŞƏXSİ MƏLUMATLAR"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:124
 msgid "CHANGE PASSWORD"
-msgstr "PAROLU DƏYİŞ"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:125
 msgid "LOG OUT"
-msgstr "ÇIXIŞ"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:142
 #: .\core\templates\core\includes\header.html:150
 #: .\core\templates\core\shopping-cart.html:39
 msgid " QTY"
-msgstr "SAY"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:153
 msgid " SUBTOTAL"
-msgstr "CƏMİ"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:157
 msgid " VIEW CART"
-msgstr "SƏBƏTƏ BAX"
+msgstr ""
 
 #: .\core\templates\core\includes\header.html:158
 msgid "CHECK OUT "
-msgstr "ÖDƏNİŞƏ KEÇ"
+msgstr ""
 
 #: .\core\templates\core\includes\home-main-slider.html:26
 msgid " The Latest Product from PAVSHOP "
 msgstr ""
 
 #: .\core\templates\core\includes\home-main-slider.html:77
-#, fuzzy
-#| msgid " SHOP NOW "
 msgid "SHOP NOW "
-msgstr "İNDİ AL"
+msgstr ""
 
 #: .\core\templates\core\includes\home-main-slider.html:97
 msgid "The Latest Product from PAVSHOP "
@@ -594,22 +555,16 @@ msgid " this season"
 msgstr ""
 
 #: .\core\templates\core\includes\sub-banner.html:5
-#, fuzzy
-#| msgid "Contact"
 msgid "contact us now "
-msgstr "Əlaqə"
+msgstr ""
 
 #: .\core\templates\core\includes\sub-banner.html:11
-#, fuzzy
-#| msgid "Home"
 msgid "Home "
-msgstr "Ana Səhifə"
+msgstr ""
 
 #: .\core\templates\core\includes\sub-banner.html:12
-#, fuzzy
-#| msgid "Contact"
 msgid "contact "
-msgstr "Əlaqə"
+msgstr ""
 
 #: .\core\templates\core\shopping-cart.html:27
 #: .\core\templates\core\wishlist.html:27
@@ -625,10 +580,8 @@ msgid " PRICE"
 msgstr ""
 
 #: .\core\templates\core\shopping-cart.html:44
-#, fuzzy
-#| msgid " SUBTOTAL"
 msgid " TOTAL"
-msgstr "CƏMİ"
+msgstr ""
 
 #: .\core\templates\core\shopping-cart.html:204
 msgid "DISCOUNT CODE "
@@ -643,10 +596,8 @@ msgid " continue shopping"
 msgstr ""
 
 #: .\core\templates\core\shopping-cart.html:209
-#, fuzzy
-#| msgid "Updated At"
 msgid " update cart"
-msgstr "Yenilənmə vaxtı"
+msgstr ""
 
 #: .\core\templates\core\shopping-cart.html:214
 msgid "grand total "
@@ -658,133 +609,129 @@ msgstr ""
 
 #: .\core\views.py:31
 msgid "Thank You. Your message has been sent successfully!"
-msgstr "Çox sağ ol. Mesajınız uğurla göndərildi!"
+msgstr ""
 
 #: .\core\views.py:35
 msgid ""
-"Oops! Something went wrong. Please review your message and make sure all the"
-" required fields are filled correctly."
+"Oops! Something went wrong. Please review your message and make sure all the "
+"required fields are filled correctly."
 msgstr ""
-"Vay! Nəsə xəta baş verdi. Mesajınızı nəzərdən keçirin və bütün tələb olunan "
-"sahələrin düzgün doldurulduğundan əmin olun."
 
 #: .\product\admin.py:27 .\product\models.py:65
 msgid "Discount"
-msgstr "Endirim"
+msgstr ""
 
 #: .\product\admin.py:28 .\product\admin.py:183 .\product\models.py:66
 msgid "Discounts"
-msgstr "Endirimlər"
+msgstr ""
 
 #: .\product\admin.py:34 .\product\models.py:147
 msgid "Image"
-msgstr "Şəkil"
+msgstr ""
 
 #: .\product\admin.py:35
 msgid "Images"
-msgstr "Şəkillər"
+msgstr ""
 
 #: .\product\admin.py:91 .\product\models.py:61
 msgid "Percent"
-msgstr "Faiz"
+msgstr ""
 
 #: .\product\admin.py:176 .\product\models.py:21 .\product\models.py:123
 msgid "Colors"
-msgstr "Rənglər"
+msgstr ""
 
 #: .\product\models.py:16 .\product\models.py:20
 msgid "Color"
-msgstr "Rəng"
+msgstr ""
 
 #: .\product\models.py:34
 msgid "Designers"
-msgstr "Dizaynerlər"
+msgstr ""
 
 #: .\product\models.py:42 .\product\models.py:44 .\product\models.py:48
 #: .\product\models.py:100
 msgid "Brand"
-msgstr "Brend"
+msgstr ""
 
 #: .\product\models.py:49
 msgid "Brands"
-msgstr "Brendlər"
+msgstr ""
 
 #: .\product\models.py:57 .\product\models.py:111
 msgid "Products"
-msgstr "Məhsullar"
+msgstr ""
 
 #: .\product\models.py:78
 msgid "Product Category"
-msgstr "Məhsul kateqoriyası"
+msgstr ""
 
 #: .\product\models.py:79 .\product\models.py:102
 msgid "Product Categories"
-msgstr "Məhsul kateqoriyaları"
+msgstr ""
 
 #: .\product\models.py:91
 msgid "Product Tag"
-msgstr "Məhsul etiketi"
+msgstr ""
 
 #: .\product\models.py:92 .\product\models.py:104
 msgid "Product Tags"
-msgstr "Məhsul etiketləri"
+msgstr ""
 
 #: .\product\models.py:110 .\product\models.py:119
 msgid "Product"
-msgstr "Məhsul"
+msgstr ""
 
 #: .\product\models.py:126
 msgid "Price"
-msgstr "Qiymət"
+msgstr ""
 
 #: .\product\models.py:127
 msgid "Quantity"
-msgstr "Miqdar"
+msgstr ""
 
 #: .\product\models.py:129
 msgid "Description"
-msgstr "Açıqlama"
+msgstr ""
 
 #: .\product\models.py:135 .\product\models.py:144 .\product\models.py:160
 msgid "Product Version"
-msgstr "Məhsul versiyası"
+msgstr ""
 
 #: .\product\models.py:136 .\product\models.py:192
 msgid "Product Versions"
-msgstr "Məhsul versiyaları"
+msgstr ""
 
 #: .\product\models.py:151
 msgid "Product Version Image"
-msgstr "Məhsul versiyası şəkili"
+msgstr ""
 
 #: .\product\models.py:152
 msgid "Product Version Images"
-msgstr "Məhsul versiyası şəkilləri"
+msgstr ""
 
 #: .\product\models.py:171
 msgid "Product Version Review"
-msgstr "Məhsul versiyası rəyi"
+msgstr ""
 
 #: .\product\models.py:172
 msgid "Product Version Reviews"
-msgstr "Məhsul versiyası rəyləri"
+msgstr ""
 
 #: .\product\models.py:195
 msgid "Wishlist"
-msgstr "İstək siyahısı"
+msgstr ""
 
 #: .\product\models.py:196
 msgid "Wishlists"
-msgstr "İstək siyahıları"
+msgstr ""
 
 #: .\product\views.py:25
 msgid "Your comment has been successfully saved."
-msgstr "Şərhiniz uğurla yadda saxlanıldı."
+msgstr ""
 
 #: .\product\views.py:28
 msgid ""
 "There was an error saving your comment. Please review the fields and make "
 "sure they are correct."
 msgstr ""
-"Şərhinizi yadda saxlayarkən xəta baş verdi. Sahələri nəzərdən keçirin və "
-"düzgün olduğundan əmin olun."
