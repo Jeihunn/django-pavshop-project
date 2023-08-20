@@ -30,7 +30,8 @@ def blog_list_view(request):
         blogs = blogs.filter(blog_tags__slug=tag_slug)
 
     if query:
-        blogs = blogs.filter(title__icontains=query)
+        # blogs = blogs.filter(title__icontains=query) # Hər dilin yalnız özünə uyğun axtarış etmək üçün.
+        blogs = blogs.filter(Q(title_az__icontains=query) | Q(title_en__icontains=query)) # Həm AZ, həm də EN title field-lərində axtarış etmək üçün.
 
     blogs_count = blogs.count()
 

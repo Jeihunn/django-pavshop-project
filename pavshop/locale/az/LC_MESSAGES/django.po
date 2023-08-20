@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-18 23:33+0400\n"
-"PO-Revision-Date: 2023-08-18 17:39+0400\n"
+"POT-Creation-Date: 2023-08-19 18:46+0400\n"
+"PO-Revision-Date: 2023-08-19 18:49+0400\n"
 "Last-Translator: Admin Super <admin@mail.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -303,6 +303,10 @@ msgstr "Bloq rəyi"
 msgid "Blog Reviews"
 msgstr "Bloq rəyləri"
 
+#: .\blog\templates\blog\includes\previous-months.html:3
+msgid "archives"
+msgstr "ARXİVLƏR"
+
 #: .\blog\views.py:44 .\blog\views.py:49 .\blog\views.py:104
 #: .\blog\views.py:109
 msgid "Invalid page number."
@@ -363,8 +367,8 @@ msgstr "Çox sağ ol. Mesajınız uğurla göndərildi!"
 
 #: .\core\views.py:35
 msgid ""
-"Oops! Something went wrong. Please review your message and make sure all the "
-"required fields are filled correctly."
+"Oops! Something went wrong. Please review your message and make sure all the"
+" required fields are filled correctly."
 msgstr ""
 "Vay! Nəsə xəta baş verdi. Mesajınızı nəzərdən keçirin və bütün tələb olunan "
 "sahələrin düzgün doldurulduğundan əmin olun."
