@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{% load static i18n %}
   
 
 {% block page_title %}
@@ -24,24 +24,24 @@
             <ul class="row">
               <!-- PRODUCTS -->
               <li class="col-sm-2 text-left">
-                <h6>PRODUCTS</h6>
+                <h6>{% trans "PRODUCTS " %}</h6>
               </li>
               <!-- NAME -->
               <li class="col-sm-4 text-left">
-                <h6>NAME</h6>
+                <h6>{% trans "NAME " %}</h6>
               </li>
               <!-- PRICE -->
               <li class="col-sm-2">
-                <h6>PRICE</h6>
+                <h6>{% trans " PRICE" %}</h6>
               </li>
               <!-- QTY -->
               <li class="col-sm-1">
-                <h6>QTY</h6>
+                <h6>{% trans " QTY" %}</h6>
               </li>
               
               <!-- TOTAL PRICE -->
               <li class="col-sm-2">
-                <h6>TOTAL</h6>
+                <h6>{% trans " TOTAL" %}</h6>
               </li>
               <li class="col-sm-1"> </li>
             </ul>
@@ -201,17 +201,17 @@
             
             <!-- DISCOUNT CODE -->
             <div class="col-sm-7">
-              <h6>DISCOUNT CODE</h6>
+              <h6>{% trans "DISCOUNT CODE " %}</h6>
               <form>
                 <input type="text" value="" placeholder="ENTER YOUR CODE IF YOU HAVE ONE">
-                <button type="submit" class="btn btn-small btn-dark">APPLY CODE</button>
+                <button type="submit" class="btn btn-small btn-dark">{% trans " APPLY CODE" %}</button>
               </form>
-              <div class="coupn-btn"> <a href="#." class="btn">continue shopping</a> <a href="#." class="btn">update cart</a> </div>
+              <div class="coupn-btn"> <a href="#." class="btn">{% trans " continue shopping" %}</a> <a href="#." class="btn">{% trans " update cart" %}</a> </div>
             </div>
             
             <!-- SUB TOTAL -->
             <div class="col-sm-5">
-              <h6>grand total</h6>
+              <h6>{% trans "grand total " %}</h6>
               <div class="grand-total">
                 <div class="order-detail">
                   <p>WOOD CHAIR <span>$598 </span></p>

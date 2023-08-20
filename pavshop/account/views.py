@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate, logout, get_user_model
 from django.contrib import messages
 from django.http import JsonResponse
-from .forms import LoginForm, RegisterForm, RequestNewTokenForm
+from .forms import LoginForm, RegisterForm, RequestNewTokenForm, UpdateUserInfoForm
 from .models import City
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
@@ -62,6 +62,30 @@ def register_view(request):
     return render(request, "account/register.html", context)
 
 
+def user_profile_view(request):
+    if request.user.is_authenticated:
+        user = request.user
+        if request.method == "POST":
+            form = UpdateUserInfoForm(
+                data=request.POST, files=request.FILES, instance=user)
+            if form.is_valid():
+                if form.cleaned_data.get('set_to_default'):
+                    user.profile_image = 'profile_images/default_profile.jpg'
+                form.save()
+            else:
+                print(" ____________________________________ Form is not valid")
+                print(form.errors)
+        else:
+            form = UpdateUserInfoForm(instance=user)
+        context = {
+            "form": form,
+            "user": user,
+        }
+        return render(request, "account/user-profile.html", context)
+    else:
+        return redirect(reverse_lazy('core:index_view'))
+   
+    
 def logout_view(request):
     logout(request)
     return redirect(reverse_lazy('login_view'))
