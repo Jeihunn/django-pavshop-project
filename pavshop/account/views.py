@@ -64,22 +64,18 @@ def register_view(request):
 
 def user_profile_view(request):
     if request.user.is_authenticated:
-        user = request.user
         if request.method == "POST":
             form = UpdateUserInfoForm(
-                data=request.POST, files=request.FILES, instance=user)
+                data=request.POST, files=request.FILES, instance=request.user)
             if form.is_valid():
                 if form.cleaned_data.get('set_to_default'):
-                    user.profile_image = 'profile_images/default_profile.jpg'
+                    request.user.profile_image = 'profile_images/default_profile.jpg'
                 form.save()
-            else:
-                print(" ____________________________________ Form is not valid")
-                print(form.errors)
         else:
-            form = UpdateUserInfoForm(instance=user)
+            form = UpdateUserInfoForm(instance=request.user)
+            
         context = {
             "form": form,
-            "user": user,
         }
         return render(request, "account/user-profile.html", context)
     else:

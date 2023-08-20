@@ -46,7 +46,21 @@ class LoginForm(AuthenticationForm):
 
 class UpdateUserInfoForm(forms.ModelForm):
     set_to_default = forms.BooleanField(
-        required=False, initial=False, label="Set to Default Photo"
+        required=False,
+        initial=False,
+        label="Set to Default Photo"
+    )
+
+    first_name = forms.CharField(
+        max_length=40,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=True
+    )
+
+    last_name = forms.CharField(
+        max_length=40,
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=True
     )
 
     class Meta:
@@ -55,34 +69,15 @@ class UpdateUserInfoForm(forms.ModelForm):
             'profile_image',
             'first_name',
             'last_name',
-            'phone_number',
-            'address',
             'bio',
         )
         widgets = {
-            'first_name': forms.TextInput(attrs={
-                'class': 'form-control',
-                # 'placeholder': 'First Name',
-            }),
-            'last_name': forms.TextInput(attrs={
-                'class': 'form-control',
-                # 'placeholder': 'Last Name',
-            }),
-            'address': forms.TextInput(attrs={
-                'class': 'form-control',
-                # 'placeholder': 'Address',
-            }),
-            'phone_number': forms.NumberInput(attrs={
-                'class': 'form-control',
-                # 'placeholder': 'Phone Number',
-            }),
             'profile_image': forms.FileInput,
-            'bio': forms.TextInput(attrs={
+            'bio': forms.Textarea(attrs={
                 'class': 'form-control',
-                # 'placeholder': 'Bio',
             }),
-
         }
+
         
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(

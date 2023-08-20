@@ -9,7 +9,6 @@ urlpatterns = [
     path('register/', views.register_view, name="register_view"),
     path('user-profile/', views.user_profile_view, name="user_profile_view"),
 
-
     # Cities
     path('load-cities/', views.load_cities_view, name='load_cities_view'),
 
