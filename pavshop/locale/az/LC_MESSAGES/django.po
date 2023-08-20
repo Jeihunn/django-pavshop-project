@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-20 15:53+0400\n"
+"POT-Creation-Date: 2023-08-20 18:01+0400\n"
 "PO-Revision-Date: 2023-08-19 21:47+0400\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,11 +47,11 @@ msgstr ""
 "Siz eyni anda həm İstifadəçi seçə, həm də IP Ünvanını təqdim edə "
 "bilməzsiniz. Lütfən, ya İstifadəçi seçin, ya da IP ünvanı göstərin."
 
-#: .\account\forms.py:144
+#: .\account\forms.py:139
 msgid "A user with that email already exists."
 msgstr "Həmin e-poçtu olan istifadəçi artıq mövcuddur."
 
-#: .\account\forms.py:185
+#: .\account\forms.py:180
 msgid ""
 "A user account associated with this email address is already active. You "
 "cannot request new tokens."
@@ -59,7 +59,7 @@ msgstr ""
 "Bu e-poçt ünvanı ilə əlaqəli istifadəçi hesabı artıq aktivdir. Siz yeni "
 "nişanlar tələb edə bilməzsiniz."
 
-#: .\account\forms.py:188
+#: .\account\forms.py:183
 msgid ""
 "We couldn't find a user with this email address. Please make sure you've "
 "entered a valid email address."
@@ -67,7 +67,7 @@ msgstr ""
 "Bu e-poçt ünvanı ilə istifadəçi tapa bilmədik. Lütfən, düzgün e-poçt ünvanı "
 "daxil etdiyinizə əmin olun."
 
-#: .\account\forms.py:226
+#: .\account\forms.py:221
 msgid ""
 "No active users were found with this email address. Please enter a valid "
 "email address."
@@ -185,11 +185,11 @@ msgstr ""
 "Qeydiyyat uğurlu oldu! Qeydiyyatı tamamlamaq üçün e-poçt ünvanınızı "
 "təsdiqləyin. Aktivləşdirmə linki e-poçtunuza göndərildi."
 
-#: .\account\views.py:105
+#: .\account\views.py:102
 msgid "Your account has been activated successfully. You can now log in."
 msgstr "Hesabınız uğurla aktivləşdirildi. İndi daxil ola bilərsiniz."
 
-#: .\account\views.py:120
+#: .\account\views.py:117
 msgid ""
 "An account activation token has been sent to your email address. Please "
 "check your inbox and follow the instructions to activate your account."
@@ -307,12 +307,12 @@ msgstr "Bloq rəyləri"
 msgid "archives"
 msgstr "ARXİVLƏR"
 
-#: .\blog\views.py:44 .\blog\views.py:49 .\blog\views.py:104
-#: .\blog\views.py:109
+#: .\blog\views.py:45 .\blog\views.py:50 .\blog\views.py:105
+#: .\blog\views.py:110
 msgid "Invalid page number."
 msgstr "Yanlış səhifə nömrəsi."
 
-#: .\blog\views.py:91
+#: .\blog\views.py:92
 msgid "Invalid date format."
 msgstr "Yanlış tarix formatı."
 
@@ -662,8 +662,8 @@ msgstr "Çox sağ ol. Mesajınız uğurla göndərildi!"
 
 #: .\core\views.py:35
 msgid ""
-"Oops! Something went wrong. Please review your message and make sure all the"
-" required fields are filled correctly."
+"Oops! Something went wrong. Please review your message and make sure all the "
+"required fields are filled correctly."
 msgstr ""
 "Vay! Nəsə xəta baş verdi. Mesajınızı nəzərdən keçirin və bütün tələb olunan "
 "sahələrin düzgün doldurulduğundan əmin olun."

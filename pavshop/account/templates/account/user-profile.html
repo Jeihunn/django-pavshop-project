@@ -1,69 +1,81 @@
 {% extends 'core/base.html' %}
-{% load static %}
+{% load static i18n %}
+
 
 {% block page_title %}
-<title>User Dashboard</title>
+<title>Profile | Pavshop</title>
 {% endblock page_title %}
-{% block main %}
 
+
+{% block css %}
+<style>
+    .profile-info {
+        margin: 50px 0;
+    }
+</style>
+{% endblock css %}
+
+
+{% block main %}
 <!-- Content -->
 <div class="container">
-    <div class="col">
+    <div class="row profile-info">
         <div class="col-md-4">
             <div class="profile-card">
-                <img class="img-responsive" src="{{ user.profile_image.url }}" alt="Profile Image">
+                <img class="img-responsive" src="{{ request.user.profile_image.url }}" alt="Profile Image">
             </div>
         </div>
         <div class="col-md-8">
-            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-            {% if user.username%}
-            <p>Username: <b>{{ user.username }}</b></p>
+            <h3>{{ request.user.first_name }} {{ request.user.last_name }}</h3>
+            {% if request.user.username %}
+                <p>Username: <b>{{ request.user.username }}</b></p>
             {% endif%}
-            {% if user.email%}
-            <p>Email: <b>{{ user.email }}</b></p>
+            {% if request.user.email %}
+                <p>Email: <b>{{ request.user.email }}</b></p>
             {% endif%}
-            {% if user.register_date%}
-            <p>Registered: {{ user.register_date }}</p>
+            {% if request.user.date_joined %}
+                <p>Registered: {{ request.user.date_joined }}</p>
             {% endif%}
-            {% if user.last_login%}
-            <p>Last Login: {{ user.last_login }}</p>
+            {% if request.user.last_login %}
+                <p>Last Login: {{ request.user.last_login }}</p>
             {% endif%}
-            {% if user.position%}
-            <p>Position: {{ user.position }}</p>
-            {% endif%}
+            {% if request.user.position %}
+                <p>Position: {{ request.user.position }}</p>
+            {% endif %}
             <div class="dashboard-content">
-                <h6>{{ form.errors }}</h6>
                 <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
                     {% csrf_token %}
-                    {{ form.non_field_errors }}
                     <label for="{{ form.first_name.id_for_label }}">First Name:</label>
                     {{ form.first_name }}
+                    {{ form.first_name.errors }}
                     <br>
                     <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
                     {{ form.last_name }}
+                    {{ form.last_name.errors }}
                     <br>
                     <label for="{{ form.bio.id_for_label }}">Bio:</label>
                     {{ form.bio }}
+                    {{ form.bio.errors }}
                     <br>
                     <label for="{{ form.profile_image.id_for_label }}">Profile Image:</label>
                     {{ form.profile_image }}
+                    {{ form.profile_image.errors }}
                     <br>
                     <label for="{{ form.set_to_default.id_for_label }}">
                         {{ form.set_to_default }}
                         Delete profile image
                     </label>
                     <br>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn">Save changes</button>
                     <br>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
-
 {% endblock main %}
+
+
 {% block js%}
 <script>
     document.getElementById('set-default-photo').addEventListener('click', function () {
