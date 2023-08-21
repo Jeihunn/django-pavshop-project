@@ -28,45 +28,45 @@
         <div class="col-md-8">
             <h3>{{ request.user.first_name }} {{ request.user.last_name }}</h3>
             {% if request.user.username %}
-                <p>Username: <b>{{ request.user.username }}</b></p>
+                <p>{% trans "Username" %}: <b>{{ request.user.username }}</b></p>
             {% endif%}
             {% if request.user.email %}
-                <p>Email: <b>{{ request.user.email }}</b></p>
+                <p>{% trans "Email" %}: <b>{{ request.user.email }}</b></p>
             {% endif%}
             {% if request.user.date_joined %}
-                <p>Registered: {{ request.user.date_joined }}</p>
+                <p>{% trans "Registered" %}: {{ request.user.date_joined }}</p>
             {% endif%}
             {% if request.user.last_login %}
-                <p>Last Login: {{ request.user.last_login }}</p>
+                <p>{% trans "Last Login" %}: {{ request.user.last_login }}</p>
             {% endif%}
             {% if request.user.position %}
-                <p>Position: {{ request.user.position }}</p>
+                <p>{% trans "Position" %}: {{ request.user.position }}</p>
             {% endif %}
             <div class="dashboard-content">
                 <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
                     {% csrf_token %}
-                    <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+                    <label for="{{ form.first_name.id_for_label }}">{% trans "First Name" %}:</label>
                     {{ form.first_name }}
                     {{ form.first_name.errors }}
                     <br>
-                    <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+                    <label for="{{ form.last_name.id_for_label }}">{% trans "Last Name" %}:</label>
                     {{ form.last_name }}
                     {{ form.last_name.errors }}
                     <br>
-                    <label for="{{ form.bio.id_for_label }}">Bio:</label>
+                    <label for="{{ form.bio.id_for_label }}">{% trans "Bio" %}:</label>
                     {{ form.bio }}
                     {{ form.bio.errors }}
                     <br>
-                    <label for="{{ form.profile_image.id_for_label }}">Profile Image:</label>
+                    <label for="{{ form.profile_image.id_for_label }}">{% trans "Profile Image" %}:</label>
                     {{ form.profile_image }}
                     {{ form.profile_image.errors }}
                     <br>
                     <label for="{{ form.set_to_default.id_for_label }}">
                         {{ form.set_to_default }}
-                        Delete profile image
+                        {% trans "Delete profile image" %}
                     </label>
                     <br>
-                    <button type="submit" class="btn">Save changes</button>
+                    <button type="submit" class="btn">{% trans "Save changes" %}</button>
                     <br>
                 </form>
             </div>

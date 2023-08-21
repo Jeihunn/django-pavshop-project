@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
   
 
 {% block page_title %}
@@ -27,7 +28,7 @@
               
               <!-- ESTIMATE SHIPPING & TAX -->
               <div class="col-sm-12">
-                <h6>REGISTER</h6>
+                <h6>{% trans "REGISTER" %}</h6>
                 <form method="post">
                   {% csrf_token %}
 
@@ -35,7 +36,7 @@
                     
                     <!-- USERNAME -->
                     <li class="col-md-6">
-                      <label> *USERNAME
+                      <label> *{% trans "USERNAME" %}
                         {{ form.username }}
                         {{ form.username.errors }}
                       </label>
@@ -43,7 +44,7 @@
 
                     <!-- EMAIL ADDRESS -->
                     <li class="col-md-6">
-                      <label> *EMAIL ADDRESS
+                      <label> *{% trans "EMAIL ADDRESS" %}
                         {{ form.email }}
                         {{ form.email.errors }}
                       </label>
@@ -51,7 +52,7 @@
 
                     <!-- FIRST NAME -->
                     <li class="col-md-6">
-                      <label> *FIRST NAME
+                      <label> *{% trans "FIRST NAME" %}
                         {{ form.first_name }}
                         {{ form.first_name.errors }}
                       </label>
@@ -59,7 +60,7 @@
 
                     <!-- LAST NAME -->
                     <li class="col-md-6">
-                      <label> *LAST NAME
+                      <label> *{% trans "LAST NAME" %}
                         {{ form.last_name }}
                         {{ form.last_name.errors }}
                       </label>
@@ -67,7 +68,7 @@
 
                     <!-- PASSWORD -->
                     <li class="col-md-6">
-                      <label> *PASSWORD
+                      <label> *{% trans "PASSWORD" %}
                         {{ form.password1 }}
                         {{ form.password1.errors }}
                       </label>
@@ -75,7 +76,7 @@
                     
                     <!-- CONFIRM PASSWORD -->
                     <li class="col-md-6">
-                      <label> *CONFIRM PASSWORD
+                      <label> *{% trans "CONFIRM PASSWORD" %}
                         {{ form.password2 }}
                         {{ form.password2.errors }}
                       </label>
@@ -83,7 +84,7 @@
 
                     <!-- PHONE -->
                     <li class="col-md-6">
-                      <label> *PHONE
+                      <label> *{% trans "PHONE" %}
                         <div class="phone-number">
                           {{ form.phone_number }}
                         </div>
@@ -93,7 +94,7 @@
 
                     <!-- STREET ADDRESS -->
                     <li class="col-md-12"> 
-                      <label>*STREET ADDRESS
+                      <label>*{% trans "STREET ADDRESS" %}
                         {{ form.street_address }}
                         {{ form.street_address.errors }}
                       </label>
@@ -101,7 +102,7 @@
                     
                     <!-- COUNTRY -->
                     <li class="col-md-6">
-                      <label>*COUNTRY
+                      <label>*{% trans "COUNTRY" %}
                         {{ form.country }}
                         {{ form.country.errors }}
                       </label>
@@ -109,7 +110,7 @@
                     
                     <!-- TOWN/CITY -->
                     <li class="col-md-6">
-                      <label>*TOWN/CITY
+                      <label>*{% trans "TOWN/CITY" %}
                         {{ form.city }}
                         {{ form.city.errors }}
                       </label>
@@ -117,7 +118,7 @@
                     
                     <!-- Submit -->
                     <li class="col-md-12">
-                      <button type="submit" class="btn">REGISTER NOW</button>
+                      <button type="submit" class="btn">{% trans "REGISTER NOW" %}</button>
                     </li>
 
                   </ul>

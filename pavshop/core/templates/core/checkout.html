@@ -1,9 +1,9 @@
 {% extends 'core/base.html' %}
-{%load static i18n%}
+{%load static i18n %}
 
 
 {% block page_title %}
-  <title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
+  <title>Checkout | Pavshop</title>
 {% endblock page_title %}
 
 
@@ -27,37 +27,37 @@
               
               <!-- ESTIMATE SHIPPING & TAX -->
               <div class="col-sm-7">
-                <h6>{% trans " BILLING DETAILS" %}</h6>
+                <h6>{% trans "BILLING DETAILS" %}</h6>
                 <form>
                   <ul class="row">
                     
                     <!-- Name -->
                     <li class="col-md-6">
-                      <label> *{% trans " FIRST NAME" %}
+                      <label> *{% trans "FIRST NAME" %}
                         <input type="text" name="first-name" value="" placeholder="">
                       </label>
                     </li>
                     <!-- LAST NAME -->
                     <li class="col-md-6">
-                      <label> *{% trans "LAST NAME " %}
+                      <label> *{% trans "LAST NAME" %}
                         <input type="text" name="last-name" value="" placeholder="">
                       </label>
                     </li>
                     <li class="col-md-6"> 
                       <!-- COMPANY NAME -->
-                      <label>{% trans " COMPANY NAME" %}
+                      <label>{% trans "COMPANY NAME" %}
                         <input type="text" name="company" value="" placeholder="">
                       </label>
                     </li>
                     <li class="col-md-6"> 
                       <!-- ADDRESS -->
-                      <label>*{% trans "ADDRESS " %}
+                      <label>*{% trans "ADDRESS" %}
                         <input type="text" name="address" value="" placeholder="">
                       </label>
                     </li>
                     <!-- TOWN/CITY -->
                     <li class="col-md-6">
-                      <label>*{% trans " TOWN/CITY" %}
+                      <label>*{% trans "TOWN/CITY" %}
                         <input type="text" name="town" value="" placeholder="">
                       </label>
                     </li>
@@ -84,78 +84,78 @@
                     
                     <!-- PHONE -->
                     <li class="col-md-6">
-                      <button type="submit" class="btn">{% trans " continue" %}</button>
+                      <button type="submit" class="btn">{% trans "continue" %}</button>
                     </li>
                     
                     <!-- CREATE AN ACCOUNT -->
                     <li class="col-md-6">
                       <div class="checkbox margin-0 margin-top-20">
                         <input id="checkbox1" class="styled" type="checkbox">
-                        <label for="checkbox1"> {% trans "Ship to a different address " %} </label>
+                        <label for="checkbox1"> {% trans "Ship to a different address" %} </label>
                       </div>
                     </li>
                   </ul>
                 </form>
                 
                 <!-- SHIPPING info -->
-                <h6 class="margin-top-50">{% trans " SHIPPING info" %}</h6>
+                <h6 class="margin-top-50">{% trans "SHIPPING info" %}</h6>
                 <form>
                   <ul class="row">
                     
                     <!-- Name -->
                     <li class="col-md-6">
-                      <label> *{% trans " FIRST NAME" %}
+                      <label> *{% trans "FIRST NAME" %}
                         <input type="text" name="first-name" value="" placeholder="">
                       </label>
                     </li>
                     <!-- LAST NAME -->
                     <li class="col-md-6">
-                      <label> *{% trans "LAST NAME " %}
+                      <label> *{% trans "LAST NAME" %}
                         <input type="text" name="last-name" value="" placeholder="">
                       </label>
                     </li>
                     <li class="col-md-6"> 
                       <!-- COMPANY NAME -->
-                      <label>{% trans " COMPANY NAME" %}
+                      <label>{% trans "COMPANY NAME" %}
                         <input type="text" name="company" value="" placeholder="">
                       </label>
                     </li>
                     <li class="col-md-6"> 
                       <!-- ADDRESS -->
-                      <label>*{% trans "ADDRESS " %}
+                      <label>*{% trans "ADDRESS" %}
                         <input type="text" name="address" value="" placeholder="">
                       </label>
                     </li>
                     <!-- TOWN/CITY -->
                     <li class="col-md-6">
-                      <label>*{% trans " TOWN/CITY" %}
+                      <label>*{% trans "TOWN/CITY" %}
                         <input type="text" name="town" value="" placeholder="">
                       </label>
                     </li>
                     
                     <!-- COUNTRY -->
                     <li class="col-md-6">
-                      <label> {% trans " COUNTRY" %}
+                      <label> {% trans "COUNTRY" %}
                         <input type="text" name="contry-state" value="" placeholder="">
                       </label>
                     </li>
                     
                     <!-- EMAIL ADDRESS -->
                     <li class="col-md-6">
-                      <label> *{% trans "EMAIL ADDRESS " %}
+                      <label> *{% trans "EMAIL ADDRESS" %}
                         <input type="text" name="contry-state" value="" placeholder="">
                       </label>
                     </li>
                     <!-- PHONE -->
                     <li class="col-md-6">
-                      <label> *{% trans "PHONE " %}
+                      <label> *{% trans "PHONE" %}
                         <input type="text" name="postal-code" value="" placeholder="">
                       </label>
                     </li>
                     
                     <!-- SUBMIT -->
                     <li class="col-md-6">
-                      <button type="submit" class="btn">{% trans " SUBMIT" %}</button>
+                      <button type="submit" class="btn">{% trans "SUBMIT" %}</button>
                     </li>
                   </ul>
                 </form>
@@ -163,7 +163,7 @@
               
               <!-- SUB TOTAL -->
               <div class="col-sm-5">
-                <h6>{% trans "YOUR ORDER " %}</h6>
+                <h6>{% trans "YOUR ORDER" %}</h6>
                 <div class="order-place">
                   <div class="order-detail">
                     <p>WOOD CHAIR <span>$598 </span></p>
@@ -171,7 +171,7 @@
                     <p>WOOD SPOON <span> $139</span></p>
                     
                     <!-- SUB TOTAL -->
-                    <p class="all-total">{% trans " TOTAL COST" %} <span> $998</span></p>
+                    <p class="all-total">{% trans "TOTAL COST" %} <span> $998</span></p>
                   </div>
                   <div class="pay-meth">
                     <ul>
@@ -185,13 +185,13 @@
                       <li>
                         <div class="radio">
                           <input type="radio" name="radio1" id="radio2" value="option2">
-                          <label for="radio2">{% trans " CASH ON DELIVERY" %} </label>
+                          <label for="radio2">{% trans "CASH ON DELIVERY" %} </label>
                         </div>
                       </li>
                       <li>
                         <div class="radio">
                           <input type="radio" name="radio1" id="radio3" value="option3">
-                          <label for="radio3"> {% trans "CHEQUE PAYMENT " %} </label>
+                          <label for="radio3"> {% trans "CHEQUE PAYMENT" %} </label>
                         </div>
                       </li>
                       <li>

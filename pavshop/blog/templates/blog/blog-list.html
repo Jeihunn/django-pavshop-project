@@ -1,5 +1,5 @@
 {% extends 'core/base.html' %}
-{% load static tags %}
+{% load static tags i18n %}
 
 
 {% block css %}
@@ -13,7 +13,7 @@
 
 
 {% block page_title %}
-  <title>PAVSHOP - Multipurpose eCommerce HTML5 Template</title>
+  <title>Blog | Pavshop</title>
 {% endblock page_title %}
   
 
@@ -36,13 +36,13 @@
                   {% if selected_query %}
                     <p class="h5 mb-4">{{ blogs_count }} results for "<strong class="text-danger">{{ selected_query }}</strong>"</p>
                   {% elif selected_category %}
-                    <p class="h5">Category: <strong>{{ selected_category.name }}</strong></p>
-                    <p class="h6">{{ blogs_count }} Results</p>
+                    <p class="h5">{% trans "Category" %}: <strong>{{ selected_category.name }}</strong></p>
+                    <p class="h6">{{ blogs_count }} {% trans "Results" %}</p>
                   {% elif selected_tag %}
-                    <p class="h5">Tag: <strong>{{ selected_tag.name  }}</strong></p>
-                    <p class="h6">{{ blogs_count }} Results</p>
+                    <p class="h5">{% trans "Tag" %}: <strong>{{ selected_tag.name  }}</strong></p>
+                    <p class="h6">{{ blogs_count }} {% trans "Results" %}</p>
                   {% else %}
-                    <p class="h6">{{ blogs_count }} Results</p>
+                    <p class="h6">{{ blogs_count }} {% trans "Results" %}</p>
                   {% endif %}
                   
                 </div>
@@ -78,7 +78,7 @@
                         {{ blog.content|striptags|truncatechars:200|safe }}
                       </p>
 
-                      <div><a href="{% url 'blog:blog_detail_view' blog.slug %}" class="red-more">READ MORE</a></div>
+                      <div><a href="{% url 'blog:blog_detail_view' blog.slug %}" class="red-more">{% trans "READ MORE" %}</a></div>
                     </div>
                   </div>
                 </div>
@@ -86,8 +86,8 @@
               {% endfor %}
             {% else %}
               <div class="alert alert-info">
-                <p><strong>Oops!</strong> There are no blog posts available at the moment.</p>
-                <p>Please check back later for exciting content.</p>
+                <p><strong>Oops!</strong> {% trans "There are no blog posts available at the moment" %}.</p>
+                <p>{% trans "Please check back later for exciting content" %}.</p>
               </div>
             {% endif %}
 
@@ -133,10 +133,7 @@
               <!-- SIDE BACR BANER -->
               <div class="side-bnr margin-top-50"> <img class="img-responsive" src="{% static 'images/sidebar-bnr.jpg' %}" alt="">
                 <div class="position-center-center"> <span class="price"><small>$</small>299</span>
-                  <div class="bnr-text">look
-                    hot
-                    with
-                    style</div>
+                  <div class="bnr-text">look hot with style</div>
                 </div>
               </div>
             </div>

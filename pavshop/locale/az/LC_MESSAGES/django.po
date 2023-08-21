@@ -2,15 +2,15 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-20 18:01+0400\n"
-"PO-Revision-Date: 2023-08-19 21:47+0400\n"
-"Last-Translator:   <>\n"
+"POT-Creation-Date: 2023-08-21 14:40+0400\n"
+"PO-Revision-Date: 2023-08-21 14:41+0400\n"
+"Last-Translator: Ceyhunf Super <admin@mail.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -47,9 +47,18 @@ msgstr ""
 "Siz eyni anda həm İstifadəçi seçə, həm də IP Ünvanını təqdim edə "
 "bilməzsiniz. Lütfən, ya İstifadəçi seçin, ya da IP ünvanı göstərin."
 
+#: .\account\forms.py:51
+msgid "Set to Default Photo"
+msgstr "Defolt Foto təyin edin"
+
 #: .\account\forms.py:139
 msgid "A user with that email already exists."
 msgstr "Həmin e-poçtu olan istifadəçi artıq mövcuddur."
+
+#: .\account\forms.py:165
+#: .\account\templates\account\request_new_token.html:134
+msgid "Email Address"
+msgstr "E-poçt ünvanı"
 
 #: .\account\forms.py:180
 msgid ""
@@ -66,6 +75,24 @@ msgid ""
 msgstr ""
 "Bu e-poçt ünvanı ilə istifadəçi tapa bilmədik. Lütfən, düzgün e-poçt ünvanı "
 "daxil etdiyinizə əmin olun."
+
+#: .\account\forms.py:189
+msgid "Old password"
+msgstr "Köhnə şifrə"
+
+#: .\account\forms.py:195 .\account\forms.py:227
+msgid "New password"
+msgstr "Yeni şifrə"
+
+#: .\account\forms.py:201 .\account\forms.py:233
+msgid "New password confirmation"
+msgstr "Yeni şifrə təsdiqi"
+
+#: .\account\forms.py:210 .\account\templates\account\user-profile.html:34
+#: .\blog\models.py:77 .\core\models.py:19 .\core\models.py:33
+#: .\core\templates\core\contact.html:45 .\product\models.py:167
+msgid "Email"
+msgstr "Email"
 
 #: .\account\forms.py:221
 msgid ""
@@ -114,6 +141,7 @@ msgid "Addresses"
 msgstr "Ünvanlar"
 
 #: .\account\models.py:66 .\account\models.py:77
+#: .\account\templates\account\user-profile.html:43
 msgid "Position"
 msgstr "Vəzifə"
 
@@ -121,7 +149,7 @@ msgstr "Vəzifə"
 msgid "Positions"
 msgstr "Vəzifələr"
 
-#: .\account\models.py:79
+#: .\account\models.py:79 .\account\templates\account\user-profile.html:56
 msgid "Bio"
 msgstr "Bio"
 
@@ -129,7 +157,7 @@ msgstr "Bio"
 msgid "Phone Number"
 msgstr "Telefon nömrəsi"
 
-#: .\account\models.py:83
+#: .\account\models.py:83 .\account\templates\account\user-profile.html:60
 msgid "Profile Image"
 msgstr "Profil şəkli"
 
@@ -173,6 +201,232 @@ msgstr "Qara siyahıya giriş"
 msgid "Blacklist Entries"
 msgstr "Qara siyahı girişləri"
 
+#: .\account\templates\account\account_activation_invalid.html:105
+msgid "Oops! Account Activation Failed"
+msgstr "Vay! Hesabın Aktivləşdirilməsi Alınmadı"
+
+#: .\account\templates\account\account_activation_invalid.html:107
+#: .\account\templates\account\password_reset_confirm.html:144
+msgid "Sorry, the activation link is invalid or has expired."
+msgstr "Üzr istəyirik, aktivləşdirmə linki etibarsızdır və ya vaxtı keçib."
+
+#: .\account\templates\account\account_activation_invalid.html:109
+msgid "Please"
+msgstr "Zəhmət olmasa"
+
+#: .\account\templates\account\account_activation_invalid.html:111
+msgid "request a new activation token"
+msgstr "yeni aktivasiya nişanı tələb edin"
+
+#: .\account\templates\account\account_activation_invalid.html:113
+msgid "or contact support for assistance."
+msgstr "və ya yardım üçün dəstək xidməti ilə əlaqə saxlayın."
+
+#: .\account\templates\account\account_activation_invalid.html:116
+#: .\account\templates\account\password_reset_confirm.html:148
+msgid "Contact Support"
+msgstr "Dəstək ilə əlaqə"
+
+#: .\account\templates\account\account_activation_invalid.html:118
+#: .\account\templates\account\blacklist.html:53
+msgid "Support Email"
+msgstr "Dəstək E-poçtu"
+
+#: .\account\templates\account\account_activation_invalid.html:122
+msgid "Pavshop. All rights reserved."
+msgstr "Pavshop. Bütün hüquqlar qorunur."
+
+#: .\account\templates\account\blacklist.html:51
+msgid "Access Blocked"
+msgstr "Giriş Bloklandı"
+
+#: .\account\templates\account\blacklist.html:52
+msgid ""
+"Your access to this page has been blocked due to security reasons. If you "
+"believe this is an error or need further assistance, please reach out to our"
+" support team."
+msgstr ""
+"Bu səhifəyə girişiniz təhlükəsizlik səbəbi ilə bloklanıb. Bunun xəta "
+"olduğuna inanırsınızsa və ya əlavə yardıma ehtiyacınız varsa, dəstək "
+"komandamızla əlaqə saxlayın."
+
+#: .\account\templates\account\change_password.html:39
+#: .\account\templates\account\change_password.html:63
+msgid "Change Password"
+msgstr "Şifrənin dəyişdirilməsi"
+
+#: .\account\templates\account\change_password_done.html:78
+msgid "Password Changed Successfully"
+msgstr "Şifrə Uğurla Dəyişdirildi"
+
+#: .\account\templates\account\change_password_done.html:79
+msgid "Your password has been updated securely."
+msgstr "Şifrəniz təhlükəsiz şəkildə yeniləndi."
+
+#: .\account\templates\account\change_password_done.html:80
+msgid "Return to Home Page"
+msgstr "Əsas səhifəyə qayıt"
+
+#: .\account\templates\account\change_password_done.html:83
+#: .\account\templates\account\password_reset_complete.html:87
+#: .\account\templates\account\password_reset_confirm.html:159
+#: .\account\templates\account\password_reset_done.html:94
+#: .\account\templates\account\request_new_token.html:154
+msgid "Pavshop. All rights reserved"
+msgstr "Pavshop. Bütün hüquqlar qorunur"
+
+#: .\account\templates\account\login.html:35
+msgid "LOGIN YOUR ACCOUNT"
+msgstr "HESABINIZA GİRİN"
+
+#: .\account\templates\account\login.html:52
+#: .\account\templates\account\register.html:39
+msgid "USERNAME"
+msgstr "İstifadəçi adı"
+
+#: .\account\templates\account\login.html:59
+#: .\account\templates\account\register.html:71
+msgid "PASSWORD"
+msgstr "Şifrə"
+
+#: .\account\templates\account\login.html:67
+msgid "LOGIN"
+msgstr "DAXİL OL"
+
+#: .\account\templates\account\login.html:83
+msgid "Forgot Password"
+msgstr "Şifrəni unutmusunuz"
+
+#: .\account\templates\account\login.html:86
+#: .\account\templates\account\request_new_token.html:128
+msgid "Get New Account Activation Link"
+msgstr "Yeni Hesab Aktivləşdirmə Linkini əldə edin"
+
+#: .\account\templates\account\login.html:92
+msgid "LOGIN WITH"
+msgstr "İLƏ GİRİN"
+
+#: .\account\templates\account\password_reset.html:39
+#: .\account\templates\account\password_reset.html:52
+#: .\account\templates\account\password_reset_confirm.html:132
+msgid "Reset Password"
+msgstr "Şifrəni sıfırlamaq"
+
+#: .\account\templates\account\password_reset.html:40
+msgid ""
+"Please enter your registered email address below. A password reset link will"
+" be sent to your email address"
+msgstr ""
+"Zəhmət olmasa qeydiyyatdan keçmiş e-poçt ünvanınızı aşağıya daxil edin. "
+"Şifrə sıfırlama linki e-poçt ünvanınıza göndəriləcək"
+
+#: .\account\templates\account\password_reset_complete.html:79
+msgid "Password Reset Complete"
+msgstr "Parolun Sıfırlanması Tamamlandı"
+
+#: .\account\templates\account\password_reset_complete.html:84
+msgid "Login"
+msgstr "Daxil ol"
+
+#: .\account\templates\account\password_reset_confirm.html:115
+#: .\account\templates\account\password_reset_done.html:80
+msgid "Password Reset Confirmation"
+msgstr "Şifrə Sıfırlanması Təsdiqi"
+
+#: .\account\templates\account\password_reset_confirm.html:141
+msgid "Oops! Password Reset Confirmation Failed"
+msgstr "Vay! Şifrə Sıfırlama Təsdiqi Uğursuz Oldu"
+
+#: .\account\templates\account\password_reset_confirm.html:152
+#: .\account\templates\account\request_new_token.html:149
+msgid "For assistance, please contact us at"
+msgstr "Yardım üçün bizimlə əlaqə saxlayın"
+
+#: .\account\templates\account\register.html:31
+msgid "REGISTER"
+msgstr "QEYDİYYATDAN KEÇİN"
+
+#: .\account\templates\account\register.html:47
+#: .\core\templates\core\checkout.html:145
+msgid "EMAIL ADDRESS"
+msgstr "E-poçt ünvanı"
+
+#: .\account\templates\account\register.html:55
+#: .\core\templates\core\checkout.html:36
+#: .\core\templates\core\checkout.html:107
+msgid "FIRST NAME"
+msgstr "AD"
+
+#: .\account\templates\account\register.html:63
+#: .\core\templates\core\checkout.html:42
+#: .\core\templates\core\checkout.html:113
+msgid "LAST NAME"
+msgstr "SOYAD"
+
+#: .\account\templates\account\register.html:79
+msgid "CONFIRM PASSWORD"
+msgstr "ŞİFRƏNİ TƏQDİM EDİN"
+
+#: .\account\templates\account\register.html:87
+#: .\core\templates\core\checkout.html:151
+msgid "PHONE"
+msgstr "TELEFON"
+
+#: .\account\templates\account\register.html:97
+msgid "STREET ADDRESS"
+msgstr "KÜÇƏ ÜNVANI"
+
+#: .\account\templates\account\register.html:105
+#: .\core\templates\core\checkout.html:138
+msgid "COUNTRY"
+msgstr "ÖLKƏ"
+
+#: .\account\templates\account\register.html:113
+#: .\core\templates\core\checkout.html:60
+#: .\core\templates\core\checkout.html:131
+msgid "TOWN/CITY"
+msgstr "ŞƏHƏR"
+
+#: .\account\templates\account\register.html:121
+msgid "REGISTER NOW"
+msgstr "İNDİ QEYDİYYATDAN KEÇ"
+
+#: .\account\templates\account\request_new_token.html:140
+msgid "Request Token"
+msgstr "Token tələb edin"
+
+#: .\account\templates\account\request_new_token.html:144
+msgid "Back to Login"
+msgstr "Giriş səhifəsinə qayıt"
+
+#: .\account\templates\account\user-profile.html:31
+msgid "Username"
+msgstr "İstifadəçi adı"
+
+#: .\account\templates\account\user-profile.html:37
+msgid "Registered"
+msgstr "Qeydiyyatdan keçib"
+
+#: .\account\templates\account\user-profile.html:40
+msgid "Last Login"
+msgstr "Son giriş"
+
+#: .\account\templates\account\user-profile.html:48
+msgid "First Name"
+msgstr "Ad"
+
+#: .\account\templates\account\user-profile.html:52
+msgid "Last Name"
+msgstr "Soyad"
+
+#: .\account\templates\account\user-profile.html:66
+msgid "Delete profile image"
+msgstr "Profil şəklini silin"
+
+#: .\account\templates\account\user-profile.html:69
+msgid "Save changes"
+msgstr "Dəyişiklikləri yadda saxla"
+
 #: .\account\views.py:32
 msgid "Login successful. Welcome!"
 msgstr "Giriş uğurlu oldu. Xoş gəldiniz!"
@@ -185,11 +439,11 @@ msgstr ""
 "Qeydiyyat uğurlu oldu! Qeydiyyatı tamamlamaq üçün e-poçt ünvanınızı "
 "təsdiqləyin. Aktivləşdirmə linki e-poçtunuza göndərildi."
 
-#: .\account\views.py:102
+#: .\account\views.py:101
 msgid "Your account has been activated successfully. You can now log in."
 msgstr "Hesabınız uğurla aktivləşdirildi. İndi daxil ola bilərsiniz."
 
-#: .\account\views.py:117
+#: .\account\views.py:116
 msgid ""
 "An account activation token has been sent to your email address. Please "
 "check your inbox and follow the instructions to activate your account."
@@ -207,6 +461,7 @@ msgid "Tags"
 msgstr "Etiketlər"
 
 #: .\blog\admin.py:90 .\blog\models.py:59 .\blog\models.py:68
+#: .\core\templates\core\includes\header.html:18
 msgid "Blog"
 msgstr "Bloq"
 
@@ -282,11 +537,6 @@ msgstr "Valideyn"
 msgid "Full Name"
 msgstr "Tam ad"
 
-#: .\blog\models.py:77 .\core\models.py:19 .\core\models.py:33
-#: .\product\models.py:167
-msgid "Email"
-msgstr "Email"
-
 #: .\blog\models.py:78 .\core\models.py:21
 msgid "Subject"
 msgstr "Mövzu"
@@ -303,9 +553,47 @@ msgstr "Bloq rəyi"
 msgid "Blog Reviews"
 msgstr "Bloq rəyləri"
 
+#: .\blog\templates\blog\blog-list.html:39
+msgid "Category"
+msgstr "Kateqoriya"
+
+#: .\blog\templates\blog\blog-list.html:40
+#: .\blog\templates\blog\blog-list.html:43
+#: .\blog\templates\blog\blog-list.html:45
+msgid "Results"
+msgstr "Nəticələr"
+
+#: .\blog\templates\blog\blog-list.html:42
+msgid "Tag"
+msgstr "Etiket"
+
+#: .\blog\templates\blog\blog-list.html:81
+msgid "READ MORE"
+msgstr "DAVAMINI OXU"
+
+#: .\blog\templates\blog\blog-list.html:89
+msgid "There are no blog posts available at the moment"
+msgstr "Hazırda heç bir blog yazısı mövcud deyil"
+
+#: .\blog\templates\blog\blog-list.html:90
+msgid "Please check back later for exciting content"
+msgstr "Maraqlı məzmun üçün sonra yenidən yoxlayın"
+
+#: .\blog\templates\blog\includes\blog-categories.html:3
+msgid "category"
+msgstr "Kateqoriya"
+
+#: .\blog\templates\blog\includes\blog-popular-tags.html:3
+msgid "POUPLAR TAGS"
+msgstr "POPULAR ETİKETLƏR"
+
 #: .\blog\templates\blog\includes\previous-months.html:3
 msgid "archives"
 msgstr "ARXİVLƏR"
+
+#: .\blog\templates\blog\includes\recent-post.html:4
+msgid "recent post"
+msgstr "son yazı"
 
 #: .\blog\views.py:45 .\blog\views.py:50 .\blog\views.py:105
 #: .\blog\views.py:110
@@ -324,7 +612,7 @@ msgstr "Yaradılma vaxtı"
 msgid "Updated At"
 msgstr "Yenilənmə vaxtı"
 
-#: .\core\models.py:22
+#: .\core\models.py:22 .\core\templates\core\contact.html:65
 msgid "Message"
 msgstr "Mesaj"
 
@@ -348,151 +636,116 @@ msgstr "Xəbər bülleteni"
 msgid "Newsletters"
 msgstr "Xəbər bülletenləri"
 
+#: .\core\templates\core\about-us.html:23
+msgid "A Brief History"
+msgstr "QISA TARİX"
+
 #: .\core\templates\core\checkout.html:30
-msgid " BILLING DETAILS"
-msgstr ""
-
-#: .\core\templates\core\checkout.html:36
-#: .\core\templates\core\checkout.html:107
-msgid " FIRST NAME"
-msgstr ""
-
-#: .\core\templates\core\checkout.html:42
-#: .\core\templates\core\checkout.html:113
-msgid "LAST NAME "
-msgstr ""
+msgid "BILLING DETAILS"
+msgstr "FAKTURA TƏFƏRRÜATLARI"
 
 #: .\core\templates\core\checkout.html:48
 #: .\core\templates\core\checkout.html:119
-msgid " COMPANY NAME"
-msgstr ""
+msgid "COMPANY NAME"
+msgstr "ŞİRKƏT ADI"
 
 #: .\core\templates\core\checkout.html:54
 #: .\core\templates\core\checkout.html:125
-msgid "ADDRESS "
-msgstr ""
-
-#: .\core\templates\core\checkout.html:60
-#: .\core\templates\core\checkout.html:131
-msgid " TOWN/CITY"
-msgstr ""
+msgid "ADDRESS"
+msgstr "ÜNVAN"
 
 #: .\core\templates\core\checkout.html:67
-#, fuzzy
-#| msgid "ACCOUNT INFO"
 msgid "COUNTRY "
-msgstr "ŞƏXSİ MƏLUMATLAR"
+msgstr "ÖLKƏ"
 
 #: .\core\templates\core\checkout.html:74
 msgid " EMAIL ADDRESS"
-msgstr ""
+msgstr "E-poçt ünvanı"
 
 #: .\core\templates\core\checkout.html:80
-#: .\core\templates\core\checkout.html:151
 msgid "PHONE "
-msgstr ""
+msgstr "TELEFON"
 
 #: .\core\templates\core\checkout.html:87
-msgid " continue"
-msgstr ""
+msgid "continue"
+msgstr "davam et"
 
 #: .\core\templates\core\checkout.html:94
-msgid "Ship to a different address "
-msgstr ""
+msgid "Ship to a different address"
+msgstr "Fərqli ünvana göndərin"
 
 #: .\core\templates\core\checkout.html:101
-msgid " SHIPPING info"
-msgstr ""
-
-#: .\core\templates\core\checkout.html:138
-msgid " COUNTRY"
-msgstr ""
-
-#: .\core\templates\core\checkout.html:145
-msgid "EMAIL ADDRESS "
-msgstr ""
+msgid "SHIPPING info"
+msgstr "GÖNDƏRİLMƏ məlumatı"
 
 #: .\core\templates\core\checkout.html:158
-#, fuzzy
-#| msgid " SUBTOTAL"
-msgid " SUBMIT"
-msgstr "CƏMİ"
+msgid "SUBMIT"
+msgstr "GÖNDƏRMƏK"
 
 #: .\core\templates\core\checkout.html:166
-msgid "YOUR ORDER "
-msgstr ""
+msgid "YOUR ORDER"
+msgstr "SİZİN ÜÇÜN"
 
 #: .\core\templates\core\checkout.html:174
-#, fuzzy
-#| msgid " SUBTOTAL"
-msgid " TOTAL COST"
-msgstr "CƏMİ"
+#: .\core\templates\core\shopping-cart.html:222
+msgid "TOTAL COST"
+msgstr "ÜMUMİ XƏRC"
 
 #: .\core\templates\core\checkout.html:181
 msgid " DIRECT BANK TRANSFER"
-msgstr ""
+msgstr "BİRBAŞA BANK Köçürmə"
 
 #: .\core\templates\core\checkout.html:188
-msgid " CASH ON DELIVERY"
-msgstr ""
+msgid "CASH ON DELIVERY"
+msgstr "Çatdırılmada NƏĞD"
 
 #: .\core\templates\core\checkout.html:194
-msgid "CHEQUE PAYMENT "
-msgstr ""
+msgid "CHEQUE PAYMENT"
+msgstr "ÖDƏNİŞ ÇEK"
 
 #: .\core\templates\core\checkout.html:210
 msgid " PLACE ORDER"
-msgstr ""
+msgstr "SİFARİŞ VERİN"
 
 #: .\core\templates\core\contact.html:21
-msgid " PLEASE fill-up FEW details"
-msgstr ""
+msgid "PLEASE fill-up FEW details"
+msgstr "Lütfən, bir neçə detalı doldurun"
 
 #: .\core\templates\core\contact.html:26
-#, fuzzy
-#| msgid "Thank You. Your message has been sent successfully!"
-msgid "Thank You. Your Message has been Submitted "
-msgstr "Çox sağ ol. Mesajınız uğurla göndərildi!"
+msgid "Thank You. Your Message has been Submitted"
+msgstr "Çox sağ ol. Mesajınız Göndərildi"
 
 #: .\core\templates\core\contact.html:39
-#, fuzzy
-#| msgid "Full Name"
-msgid "full name "
+msgid "full name"
 msgstr "Tam ad"
 
-#: .\core\templates\core\contact.html:45
-#, fuzzy
-#| msgid "Email"
-msgid " Email"
-msgstr "Email"
-
 #: .\core\templates\core\contact.html:51
-msgid " Phone"
-msgstr ""
+msgid "Phone"
+msgstr "Telefon"
 
 #: .\core\templates\core\contact.html:59
-msgid "SUBJECT "
-msgstr ""
-
-#: .\core\templates\core\contact.html:65
-#, fuzzy
-#| msgid "Message"
-msgid "Message "
-msgstr "Mesaj"
+msgid "SUBJECT"
+msgstr "MÖVZU"
 
 #: .\core\templates\core\contact.html:71
-msgid "SEND MAIL "
-msgstr ""
+msgid "SEND MAIL"
+msgstr "MAIL GÖNDƏR"
 
 #: .\core\templates\core\contact.html:81
-msgid " OUR ADDRESS"
-msgstr ""
+msgid "OUR ADDRESS"
+msgstr "ÜNVANIMIZ"
 
 #: .\core\templates\core\includes\about.html:7
 msgid "about PAVSHOP "
-msgstr ""
+msgstr "PAVSHOP haqqında"
+
+#: .\core\templates\core\includes\footer.html:55
+#| msgid "Pavshop. All rights reserved"
+msgid "PAVSHOP. All right reserved"
+msgstr "Pavshop. Bütün hüquqlar qorunur"
 
 #: .\core\templates\core\includes\header.html:17
+#: .\core\templates\core\includes\sub-banner.html:11
 msgid "Home"
 msgstr "Ana Səhifə"
 
@@ -506,10 +759,8 @@ msgid "store"
 msgstr "Mağaza"
 
 #: .\core\templates\core\includes\header.html:56
-#, fuzzy
-#| msgid "Products"
 msgid "Top Rate Products"
-msgstr "Məhsullar"
+msgstr "Yüksək Qiymətli Məhsullar"
 
 #: .\core\templates\core\includes\header.html:92
 msgid "NEW ARRIVAL"
@@ -528,14 +779,13 @@ msgid " About"
 msgstr "Haqqımızda"
 
 #: .\core\templates\core\includes\header.html:106
-#, fuzzy
-#| msgid "Contact"
+#: .\core\templates\core\includes\sub-banner.html:12
 msgid "contact"
 msgstr "Əlaqə"
 
 #: .\core\templates\core\includes\header.html:120
 msgid "HELLO"
-msgstr ""
+msgstr "SALAM"
 
 #: .\core\templates\core\includes\header.html:122
 msgid "FAVORITES"
@@ -555,7 +805,6 @@ msgstr "ÇIXIŞ"
 
 #: .\core\templates\core\includes\header.html:142
 #: .\core\templates\core\includes\header.html:150
-#: .\core\templates\core\shopping-cart.html:39
 msgid " QTY"
 msgstr "SAY"
 
@@ -573,88 +822,83 @@ msgstr "ÖDƏNİŞƏ KEÇ"
 
 #: .\core\templates\core\includes\home-main-slider.html:26
 msgid " The Latest Product from PAVSHOP "
-msgstr ""
+msgstr "PAVSHOP-dan Ən Son Məhsul"
 
 #: .\core\templates\core\includes\home-main-slider.html:77
-#, fuzzy
-#| msgid " SHOP NOW "
 msgid "SHOP NOW "
 msgstr "İNDİ AL"
 
 #: .\core\templates\core\includes\home-main-slider.html:97
 msgid "The Latest Product from PAVSHOP "
-msgstr ""
+msgstr "PAVSHOP-dan Ən Son Məhsul"
 
 #: .\core\templates\core\includes\home-main-slider.html:110
 msgid " look beautiful"
-msgstr ""
+msgstr "gözəl görün"
 
 #: .\core\templates\core\includes\home-main-slider.html:123
 msgid " this season"
-msgstr ""
+msgstr "bu mövsüm"
+
+#: .\core\templates\core\includes\news-letter.html:6
+msgid "NEWSLETTER"
+msgstr "XƏBƏRLƏR"
+
+#: .\core\templates\core\includes\news-letter.html:14
+msgid "SEND ME"
+msgstr "GÖNDƏR MƏNƏ"
 
 #: .\core\templates\core\includes\sub-banner.html:5
-#, fuzzy
-#| msgid "Contact"
-msgid "contact us now "
-msgstr "Əlaqə"
-
-#: .\core\templates\core\includes\sub-banner.html:11
-#, fuzzy
-#| msgid "Home"
-msgid "Home "
-msgstr "Ana Səhifə"
-
-#: .\core\templates\core\includes\sub-banner.html:12
-#, fuzzy
-#| msgid "Contact"
-msgid "contact "
-msgstr "Əlaqə"
+msgid "contact us now"
+msgstr "indi bizimlə əlaqə saxlayın"
 
 #: .\core\templates\core\shopping-cart.html:27
-#: .\core\templates\core\wishlist.html:27
-msgid "PRODUCTS "
-msgstr ""
+msgid "PRODUCTS"
+msgstr "MƏHSULLAR"
 
 #: .\core\templates\core\shopping-cart.html:31
-msgid "NAME "
-msgstr ""
+msgid "NAME"
+msgstr "AD"
 
 #: .\core\templates\core\shopping-cart.html:35
-msgid " PRICE"
-msgstr ""
+msgid "PRICE"
+msgstr "QİYMƏT"
+
+#: .\core\templates\core\shopping-cart.html:39
+msgid "QTY"
+msgstr "SAY"
 
 #: .\core\templates\core\shopping-cart.html:44
-#, fuzzy
-#| msgid " SUBTOTAL"
-msgid " TOTAL"
-msgstr "CƏMİ"
+msgid "TOTAL"
+msgstr "ÜMUMİ"
 
 #: .\core\templates\core\shopping-cart.html:204
 msgid "DISCOUNT CODE "
-msgstr ""
+msgstr "ENDİRİM KODU"
 
 #: .\core\templates\core\shopping-cart.html:207
 msgid " APPLY CODE"
-msgstr ""
+msgstr "TƏTBİQ EDİN"
 
 #: .\core\templates\core\shopping-cart.html:209
 msgid " continue shopping"
-msgstr ""
+msgstr "alış-verişə davam edin"
 
 #: .\core\templates\core\shopping-cart.html:209
-#, fuzzy
-#| msgid "Updated At"
 msgid " update cart"
-msgstr "Yenilənmə vaxtı"
+msgstr "səbəti yeniləyin"
 
 #: .\core\templates\core\shopping-cart.html:214
 msgid "grand total "
-msgstr ""
+msgstr "ümumi cəmi"
+
+#: .\core\templates\core\wishlist.html:27
+msgid "PRODUCTS "
+msgstr "MƏHSULLAR"
 
 #: .\core\templates\core\wishlist.html:31
 msgid " NAME"
-msgstr ""
+msgstr "AD"
 
 #: .\core\views.py:31
 msgid "Thank You. Your message has been sent successfully!"
@@ -662,8 +906,8 @@ msgstr "Çox sağ ol. Mesajınız uğurla göndərildi!"
 
 #: .\core\views.py:35
 msgid ""
-"Oops! Something went wrong. Please review your message and make sure all the "
-"required fields are filled correctly."
+"Oops! Something went wrong. Please review your message and make sure all the"
+" required fields are filled correctly."
 msgstr ""
 "Vay! Nəsə xəta baş verdi. Mesajınızı nəzərdən keçirin və bütün tələb olunan "
 "sahələrin düzgün doldurulduğundan əmin olun."
@@ -788,3 +1032,42 @@ msgid ""
 msgstr ""
 "Şərhinizi yadda saxlayarkən xəta baş verdi. Sahələri nəzərdən keçirin və "
 "düzgün olduğundan əmin olun."
+
+#~ msgid "Home "
+#~ msgstr "Ana Səhifə"
+
+#~ msgid "contact "
+#~ msgstr "Əlaqə"
+
+#~ msgid "I’VE READ AND ACCEPT THE"
+#~ msgstr "MƏN OXUMUŞ VƏ QƏBUL EDİRƏM"
+
+#~ msgid "TERMS & CONDITIONS"
+#~ msgstr "ŞƏRTLƏR VƏ QAYDALAR"
+
+#~ msgid " FIRST NAME"
+#~ msgstr "AD"
+
+#~ msgid "LAST NAME "
+#~ msgstr "SOYAD"
+
+#~ msgid " TOWN/CITY"
+#~ msgstr "ŞƏHƏR"
+
+#~ msgid " COUNTRY"
+#~ msgstr "ÖLKƏ"
+
+#~ msgid "EMAIL ADDRESS "
+#~ msgstr "E-poçt ünvanı"
+
+#~ msgid " TOTAL COST"
+#~ msgstr "ÜMUMİ XƏRC"
+
+#~ msgid " Email"
+#~ msgstr "Email"
+
+#~ msgid "Message "
+#~ msgstr "Mesaj"
+
+#~ msgid "results for"
+#~ msgstr "üçün nəticələr"

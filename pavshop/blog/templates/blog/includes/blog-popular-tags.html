@@ -1,4 +1,6 @@
-<h5 class="shop-tittle margin-top-60 margin-bottom-30">POUPLAR TAGS</h5>
+{% load i18n %}
+
+<h5 class="shop-tittle margin-top-60 margin-bottom-30">{% trans "POUPLAR TAGS" %}</h5>
 <ul class="shop shop-tags">
   {% for tag in blog_popular_tags %}
   <li class="{% if selected_tag.slug == tag.slug %}active{% endif %}">
