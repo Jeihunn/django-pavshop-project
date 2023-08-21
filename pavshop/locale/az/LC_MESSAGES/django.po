@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-21 14:40+0400\n"
-"PO-Revision-Date: 2023-08-21 14:41+0400\n"
-"Last-Translator: Ceyhunf Super <admin@mail.ru>\n"
+"POT-Creation-Date: 2023-08-22 00:20+0400\n"
+"PO-Revision-Date: 2023-08-22 00:36+0400\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr "Yeni şifrə təsdiqi"
 #: .\blog\models.py:77 .\core\models.py:19 .\core\models.py:33
 #: .\core\templates\core\contact.html:45 .\product\models.py:167
 msgid "Email"
-msgstr "Email"
+msgstr "E-poçt"
 
 #: .\account\forms.py:221
 msgid ""
@@ -535,7 +535,7 @@ msgstr "Valideyn"
 
 #: .\blog\models.py:75 .\core\models.py:18 .\product\models.py:165
 msgid "Full Name"
-msgstr "Tam ad"
+msgstr "Tam Adınız"
 
 #: .\blog\models.py:78 .\core\models.py:21
 msgid "Subject"
@@ -616,7 +616,8 @@ msgstr "Yenilənmə vaxtı"
 msgid "Message"
 msgstr "Mesaj"
 
-#: .\core\models.py:25
+#: .\core\models.py:25 .\core\templates\core\includes\header.html:106
+#: .\core\templates\core\includes\sub-banner.html:12
 msgid "Contact"
 msgstr "Əlaqə"
 
@@ -716,8 +717,9 @@ msgid "Thank You. Your Message has been Submitted"
 msgstr "Çox sağ ol. Mesajınız Göndərildi"
 
 #: .\core\templates\core\contact.html:39
-msgid "full name"
-msgstr "Tam ad"
+#| msgid "Full name"
+msgid "Full name "
+msgstr "Tam adınız"
 
 #: .\core\templates\core\contact.html:51
 msgid "Phone"
@@ -740,7 +742,6 @@ msgid "about PAVSHOP "
 msgstr "PAVSHOP haqqında"
 
 #: .\core\templates\core\includes\footer.html:55
-#| msgid "Pavshop. All rights reserved"
 msgid "PAVSHOP. All right reserved"
 msgstr "Pavshop. Bütün hüquqlar qorunur"
 
@@ -777,11 +778,6 @@ msgstr "İNDİ AL"
 #: .\core\templates\core\includes\header.html:103
 msgid " About"
 msgstr "Haqqımızda"
-
-#: .\core\templates\core\includes\header.html:106
-#: .\core\templates\core\includes\sub-banner.html:12
-msgid "contact"
-msgstr "Əlaqə"
 
 #: .\core\templates\core\includes\header.html:120
 msgid "HELLO"
@@ -840,6 +836,10 @@ msgstr "gözəl görün"
 msgid " this season"
 msgstr "bu mövsüm"
 
+#: .\core\templates\core\includes\home-main-slider.html:148
+msgid "BUY NOW"
+msgstr "İNDİ AL"
+
 #: .\core\templates\core\includes\news-letter.html:6
 msgid "NEWSLETTER"
 msgstr "XƏBƏRLƏR"
@@ -849,8 +849,8 @@ msgid "SEND ME"
 msgstr "GÖNDƏR MƏNƏ"
 
 #: .\core\templates\core\includes\sub-banner.html:5
-msgid "contact us now"
-msgstr "indi bizimlə əlaqə saxlayın"
+msgid "Contact us now"
+msgstr "Bizimlə indi əlaqə saxlayın"
 
 #: .\core\templates\core\shopping-cart.html:27
 msgid "PRODUCTS"
@@ -902,7 +902,7 @@ msgstr "AD"
 
 #: .\core\views.py:31
 msgid "Thank You. Your message has been sent successfully!"
-msgstr "Çox sağ ol. Mesajınız uğurla göndərildi!"
+msgstr "Təşəkkür edirik. Mesajınız uğurla göndərildi!"
 
 #: .\core\views.py:35
 msgid ""
@@ -1032,6 +1032,9 @@ msgid ""
 msgstr ""
 "Şərhinizi yadda saxlayarkən xəta baş verdi. Sahələri nəzərdən keçirin və "
 "düzgün olduğundan əmin olun."
+
+#~ msgid "contact"
+#~ msgstr "Əlaqə"
 
 #~ msgid "Home "
 #~ msgstr "Ana Səhifə"
