@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -102,24 +102,24 @@
       <div class="text-center">
         <h1>
           <i class="error-icon fa fa-exclamation-circle"></i>
-          Oops! Account Activation Failed
+          {% trans "Oops! Account Activation Failed" %}
         </h1>
-        <p>Sorry, the activation link is invalid or has expired.</p>
+        <p>{% trans "Sorry, the activation link is invalid or has expired." %}</p>
         <p>
-          Please
+          {% trans "Please" %}
           <a href="{% url 'request_new_token_view' %}" class="link"
-            >request a new activation token</a
+            >{% trans "request a new activation token" %}</a
           >
-          or contact support for assistance.
+          {% trans "or contact support for assistance." %}
         </p>
         <a href="{% url 'core:contact_view' %}" class="button"
-          >Contact Support</a
+          >{% trans "Contact Support" %}</a
         >
-        <p class="mt-3">Support Email: pavshop.project@gmail.com</p>
+        <p class="mt-3">{% trans "Support Email" %}: pavshop.project@gmail.com</p>
       </div>
     </div>
     <div class="footer">
-      <p>&copy; 2023 Pavshop. All rights reserved.</p>
+      <p>&copy; 2023 {% trans "Pavshop. All rights reserved." %}</p>
     </div>
   </body>
 </html>

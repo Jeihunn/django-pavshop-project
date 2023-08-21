@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load i18n %}
 
 
 {% block page_title %}
@@ -31,7 +32,7 @@
 
             <!-- ESTIMATE SHIPPING & TAX -->
             <div class="col-sm-7">
-              <h6>LOGIN YOUR ACCOUNT</h6>
+              <h6>{% trans "LOGIN YOUR ACCOUNT" %}</h6>
 
               <!-- NON FIELD ERRORS -->
               {% if form.non_field_errors %}
@@ -48,14 +49,14 @@
                 <ul class="row">
                   <!-- USERNAME -->
                   <li class="col-md-12">
-                    <label> USERNAME
+                    <label> {% trans "USERNAME" %}
                       {{ form.username }}
                       {{ form.username.errors }}
                     </label>
                   </li>
                   <!-- PASSWORD -->
                   <li class="col-md-12">
-                    <label> PASSWORD
+                    <label> {% trans "PASSWORD" %}
                       {{ form.password }}
                       {{ form.password.errors }}
                     </label>
@@ -63,7 +64,7 @@
 
                   <!-- LOGIN -->
                   <li class="col-md-4">
-                    <button type="submit" class="btn">LOGIN</button>
+                    <button type="submit" class="btn">{% trans "LOGIN" %}</button>
                   </li>
 
                   <!-- CREATE AN ACCOUNT -->
@@ -79,16 +80,16 @@
 
               <div>
                 <!-- FORGOT PASS -->
-                <a href="{% url 'password_reset' %}">Forgot Password</a>
+                <a href="{% url 'password_reset' %}">{% trans "Forgot Password" %}</a>
                 <span class="margin-10">/</span>
                 <!-- REQUEST NEW TOKEN -->
-                <a href="{% url 'request_new_token_view' %}">Get New Account Activation Link</a>
+                <a href="{% url 'request_new_token_view' %}">{% trans "Get New Account Activation Link" %}</a>
               </div>
             </div>
 
             <!-- SOCIAL LOGIN -->
             <div class="col-sm-5">
-              <h6>LOGIN WITH</h6>
+              <h6>{% trans "LOGIN WITH" %}</h6>
 
               <ul class="login-with">
                 <li>

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,9 +48,9 @@
 <body>
     <div class="container">
         <i class="fa fa-lock lock-icon"></i>
-        <h1>Access Blocked</h1>
-        <p>Your access to this page has been blocked due to security reasons. If you believe this is an error or need further assistance, please reach out to our support team.</p>
-        <p>Support Email: <a href="mailto:pavshop.project@gmail.com">pavshop.project@gmail.com</a></p>
+        <h1>{% trans "Access Blocked" %}</h1>
+        <p>{% trans "Your access to this page has been blocked due to security reasons. If you believe this is an error or need further assistance, please reach out to our support team." %}</p>
+        <p>{% trans "Support Email" %}: <a href="mailto:pavshop.project@gmail.com">pavshop.project@gmail.com</a></p>
     </div>
 </body>
 </html>

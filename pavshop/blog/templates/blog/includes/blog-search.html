@@ -1,4 +1,4 @@
 <form class="search" method="get" action="{% url 'blog:blog_list_view' %}">
-  <input name="query" class="form-control" type="search" placeholder="Search" {% if selected_query %}value="{{ selected_query }}"{% endif %}" />
+  <input name="query" class="form-control" type="search" placeholder="Search" {% if selected_query %}value="{{ selected_query }}"{% endif %} />
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
