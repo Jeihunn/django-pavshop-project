@@ -24,6 +24,8 @@ urlpatterns = [
 
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 urlpatterns += i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
     re_path(r'^rosetta/', include('rosetta.urls')),
@@ -34,4 +36,8 @@ urlpatterns += i18n_patterns(
     path("", include('blog.urls', namespace="blog")),
 )
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += [
+        path('__debug__/', include("debug_toolbar.urls")),
+    ]
+
