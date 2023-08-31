@@ -79,12 +79,18 @@ class BlogAdmin(TranslationAdmin):
 class BlogReviewAdmin(admin.ModelAdmin):
     form = BlogReviewAdminForm
 
-    list_display = ["id", "subject", "parent",
-                    "get_blog_title", "user", "full_name", "email"]
+    list_display = ["id", "subject", "parent", "get_blog_id", "get_blog_title",
+                    "user", "full_name", "email", "created_at", "updated_at"]
     list_display_links = ["id", "subject"]
     list_filter = ["blog", "user"]
+    raw_id_fields = ["blog", "parent"]
+
+    def get_blog_id(self, obj):
+        return obj.blog.id
+    get_blog_id.admin_order_field = "blog"
+    get_blog_id.short_description = _("Blog ID")
 
     def get_blog_title(self, obj):
         return obj.blog.title
     get_blog_title.admin_order_field = "blog"
-    get_blog_title.short_description = _("Blog")
+    get_blog_title.short_description = _("Blog Title")

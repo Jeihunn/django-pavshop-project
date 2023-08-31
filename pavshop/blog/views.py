@@ -11,9 +11,9 @@ from .models import Blog, BlogCategory, BlogTag
 
 
 def blog_list_view(request):
-    category_slug = request.GET.get('category')
-    tag_slug = request.GET.get('tag')
-    query = request.GET.get('query')
+    category_slug = request.GET.get("category")
+    tag_slug = request.GET.get("tag")
+    query = request.GET.get("query")
 
     blogs = Blog.objects.filter(is_active=True).order_by("-publish_date")
 
@@ -31,12 +31,14 @@ def blog_list_view(request):
 
     if query:
         # blogs = blogs.filter(title__icontains=query) # Hər dilin yalnız özünə uyğun axtarış etmək üçün.
-        blogs = blogs.filter(Q(title_az__icontains=query) | Q(title_en__icontains=query)) # Həm AZ, həm də EN title field-lərində axtarış etmək üçün.
+        # Həm AZ, həm də EN title field-lərində axtarış etmək üçün.
+        blogs = blogs.filter(Q(title_az__icontains=query)
+                             | Q(title_en__icontains=query))
 
     blogs_count = blogs.count()
 
     paginator = Paginator(blogs, 6)
-    page = request.GET.get('page')
+    page = request.GET.get("page")
     try:
         page_number = int(page)
     except TypeError:
@@ -96,7 +98,7 @@ def blog_archive_view(request, year, month):
     blogs_count = blogs.count()
 
     paginator = Paginator(blogs, 6)
-    page = request.GET.get('page')
+    page = request.GET.get("page")
     try:
         page_number = int(page)
     except TypeError:

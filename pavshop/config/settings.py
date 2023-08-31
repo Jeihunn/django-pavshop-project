@@ -56,6 +56,8 @@ THIRD_PARTY_APPS = [
     "social_django",
     "rosetta",
     "debug_toolbar",
+    "rest_framework",
+    "django_filters",
 ]
 
 MY_APPS = [
