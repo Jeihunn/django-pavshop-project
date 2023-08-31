@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-22 00:20+0400\n"
-"PO-Revision-Date: 2023-08-22 00:36+0400\n"
-"Last-Translator:   <>\n"
+"POT-Creation-Date: 2023-08-31 15:50+0400\n"
+"PO-Revision-Date: 2023-08-31 15:52+0400\n"
+"Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -460,32 +460,51 @@ msgstr "Kateqoriyalar"
 msgid "Tags"
 msgstr "Etiketlər"
 
-#: .\blog\admin.py:90 .\blog\models.py:59 .\blog\models.py:68
-#: .\core\templates\core\includes\header.html:18
-msgid "Blog"
-msgstr "Bloq"
+#: .\blog\admin.py:91
+msgid "Blog ID"
+msgstr "Bloq ID"
 
-#: .\blog\forms.py:30
+#: .\blog\admin.py:96
+msgid "Blog Title"
+msgstr "Bloq Başlığı"
+
+#: .\blog\api\serializers.py:149 .\blog\forms.py:46
+msgid "The selected parent review does not belong to the chosen blog."
+msgstr "Seçilmiş valideyn rəyi seçilmiş bloqa aid deyil."
+
+#: .\blog\api\serializers.py:151 .\blog\forms.py:52
+msgid ""
+"The selected parent comment exceeds the designated maximum sub-comment "
+"level. Maximum level: {}"
+msgstr ""
+"Seçilmiş valideyn şərhi təyin edilmiş maksimum alt şərh səviyyəsini keçir. "
+"Maksimum səviyyə: {}"
+
+#: .\blog\api\serializers.py:157 .\blog\api\serializers.py:162
+msgid "This field is required."
+msgstr "Bu sahə boş ola bilməz."
+
+#: .\blog\forms.py:48
 msgid "A comment cannot be its own parent."
 msgstr "Şərh öz valideyni ola bilməz."
 
-#: .\blog\forms.py:32
+#: .\blog\forms.py:50
 msgid "This comment cannot be a parent of its own parent."
 msgstr "Bu şərh öz valideyninin valideyni ola bilməz."
 
-#: .\blog\forms.py:44 .\product\forms.py:21
+#: .\blog\forms.py:65 .\product\forms.py:21
 msgid "Full name field should be empty when user is specified."
 msgstr "İstifadəçi göstərildikdə tam ad sahəsi boş olmalıdır."
 
-#: .\blog\forms.py:46 .\product\forms.py:24
+#: .\blog\forms.py:67 .\product\forms.py:24
 msgid "Email field should be empty when user is specified."
 msgstr "İstifadəçi qeyd edildikdə e-poçt sahəsi boş olmalıdır."
 
-#: .\blog\forms.py:49 .\product\forms.py:28
+#: .\blog\forms.py:70 .\product\forms.py:28
 msgid "Full name field is required when user is not specified."
 msgstr "İstifadəçi göstərilmədikdə tam ad sahəsi tələb olunur."
 
-#: .\blog\forms.py:51 .\product\forms.py:31
+#: .\blog\forms.py:72 .\product\forms.py:31
 msgid "Email field is required when user is not specified."
 msgstr "İstifadəçi göstərilmədikdə e-poçt sahəsi tələb olunur."
 
@@ -524,6 +543,11 @@ msgstr "Qapaq şəkli"
 #: .\blog\models.py:54
 msgid "Publish Date"
 msgstr "Yayımlanma tarixi"
+
+#: .\blog\models.py:59 .\blog\models.py:68
+#: .\core\templates\core\includes\header.html:18
+msgid "Blog"
+msgstr "Bloq"
 
 #: .\blog\models.py:60
 msgid "Blogs"
@@ -595,12 +619,12 @@ msgstr "ARXİVLƏR"
 msgid "recent post"
 msgstr "son yazı"
 
-#: .\blog\views.py:45 .\blog\views.py:50 .\blog\views.py:105
-#: .\blog\views.py:110
+#: .\blog\views.py:47 .\blog\views.py:52 .\blog\views.py:107
+#: .\blog\views.py:112
 msgid "Invalid page number."
 msgstr "Yanlış səhifə nömrəsi."
 
-#: .\blog\views.py:92
+#: .\blog\views.py:94
 msgid "Invalid date format."
 msgstr "Yanlış tarix formatı."
 
@@ -717,7 +741,6 @@ msgid "Thank You. Your Message has been Submitted"
 msgstr "Çox sağ ol. Mesajınız Göndərildi"
 
 #: .\core\templates\core\contact.html:39
-#| msgid "Full name"
 msgid "Full name "
 msgstr "Tam adınız"
 

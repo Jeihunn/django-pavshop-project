@@ -45,7 +45,7 @@ class ProductVersionReviewForm(forms.ModelForm):
             "comment",
         )
 
-    def set_required_fields(self):
+    def set_required_fields(self): # custom method
         if self.user and self.user.is_authenticated:
             self.fields['full_name'].required = False
             self.fields['email'].required = False

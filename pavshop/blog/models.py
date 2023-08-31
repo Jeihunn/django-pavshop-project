@@ -89,6 +89,6 @@ class BlogReview(AbstractModel):
             user_identifier = self.full_name
 
         if self.parent:
-            return f"{self.subject} - {user_identifier} ~~ (Parent: {self.parent})"
+            return f"{self.subject} - [{user_identifier}] ~~ (Parent: {self.parent})"
         else:
-            return f"{self.subject} - {user_identifier}"
+            return f"{self.subject} - [{user_identifier}] - [{self.blog.title}]"

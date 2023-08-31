@@ -21,6 +21,9 @@ from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
+    # API Rest Framework
+    path('api-auth/', include('rest_framework.urls')),
+    path("api/", include('blog.api.urls', namespace="api_blog")),
 
 ]
 
@@ -30,14 +33,14 @@ urlpatterns += i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
     re_path(r'^rosetta/', include('rosetta.urls')),
     path('admin/', admin.site.urls),
-    path("", include('core.urls', namespace="core")),
-    path("", include('account.urls')),
-    path("", include('product.urls', namespace="product")),
-    path("", include('blog.urls', namespace="blog")),
+    path("", include("core.urls", namespace="core")),
+    path("", include("account.urls")),
+    path("", include("product.urls", namespace="product")),
+    path("", include("blog.urls", namespace="blog")),
 )
 
 if settings.DEBUG:
     urlpatterns += [
-        path('__debug__/', include("debug_toolbar.urls")),
+        path('__debug__/', include('debug_toolbar.urls')),
     ]
 
