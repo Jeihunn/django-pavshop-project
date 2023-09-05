@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-08-31 15:50+0400\n"
-"PO-Revision-Date: 2023-08-31 15:52+0400\n"
+"PO-Revision-Date: 2023-09-05 15:31+0400\n"
 "Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -734,7 +734,7 @@ msgstr "SİFARİŞ VERİN"
 
 #: .\core\templates\core\contact.html:21
 msgid "PLEASE fill-up FEW details"
-msgstr "Lütfən, bir neçə detalı doldurun"
+msgstr "Lütfən, bir neçə məlumatı doldurun"
 
 #: .\core\templates\core\contact.html:26
 msgid "Thank You. Your Message has been Submitted"
