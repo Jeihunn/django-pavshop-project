@@ -140,7 +140,7 @@ class BlogReviewCreateSerializer(serializers.ModelSerializer):
         return nesting_level > max_parent_nesting
 
     def validate_parent(self, value):
-        blog_id = self.initial_data.get("blog")  # str
+        blog_id = self.initial_data.get("blog")  # type: str
 
         max_parent_nesting = 1
 

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
 from . import project_secrets
 
 
@@ -58,6 +59,8 @@ THIRD_PARTY_APPS = [
     "debug_toolbar",
     "rest_framework",
     "django_filters",
+    "rest_framework_simplejwt",
+    "drf_yasg",
 ]
 
 MY_APPS = [
@@ -366,7 +369,29 @@ LOGGING = {
 }
 
 
-# Debug Toolbar Config
+# Debug Toolbar config
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': lambda request: True,
+}
+
+
+# Rest Framework config
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day',
+    }
+}
+
+
+# Simple JWT config
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "TOKEN_OBTAIN_SERIALIZER": "account.api.serializers.CustomTokenObtainPairSerializer",
 }

@@ -20,27 +20,61 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Pavshop API",
+        default_version='v1',
+        description="The Pavshop API provides a customizable RESTful API for e-commerce businesses. With this API, you can easily manage products, process orders, manage users, and more.",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(
+            name="Pavshop Team",
+            email="pavshop.project@gmail.com",
+        ),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
+
 urlpatterns = [
+    # Rosetta
+    re_path(r'^rosetta/', include('rosetta.urls')),
+
     # API Rest Framework
     path('api-auth/', include('rest_framework.urls')),
-    path("api/", include('blog.api.urls', namespace="api_blog")),
 
+    # API Rest Framework Simple JWT
+    path("auth/", include("account.api.urls")),
+
+    # DRF-YASG
+    path('api-docs/', schema_view.with_ui('swagger',
+         cache_timeout=0), name='schema-swagger-ui'),
+
+    # API APP
+    path("api/", include('blog.api.urls', namespace="api_blog")),
 ]
+
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+
 urlpatterns += i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
-    re_path(r'^rosetta/', include('rosetta.urls')),
     path('admin/', admin.site.urls),
-    path("", include("core.urls", namespace="core")),
     path("", include("account.urls")),
+    path("", include("core.urls", namespace="core")),
     path("", include("product.urls", namespace="product")),
     path("", include("blog.urls", namespace="blog")),
 )
+
 
 if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include('debug_toolbar.urls')),
     ]
-
