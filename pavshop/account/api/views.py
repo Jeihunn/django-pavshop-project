@@ -4,6 +4,6 @@ from .serializers import UserTokenSerializer
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
-    @swagger_auto_schema(responses={200: UserTokenSerializer(many=True)})
+    @swagger_auto_schema(responses={200: UserTokenSerializer()})
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
