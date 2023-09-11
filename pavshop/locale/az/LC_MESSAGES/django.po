@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-31 15:50+0400\n"
-"PO-Revision-Date: 2023-09-05 15:31+0400\n"
+"POT-Creation-Date: 2023-09-11 15:57+0400\n"
+"PO-Revision-Date: 2023-09-11 15:58+0400\n"
 "Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -90,7 +90,7 @@ msgstr "Yeni şifrə təsdiqi"
 
 #: .\account\forms.py:210 .\account\templates\account\user-profile.html:34
 #: .\blog\models.py:77 .\core\models.py:19 .\core\models.py:33
-#: .\core\templates\core\contact.html:45 .\product\models.py:167
+#: .\core\templates\core\contact.html:45 .\product\models.py:175
 msgid "Email"
 msgstr "E-poçt"
 
@@ -104,7 +104,7 @@ msgstr ""
 
 #: .\account\models.py:14 .\account\models.py:30 .\account\models.py:63
 #: .\blog\models.py:16 .\blog\models.py:29 .\product\models.py:59
-#: .\product\models.py:73 .\product\models.py:86
+#: .\product\models.py:73 .\product\models.py:90
 msgid "Name"
 msgstr "Ad"
 
@@ -165,8 +165,8 @@ msgstr "Profil şəkli"
 msgid "Ips"
 msgstr "IP-lər"
 
-#: .\account\models.py:90 .\blog\models.py:72 .\product\models.py:162
-#: .\product\models.py:190
+#: .\account\models.py:90 .\blog\models.py:72 .\product\models.py:170
+#: .\product\models.py:198
 msgid "User"
 msgstr "İstifadəçi"
 
@@ -189,7 +189,7 @@ msgstr "Səbəb"
 #: .\account\models.py:98 .\blog\models.py:17 .\blog\models.py:30
 #: .\blog\models.py:55 .\product\models.py:17 .\product\models.py:30
 #: .\product\models.py:43 .\product\models.py:62 .\product\models.py:74
-#: .\product\models.py:87 .\product\models.py:132 .\product\models.py:148
+#: .\product\models.py:91 .\product\models.py:140 .\product\models.py:156
 msgid "Active"
 msgstr "Aktiv"
 
@@ -468,11 +468,11 @@ msgstr "Bloq ID"
 msgid "Blog Title"
 msgstr "Bloq Başlığı"
 
-#: .\blog\api\serializers.py:149 .\blog\forms.py:46
+#: .\blog\api\serializers.py:150 .\blog\forms.py:46
 msgid "The selected parent review does not belong to the chosen blog."
 msgstr "Seçilmiş valideyn rəyi seçilmiş bloqa aid deyil."
 
-#: .\blog\api\serializers.py:151 .\blog\forms.py:52
+#: .\blog\api\serializers.py:153 .\blog\forms.py:52
 msgid ""
 "The selected parent comment exceeds the designated maximum sub-comment "
 "level. Maximum level: {}"
@@ -480,7 +480,7 @@ msgstr ""
 "Seçilmiş valideyn şərhi təyin edilmiş maksimum alt şərh səviyyəsini keçir. "
 "Maksimum səviyyə: {}"
 
-#: .\blog\api\serializers.py:157 .\blog\api\serializers.py:162
+#: .\blog\api\serializers.py:159 .\blog\api\serializers.py:164
 msgid "This field is required."
 msgstr "Bu sahə boş ola bilməz."
 
@@ -528,7 +528,7 @@ msgstr "Bloq etiketləri"
 msgid "Author"
 msgstr "Müəllif"
 
-#: .\blog\models.py:49 .\product\models.py:106
+#: .\blog\models.py:49 .\product\models.py:114
 msgid "Title"
 msgstr "Başlıq"
 
@@ -536,7 +536,7 @@ msgstr "Başlıq"
 msgid "Content"
 msgstr "Məzmun"
 
-#: .\blog\models.py:52 .\product\models.py:131
+#: .\blog\models.py:52 .\product\models.py:139
 msgid "Cover Image"
 msgstr "Qapaq şəkli"
 
@@ -557,7 +557,7 @@ msgstr "Bloqlar"
 msgid "Parent"
 msgstr "Valideyn"
 
-#: .\blog\models.py:75 .\core\models.py:18 .\product\models.py:165
+#: .\blog\models.py:75 .\core\models.py:18 .\product\models.py:173
 msgid "Full Name"
 msgstr "Tam Adınız"
 
@@ -565,7 +565,7 @@ msgstr "Tam Adınız"
 msgid "Subject"
 msgstr "Mövzu"
 
-#: .\blog\models.py:79 .\product\models.py:168
+#: .\blog\models.py:79 .\product\models.py:176
 msgid "Comment"
 msgstr "Şərh"
 
@@ -774,7 +774,7 @@ msgid "Home"
 msgstr "Ana Səhifə"
 
 #: .\core\templates\core\includes\header.html:21 .\product\models.py:28
-#: .\product\models.py:33 .\product\models.py:121
+#: .\product\models.py:33 .\product\models.py:129
 msgid "Designer"
 msgstr "Dizayner"
 
@@ -943,7 +943,7 @@ msgstr "Endirim"
 msgid "Discounts"
 msgstr "Endirimlər"
 
-#: .\product\admin.py:34 .\product\models.py:147
+#: .\product\admin.py:34 .\product\models.py:155
 msgid "Image"
 msgstr "Şəkil"
 
@@ -955,9 +955,30 @@ msgstr "Şəkillər"
 msgid "Percent"
 msgstr "Faiz"
 
-#: .\product\admin.py:176 .\product\models.py:21 .\product\models.py:123
+#: .\product\admin.py:176 .\product\models.py:21 .\product\models.py:131
 msgid "Colors"
 msgstr "Rənglər"
+
+#: .\product\api\serializers.py:47 .\product\api\serializers.py:51
+msgid "A product category with the same name (name_en) already exists."
+msgstr "Eyni adlı məhsul kateqoriyası (name_en) artıq mövcuddur."
+
+#: .\product\api\serializers.py:58 .\product\api\serializers.py:62
+msgid "A product category with the same name (name_az) already exists."
+msgstr "Eyni adlı məhsul kateqoriyası (name_az) artıq mövcuddur."
+
+#: .\product\api\serializers.py:221
+#| msgid "Quantity cannot be negative."
+msgid "Price cannot be negative."
+msgstr "Qiymət mənfi ola bilməz."
+
+#: .\product\api\serializers.py:227
+msgid "Quantity cannot be negative."
+msgstr "Miqdar mənfi ola bilməz."
+
+#: .\product\api\serializers.py:266
+msgid "You already have a wishlist."
+msgstr "Artıq istək siyahınız var."
 
 #: .\product\models.py:16 .\product\models.py:20
 msgid "Color"
@@ -968,7 +989,7 @@ msgid "Designers"
 msgstr "Dizaynerlər"
 
 #: .\product\models.py:42 .\product\models.py:44 .\product\models.py:48
-#: .\product\models.py:100
+#: .\product\models.py:108
 msgid "Brand"
 msgstr "Brend"
 
@@ -976,7 +997,7 @@ msgstr "Brend"
 msgid "Brands"
 msgstr "Brendlər"
 
-#: .\product\models.py:57 .\product\models.py:111
+#: .\product\models.py:57 .\product\models.py:119
 msgid "Products"
 msgstr "Məhsullar"
 
@@ -984,63 +1005,63 @@ msgstr "Məhsullar"
 msgid "Product Category"
 msgstr "Məhsul kateqoriyası"
 
-#: .\product\models.py:79 .\product\models.py:102
+#: .\product\models.py:79 .\product\models.py:110
 msgid "Product Categories"
 msgstr "Məhsul kateqoriyaları"
 
-#: .\product\models.py:91
+#: .\product\models.py:95
 msgid "Product Tag"
 msgstr "Məhsul etiketi"
 
-#: .\product\models.py:92 .\product\models.py:104
+#: .\product\models.py:96 .\product\models.py:112
 msgid "Product Tags"
 msgstr "Məhsul etiketləri"
 
-#: .\product\models.py:110 .\product\models.py:119
+#: .\product\models.py:118 .\product\models.py:127
 msgid "Product"
 msgstr "Məhsul"
 
-#: .\product\models.py:126
+#: .\product\models.py:134
 msgid "Price"
 msgstr "Qiymət"
 
-#: .\product\models.py:127
+#: .\product\models.py:135
 msgid "Quantity"
 msgstr "Miqdar"
 
-#: .\product\models.py:129
+#: .\product\models.py:137
 msgid "Description"
 msgstr "Açıqlama"
 
-#: .\product\models.py:135 .\product\models.py:144 .\product\models.py:160
+#: .\product\models.py:143 .\product\models.py:152 .\product\models.py:168
 msgid "Product Version"
 msgstr "Məhsul versiyası"
 
-#: .\product\models.py:136 .\product\models.py:192
+#: .\product\models.py:144 .\product\models.py:200
 msgid "Product Versions"
 msgstr "Məhsul versiyaları"
 
-#: .\product\models.py:151
+#: .\product\models.py:159
 msgid "Product Version Image"
 msgstr "Məhsul versiyası şəkili"
 
-#: .\product\models.py:152
+#: .\product\models.py:160
 msgid "Product Version Images"
 msgstr "Məhsul versiyası şəkilləri"
 
-#: .\product\models.py:171
+#: .\product\models.py:179
 msgid "Product Version Review"
 msgstr "Məhsul versiyası rəyi"
 
-#: .\product\models.py:172
+#: .\product\models.py:180
 msgid "Product Version Reviews"
 msgstr "Məhsul versiyası rəyləri"
 
-#: .\product\models.py:195
+#: .\product\models.py:203
 msgid "Wishlist"
 msgstr "İstək siyahısı"
 
-#: .\product\models.py:196
+#: .\product\models.py:204
 msgid "Wishlists"
 msgstr "İstək siyahıları"
 

@@ -78,6 +78,10 @@ class ProductCategory(AbstractModel):
         verbose_name = _("Product Category")
         verbose_name_plural = _("Product Categories")
 
+    @property
+    def product_count(self):
+        return self.products.count()
+
     def __str__(self):
         return self.name
 
@@ -90,6 +94,10 @@ class ProductTag(AbstractModel):
     class Meta:
         verbose_name = _("Product Tag")
         verbose_name_plural = _("Product Tags")
+
+    @property
+    def product_count(self):
+        return self.products.count()
 
     def __str__(self):
         return self.name
@@ -189,7 +197,7 @@ class Wishlist(AbstractModel):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="wishlist", verbose_name=_("User"))
     product_versions = models.ManyToManyField(
-        ProductVersion, related_name="wishlists", verbose_name=_("Product Versions"))
+        ProductVersion, blank=True, related_name="wishlists", verbose_name=_("Product Versions"))
 
     class Meta:
         verbose_name = _("Wishlist")
