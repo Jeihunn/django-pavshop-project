@@ -3,7 +3,7 @@ from rest_framework import permissions
 
 class IsOwnerOrSuperuserCanDeleteOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
-        # Anyone can just do a GET operation
+        # Anyone can perform safe methods (GET, HEAD, OPTIONS)
         if request.method in permissions.SAFE_METHODS:
             return True
 
