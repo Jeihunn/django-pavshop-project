@@ -14,6 +14,8 @@ User = get_user_model()
 class Color(AbstractModel):
     name = models.CharField(verbose_name=_(
         "Color"), max_length=50, unique=True)
+    hex_code = models.CharField(verbose_name=_(
+        "HEX Code"), max_length=7, unique=True)
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
@@ -130,6 +132,7 @@ class ProductVersion(AbstractModel):
     colors = models.ManyToManyField(
         Color, related_name="product_versions", verbose_name=_("Colors"))
 
+    title = models.CharField(verbose_name=_("Title"), max_length=250)
     price = models.DecimalField(verbose_name=_(
         "Price"), max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(verbose_name=_("Quantity"))
@@ -138,13 +141,14 @@ class ProductVersion(AbstractModel):
     cover_image = models.ImageField(verbose_name=_(
         "Cover Image"), upload_to="product_cover_images", default="product_cover_images/default_product_cover.jpg")
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
+    slug = AutoSlugField(populate_from="title", unique=True)
 
     class Meta:
         verbose_name = _("Product Version")
         verbose_name_plural = _("Product Versions")
 
     def __str__(self):
-        return f"{self.product.title} - Designer: {self.designer.name} - Price: {self.price}$"
+        return f"Product: {self.product.title} - Version: {self.title} - Designer: {self.designer.name} - Price: {self.price}$"
 
 
 class ProductVersionImage(AbstractModel):

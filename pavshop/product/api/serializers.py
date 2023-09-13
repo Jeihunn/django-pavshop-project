@@ -4,6 +4,7 @@ from product.models import (
     Product,
     ProductVersion,
     ProductVersionImage,
+    Discount,
     ProductCategory,
     ProductTag,
     Color,
@@ -28,6 +29,7 @@ class ProductCategorySerializer(serializers.ModelSerializer):
         fields = (
             "url",
             "id",
+            "name",
             "name_en",
             "name_az",
             "product_count",
@@ -82,8 +84,8 @@ class ColorSerializer(serializers.ModelSerializer):
         model = Color
         fields = (
             "id",
-            "name_en",
-            "name_az",
+            "name",
+            "hex_code",
             "is_active",
             "created_at",
             "updated_at"
@@ -130,6 +132,7 @@ class ProductListSerializer(serializers.ModelSerializer):
         fields = (
             "url",
             "id",
+            "title",
             "title_en",
             "title_az",
             "brand",
@@ -170,6 +173,17 @@ class ProductVersionImageSerializer(serializers.ModelSerializer):
         )
 
 
+class DiscountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discount
+        fields = (
+            "id",
+            "name",
+            "percent",
+            "is_active",
+        )
+
+
 class ProductVersionListSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name="api_product:api_product_version_detail_view",
@@ -180,6 +194,7 @@ class ProductVersionListSerializer(serializers.ModelSerializer):
     designer = DesignerSerializer()
     colors = ColorSerializer(many=True)
     images = ProductVersionImageSerializer(many=True)
+    discounts = DiscountSerializer(many=True)
 
     class Meta:
         model = ProductVersion
@@ -189,17 +204,25 @@ class ProductVersionListSerializer(serializers.ModelSerializer):
             "product",
             "designer",
             "colors",
+            "title",
+            "title_en",
+            "title_az",
             "price",
             "quantity",
             "description_en",
             "description_az",
             "cover_image",
             "images",
+            "discounts",
+            "slug",
             "is_active",
         )
 
 
 class ProductVersionCreateUpdateSerializer(serializers.ModelSerializer):
+    title_en = serializers.CharField(required=True)
+    title_az = serializers.CharField(required=True)
+
     class Meta:
         model = ProductVersion
         fields = (
@@ -207,11 +230,14 @@ class ProductVersionCreateUpdateSerializer(serializers.ModelSerializer):
             "product",
             "designer",
             "colors",
+            "title_en",
+            "title_az",
             "price",
             "quantity",
             "description_en",
             "description_az",
             "cover_image",
+            "slug",
             "is_active",
         )
 
