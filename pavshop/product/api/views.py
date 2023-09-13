@@ -27,10 +27,17 @@ from .permissions import IsSuperuserOrReadOnly
 from blog.api.permissions import IsOwnerOrSuperuserCanDeleteOrReadOnly
 from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 from blog.api.pagination import CustomPagination
-from .filters import ProductCategoryFilter, ProductTagFilter, WishlistFilter
+from .filters import (
+    ProductCategoryFilter,
+    ProductTagFilter,
+    ColorFilter,
+    DesignerFilter,
+    BrandFilter,
+    ProductVersionFilter,
+    WishlistFilter
+)
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
-
 
 class ProductCategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = ProductCategory.objects.all()
@@ -67,7 +74,8 @@ class ColorListAPIView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     pagination_class = CustomPagination
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, DjangoFilterBackend]
+    filterset_class = ColorFilter
     search_fields = ["name"]
 
 
@@ -77,7 +85,8 @@ class DesignerListAPIView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     pagination_class = CustomPagination
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, DjangoFilterBackend]
+    filterset_class = DesignerFilter
     search_fields = ["name"]
 
 
@@ -87,7 +96,8 @@ class BrandListAPIView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     pagination_class = CustomPagination
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, DjangoFilterBackend]
+    filterset_class = BrandFilter
     search_fields = ["name"]
 
 
@@ -124,6 +134,9 @@ class ProductVersionListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [IsSuperuserOrReadOnly]
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
     pagination_class = CustomPagination
+    filter_backends = [SearchFilter, DjangoFilterBackend]
+    filterset_class = ProductVersionFilter
+    search_fields = ["title"]
 
     def get_serializer_class(self):
         if self.request.method == "POST":

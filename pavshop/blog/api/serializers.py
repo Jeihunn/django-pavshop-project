@@ -54,6 +54,8 @@ class BlogListSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "title",
+            "title_en",
+            "title_az",
             "author",
             "blog_categories",
             "blog_tags",

@@ -37,8 +37,8 @@ class ProductVersionImageInline(admin.TabularInline):
 
 
 @admin.register(Color)
-class ColorAdmin(TranslationAdmin):
-    list_display = ["id", "name", "is_active", "created_at", "updated_at"]
+class ColorAdmin(admin.ModelAdmin):
+    list_display = ["id", "name", "hex_code", "is_active", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     list_editable = ["is_active"]
     list_filter = ["is_active"]
@@ -126,7 +126,7 @@ class ProductAdmin(TranslationAdmin):
     filter_horizontal = ["product_categories", "product_tags"]
 
     list_display = ["id", "title", "brand", "get_categories",
-                    "get_tags", "created_at", "updated_at"]
+                    "get_tags", "slug", "created_at", "updated_at"]
     list_display_links = ["id", "title"]
     list_filter = ["brand", "product_categories", "product_tags"]
     search_fields = ["title", "brand"]
@@ -161,9 +161,9 @@ class ProductVersionAdmin(TranslationAdmin):
     inlines = [DiscountInline, ProductVersionImageInline]
     filter_horizontal = ["colors"]
 
-    list_display = ["id", "product", "designer", "price", "quantity",
-                    "is_active", "get_colors", "get_discounts", "created_at", "updated_at"]
-    list_display_links = ["id", "product"]
+    list_display = ["id", "title",  "designer", "product", "price", "quantity",
+                    "is_active", "get_colors", "get_discounts", "slug", "created_at", "updated_at"]
+    list_display_links = ["id", "title"]
     list_filter = ["is_active", "product",
                    "colors", "created_at", "updated_at"]
     search_fields = ["product__title", "designer"]

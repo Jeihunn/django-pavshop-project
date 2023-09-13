@@ -18,3 +18,31 @@
   margin-top: 5px !important;
   color: red !important;
 }
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: grey !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+}
+
+.image-container {
+  max-height: 300px !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.height-400 {
+  height: 400px !important;
+}
+
+.text-nowrap {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}

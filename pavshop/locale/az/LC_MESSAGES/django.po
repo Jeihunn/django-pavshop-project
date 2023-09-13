@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-11 15:57+0400\n"
-"PO-Revision-Date: 2023-09-11 15:58+0400\n"
+"POT-Creation-Date: 2023-09-13 13:48+0400\n"
+"PO-Revision-Date: 2023-09-12 15:39+0400\n"
 "Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -90,7 +90,7 @@ msgstr "Yeni şifrə təsdiqi"
 
 #: .\account\forms.py:210 .\account\templates\account\user-profile.html:34
 #: .\blog\models.py:77 .\core\models.py:19 .\core\models.py:33
-#: .\core\templates\core\contact.html:45 .\product\models.py:175
+#: .\core\templates\core\contact.html:45 .\product\models.py:179
 msgid "Email"
 msgstr "E-poçt"
 
@@ -103,8 +103,8 @@ msgstr ""
 "daxil edin."
 
 #: .\account\models.py:14 .\account\models.py:30 .\account\models.py:63
-#: .\blog\models.py:16 .\blog\models.py:29 .\product\models.py:59
-#: .\product\models.py:73 .\product\models.py:90
+#: .\blog\models.py:16 .\blog\models.py:29 .\product\models.py:61
+#: .\product\models.py:75 .\product\models.py:92
 msgid "Name"
 msgstr "Ad"
 
@@ -165,8 +165,8 @@ msgstr "Profil şəkli"
 msgid "Ips"
 msgstr "IP-lər"
 
-#: .\account\models.py:90 .\blog\models.py:72 .\product\models.py:170
-#: .\product\models.py:198
+#: .\account\models.py:90 .\blog\models.py:72 .\product\models.py:174
+#: .\product\models.py:202
 msgid "User"
 msgstr "İstifadəçi"
 
@@ -187,9 +187,9 @@ msgid "Reason"
 msgstr "Səbəb"
 
 #: .\account\models.py:98 .\blog\models.py:17 .\blog\models.py:30
-#: .\blog\models.py:55 .\product\models.py:17 .\product\models.py:30
-#: .\product\models.py:43 .\product\models.py:62 .\product\models.py:74
-#: .\product\models.py:91 .\product\models.py:140 .\product\models.py:156
+#: .\blog\models.py:55 .\product\models.py:19 .\product\models.py:32
+#: .\product\models.py:45 .\product\models.py:64 .\product\models.py:76
+#: .\product\models.py:93 .\product\models.py:143 .\product\models.py:160
 msgid "Active"
 msgstr "Aktiv"
 
@@ -206,7 +206,7 @@ msgid "Oops! Account Activation Failed"
 msgstr "Vay! Hesabın Aktivləşdirilməsi Alınmadı"
 
 #: .\account\templates\account\account_activation_invalid.html:107
-#: .\account\templates\account\password_reset_confirm.html:144
+#: .\account\templates\account\password_reset_confirm.html:115
 msgid "Sorry, the activation link is invalid or has expired."
 msgstr "Üzr istəyirik, aktivləşdirmə linki etibarsızdır və ya vaxtı keçib."
 
@@ -223,7 +223,7 @@ msgid "or contact support for assistance."
 msgstr "və ya yardım üçün dəstək xidməti ilə əlaqə saxlayın."
 
 #: .\account\templates\account\account_activation_invalid.html:116
-#: .\account\templates\account\password_reset_confirm.html:148
+#: .\account\templates\account\password_reset_confirm.html:118
 msgid "Contact Support"
 msgstr "Dəstək ilə əlaqə"
 
@@ -243,8 +243,8 @@ msgstr "Giriş Bloklandı"
 #: .\account\templates\account\blacklist.html:52
 msgid ""
 "Your access to this page has been blocked due to security reasons. If you "
-"believe this is an error or need further assistance, please reach out to our"
-" support team."
+"believe this is an error or need further assistance, please reach out to our "
+"support team."
 msgstr ""
 "Bu səhifəyə girişiniz təhlükəsizlik səbəbi ilə bloklanıb. Bunun xəta "
 "olduğuna inanırsınızsa və ya əlavə yardıma ehtiyacınız varsa, dəstək "
@@ -269,7 +269,6 @@ msgstr "Əsas səhifəyə qayıt"
 
 #: .\account\templates\account\change_password_done.html:83
 #: .\account\templates\account\password_reset_complete.html:87
-#: .\account\templates\account\password_reset_confirm.html:159
 #: .\account\templates\account\password_reset_done.html:94
 #: .\account\templates\account\request_new_token.html:154
 msgid "Pavshop. All rights reserved"
@@ -308,14 +307,14 @@ msgstr "İLƏ GİRİN"
 
 #: .\account\templates\account\password_reset.html:39
 #: .\account\templates\account\password_reset.html:52
-#: .\account\templates\account\password_reset_confirm.html:132
+#: .\account\templates\account\password_reset_confirm.html:103
 msgid "Reset Password"
 msgstr "Şifrəni sıfırlamaq"
 
 #: .\account\templates\account\password_reset.html:40
 msgid ""
-"Please enter your registered email address below. A password reset link will"
-" be sent to your email address"
+"Please enter your registered email address below. A password reset link will "
+"be sent to your email address"
 msgstr ""
 "Zəhmət olmasa qeydiyyatdan keçmiş e-poçt ünvanınızı aşağıya daxil edin. "
 "Şifrə sıfırlama linki e-poçt ünvanınıza göndəriləcək"
@@ -328,16 +327,16 @@ msgstr "Parolun Sıfırlanması Tamamlandı"
 msgid "Login"
 msgstr "Daxil ol"
 
-#: .\account\templates\account\password_reset_confirm.html:115
+#: .\account\templates\account\password_reset_confirm.html:90
 #: .\account\templates\account\password_reset_done.html:80
 msgid "Password Reset Confirmation"
 msgstr "Şifrə Sıfırlanması Təsdiqi"
 
-#: .\account\templates\account\password_reset_confirm.html:141
+#: .\account\templates\account\password_reset_confirm.html:112
 msgid "Oops! Password Reset Confirmation Failed"
 msgstr "Vay! Şifrə Sıfırlama Təsdiqi Uğursuz Oldu"
 
-#: .\account\templates\account\password_reset_confirm.html:152
+#: .\account\templates\account\password_reset_confirm.html:121
 #: .\account\templates\account\request_new_token.html:149
 msgid "For assistance, please contact us at"
 msgstr "Yardım üçün bizimlə əlaqə saxlayın"
@@ -468,11 +467,11 @@ msgstr "Bloq ID"
 msgid "Blog Title"
 msgstr "Bloq Başlığı"
 
-#: .\blog\api\serializers.py:150 .\blog\forms.py:46
+#: .\blog\api\serializers.py:152 .\blog\forms.py:46
 msgid "The selected parent review does not belong to the chosen blog."
 msgstr "Seçilmiş valideyn rəyi seçilmiş bloqa aid deyil."
 
-#: .\blog\api\serializers.py:153 .\blog\forms.py:52
+#: .\blog\api\serializers.py:155 .\blog\forms.py:52
 msgid ""
 "The selected parent comment exceeds the designated maximum sub-comment "
 "level. Maximum level: {}"
@@ -480,7 +479,7 @@ msgstr ""
 "Seçilmiş valideyn şərhi təyin edilmiş maksimum alt şərh səviyyəsini keçir. "
 "Maksimum səviyyə: {}"
 
-#: .\blog\api\serializers.py:159 .\blog\api\serializers.py:164
+#: .\blog\api\serializers.py:161 .\blog\api\serializers.py:166
 msgid "This field is required."
 msgstr "Bu sahə boş ola bilməz."
 
@@ -528,7 +527,7 @@ msgstr "Bloq etiketləri"
 msgid "Author"
 msgstr "Müəllif"
 
-#: .\blog\models.py:49 .\product\models.py:114
+#: .\blog\models.py:49 .\product\models.py:116 .\product\models.py:135
 msgid "Title"
 msgstr "Başlıq"
 
@@ -536,7 +535,7 @@ msgstr "Başlıq"
 msgid "Content"
 msgstr "Məzmun"
 
-#: .\blog\models.py:52 .\product\models.py:139
+#: .\blog\models.py:52 .\product\models.py:142
 msgid "Cover Image"
 msgstr "Qapaq şəkli"
 
@@ -557,7 +556,7 @@ msgstr "Bloqlar"
 msgid "Parent"
 msgstr "Valideyn"
 
-#: .\blog\models.py:75 .\core\models.py:18 .\product\models.py:173
+#: .\blog\models.py:75 .\core\models.py:18 .\product\models.py:177
 msgid "Full Name"
 msgstr "Tam Adınız"
 
@@ -565,7 +564,7 @@ msgstr "Tam Adınız"
 msgid "Subject"
 msgstr "Mövzu"
 
-#: .\blog\models.py:79 .\product\models.py:176
+#: .\blog\models.py:79 .\product\models.py:180
 msgid "Comment"
 msgstr "Şərh"
 
@@ -773,8 +772,8 @@ msgstr "Pavshop. Bütün hüquqlar qorunur"
 msgid "Home"
 msgstr "Ana Səhifə"
 
-#: .\core\templates\core\includes\header.html:21 .\product\models.py:28
-#: .\product\models.py:33 .\product\models.py:129
+#: .\core\templates\core\includes\header.html:21 .\product\models.py:30
+#: .\product\models.py:35 .\product\models.py:131
 msgid "Designer"
 msgstr "Dizayner"
 
@@ -929,21 +928,21 @@ msgstr "Təşəkkür edirik. Mesajınız uğurla göndərildi!"
 
 #: .\core\views.py:35
 msgid ""
-"Oops! Something went wrong. Please review your message and make sure all the"
-" required fields are filled correctly."
+"Oops! Something went wrong. Please review your message and make sure all the "
+"required fields are filled correctly."
 msgstr ""
 "Vay! Nəsə xəta baş verdi. Mesajınızı nəzərdən keçirin və bütün tələb olunan "
 "sahələrin düzgün doldurulduğundan əmin olun."
 
-#: .\product\admin.py:27 .\product\models.py:65
+#: .\product\admin.py:27 .\product\models.py:67
 msgid "Discount"
 msgstr "Endirim"
 
-#: .\product\admin.py:28 .\product\admin.py:183 .\product\models.py:66
+#: .\product\admin.py:28 .\product\admin.py:183 .\product\models.py:68
 msgid "Discounts"
 msgstr "Endirimlər"
 
-#: .\product\admin.py:34 .\product\models.py:155
+#: .\product\admin.py:34 .\product\models.py:159
 msgid "Image"
 msgstr "Şəkil"
 
@@ -951,117 +950,120 @@ msgstr "Şəkil"
 msgid "Images"
 msgstr "Şəkillər"
 
-#: .\product\admin.py:91 .\product\models.py:61
+#: .\product\admin.py:91 .\product\models.py:63
 msgid "Percent"
 msgstr "Faiz"
 
-#: .\product\admin.py:176 .\product\models.py:21 .\product\models.py:131
+#: .\product\admin.py:176 .\product\models.py:23 .\product\models.py:133
 msgid "Colors"
 msgstr "Rənglər"
 
-#: .\product\api\serializers.py:47 .\product\api\serializers.py:51
+#: .\product\api\serializers.py:49 .\product\api\serializers.py:53
 msgid "A product category with the same name (name_en) already exists."
 msgstr "Eyni adlı məhsul kateqoriyası (name_en) artıq mövcuddur."
 
-#: .\product\api\serializers.py:58 .\product\api\serializers.py:62
+#: .\product\api\serializers.py:60 .\product\api\serializers.py:64
 msgid "A product category with the same name (name_az) already exists."
 msgstr "Eyni adlı məhsul kateqoriyası (name_az) artıq mövcuddur."
 
-#: .\product\api\serializers.py:221
-#| msgid "Quantity cannot be negative."
+#: .\product\api\serializers.py:247
 msgid "Price cannot be negative."
 msgstr "Qiymət mənfi ola bilməz."
 
-#: .\product\api\serializers.py:227
+#: .\product\api\serializers.py:253
 msgid "Quantity cannot be negative."
 msgstr "Miqdar mənfi ola bilməz."
 
-#: .\product\api\serializers.py:266
+#: .\product\api\serializers.py:292
 msgid "You already have a wishlist."
 msgstr "Artıq istək siyahınız var."
 
-#: .\product\models.py:16 .\product\models.py:20
+#: .\product\models.py:16 .\product\models.py:22
 msgid "Color"
 msgstr "Rəng"
 
-#: .\product\models.py:34
+#: .\product\models.py:18
+msgid "HEX Code"
+msgstr "HEX Kodu"
+
+#: .\product\models.py:36
 msgid "Designers"
 msgstr "Dizaynerlər"
 
-#: .\product\models.py:42 .\product\models.py:44 .\product\models.py:48
-#: .\product\models.py:108
+#: .\product\models.py:44 .\product\models.py:46 .\product\models.py:50
+#: .\product\models.py:110
 msgid "Brand"
 msgstr "Brend"
 
-#: .\product\models.py:49
+#: .\product\models.py:51
 msgid "Brands"
 msgstr "Brendlər"
 
-#: .\product\models.py:57 .\product\models.py:119
+#: .\product\models.py:59 .\product\models.py:121
 msgid "Products"
 msgstr "Məhsullar"
 
-#: .\product\models.py:78
+#: .\product\models.py:80
 msgid "Product Category"
 msgstr "Məhsul kateqoriyası"
 
-#: .\product\models.py:79 .\product\models.py:110
+#: .\product\models.py:81 .\product\models.py:112
 msgid "Product Categories"
 msgstr "Məhsul kateqoriyaları"
 
-#: .\product\models.py:95
+#: .\product\models.py:97
 msgid "Product Tag"
 msgstr "Məhsul etiketi"
 
-#: .\product\models.py:96 .\product\models.py:112
+#: .\product\models.py:98 .\product\models.py:114
 msgid "Product Tags"
 msgstr "Məhsul etiketləri"
 
-#: .\product\models.py:118 .\product\models.py:127
+#: .\product\models.py:120 .\product\models.py:129
 msgid "Product"
 msgstr "Məhsul"
 
-#: .\product\models.py:134
+#: .\product\models.py:137
 msgid "Price"
 msgstr "Qiymət"
 
-#: .\product\models.py:135
+#: .\product\models.py:138
 msgid "Quantity"
 msgstr "Miqdar"
 
-#: .\product\models.py:137
+#: .\product\models.py:140
 msgid "Description"
 msgstr "Açıqlama"
 
-#: .\product\models.py:143 .\product\models.py:152 .\product\models.py:168
+#: .\product\models.py:147 .\product\models.py:156 .\product\models.py:172
 msgid "Product Version"
 msgstr "Məhsul versiyası"
 
-#: .\product\models.py:144 .\product\models.py:200
+#: .\product\models.py:148 .\product\models.py:204
 msgid "Product Versions"
 msgstr "Məhsul versiyaları"
 
-#: .\product\models.py:159
+#: .\product\models.py:163
 msgid "Product Version Image"
 msgstr "Məhsul versiyası şəkili"
 
-#: .\product\models.py:160
+#: .\product\models.py:164
 msgid "Product Version Images"
 msgstr "Məhsul versiyası şəkilləri"
 
-#: .\product\models.py:179
+#: .\product\models.py:183
 msgid "Product Version Review"
 msgstr "Məhsul versiyası rəyi"
 
-#: .\product\models.py:180
+#: .\product\models.py:184
 msgid "Product Version Reviews"
 msgstr "Məhsul versiyası rəyləri"
 
-#: .\product\models.py:203
+#: .\product\models.py:207
 msgid "Wishlist"
 msgstr "İstək siyahısı"
 
-#: .\product\models.py:204
+#: .\product\models.py:208
 msgid "Wishlists"
 msgstr "İstək siyahıları"
 

@@ -1,6 +1,14 @@
 import django_filters
 from django import forms
-from product.models import ProductCategory, ProductTag, Wishlist
+from product.models import (
+    ProductCategory,
+    ProductTag,
+    Color,
+    Designer,
+    Brand,
+    ProductVersion,
+    Wishlist
+)
 
 
 class ProductCategoryFilter(django_filters.FilterSet):
@@ -48,6 +56,65 @@ class ProductTagFilter(django_filters.FilterSet):
 
     class Meta:
         model = ProductTag
+        fields = ["is_active", "order_by"]
+
+
+class ColorFilter(django_filters.FilterSet):
+    is_active = django_filters.BooleanFilter(
+        field_name="is_active",
+        label="Color Active",
+    )
+
+    class Meta:
+        model = Color
+        fields = ["is_active"]
+
+
+class DesignerFilter(django_filters.FilterSet):
+    is_active = django_filters.BooleanFilter(
+        field_name="is_active",
+        label="Designer Active",
+    )
+
+    class Meta:
+        model = Designer
+        fields = ["is_active"]
+
+
+class BrandFilter(django_filters.FilterSet):
+    is_active = django_filters.BooleanFilter(
+        field_name="is_active",
+        label="Brand Active",
+    )
+
+    class Meta:
+        model = Brand
+        fields = ["is_active"]
+
+
+class ProductVersionFilter(django_filters.FilterSet):
+    is_active = django_filters.BooleanFilter(
+        field_name="is_active",
+        label="ProductVersion Active",
+    )
+
+    order_by = django_filters.OrderingFilter(
+        fields=(
+            ("id", "id"),
+            ("created_at", "created_at"),
+            ("title", "title"),
+            ("price", "price"),
+        ),
+        field_labels={
+            "id": "id",
+            "created_at": "created_at",
+            "title": "title",
+            "price": "price",
+        },
+    )
+
+    class Meta:
+        model = ProductVersion
         fields = ["is_active", "order_by"]
 
 
