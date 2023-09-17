@@ -61,6 +61,7 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "rest_framework_simplejwt",
     "drf_yasg",
+    "corsheaders"
 ]
 
 MY_APPS = [
@@ -77,6 +78,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     "django.middleware.locale.LocaleMiddleware",  # Multilanguage
+    "corsheaders.middleware.CorsMiddleware",  # CORS Middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -84,9 +86,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # ========== MY MIDDLEWARE ==========
     'debug_toolbar.middleware.DebugToolbarMiddleware',  # Debug Toolbar
-    "core.middleware.LoggingMiddleware",
-    "core.middleware.BlacklistMiddleware",
-    "core.middleware.AddUserIpsMiddleware",
+    "core.middleware.LoggingMiddleware",  # Custom Middleware Logging
+    "core.middleware.BlacklistMiddleware",  # Custom Middleware Blacklist
+    "core.middleware.AddUserIpsMiddleware",  # Custom Middleware AddUserIps
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -394,4 +396,19 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "TOKEN_OBTAIN_SERIALIZER": "account.api.serializers.CustomTokenObtainPairSerializer",
+}
+
+
+# Cookie Session(sessionid) expiration time
+SESSION_COOKIE_AGE = timedelta(days=14).total_seconds()
+# SESSION_COOKIE_NAME = "sessionid"
+
+
+# CORS Headers config
+CORS_ALLOW_ALL_ORIGINS: True
+
+
+# Custom Variables config
+CUSTOM_VARIABLES = {
+    "MAX_PARENT_NESTING": 1, # Specifies the maximum nesting level for parent comments
 }

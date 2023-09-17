@@ -64,6 +64,7 @@ def blog_list_view(request):
 def blog_detail_view(request, blog_slug):
     blog = get_object_or_404(Blog, slug=blog_slug, is_active=True)
 
+    comments = blog.reviews.filter(parent=None).order_by("-created_at")
     related_blogs = Blog.objects.filter(
         Q(blog_categories__in=blog.blog_categories.all()) & ~Q(id=blog.id)).distinct()[:3]
 
@@ -81,6 +82,7 @@ def blog_detail_view(request, blog_slug):
     context = {
         "blog": blog,
         "related_blogs": related_blogs,
+        "comments": comments,
     }
     return render(request, "blog/blog-detail.html", context)
 

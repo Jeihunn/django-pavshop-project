@@ -8,7 +8,7 @@ window.addEventListener("load", function () {
 
 function fetchCategories() {
   fetch(
-    "http://127.0.0.1:8000/api/product-categories/?page_size=20&is_active=true&order_by=name"
+    "/api/product-categories/?page_size=20&is_active=true&order_by=name"
   )
     .then((response) => {
       if (!response.ok) {
@@ -34,7 +34,7 @@ function fetchCategories() {
 
 function fetchTags() {
   fetch(
-    "http://127.0.0.1:8000/api/product-tags/?page_size=10&is_active=true&order_by=-created_at"
+    "/api/product-tags/?page_size=10&is_active=true&order_by=-created_at"
   )
     .then((response) => {
       if (!response.ok) {
@@ -59,7 +59,7 @@ function fetchTags() {
 }
 
 function fetchBrands() {
-  fetch("http://127.0.0.1:8000/api/product-brands/?page_size=10&is_active=true")
+  fetch("/api/product-brands/?page_size=10&is_active=true")
     .then((response) => {
       if (!response.ok) {
         throw new Error("API request failed.");
@@ -83,7 +83,7 @@ function fetchBrands() {
 }
 
 function fetchColors() {
-  fetch("http://127.0.0.1:8000/api/product-colors/?page_size=30&is_active=true")
+  fetch("/api/product-colors/?page_size=30&is_active=true")
     .then((response) => {
       if (!response.ok) {
         throw new Error("API request failed.");
@@ -107,7 +107,7 @@ function fetchColors() {
 }
 
 function fetchProductVersions() {
-  fetch("http://127.0.0.1:8000/api/product-versions/?page_size=9&is_active=true&order_by=-created_at")
+  fetch("/api/product-versions/?page_size=9&is_active=true&order_by=-created_at")
     .then((response) => {
       if (!response.ok) {
         throw new Error("API request failed.");
