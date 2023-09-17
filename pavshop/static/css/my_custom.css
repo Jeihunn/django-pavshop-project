@@ -46,3 +46,12 @@
   overflow: hidden !important;
   text-overflow: ellipsis;
 }
+
+.reply-button:hover {
+  cursor: pointer;
+}
+
+.comment-section {
+  max-height: 1000px;
+  overflow-y: auto;
+}

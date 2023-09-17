@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.utils.translation import gettext_lazy as _
 from blog.models import Blog, BlogReview, BlogCategory, BlogTag
 from django.utils.html import strip_tags
+from django.conf import settings
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -144,7 +145,7 @@ class BlogReviewCreateSerializer(serializers.ModelSerializer):
     def validate_parent(self, value):
         blog_id = self.initial_data.get("blog")  # type: str
 
-        max_parent_nesting = 1
+        max_parent_nesting = settings.CUSTOM_VARIABLES["MAX_PARENT_NESTING"]
 
         if value:
             if str(value.blog.id) != blog_id:

@@ -87,74 +87,187 @@
                 <!--=======  COMMENTS =========-->
                 <div class="comments margin-top-80">
                   <h5 class="shop-tittle margin-bottom-30">COMMENTS</h5>
-                  <ul class="media-list padding-left-15">
-                    <!--=======  COMMENTS =========-->
-                    <li class="media">
-                      <div class="media-left"> <a href="#" class="avatar"> <img class="media-object img-responsive" src="{% static 'images/avatar-1.jpg' %}" alt=""> <br>
-                        </a> </div>
-                      <div class="media-body">
-                        <h6 class="media-heading">William Saron <span><i class="icon-clock primary-color"></i> April 27, 2016 - 10:00 am</span></h6>
-                        <p>Crack commando unit was sent to prison by a military court for a crime they didn't commit. ese men promptly escaped from a maximum security stockade to the Los Angeles. </p>
-                        <a href="#." class="raply"><i class="icon-bubble primary-color"></i> Reply</a> </div>
-                    </li>
-                    <!--=======  COMMENTS =========-->
-                    <li class="media">
-                      <div class="media-left"> <a href="#" class="avatar"> <img class="media-object img-responsive" src="{% static 'images/avatar-3.jpg' %}" alt=""> <br>
-                        </a> </div>
-                      <div class="media-body">
-                        <h6 class="media-heading">William Saron <span><i class="icon-clock primary-color"></i> April 27, 2016 - 10:00 am</span></h6>
-                        <p>Crack commando unit was sent to prison by a military court for a crime they didn't commit. ese men promptly escaped from a maximum security stockade to the Los Angeles. </p>
-                        <a href="#." class="raply"><i class="icon-bubble primary-color"></i> Reply</a> </div>
-                    </li>
-                    <!--=======  COMMENTS =========-->
-                    <li class="media padding-left-100">
-                      <div class="media-left"> <a href="#" class="avatar"> <img class="media-object img-responsive" src="{% static 'images/avatar-2.jpg' %}" alt=""> <br>
-                        </a> </div>
-                      <div class="media-body">
-                        <h6 class="media-heading">William Saron <span><i class="icon-clock primary-color"></i> April 27, 2016 - 10:00 am</span></h6>
-                        <p>Crack commando unit was sent to prison by a military court for a crime they didn't commit. ese men promptly escaped from a maximum security stockade to the Los Angeles. </p>
-                        <a href="#." class="raply"><i class="icon-bubble primary-color"></i> Reply</a> </div>
-                    </li>
-                    <!--=======  COMMENTS =========-->
-                    <li class="media">
-                      <div class="media-left"> <a href="#" class="avatar"> <img class="media-object img-responsive" src="{% static 'images/avatar-3.jpg' %}" alt=""> <br>
-                        </a> </div>
-                      <div class="media-body">
-                        <h6 class="media-heading">William Saron <span><i class="icon-clock primary-color"></i> April 27, 2016 - 10:00 am</span></h6>
-                        <p>Crack commando unit was sent to prison by a military court for a crime they didn't commit. ese men promptly escaped from a maximum security stockade to the Los Angeles. </p>
-                        <a href="#." class="raply"><i class="icon-bubble primary-color"></i> Reply</a> </div>
-                    </li>
-                  </ul>
+                  <div class="comment-section">
+                    <ul class="media-list padding-left-15" id="blog-comments">
+                      {% for comment in comments %}
+                        {% if not comment.parent %}
+                          <!--======= Parent COMMENTS =========-->
+                          <li class="media">
+                            <div class="media-left"> 
+                              <a href="#" class="avatar">
+                                {% if comment.user %}
+                                  <img class="media-object img-responsive" src="{{ comment.user.profile_image.url }}" alt=""> 
+                                {% else %}
+                                  <img class="media-object img-responsive" src="{% static "imgs/default_profile.jpg" %}" alt=""> 
+                                {% endif %}
+                                <br>
+                              </a>
+                            </div>
+                            <div class="media-body">
+                              <h6 class="media-heading">
+                                {% if comment.user %}
+                                  {% if comment.user.get_full_name %}
+                                    {{ comment.user.get_full_name }}
+                                  {% else %}
+                                    {{ comment.user.get_username }}
+                                  {% endif %}
+                                {% else %}
+                                  {{ comment.full_name }}
+                                {% endif %}
+                                <span><i class="icon-clock primary-color"></i>{{ comment.updated_at|date:"d/m/Y H:i" }}</span>
+
+                                {% if comment.user == request.user %}
+                                  <span class="icon-edit-trash">
+                                    <a href="#"><span><i class="fa fa-pencil"></i></span></a>
+                                    <a href="#"><span><i class="fa fa-trash"></i></span></a>
+                                  </span>
+                                {% endif %}
+                              </h6>
+                              <p>
+                                  {{ comment.comment }}
+                              </p>
+                              <a class="raply reply-button"><i class="icon-bubble primary-color"></i> Reply</a> 
+
+                              <div class="div-reply-form">
+                                <form class="padding-left-15 reply-form" id="reply-form-{{ comment.id }}" method="post" style="display: none">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                                  <input type="hidden" name="parent_id" value="{{ comment.id }}">
+              
+                                  <ul class="row">
+              
+                                    {% if not request.user.is_authenticated %}
+                                    <li class="col-sm-4">
+                                      <label>*FULL NAME
+                                        <input type="text" class="form-control" name="full_name" required>
+                          
+                                      </label>
+                                    </li>
+                                    <li class="col-sm-4">
+                                      <label>*EMAIL
+                                        <input type="email" class="form-control" name="email" required>
+                                      </label>
+                                    </li>
+                                    {% endif %}
+                                    <li class="col-sm-4">
+                                      <label>*Subject
+                                        <input type="text" class="form-control" name="subject" required>
+                                      </label>
+                                    </li>
+                                    <li class="col-sm-12">
+                                      <label>*COMMENT
+                                        <textarea class="form-control" name="comment" required></textarea>
+                                      </label>
+                                    </li>
+              
+              
+                                    <li class="col-sm-12">
+                                      <ul class="errorlist"></ul>
+                                    </li>
+              
+                                    <li class="col-sm-12">
+                                      <button type="submit" class="btn margin-top-30">Reply Comment </button>
+                                    </li>
+                                  </ul>
+              
+                                </form>
+                              </div>
+
+                            </div>
+                          </li>
+                        {% endif %}
+                        
+                        {% for child in comment.children.all|dictsortreversed:"created_at" %}
+                            <!--======= Child COMMENTS =========-->
+                            <li class="media padding-left-100">
+                              <div class="media-left"> 
+                                <a href="#" class="avatar">
+                                  {% if child.user %}
+                                    <img class="media-object img-responsive" src="{{ child.user.profile_image.url }}" alt=""> 
+                                  {% else %}
+                                    <img class="media-object img-responsive" src="{% static "imgs/default_profile.jpg" %}" alt=""> 
+                                  {% endif %}
+                                  <br>
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <h6 class="media-heading">
+                                  {% if child.user %}
+                                    {% if child.user.get_full_name %}
+                                      {{ child.user.get_full_name }}
+                                    {% else %}
+                                      {{ child.user.get_username }}
+                                    {% endif %}
+                                  {% else %}
+                                    {{ child.full_name }}
+                                  {% endif %}
+                                  <span><i class="icon-clock primary-color"></i>{{ child.updated_at|date:"d/m/Y H:i" }}</span>
+
+                                  {% if child.user == request.user %}
+                                    <span class="icon-edit-trash">
+                                      <a href="#"><span><i class="fa fa-pencil"></i></span></a>
+                                      <a href="#"><span><i class="fa fa-trash"></i></span></a>
+                                    </span>
+                                  {% endif %}
+                                </h6>
+                                <p>
+                                    {{ child.comment }}
+                                </p>
+                              </div>
+                            </li>
+                        {% endfor %}
+        
+                      {% endfor %}
+                    </ul>
+                  </div>
                   <hr>
                   
                   <!--=======  LEAVE COMMENTS =========-->
                   <h5 class="shop-tittle margin-top-80">POST YOUR COMMENTS</h5>
-                  <form class="padding-left-15">
+                  <form class="padding-left-15" method="post" id="blog-review-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="blog_id" value="{{ blog.id }}">
+
+                    {% if request.user.is_authenticated %}
+                    <small class="font-16px text-info font-bold">* Active user information selected!</small>
+                    {% endif %}
+
                     <ul class="row">
+
+                      {% if not request.user.is_authenticated %}
                       <li class="col-sm-4">
-                        <label>Name
-                          <input type="text" class="form-control" name="name" placeholder="">
+                        <label>*FULL NAME
+                          <input type="text" class="form-control" name="full_name" required>
+            
                         </label>
                       </li>
                       <li class="col-sm-4">
-                        <label>Email
-                          <input type="text" class="form-control" name="name" placeholder="">
+                        <label>*EMAIL
+                          <input type="email" class="form-control" name="email"required>
                         </label>
                       </li>
+                      {% endif %}
                       <li class="col-sm-4">
-                        <label>Subject
-                          <input type="text" class="form-control" name="name" placeholder="">
+                        <label>*Subject
+                          <input type="text" class="form-control" name="subject" required>
                         </label>
                       </li>
                       <li class="col-sm-12">
-                        <label>COMMENTS
-                          <textarea class="form-control" placeholder=""></textarea>
+                        <label>*COMMENT
+                          <textarea class="form-control" name="comment" required></textarea>
                         </label>
                       </li>
+
+
+                      <li class="col-sm-12">
+                        <ul class="errorlist"></ul>
+                      </li>
+
                       <li class="col-sm-12">
                         <button type="submit" class="btn margin-top-30">Submit Comment </button>
                       </li>
                     </ul>
+
                   </form>
                 </div>
               </div>
@@ -259,3 +372,11 @@
     {% include "core/includes/news-letter.html" %}
   </div>
 {% endblock main %}
+
+
+{% block js %}
+    <script>
+      var isAuthenticated = {{ request.user.is_authenticated|yesno:"true,false" }};
+      </script>
+  <script src="{% static 'js/blog-detail.js' %}"></script>
+{% endblock js %}

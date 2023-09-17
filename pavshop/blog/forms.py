@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from django.conf import settings
 from .models import BlogReview
 
 
@@ -39,7 +40,7 @@ class BlogReviewAdminForm(forms.ModelForm):
         parent = self.cleaned_data.get("parent")
         blog = self.cleaned_data.get("blog")
 
-        max_parent_nesting = 1
+        max_parent_nesting = settings.CUSTOM_VARIABLES["MAX_PARENT_NESTING"]
 
         if parent:
             if parent.blog != blog:
