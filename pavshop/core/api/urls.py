@@ -1,10 +1,8 @@
-from django.urls import path, include
-from core.api.views import NewsletterAPIView
-from core.api.routers import router
+from django.urls import path
+from . import views as api_views
 
+app_name = "api_core"
 urlpatterns = [
-    path('newsletter/', NewsletterAPIView.as_view(), name='newsletter'),
-
+    path("newsletter/", api_views.NewsletterCreateAPIView.as_view(),
+         name="api_newsletter_create_view"),
 ]
-
-#urlpatterns += (router.urls, "core")

@@ -1,10 +1,12 @@
+from rest_framework import generics
+from rest_framework import permissions
+from .serializers import NewsletterSerializer
 from core.models import Newsletter
-from core.api.serializers import NewsletterSerializer
-from rest_framework.generics import CreateAPIView
-from rest_framework.decorators import api_view
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
 
 
-class NewsletterAPIView(CreateAPIView): 
-    allowed_methods = ['POST']
-    serializer_class = NewsletterSerializer
+class NewsletterCreateAPIView(generics.CreateAPIView):
     queryset = Newsletter.objects.all()
+    serializer_class = NewsletterSerializer
+    permission_classes = [permissions.AllowAny]
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]

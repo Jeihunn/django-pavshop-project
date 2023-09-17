@@ -55,3 +55,8 @@
   max-height: 1000px;
   overflow-y: auto;
 }
+
+.newsletter-text-success {
+  text-align: center !important;
+  color: green !important;
+}
