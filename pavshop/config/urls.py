@@ -59,6 +59,7 @@ urlpatterns = [
     # API APP
     path("api/", include('blog.api.urls', namespace="api_blog")),
     path("api/", include('product.api.urls', namespace="api_product")),
+    path("api/", include(("core.api.urls", "api"), namespace="newsletter-api")),
 ]
 
 
