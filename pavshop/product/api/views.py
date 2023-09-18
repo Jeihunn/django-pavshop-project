@@ -38,6 +38,8 @@ from .filters import (
 )
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+from drf_yasg.utils import swagger_auto_schema
+
 
 class ProductCategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = ProductCategory.objects.all()
@@ -49,12 +51,36 @@ class ProductCategoryListCreateAPIView(generics.ListCreateAPIView):
     filterset_class = ProductCategoryFilter
     search_fields = ["name"]
 
+    @swagger_auto_schema(tags=["Product Category API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product Category API"])
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
 
 class ProductCategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = ProductCategory.objects.all()
     serializer_class = ProductCategorySerializer
     permission_classes = [IsSuperuserOrReadOnly]
     throttle_classes = [AnonRateThrottle, UserRateThrottle]
+
+    @swagger_auto_schema(tags=["Product Category API"])
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product Category API"])
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product Category API"])
+    def patch(self, request, *args, **kwargs):
+        return super().patch(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product Category API"])
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
 
 
 class ProducTagListAPIView(generics.ListAPIView):
@@ -67,6 +93,10 @@ class ProducTagListAPIView(generics.ListAPIView):
     filterset_class = ProductTagFilter
     search_fields = ["name"]
 
+    @swagger_auto_schema(tags=["Product Tag API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
 
 class ColorListAPIView(generics.ListAPIView):
     queryset = Color.objects.all()
@@ -77,6 +107,10 @@ class ColorListAPIView(generics.ListAPIView):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     filterset_class = ColorFilter
     search_fields = ["name"]
+
+    @swagger_auto_schema(tags=["Color API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 class DesignerListAPIView(generics.ListAPIView):
@@ -89,6 +123,10 @@ class DesignerListAPIView(generics.ListAPIView):
     filterset_class = DesignerFilter
     search_fields = ["name"]
 
+    @swagger_auto_schema(tags=["Designer API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
 
 class BrandListAPIView(generics.ListAPIView):
     queryset = Brand.objects.all()
@@ -99,6 +137,10 @@ class BrandListAPIView(generics.ListAPIView):
     filter_backends = [SearchFilter, DjangoFilterBackend]
     filterset_class = BrandFilter
     search_fields = ["name"]
+
+    @swagger_auto_schema(tags=["Brand API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
@@ -115,6 +157,14 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
             return ProductCreateUpdateSerializer
         return self.serializer_class
 
+    @swagger_auto_schema(tags=["Product API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product API"])
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
 
 class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
@@ -126,6 +176,22 @@ class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method in ("PUT", "PATCH"):
             return ProductCreateUpdateSerializer
         return self.serializer_class
+
+    @swagger_auto_schema(tags=["Product API"])
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product API"])
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product API"])
+    def patch(self, request, *args, **kwargs):
+        return super().patch(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product API"])
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
 
 
 class ProductVersionListCreateAPIView(generics.ListCreateAPIView):
@@ -143,6 +209,14 @@ class ProductVersionListCreateAPIView(generics.ListCreateAPIView):
             return ProductVersionCreateUpdateSerializer
         return self.serializer_class
 
+    @swagger_auto_schema(tags=["Product Version API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product Version API"])
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
 
 class ProductVersionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = ProductVersion.objects.all()
@@ -154,6 +228,22 @@ class ProductVersionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method in ("PUT", "PATCH"):
             return ProductVersionCreateUpdateSerializer
         return self.serializer_class
+
+    @swagger_auto_schema(tags=["Product Version API"])
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product Version API"])
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product Version API"])
+    def patch(self, request, *args, **kwargs):
+        return super().patch(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Product Version API"])
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
 
 
 class WishlistListCreateAPIView(generics.ListCreateAPIView):
@@ -170,6 +260,14 @@ class WishlistListCreateAPIView(generics.ListCreateAPIView):
             return WishlistCreateUpdateSerializer
         return self.serializer_class
 
+    @swagger_auto_schema(tags=["Wishlist API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Wishlist API"])
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
 
 class WishlistDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Wishlist.objects.all()
@@ -181,3 +279,19 @@ class WishlistDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method in ("PUT", "PATCH"):
             return WishlistCreateUpdateSerializer
         return self.serializer_class
+
+    @swagger_auto_schema(tags=["Wishlist API"])
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Wishlist API"])
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Wishlist API"])
+    def patch(self, request, *args, **kwargs):
+        return super().patch(request, *args, **kwargs)
+
+    @swagger_auto_schema(tags=["Wishlist API"])
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
