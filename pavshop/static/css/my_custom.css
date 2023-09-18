@@ -52,8 +52,47 @@
 }
 
 .comment-section {
-  max-height: 1000px;
+  padding-right: 100px;
+  max-height: 1500px;
   overflow-y: auto;
+}
+
+.edit-delete-buttons {
+  display: inline-flex;
+}
+
+.edit-butons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.edit-submit-button {
+  background-color: #345bdb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-submit-button:hover {
+  background-color: #2a48a0;
+}
+
+.edit-cancel-button {
+  background-color: #808080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-cancel-button:hover {
+  background-color: #555;
 }
 
 .newsletter-text-success {

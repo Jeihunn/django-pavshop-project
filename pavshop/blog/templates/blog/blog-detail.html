@@ -92,7 +92,7 @@
                       {% for comment in comments %}
                         {% if not comment.parent %}
                           <!--======= Parent COMMENTS =========-->
-                          <li class="media">
+                          <li class="media" id="li-comment-{{ comment.id }}">
                             <div class="media-left"> 
                               <a href="#" class="avatar">
                                 {% if comment.user %}
@@ -117,15 +117,31 @@
                                 <span><i class="icon-clock primary-color"></i>{{ comment.updated_at|date:"d/m/Y H:i" }}</span>
 
                                 {% if comment.user == request.user %}
-                                  <span class="icon-edit-trash">
-                                    <a href="#"><span><i class="fa fa-pencil"></i></span></a>
-                                    <a href="#"><span><i class="fa fa-trash"></i></span></a>
-                                  </span>
+                                  <div class="edit-delete-buttons">
+                                    <span class="edit-button" id="edit-button-{{ comment.id }}" data-id="{{ comment.id }}" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>
+                                    <span class="delete-button" id="delete-button-{{ comment.id }}" data-id="{{ comment.id }}" style="cursor: pointer;"><i class="fa fa-trash"></i></span>
+                                  </div>
                                 {% endif %}
                               </h6>
-                              <p>
+
+                              {% if comment.user == request.user %}
+                                <form class="edit-forms" id="edit-form-{{ comment.id }}"  data-id="{{ comment.id }}" style="display: none">
+                                  {% csrf_token %}
+                                  <textarea name="comment" cols="50" rows="5" style="padding: 5px">{{ comment.comment }}</textarea>
+
+                                  <ul class="errorlist"></ul>
+
+                                  <div class="edit-butons">
+                                    <button type="submit" class="edit-submit-button" id="edit-submit-button-{{ comment.id }}" data-id="{{ comment.id }}">EDIT</button>
+                                    <button type="button" class="edit-cancel-button" id="edit-cancel-button-{{ comment.id }}" data-id="{{ comment.id }}">CANCEL</button>
+                                  </div>
+                                </form>
+                              {% endif %}
+
+                              <p id="comment-{{ comment.id }}">
                                   {{ comment.comment }}
                               </p>
+
                               <a class="raply reply-button"><i class="icon-bubble primary-color"></i> Reply</a> 
 
                               <div class="div-reply-form">
@@ -179,7 +195,7 @@
                         
                         {% for child in comment.children.all|dictsortreversed:"created_at" %}
                             <!--======= Child COMMENTS =========-->
-                            <li class="media padding-left-100">
+                            <li class="media padding-left-100" id="li-comment-{{ child.id }}">
                               <div class="media-left"> 
                                 <a href="#" class="avatar">
                                   {% if child.user %}
@@ -204,15 +220,31 @@
                                   <span><i class="icon-clock primary-color"></i>{{ child.updated_at|date:"d/m/Y H:i" }}</span>
 
                                   {% if child.user == request.user %}
-                                    <span class="icon-edit-trash">
-                                      <a href="#"><span><i class="fa fa-pencil"></i></span></a>
-                                      <a href="#"><span><i class="fa fa-trash"></i></span></a>
-                                    </span>
+                                  <div class="edit-delete-buttons">
+                                    <span class="edit-button" id="edit-button-{{ child.id }}" data-id="{{ child.id }}" style="cursor: pointer;"><i class="fa fa-pencil"></i></span>
+                                    <span class="delete-button" id="delete-button-{{ child.id }}" data-id="{{ child.id }}" style="cursor: pointer;"><i class="fa fa-trash"></i></span>
+                                  </div>
                                   {% endif %}
                                 </h6>
-                                <p>
+
+                                {% if child.user == request.user %}
+                                  <form class="edit-forms" id="edit-form-{{ child.id }}" data-id="{{ child.id }}" style="display: none">
+                                    {% csrf_token %}
+                                    <textarea name="comment" cols="50" rows="5" style="padding: 5px">{{ child.comment }}</textarea>
+
+                                    <ul class="errorlist"></ul>
+
+                                    <div class="edit-butons">
+                                      <button type="submit" class="edit-submit-button" id="edit-submit-button-{{ child.id }}" data-id="{{ child.id }}">EDIT</button>
+                                      <button type="button" class="edit-cancel-button" id="edit-cancel-button-{{ child.id }}" data-id="{{ child.id }}">CANCEL</button>
+                                    </div>
+                                  </form>
+                                {% endif %}
+
+                                <p id="comment-{{ child.id }}">
                                     {{ child.comment }}
                                 </p>
+
                               </div>
                             </li>
                         {% endfor %}
