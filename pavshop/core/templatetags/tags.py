@@ -7,6 +7,11 @@ from blog.models import Blog, BlogTag, BlogCategory
 register = template.Library()
 
 
+@register.filter(name='get_range')
+def get_range(value):
+    return range(value)
+
+
 @register.inclusion_tag('blog/includes/recent-post.html', takes_context=True)
 def get_recently_viewed_blogs(context):
     request = context['request']

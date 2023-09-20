@@ -156,7 +156,7 @@ function fetchProductVersions() {
               </div>
             </div>
             <!-- Item Name -->
-            <div class="item-name text-nowrap"> <a href="#.">${versions[i].title}</a></div>
+            <div class="item-name text-nowrap"> <a href="/product/${versions[i].slug}/">${versions[i].title}</a></div>
 
             <!-- Price --> 
             <div class="flex-container">

@@ -143,6 +143,17 @@ class ProductVersion(AbstractModel):
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
     slug = AutoSlugField(populate_from="title", unique=True)
 
+    @property
+    def total_discount(self):
+        total_discount = 0
+        for discount in self.discounts.all():
+            total_discount += discount.percent
+        return total_discount
+    
+    @property
+    def discounted_price(self):
+        return self.price - (self.price * self.total_discount / 100)
+
     class Meta:
         verbose_name = _("Product Version")
         verbose_name_plural = _("Product Versions")
