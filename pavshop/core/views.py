@@ -17,11 +17,6 @@ def shopping_cart_view(request):
     return render(request, "core/shopping-cart.html")
 
 
-@login_required(login_url=reverse_lazy('login_view'))
-def wishlist_view(request):
-    return render(request, "core/wishlist.html")
-
-
 def contact_view(request):
     if request.method == "POST":
         form = ContactForm(data=request.POST)

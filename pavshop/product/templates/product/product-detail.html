@@ -105,7 +105,16 @@
                   <li class="col-xs-6"> <a href="#." class="btn">ADD TO CART</a> </li>
                   
                   <!-- LIKE -->
-                  <li class="col-xs-6"> <a href="#." class="like-us"><i class="icon-heart"></i></a> </li>
+                  <li class="col-xs-6 li-heart" wishlist-id="{{ request.user.wishlist.id }}" product-id="{{ product_version.id }}">
+                    <a href="#." class="like-button">
+                      {% if product_version in request.user.wishlist.product_versions.all %}
+                        <i class="fa fa-2x fa-heart text-danger"></i>
+                      {% else %}
+                        <i class="fa fa-2x fa-heart-o"></i>
+                      {% endif %}
+                    </a>
+                  </li>
+
                 </ul>
                 
                 <!-- INFOMATION -->
@@ -265,3 +274,8 @@
     {% include "core/includes/news-letter.html" %}
   </div>
 {% endblock main %}
+
+
+{% block js %}
+  <script src="{% static "js/wishlist.js" %}"></script>
+{% endblock js %}

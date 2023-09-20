@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from .models import ProductVersion
+from .models import ProductVersion, Wishlist
 from .forms import ProductVersionReviewForm
 
 
@@ -43,3 +44,21 @@ def product_detail_view(request, product_slug):
         "related_product_versions": related_product_versions
     }
     return render(request, "product/product-detail.html", context)
+
+
+@login_required(login_url=reverse_lazy('login_view'))
+def wishlist_view(request):
+    try:
+        wishlist = request.user.wishlist
+    except Wishlist.DoesNotExist:
+        wishlist = None
+
+    if wishlist:
+        product_versions = wishlist.product_versions.all()
+    else:
+        product_versions = []
+
+    context = {
+        'product_versions': product_versions,
+    }
+    return render(request, "product/wishlist.html", context)

@@ -119,7 +119,7 @@
                   <li>
                     <h6>{% trans "HELLO" %}! {{ request.user.get_full_name }}</h6>
                   </li>
-                  <li><a href="{% url 'core:wishlist_view' %}">{% trans "FAVORITES" %}</a></li>
+                  <li><a href="{% url 'product:wishlist_view' %}">{% trans "FAVORITES" %}</a></li>
                   <li><a href="{% url 'user_profile_view' %}">{% trans "ACCOUNT INFO" %}</a></li>
                   <li><a href="{% url 'password_change' %}">{% trans "CHANGE PASSWORD" %}</a></li>
                   <li><a href="{% url 'logout_view' %}">{% trans "LOG OUT" %}</a></li>
