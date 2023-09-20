@@ -213,6 +213,13 @@ class Wishlist(AbstractModel):
         User, on_delete=models.CASCADE, related_name="wishlist", verbose_name=_("User"))
     product_versions = models.ManyToManyField(
         ProductVersion, blank=True, related_name="wishlists", verbose_name=_("Product Versions"))
+    
+    def add_product(self, product_version):
+        if not self.product_versions.filter(pk=product_version.pk).exists():
+            self.product_versions.add(product_version)
+                                      
+    def remove_product(self, product_version):
+        self.product_versions.remove(product_version)                    
 
     class Meta:
         verbose_name = _("Wishlist")

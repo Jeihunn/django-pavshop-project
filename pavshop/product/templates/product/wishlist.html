@@ -1,0 +1,82 @@
+{% extends 'core/base.html' %}
+{%load static i18n %}
+
+
+{% block page_title %}
+<title>Wishlist | Pavshop</title>
+{% endblock page_title %}
+
+
+{% block main %}
+<!--======= SUB BANNER =========-->
+{% include "core/includes/sub-banner.html" %}
+
+<!-- Content -->
+<div id="content">
+
+  <!--======= PAGES INNER =========-->
+  <section class="padding-top-100 padding-bottom-100 pages-in chart-page">
+    <div class="container">
+
+      {% if product_versions %}
+        <!-- Payments Steps -->
+        <div class="shopping-cart text-center">
+          <div class="cart-head">
+            <ul class="row">
+              <!-- PRODUCTS -->
+              <li class="col-sm-2 text-left">
+                <h6>{% trans "PRODUCTS " %}</h6>
+              </li>
+              <!-- NAME -->
+              <li class="col-sm-4 text-left">
+                <h6>{% trans " NAME" %}</h6>
+              </li>
+              <li class="col-sm-1"> </li>
+            </ul>
+          </div>
+
+          {% for product_version in product_versions %}
+            <!-- Cart Details -->
+            <ul class="row cart-details">
+
+              <li class="col-sm-6">
+                <div class="media">
+                  <!-- Media Image -->
+                  <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object"
+                        src="{{ product_version.cover_image.url }}" alt=""> </a> </div>
+
+                  <!-- Item Name -->
+                  <div class="media-body">
+                    <div class="position-center-center">
+                      <a href="{% url "product:product_detail_view" product_version.slug %}"><h5>{{ product_version.title }}</h5></a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <!-- REMOVE -->
+              <li class="col-sm-1">
+                <div class="position-center-center"> <a class="wishlist-close-icon" data-id={{ product_version.id }} style="cursor: pointer;"><i class="icon-close"></i></a> </div>
+              </li>
+
+            </ul>
+          {% endfor %}
+      {% else %}
+          <div class="alert alert-info">
+              <p><strong>Oops!</strong> There are currently no items in your wishlist.</p>
+              <p>Please feel free to browse our <a href="{% url "product:product_list_view" %}">products page</a> for exciting items to add.</p>
+          </div>
+      {% endif %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About -->
+  {% include "core/includes/about.html" %}
+
+  <!-- News Letter -->
+  {% include "core/includes/news-letter.html" %}
+</div>
+{% endblock main %}
