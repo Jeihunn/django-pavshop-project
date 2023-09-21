@@ -37,8 +37,8 @@
 
           {% for product_version in product_versions %}
             <!-- Cart Details -->
-            <ul class="row cart-details">
-
+            <ul class="row cart-details" id="cart-detail-{{ product_version.id }}">
+         
               <li class="col-sm-6">
                 <div class="media">
                   <!-- Media Image -->
@@ -56,7 +56,11 @@
 
               <!-- REMOVE -->
               <li class="col-sm-1">
-                <div class="position-center-center"> <a class="wishlist-close-icon" data-id={{ product_version.id }} style="cursor: pointer;"><i class="icon-close"></i></a> </div>
+                <div class="position-center-center"> 
+                  <a class="wishlist-close-icon" data-product-version-id={{ product_version.id }} style="cursor: pointer;" onclick="removeWishlist(this)">
+                    <i class="icon-close"></i>
+                  </a> 
+                </div>
               </li>
 
             </ul>
@@ -80,3 +84,8 @@
   {% include "core/includes/news-letter.html" %}
 </div>
 {% endblock main %}
+
+
+{% block js %}
+<script src="{% static "js/wishlist.js" %}"></script>
+{% endblock js %}
