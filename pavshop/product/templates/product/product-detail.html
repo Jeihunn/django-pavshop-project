@@ -101,19 +101,35 @@
                     </ul>
                   </li>
                   
-                  <!-- ADD TO CART -->
-                  <li class="col-xs-6"> <a href="#." class="btn">ADD TO CART</a> </li>
-                  
-                  <!-- LIKE -->
-                  <li class="col-xs-6 li-heart" wishlist-id="{{ request.user.wishlist.id }}" product-id="{{ product_version.id }}">
-                    <a href="#." class="like-button">
-                      {% if product_version in request.user.wishlist.product_versions.all %}
-                        <i class="fa fa-2x fa-heart text-danger"></i>
-                      {% else %}
-                        <i class="fa fa-2x fa-heart-o"></i>
-                      {% endif %}
-                    </a>
-                  </li>
+                  {% if request.user.is_authenticated %}
+                    <!-- ADD TO CART -->
+                    <li class="col-xs-6"> <a class="btn" style="cursor: pointer;">ADD TO CART</a> </li>
+                    
+                    <!-- LIKE -->
+                    <li class="col-xs-6 li-heart">
+                      <a class="heart-button" data-product-version-id="{{ product_version.id }}" onclick="toggleWishlist(this)" style="cursor: pointer;">
+                          {% if product_version in request.user.wishlist.product_versions.all %}
+                              <i class="fa fa-2x fa-heart text-danger"></i>
+                          {% else %}
+                              <i class="fa fa-2x fa-heart-o"></i>
+                          {% endif %}
+                      </a>
+                    </li>
+                  {% else %}
+                    <!-- ADD TO CART -->
+                    <li class="col-xs-6"> <a href="{% url "login_view" %}" class="btn">ADD TO CART</a> </li>
+
+                    <!-- LIKE -->
+                    <li class="col-xs-6 li-heart">
+                      <a href="{% url "login_view" %}" class="heart-button">
+                          {% if product_version in request.user.wishlist.product_versions.all %}
+                              <i class="fa fa-2x fa-heart text-danger"></i>
+                          {% else %}
+                              <i class="fa fa-2x fa-heart-o"></i>
+                          {% endif %}
+                      </a>
+                    </li>
+                  {% endif %}
 
                 </ul>
                 
