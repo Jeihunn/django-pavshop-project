@@ -7,9 +7,7 @@ window.addEventListener("load", function () {
 });
 
 function fetchCategories() {
-  fetch(
-    "/api/product-categories/?page_size=20&is_active=true&order_by=name"
-  )
+  fetch("/api/product-categories/?page_size=20&is_active=true&order_by=name")
     .then((response) => {
       if (!response.ok) {
         throw new Error("API request failed.");
@@ -33,9 +31,7 @@ function fetchCategories() {
 }
 
 function fetchTags() {
-  fetch(
-    "/api/product-tags/?page_size=10&is_active=true&order_by=-created_at"
-  )
+  fetch("/api/product-tags/?page_size=10&is_active=true&order_by=-created_at")
     .then((response) => {
       if (!response.ok) {
         throw new Error("API request failed.");
@@ -72,7 +68,7 @@ function fetchBrands() {
       let html = "";
 
       for (let i = 0; i < brands.length; i++) {
-          html += `<li><a href="#.">${brands[i].name}</a></li>`;
+        html += `<li><a href="#.">${brands[i].name}</a></li>`;
       }
 
       brandList.innerHTML = html;
@@ -96,7 +92,7 @@ function fetchColors() {
       let html = "";
 
       for (let i = 0; i < colors.length; i++) {
-          html += `<li><a href="#." style="background:${colors[i].hex_code};"></a></li>`;
+        html += `<li><a href="#." style="background:${colors[i].hex_code};"></a></li>`;
       }
 
       colorList.innerHTML = html;
@@ -107,7 +103,9 @@ function fetchColors() {
 }
 
 function fetchProductVersions() {
-  fetch("/api/product-versions/?page_size=9&is_active=true&order_by=-created_at")
+  fetch(
+    "/api/product-versions/?page_size=9&is_active=true&order_by=-created_at"
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error("API request failed.");
@@ -133,6 +131,15 @@ function fetchProductVersions() {
           discountHtml = `<div class="on-sale">${discount}% <span>OFF</span></div>`;
           oldPriceHtml = `<span class="price old-price"><small>$</small>${versions[i].price}</span>`;
         }
+        if (isAuthenticated) {
+          var heartIcon = `<a data-product-version-id="${versions[i].id}" onclick="toggleWishlist(this)" style="cursor: pointer;">
+                            <i class="fa fa-heart-o"></i>
+                          </a>`;
+        } else {
+          var heartIcon = `<a href="/login/">
+                            <i class="fa fa-heart-o"></i>
+                          </a>`;
+        }
 
         html += `
         <!-- Item -->
@@ -143,24 +150,32 @@ function fetchProductVersions() {
             
             <!-- Item img -->
             <div class="item-img"> 
-              <img class="img-1 image-container" src="${versions[i].cover_image}" alt="" >
+              <img class="img-1 image-container" src="${
+                versions[i].cover_image
+              }" alt="" >
               <!-- Overlay -->
               <div class="overlay">
                 <div class="position-center-center">
                   <div class="inn">
-                    <a href="${versions[i].cover_image}" data-lighter><i class="icon-magnifier"></i></a> 
+                    <a href="${
+                      versions[i].cover_image
+                    }" data-lighter><i class="icon-magnifier"></i></a> 
                     <a href="#."><i class="icon-basket"></i></a> 
-                    <a href="#."><i class="icon-heart"></i></a>
+                    ${heartIcon}
                   </div>
                 </div>
               </div>
             </div>
             <!-- Item Name -->
-            <div class="item-name text-nowrap"> <a href="/product/${versions[i].slug}/">${versions[i].title}</a></div>
+            <div class="item-name text-nowrap"> <a href="/product/${
+              versions[i].slug
+            }/">${versions[i].title}</a></div>
 
             <!-- Price --> 
             <div class="flex-container">
-              <span class="price"><small>$</small>${versions[i].price * (100 - discount) / 100}</span>
+              <span class="price"><small>$</small>${
+                (versions[i].price * (100 - discount)) / 100
+              }</span>
               ${oldPriceHtml}
             </div>
 
@@ -173,5 +188,18 @@ function fetchProductVersions() {
     })
     .catch((error) => {
       console.error("An error occurred during the API request:", error.message);
+    });
+}
+
+function toggleWishlist(button) {
+  const productVersionId = button.getAttribute("data-product-version-id");
+  fetch(`/toggle-wishlist/?product_version_id=${productVersionId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.is_added) {
+        button.innerHTML = '<i class="fa fa-heart text-danger"></i>';
+      } else {
+        button.innerHTML = '<i class="fa fa-heart-o"></i>';
+      }
     });
 }

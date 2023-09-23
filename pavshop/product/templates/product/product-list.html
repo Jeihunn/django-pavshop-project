@@ -59,7 +59,17 @@
                       <!-- Overlay -->
                       <div class="overlay">
                         <div class="position-center-center">
-                          <div class="inn"><a href="{% static 'images/product-2-1.jpg' %}" data-lighter><i class="icon-magnifier"></i></a> <a href="#."><i class="icon-basket"></i></a> <a href="#." ><i class="icon-heart"></i></a></div>
+                          <div class="inn">
+                            <a href="{% static 'images/product-2-1.jpg' %}" data-lighter>
+                              <i class="icon-magnifier"></i>
+                            </a> 
+                            <a href="#.">
+                              <i class="icon-basket"></i>
+                            </a> 
+                            <a href="#." >
+                              <i class="icon-heart"></i>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -178,5 +188,8 @@
 
 
 {% block js %}
+  <script>
+      var isAuthenticated = {{ request.user.is_authenticated|yesno:"true,false" }};
+  </script>
   <script src="{% static 'js/product-list.js' %}"></script>
 {% endblock js %}

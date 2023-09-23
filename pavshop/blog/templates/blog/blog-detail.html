@@ -407,8 +407,8 @@
 
 
 {% block js %}
-    <script>
-      var isAuthenticated = {{ request.user.is_authenticated|yesno:"true,false" }};
-      </script>
+  <script>
+    var isAuthenticated = {{ request.user.is_authenticated|yesno:"true,false" }};
+  </script>
   <script src="{% static 'js/blog-detail.js' %}"></script>
 {% endblock js %}

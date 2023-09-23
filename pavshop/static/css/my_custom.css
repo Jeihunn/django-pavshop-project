@@ -114,3 +114,7 @@
   max-width: 100%;
   height: auto;
 }
+
+a {
+  user-select: none !important;
+}

@@ -66,7 +66,7 @@ def blog_detail_view(request, blog_slug):
 
     comments = blog.reviews.filter(parent=None).order_by("-created_at")
     related_blogs = Blog.objects.filter(
-        Q(blog_categories__in=blog.blog_categories.all()) & ~Q(id=blog.id)).distinct()[:3]
+        Q(blog_categories__in=blog.blog_categories.all()) & ~Q(id=blog.id)).filter(is_active=True).distinct()[:3]
 
     if "recently_viewed" in request.session:
         if blog.id in request.session["recently_viewed"]:
