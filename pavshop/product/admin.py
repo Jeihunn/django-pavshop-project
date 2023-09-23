@@ -166,7 +166,7 @@ class ProductVersionAdmin(TranslationAdmin):
     list_display_links = ["id", "title"]
     list_filter = ["is_active", "product",
                    "colors", "created_at", "updated_at"]
-    search_fields = ["product__title", "designer"]
+    search_fields = ["title"]
 
     def get_colors(self, obj):
         arr = []

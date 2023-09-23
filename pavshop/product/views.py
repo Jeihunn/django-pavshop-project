@@ -22,7 +22,7 @@ def product_detail_view(request, product_slug):
     comments = product_version.reviews.order_by("-created_at")
     related_product_versions = ProductVersion.objects.filter(
         product__product_categories__in=product_version.product.product_categories.all()
-    ).exclude(id=product_version.id).distinct()[:15]
+    ).exclude(id=product_version.id).filter(is_active=True).distinct()[:15]
 
     if request.method == "POST":
         form = ProductVersionReviewForm(data=request.POST, user=request.user)
@@ -58,7 +58,7 @@ def wishlist_view(request):
         wishlist = None
 
     if wishlist:
-        product_versions = wishlist.product_versions.all()
+        product_versions = wishlist.product_versions.filter(is_active=True)
     else:
         product_versions = []
 
@@ -85,7 +85,11 @@ def toggle_wishlist(request):
         wishlist.add_product(product_version)
         is_added = True
 
-    return JsonResponse({"is_added": is_added})
+    response_data = {
+        "is_added": is_added,
+        "wishlist_count": wishlist.product_versions.filter(is_active=True).count()
+    }
+    return JsonResponse(response_data)
 
 
 @login_required(login_url=reverse_lazy("login_view"))
@@ -99,4 +103,8 @@ def remove_from_wishlist(request):
     wishlist, created = Wishlist.objects.get_or_create(user=request.user)
     wishlist.remove_product(product_version)
 
-    return JsonResponse({"success": True})
+    response_data = {
+        "success": True,
+        "wishlist_count": wishlist.product_versions.filter(is_active=True).count()
+    }
+    return JsonResponse(response_data)

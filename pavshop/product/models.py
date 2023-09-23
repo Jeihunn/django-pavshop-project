@@ -82,7 +82,11 @@ class ProductCategory(AbstractModel):
 
     @property
     def product_count(self):
-        return self.products.count()
+        count = 0
+        for product in self.products.all():
+            for product_version in product.versions.filter(is_active=True):
+                count += 1
+        return count
 
     def __str__(self):
         return self.name
@@ -99,7 +103,11 @@ class ProductTag(AbstractModel):
 
     @property
     def product_count(self):
-        return self.products.count()
+        count = 0
+        for product in self.products.all():
+            for product_version in product.versions.filter(is_active=True):
+                count += 1
+        return count
 
     def __str__(self):
         return self.name
