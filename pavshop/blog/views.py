@@ -1,11 +1,12 @@
+from django.views.generic import ListView
+# from django.http import Http404
+from django.views.generic import DetailView
 from datetime import datetime
-from django.shortcuts import render, redirect, get_object_or_404, Http404
+from django.shortcuts import render, get_object_or_404, Http404
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
-from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from .models import Blog, BlogCategory, BlogTag
-
 
 # Create your views here.
 
@@ -66,7 +67,8 @@ def blog_detail_view(request, blog_slug):
 
     comments = blog.reviews.filter(parent=None).order_by("-created_at")
     related_blogs = Blog.objects.filter(
-        Q(blog_categories__in=blog.blog_categories.all()) & ~Q(id=blog.id)).filter(is_active=True).distinct()[:3]
+        Q(blog_categories__in=blog.blog_categories.all()) & ~Q(id=blog.id)).filter(
+            is_active=True).distinct()[:3]
 
     if "recently_viewed" in request.session:
         if blog.id in request.session["recently_viewed"]:
@@ -118,3 +120,84 @@ def blog_archive_view(request, year, month):
         "blogs_count": blogs_count,
     }
     return render(request, "blog/blog-list.html", context)
+
+# Generic
+
+
+class BlogListView(ListView):
+    template_name = "blog/blog-list.html"
+    model = Blog
+    context_object_name = "blogs"
+    paginate_by = 6
+
+    def get_queryset(self):
+        category_slug = self.request.GET.get("category")
+        tag_slug = self.request.GET.get("tag")
+        query = self.request.GET.get("query")
+
+        blogs = Blog.objects.filter(is_active=True).order_by("-publish_date")
+
+        if category_slug:
+            blogs = blogs.filter(blog_categories__slug=category_slug)
+
+        if tag_slug:
+            blogs = blogs.filter(blog_tags__slug=tag_slug)
+
+        if query:
+            blogs = blogs.filter(Q(title_az__icontains=query)
+                                 | Q(title_en__icontains=query))
+
+        return blogs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["blogs_count"] = self.get_queryset().count()
+        context["selected_category"] = self.request.GET.get("category")
+        context["selected_tag"] = self.request.GET.get("tag")
+        context["selected_query"] = self.request.GET.get("query")
+        return context
+
+
+class BlogDetailView(DetailView):
+    template_name = "blog/blog-detail.html"
+    model = Blog
+    context_object_name = "blog"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        blog = context["blog"]
+        context["related_blogs"] = Blog.objects.filter(
+            Q(blog_categories__in=blog.blog_categories.all()) & ~Q(id=blog.id)
+        ).filter(is_active=True).distinct()[:3]
+        context["comments"] = blog.reviews.filter(
+            parent=None).order_by("-created_at")
+        return context
+
+
+class BlogArchiveView(ListView):
+    template_name = "blog/blog-list.html"
+    model = Blog
+    context_object_name = "blogs"
+    paginate_by = 6
+
+    def get_queryset(self):
+        year = self.kwargs.get("year")
+        month = self.kwargs.get("month").lower()
+
+        try:
+            blog_date = datetime.strptime(f"{year}/{month}", "%Y/%B")
+        except ValueError:
+            raise Http404(_("Invalid date format."))
+
+        blogs = Blog.objects.filter(
+            is_active=True,
+            publish_date__year=year,
+            publish_date__month=blog_date.month
+        ).order_by("-publish_date")
+
+        return blogs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["blogs_count"] = self.get_queryset().count()
+        return context

@@ -1,3 +1,5 @@
+from django.views.generic import DetailView
+from django.views.generic import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -108,3 +110,48 @@ def remove_from_wishlist(request):
         "wishlist_count": wishlist.product_versions.filter(is_active=True).count()
     }
     return JsonResponse(response_data)
+
+
+# Generic
+
+class ProductListView(TemplateView):
+    template_name = "product/product-list.html"
+
+
+class ProductDetailView(DetailView):
+    model = ProductVersion
+    template_name = "product/product-detail.html"
+    context_object_name = "product_version"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        product_version = context['product_version']
+        context['comments'] = product_version.reviews.order_by("-created_at")
+        context['related_product_versions'] = ProductVersion.objects.filter(
+            product__product_categories__in=product_version.product.product_categories.all()
+        ).exclude(id=product_version.id).filter(is_active=True).distinct()[:15]
+
+        if self.request.method == "POST":
+            form = ProductVersionReviewForm(
+                data=self.request.POST, user=self.request.user)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.product_version = product_version
+                if self.request.user.is_authenticated:
+                    review.user = self.request.user
+                form.save()
+                messages.success(self.request, _(
+                    "Your comment has been successfully saved."))
+                return redirect(reverse_lazy(
+                    "product:product_detail_view",
+                    kwargs={"product_slug": product_version.slug}))
+            else:
+                messages.error(
+                    self.request, _('''There was an error saving your comment. 
+                    Please review the fields and make sure they are correct.'''))
+        else:
+            form = ProductVersionReviewForm(user=self.request.user)
+
+        context['form'] = form
+        return context
