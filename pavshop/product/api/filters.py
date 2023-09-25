@@ -7,7 +7,8 @@ from product.models import (
     Designer,
     Brand,
     ProductVersion,
-    Wishlist
+    Wishlist,
+    ShoppingCart
 )
 
 
@@ -129,4 +130,18 @@ class WishlistFilter(django_filters.FilterSet):
 
     class Meta:
         model = Wishlist
+        fields = ["user__id"]
+
+
+class ShoppingCartFilter(django_filters.FilterSet):
+    user__id = django_filters.NumberFilter(
+        field_name="user__id",
+        lookup_expr="exact",
+        label="User ID",
+        widget=forms.NumberInput(
+            attrs={"placeholder": "Search by user id"}),
+    )
+
+    class Meta:
+        model = ShoppingCart
         fields = ["user__id"]

@@ -16,10 +16,6 @@ def index_view(request):
     return render(request, "core/index.html")
 
 
-def shopping_cart_view(request):
-    return render(request, "core/shopping-cart.html")
-
-
 def contact_view(request):
     if request.method == "POST":
         form = ContactForm(data=request.POST)
@@ -40,13 +36,11 @@ def contact_view(request):
     return render(request, "core/contact.html", context)
 
 
-def checkout_view(request):
-    return render(request, "core/checkout.html")
-
-
 def about_us_view(request):
     return render(request, "core/about-us.html")
 
+
+# ===== Generic Views =====
 
 class ContactView(CreateView):
     template_name = 'core/contact.html'

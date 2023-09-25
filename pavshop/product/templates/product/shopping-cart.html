@@ -1,0 +1,165 @@
+{% extends 'core/base.html' %}
+{% load static tags i18n %}
+  
+
+{% block page_title %}
+  <title>Shopping Cart | Pavshop</title>
+{% endblock page_title %}
+
+
+{% block main %}
+  <!--======= SUB BANNER =========-->
+  {% include "core/includes/sub-banner.html" %}
+  
+  <!-- Content -->
+  <div id="content"> 
+    
+    <!--======= PAGES INNER =========-->
+    <section class="padding-top-100 padding-bottom-100 pages-in chart-page">
+      <div class="container shopping-cart-container"> 
+        
+        {% if cart_items %}
+          <!-- Payments Steps -->
+          <div class="shopping-cart text-center">
+            <div class="cart-head">
+              <ul class="row">
+                <!-- PRODUCTS -->
+                <li class="col-sm-2 text-left">
+                  <h6>{% trans "PRODUCTS" %}</h6>
+                </li>
+                <!-- NAME -->
+                <li class="col-sm-4 text-left">
+                  <h6>{% trans "NAME" %}</h6>
+                </li>
+                <!-- PRICE -->
+                <li class="col-sm-2">
+                  <h6>{% trans "PRICE" %}</h6>
+                </li>
+                <!-- QTY -->
+                <li class="col-sm-1">
+                  <h6>{% trans "QTY" %}</h6>
+                </li>
+                
+                <!-- TOTAL PRICE -->
+                <li class="col-sm-2">
+                  <h6>{% trans "TOTAL" %}</h6>
+                </li>
+                <li class="col-sm-1"> </li>
+              </ul>
+            </div>
+            
+            {% for item in cart_items %}
+              <!-- Cart Details -->
+              <ul class="row cart-details" id="cart-item-{{ item.id }}">
+                <li class="col-sm-6">
+                  <div class="media"> 
+                    <!-- Media Image -->
+                    <div class="media-left media-middle"> <a href="#." class="item-img"> <img class="media-object" src="{{ item.product_version.cover_image.url }}" alt=""> </a> </div>
+                    
+                    <!-- Item Name -->
+                    <div class="media-body">
+                      <div class="position-center-center">
+                        <h5>
+                          <a href="{% url 'product:product_detail_view' item.product_version.slug %}">{{ item.product_version.title }}</a>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                
+                <!-- PRICE -->
+                <li class="col-sm-2">
+                  <div class="position-center-center"> <span class="price"><small>$</small>{{ item.product_version.discounted_price }}</span> </div>
+                </li>
+                
+                <!-- QTY -->
+                <li class="col-sm-1">
+                  <div class="position-center-center">
+                    <div class="quinty"> 
+                      <!-- QTY -->
+                      <select class="form-control">
+                        {% for i in item.product_version.quantity|get_range|slice:":10" %}
+                          <option value="{{ i|add:1 }}" {% if item.quantity == i|add:1 %}selected{% endif %}>{{ i|add:1 }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                
+                <!-- TOTAL PRICE -->
+                <li class="col-sm-2">
+                  <div class="position-center-center"> <span class="price"><small>$</small>{{ item.total_price }}</span> </div>
+                </li>
+                
+                <!-- REMOVE -->
+                <li class="col-sm-1">
+                  <div class="position-center-center"> 
+                    <a class="cart-close-icon" data-cart-item-id="{{ item.id }}" style="cursor: pointer;" onclick="removeCartItem(this)">
+                      <i class="icon-close"></i>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            {% endfor %}
+
+          </div>
+        {% else %}
+          <div class="alert alert-info">
+            There are no items in your cart.
+            <span class="alert-link">
+              <a href="{% url 'product:product_list_view' %}">Click here to view products.</a>
+            </span>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+    
+    <!--======= PAGES INNER =========-->
+    <section class="padding-top-100 padding-bottom-100 light-gray-bg shopping-cart small-cart">
+      <div class="container"> 
+        
+        <!-- SHOPPING INFORMATION -->
+        <div class="cart-ship-info margin-top-0">
+          <div class="row"> 
+            
+            <!-- DISCOUNT CODE -->
+            <div class="col-sm-7">
+              <h6>{% trans "DISCOUNT CODE " %}</h6>
+              <form>
+                <input type="text" value="" placeholder="ENTER YOUR CODE IF YOU HAVE ONE">
+                <button type="submit" class="btn btn-small btn-dark">{% trans " APPLY CODE" %}</button>
+              </form>
+              <div class="coupn-btn"> <a href="#." class="btn">{% trans " continue shopping" %}</a> <a href="#." class="btn">{% trans " update cart" %}</a> </div>
+            </div>
+            
+            <!-- SUB TOTAL -->
+            <div class="col-sm-5">
+              <h6>{% trans "grand total " %}</h6>
+              <div class="grand-total">
+                <div class="order-detail">
+                  {% for item in cart_items %}
+                    <p id="p-cart-item-{{ item.id }}">{{ item.product_version.title }} <span>${{ item.total_price }} </span></p>
+                  {% endfor %}
+                  
+                  <!-- SUB TOTAL -->
+                  <p class="all-total">
+                    {% trans "TOTAL COST" %} 
+                    <span> 
+                      $<span id="total-cost">{{ shopping_cart.total_price }}</span>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- About -->
+    {% include "core/includes/about.html" %}
+    
+    <!-- News Letter -->
+    {% include "core/includes/news-letter.html" %}
+  </div>
+  {% endblock main %}

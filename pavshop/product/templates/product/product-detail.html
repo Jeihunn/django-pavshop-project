@@ -77,59 +77,75 @@
               <!-- Short By -->
               <div class="some-info">
                 <ul class="row margin-top-30">
-                  <li class="col-xs-4">
-                    <div class="quinty"> 
-                      <!-- QTY -->
-                      <select class="selectpicker">
-                        {% for i in product_version.quantity|get_range|slice:":10" %}
-                          <option>{{ i|add:1 }}</option>
-                        {% endfor %}
-                      </select>
-                    </div>
-                  </li>
-                  
-                  <!-- COLORS -->
-                  <li class="col-xs-8">
-                    <ul class="colors-shop">
-                      <li><span class="margin-right-20">Colors</span></li>
-                      {% for color in product_version.colors.all %}
-                        {% if color.is_active %}
-                          <li><a href="#." style="background:{{ color.hex_code }};"></a></li>
+                  <div class="row">
+                    <li class="col-xs-4">
+                      <div class="quinty"> 
+                        {% if product_version.quantity > 0 %}
+                          <!-- QTY -->
+                          <select class="form-control qty-select">
+                            {% for i in product_version.quantity|get_range|slice:":10" %}
+                              <option value="{{ i|add:1 }}">{{ i|add:1 }}</option>
+                            {% endfor %}
+                          </select>
+                        {% else %}
+                          <span class="text-primary h4 bg-danger padding-10">Out of Stock</span>
                         {% endif %}
-                      {% endfor %}
-
-                    </ul>
-                  </li>
-                  
-                  {% if request.user.is_authenticated %}
-                    <!-- ADD TO CART -->
-                    <li class="col-xs-6"> <a class="btn" style="cursor: pointer;">ADD TO CART</a> </li>
+  
+                      </div>
+                    </li>
                     
-                    <!-- LIKE -->
-                    <li class="col-xs-6 li-heart">
-                      <a class="heart-button" data-product-version-id="{{ product_version.id }}" onclick="toggleWishlist2x(this)" style="cursor: pointer;">
-                          {% if product_version in request.user.wishlist.product_versions.all %}
-                              <i class="fa fa-2x fa-heart text-danger"></i>
-                          {% else %}
-                              <i class="fa fa-2x fa-heart-o"></i>
+                    <!-- COLORS -->
+                    <li class="col-xs-8">
+                      <ul class="colors-shop">
+                        <li><span class="margin-right-20">Colors</span></li>
+                        {% for color in product_version.colors.all %}
+                          {% if color.is_active %}
+                            <li><a href="#." style="background:{{ color.hex_code }};"></a></li>
                           {% endif %}
-                      </a>
+                        {% endfor %}
+  
+                      </ul>
                     </li>
-                  {% else %}
-                    <!-- ADD TO CART -->
-                    <li class="col-xs-6"> <a href="{% url "login_view" %}" class="btn">ADD TO CART</a> </li>
+                  </div>
+                  
+                  <div class="row">
+                    {% if request.user.is_authenticated %}
+                      {% if product_version.quantity > 0 %}
+                        <!-- ADD TO CART -->
+                        <li class="col-xs-6"> 
+                          <a class="btn add-cart-button" style="cursor: pointer;" data-product-version-id="{{ product_version.id }}" onclick="addToCartQuantity(this)">
+                            ADD TO CART
+                          </a> 
+                        </li>
+                      {% endif %}
+                      
+                      <!-- LIKE -->
+                      <li class="col-xs-6 li-heart">
+                        <a class="heart-button" data-product-version-id="{{ product_version.id }}" onclick="toggleWishlist2x(this)" style="cursor: pointer;">
+                            {% if product_version in request.user.wishlist.product_versions.all %}
+                                <i class="fa fa-2x fa-heart text-danger"></i>
+                            {% else %}
+                                <i class="fa fa-2x fa-heart-o"></i>
+                            {% endif %}
+                        </a>
+                      </li>
+                    {% else %}
+                      <!-- ADD TO CART -->
+                      <li class="col-xs-6"> <a href="{% url "login_view" %}" class="btn">ADD TO CART</a> </li>
 
-                    <!-- LIKE -->
-                    <li class="col-xs-6 li-heart">
-                      <a href="{% url "login_view" %}" class="heart-button">
-                          {% if product_version in request.user.wishlist.product_versions.all %}
-                              <i class="fa fa-2x fa-heart text-danger"></i>
-                          {% else %}
-                              <i class="fa fa-2x fa-heart-o"></i>
-                          {% endif %}
-                      </a>
-                    </li>
-                  {% endif %}
+                      <!-- LIKE -->
+                      <li class="col-xs-6 li-heart">
+                        <a href="{% url "login_view" %}" class="heart-button">
+                            {% if product_version in request.user.wishlist.product_versions.all %}
+                                <i class="fa fa-2x fa-heart text-danger"></i>
+                            {% else %}
+                                <i class="fa fa-2x fa-heart-o"></i>
+                            {% endif %}
+                        </a>
+                      </li>
+                    {% endif %}
+                  </div>
+
 
                 </ul>
                 
@@ -274,7 +290,7 @@
                         <i class="icon-magnifier"></i>
                       </a> 
                       {% if request.user.is_authenticated %}
-                        <a href="#.">
+                        <a data-product-version-id="{{ related_product_version.id }}" onclick="addToCart(this)" style="cursor: pointer;">
                           <i class="icon-basket"></i>
                         </a>
                         <a data-product-version-id="{{ related_product_version.id }}" onclick="toggleWishlist(this)" style="cursor: pointer;">

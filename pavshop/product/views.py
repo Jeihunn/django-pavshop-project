@@ -1,12 +1,16 @@
-from django.views.generic import DetailView
-from django.views.generic import TemplateView
+from django.views.generic import DetailView, TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.http import JsonResponse
-from .models import ProductVersion, Wishlist
+from .models import (
+    ProductVersion,
+    Wishlist,
+    ShoppingCart,
+    CartItem
+)
 from .forms import ProductVersionReviewForm
 
 
@@ -112,7 +116,84 @@ def remove_from_wishlist(request):
     return JsonResponse(response_data)
 
 
-# Generic
+@login_required(login_url=reverse_lazy("login_view"))
+def shopping_cart_view(request):
+    return render(request, "product/shopping-cart.html")
+
+
+@login_required(login_url=reverse_lazy("login_view"))
+def remove_from_cart(request):
+    cart_item_id = request.GET.get("cart_item_id")
+    try:
+        cart_item = CartItem.objects.get(id=cart_item_id)
+    except CartItem.DoesNotExist:
+        return JsonResponse({"error": "Cart item not found."}, status=400)
+
+    cart, created = ShoppingCart.objects.get_or_create(user=request.user)
+    cart.remove_cart_item(cart_item)
+
+    basket_count = 0
+    for item in cart.items.filter(product_version__is_active=True):
+        basket_count += item.quantity
+
+    response_data = {
+        "success": True,
+        "basket_count": basket_count,
+        "cart_total_price": cart.total_price
+    }
+    return JsonResponse(response_data)
+
+
+@login_required(login_url=reverse_lazy("login_view"))
+def add_to_cart(request):
+    product_version_id = request.GET.get("product_version_id")
+    quantity = int(request.GET.get("quantity", 1))
+
+    try:
+        product_version = ProductVersion.objects.get(id=product_version_id)
+    except ProductVersion.DoesNotExist:
+        return JsonResponse({"error": "Product version not found."}, status=400)
+
+    cart, created = ShoppingCart.objects.get_or_create(user=request.user)
+
+    success = False
+    if CartItem.objects.filter(cart=cart, product_version=product_version).exists():
+        cart_item = CartItem.objects.get(
+            cart=cart, product_version=product_version)
+
+        cart_item_quantity = cart_item.quantity
+
+        new_quantity = min(product_version.quantity,
+                           cart_item.quantity + quantity, 10)
+        cart_item.quantity = new_quantity
+        cart_item.save()
+
+        new_cart_item_quantity = cart_item.quantity
+        if new_cart_item_quantity != cart_item_quantity:
+            success = True
+    else:
+        new_quantity = min(product_version.quantity, quantity, 10)
+        cart_item = CartItem.objects.create(
+            cart=cart, product_version=product_version, quantity=new_quantity)
+        success = True
+
+    basket_count = 0
+    for item in cart.items.filter(product_version__is_active=True):
+        basket_count += item.quantity
+
+    response_data = {
+        "success": success,
+        "basket_count": basket_count,
+        "cart_total_price": cart.total_price
+    }
+    return JsonResponse(response_data)
+
+
+def checkout_view(request):
+    return render(request, "product/checkout.html")
+
+
+# ===== Generic Views =====
 
 class ProductListView(TemplateView):
     template_name = "product/product-list.html"
