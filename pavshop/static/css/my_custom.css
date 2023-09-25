@@ -118,3 +118,9 @@
 a {
   user-select: none !important;
 }
+
+#cart-item-count {
+  font-size: 10px !important;
+  background-color: gray !important;
+  color: #fff !important;
+}

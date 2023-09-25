@@ -1,12 +1,11 @@
-from django.views.generic import ListView
-# from django.http import Http404
-from django.views.generic import DetailView
+from django.views.generic import ListView, DetailView
 from datetime import datetime
 from django.shortcuts import render, get_object_or_404, Http404
 from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 from .models import Blog, BlogCategory, BlogTag
+
 
 # Create your views here.
 
@@ -121,8 +120,8 @@ def blog_archive_view(request, year, month):
     }
     return render(request, "blog/blog-list.html", context)
 
-# Generic
 
+# ===== Generic Views =====
 
 class BlogListView(ListView):
     template_name = "blog/blog-list.html"

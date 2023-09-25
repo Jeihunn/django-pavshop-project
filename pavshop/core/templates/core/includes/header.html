@@ -131,38 +131,62 @@
             {% endif %}
 
             <!-- USER BASKET -->
-            <li class="dropdown user-basket"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="icon-basket-loaded"></i> </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <div class="media-left">
-                    <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="{% static 'images/cart-img-1.jpg' %}" alt="..."> </a> </div>
-                  </div>
-                  <div class="media-body">
-                    <h6 class="media-heading">WOOD CHAIR</h6>
-                    <span class="price">129.00 USD</span> <span class="qty">{% trans " QTY" %}: 01</span> </div>
-                </li>
-                <li>
-                  <div class="media-left">
-                    <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="{% static 'images/cart-img-2.jpg' %}" alt="..."> </a> </div>
-                  </div>
-                  <div class="media-body">
-                    <h6 class="media-heading">WOOD STOOL</h6>
-                    <span class="price">129.00 USD</span> <span class="qty">{% trans " QTY" %}: 01</span> </div>
-                </li>
-                <li>
-                  <h5 class="text-center">{% trans " SUBTOTAL" %}: 258.00 USD</h5>
-                </li>
-                <li class="margin-0">
-                  <div class="row">
-                    <div class="col-xs-6"> <a href="{% url 'core:shopping_cart_view' %}" class="btn">{% trans " VIEW CART" %}</a></div>
-                    <div class="col-xs-6 "> <a href="{% url 'core:checkout_view' %}" class="btn">{% trans "CHECK OUT " %}</a></div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          
+            {% if request.user.is_authenticated %}
+              <li class="dropdown user-basket" data-user-id="{{ request.user.id }}"> 
+                <a href="#" id="dropdown-basket" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" onclick="showCart()">
+                  <i class="icon-basket-loaded"></i>
+                </a>
+                
+                <ul class="dropdown-menu">
+
+                  {% for item in cart_items %}
+                    <li id="header-cart-item-{{ item.id }}">
+                      <div class="media-left">
+                        <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="{{ item.product_version.cover_image.url }}" alt=""> </a> </div>
+                      </div>
+                      <div class="media-body">
+                        <h6 class="media-heading">{{ item.product_version.title }}</h6>
+                        <span class="price">{{ item.product_version.discounted_price  }} USD</span> <span class="qty">{% trans " QTY" %}: {{ item.quantity  }}</span> 
+                      </div>
+                    </li>
+                  {% endfor %}
+
+                  {% if cart_items %}
+                    <li>
+                      <h5 class="text-center">
+                        {% trans " SUBTOTAL" %}: 
+                        <span id="subtotal">{{ shopping_cart.total_price }}</span>
+                      </h5>
+                    </li>
+                  {% else %}
+                    <li>
+                        <div class="alert alert-info">
+                          {% trans "YOUR BASKET IS EMPTY" %}
+                        </div>
+                    </li>
+                  {% endif %}
+                    
+                  <li class="margin-0">
+                    <div class="row">
+                      <div class="col-xs-6"> <a href="{% url 'product:shopping_cart_view' %}" class="btn">{% trans " VIEW CART" %}</a></div>
+                      {% if shopping_cart.total_price > 0 %}
+                        <div class="col-xs-6 checkout-button"> <a href="{% url 'product:checkout_view' %}" class="btn">{% trans "CHECK OUT " %}</a></div>
+                      {% endif %}
+                    </div>
+                  </li>
+
+                </ul>
+              </li>
+
+              <li id="header-basket-count">
+                  {% if cart_items %}
+                    <span class="badge">{{ basket_count }}</span>
+                  {% endif %}
+              </li>
+            {% endif %}
+
             <!-- SEARCH BAR -->
-            <li class="dropdown"> <a href="javascript:void(0);" class="search-open"><i class=" icon-magnifier"></i></a>
+            <li class="dropdown margin-left-15"> <a href="javascript:void(0);" class="search-open"><i class=" icon-magnifier"></i></a>
               <div class="search-inside animated bounceInUp"> <i class="icon-close search-close"></i>
                 <div class="search-overlay"></div>
                 <div class="position-center-center">

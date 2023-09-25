@@ -8,7 +8,8 @@ from product.models import (
     Brand,
     Product,
     ProductVersion,
-    Wishlist
+    Wishlist,
+    ShoppingCart
 )
 from .serializers import (
     ProductCategorySerializer,
@@ -21,7 +22,8 @@ from .serializers import (
     ProductVersionListSerializer,
     ProductVersionCreateUpdateSerializer,
     WishlistListSerializer,
-    WishlistCreateUpdateSerializer
+    WishlistCreateUpdateSerializer,
+    ShoppingCartSerializer
 )
 from .permissions import IsSuperuserOrReadOnly
 from blog.api.permissions import IsOwnerOrSuperuserCanDeleteOrReadOnly
@@ -34,7 +36,8 @@ from .filters import (
     DesignerFilter,
     BrandFilter,
     ProductVersionFilter,
-    WishlistFilter
+    WishlistFilter,
+    ShoppingCartFilter
 )
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
@@ -295,3 +298,17 @@ class WishlistDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     @swagger_auto_schema(tags=["Wishlist API"])
     def delete(self, request, *args, **kwargs):
         return super().delete(request, *args, **kwargs)
+
+
+class ShoppingCartListAPIView(generics.ListAPIView):
+    queryset = ShoppingCart.objects.all()
+    serializer_class = ShoppingCartSerializer
+    permission_classes = [permissions.AllowAny]
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
+    pagination_class = CustomPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = ShoppingCartFilter
+
+    @swagger_auto_schema(tags=["ShoppingCart API"])
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)

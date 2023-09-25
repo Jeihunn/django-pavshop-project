@@ -13,7 +13,9 @@ from .models import (
     ProductVersion,
     ProductVersionImage,
     ProductVersionReview,
-    Wishlist
+    Wishlist,
+    ShoppingCart,
+    CartItem,
 )
 
 
@@ -33,12 +35,20 @@ class ProductVersionImageInline(admin.TabularInline):
     extra = 1
     verbose_name = _("Image")
     verbose_name_plural = _("Images")
+
+
+class CartItemInline(admin.TabularInline):
+    model = CartItem
+    extra = 1
+    verbose_name = _("Cart Item")
+    verbose_name_plural = _("Cart Items")
 # ========== END Inline ==========
 
 
 @admin.register(Color)
 class ColorAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "hex_code", "is_active", "created_at", "updated_at"]
+    list_display = ["id", "name", "hex_code",
+                    "is_active", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     list_editable = ["is_active"]
     list_filter = ["is_active"]
@@ -219,3 +229,23 @@ class WishlistAdmin(admin.ModelAdmin):
 
     list_display = ["user", "created_at", "updated_at"]
     search_fields = ["user__username"]
+
+
+@admin.register(ShoppingCart)
+class ShoppingCartAdmin(admin.ModelAdmin):
+    inlines = [CartItemInline]
+    list_display = ["user"]
+
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ["id", "cart", "product_version",
+                    "is_product_version_active", "quantity"]
+    raw_id_fields = ["product_version"]
+
+    def is_product_version_active(self, obj):
+        return obj.product_version.is_active
+    is_product_version_active.boolean = True
+    is_product_version_active.admin_order_field = "product_version__is_active"
+    is_product_version_active.short_description = _(
+        "Product Version is Active")

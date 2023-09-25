@@ -135,10 +135,16 @@ function fetchProductVersions() {
           var heartIcon = `<a data-product-version-id="${versions[i].id}" onclick="toggleWishlist(this)" style="cursor: pointer;">
                             <i class="fa fa-heart-o"></i>
                           </a>`;
+          var basketIcon = `<a data-product-version-id="${versions[i].id}" onclick="addToCart(this)" style="cursor: pointer;">
+                              <i class="icon-basket"></i>
+                            </a>`;
         } else {
           var heartIcon = `<a href="/login/">
                             <i class="fa fa-heart-o"></i>
                           </a>`;
+          var basketIcon = `<a href="/login/">
+                              <i class="icon-basket"></i>
+                            </a>`;
         }
 
         html += `
@@ -160,7 +166,7 @@ function fetchProductVersions() {
                     <a href="${
                       versions[i].cover_image
                     }" data-lighter><i class="icon-magnifier"></i></a> 
-                    <a href="#."><i class="icon-basket"></i></a> 
+                    ${basketIcon}
                     ${heartIcon}
                   </div>
                 </div>

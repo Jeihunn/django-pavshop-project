@@ -31,4 +31,7 @@ urlpatterns = [
          name="api_wishlist_list_create_view"),
     path("wishlist/<int:pk>/", api_views.WishlistDetailAPIView.as_view(),
          name="api_wishlist_detail_view"),
+
+    path("shopping-cart/", api_views.ShoppingCartListAPIView.as_view(),
+         name="api_shopping_cart_list_view"),
 ]

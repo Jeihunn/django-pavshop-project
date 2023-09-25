@@ -157,7 +157,7 @@ class ProductVersion(AbstractModel):
         for discount in self.discounts.all():
             total_discount += discount.percent
         return total_discount
-    
+
     @property
     def discounted_price(self):
         return self.price - (self.price * self.total_discount / 100)
@@ -221,13 +221,13 @@ class Wishlist(AbstractModel):
         User, on_delete=models.CASCADE, related_name="wishlist", verbose_name=_("User"))
     product_versions = models.ManyToManyField(
         ProductVersion, blank=True, related_name="wishlists", verbose_name=_("Product Versions"))
-    
+
     def add_product(self, product_version):
         if not self.product_versions.filter(pk=product_version.pk).exists():
             self.product_versions.add(product_version)
-                                      
+
     def remove_product(self, product_version):
-        self.product_versions.remove(product_version)                    
+        self.product_versions.remove(product_version)
 
     class Meta:
         verbose_name = _("Wishlist")
@@ -235,3 +235,46 @@ class Wishlist(AbstractModel):
 
     def __str__(self):
         return self.user.username
+
+
+class ShoppingCart(AbstractModel):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="shopping_cart")
+    products = models.ManyToManyField(
+        ProductVersion, through="CartItem", related_name="carts")
+
+    @property
+    def total_price(self):
+        total_price = 0
+        for item in self.items.filter(product_version__is_active=True):
+            total_price += item.product_version.discounted_price * item.quantity
+        return total_price
+
+    def remove_cart_item(self, cart_item):
+        cart_item.delete()
+
+    class Meta:
+        verbose_name = _("Shopping Cart")
+        verbose_name_plural = _("Shopping Carts")
+
+    def __str__(self):
+        return f"Shopping Cart for {self.user.username}"
+
+
+class CartItem(AbstractModel):
+    cart = models.ForeignKey(
+        ShoppingCart, on_delete=models.CASCADE, related_name="items")
+    product_version = models.ForeignKey(
+        ProductVersion, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    @property
+    def total_price(self):
+        return self.quantity * self.product_version.discounted_price
+
+    class Meta:
+        verbose_name = _("Cart Item")
+        verbose_name_plural = _("Cart Items")
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product_version.title} in Cart"

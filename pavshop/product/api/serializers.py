@@ -10,7 +10,9 @@ from product.models import (
     Color,
     Designer,
     Brand,
-    Wishlist
+    Wishlist,
+    CartItem,
+    ShoppingCart
 )
 from blog.api.serializers import UserSerializer
 
@@ -292,3 +294,44 @@ class WishlistCreateUpdateSerializer(serializers.ModelSerializer):
                     _("You already have a wishlist."))
             validated_data["user"] = user
         return super().create(validated_data)
+
+
+class ProductVersionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductVersion
+        fields = (
+            "id",
+            "title",
+            "price",
+            "discounted_price",
+            "quantity",
+            "cover_image",
+            "is_active",
+        )
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    product_version = ProductVersionSerializer(read_only=True)
+
+    class Meta:
+        model = CartItem
+        fields = (
+            "id",
+            "cart",
+            "product_version",
+            "quantity",
+            "total_price",
+        )
+
+
+class ShoppingCartSerializer(serializers.ModelSerializer):
+    items = CartItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = ShoppingCart
+        fields = (
+            "id",
+            "user",
+            "items",
+            "total_price",
+        )
