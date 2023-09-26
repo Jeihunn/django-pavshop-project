@@ -124,3 +124,14 @@ a {
   background-color: gray !important;
   color: #fff !important;
 }
+
+header .is-sticky .sticky .user-basket .dropdown-menu {
+  max-height: 550px;
+  padding-right: 40px;
+  overflow-y: auto;
+}
+
+#subtotal {
+  font-size: 18px;
+  font-weight: bold;
+}
