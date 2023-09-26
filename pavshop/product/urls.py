@@ -17,8 +17,8 @@ urlpatterns = [
     path("shopping-cart/", views.shopping_cart_view, name="shopping_cart_view"),
     path("remove-from-cart/", views.remove_from_cart, name="remove_from_cart"),
     path("add-to-cart/", views.add_to_cart, name="add_to_cart"),
+    path("change-quantity/", views.select_change_quantity, name="select_change_quantity"),
 
-    
     path("checkout/", views.checkout_view, name="checkout_view"),
 
     # # # Generic # # #

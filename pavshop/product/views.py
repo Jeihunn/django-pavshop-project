@@ -189,6 +189,33 @@ def add_to_cart(request):
     return JsonResponse(response_data)
 
 
+@login_required(login_url=reverse_lazy("login_view"))
+def select_change_quantity(request):
+    cart_item_id = int(request.GET.get("cart_item_id"))
+    try:
+        cart_item = CartItem.objects.get(id=cart_item_id)
+    except CartItem.DoesNotExist:
+        return JsonResponse({"error": "Cart item not found."}, status=400)
+    
+    cart, created = ShoppingCart.objects.get_or_create(user=request.user)
+
+    cart_item.quantity = int(request.GET.get("quantity"))
+    cart_item.save()
+
+    basket_count = 0
+    for item in cart.items.filter(product_version__is_active=True):
+        basket_count += item.quantity
+
+    response_data = {
+        "success": True,
+        "basket_count": basket_count,
+        "cart_item_quantity": cart_item.quantity,
+        "cart_item_total_price": cart_item.total_price,
+        "cart_total_price": cart.total_price,
+    }
+    return JsonResponse(response_data)
+
+
 def checkout_view(request):
     return render(request, "product/checkout.html")
 

@@ -104,7 +104,7 @@ function showCart() {
             </div>
             <div class="media-body">
               <h6 class="media-heading">${item.product_version.title}</h6>
-              <span class="price">${item.product_version.discounted_price} USD</span> <span class="qty">QTY": ${item.quantity}</span> 
+              <span class="price">${item.product_version.discounted_price} USD</span> <span class="qty">QTY: ${item.quantity}</span> 
             </div>
           </li>
         `;
@@ -155,6 +155,33 @@ function showCart() {
     })
     .catch((error) => {
       console.error("An error occurred during the API request:", error.message);
+    });
+}
+
+function selectChangeQuantity(select) {
+  const cartItemId = select.getAttribute("data-cart-item-id");
+  const secectValue = select.value;
+  const liHeaderBasketCount = document.querySelector("#header-basket-count");
+  const ItemTotalPrice = document.querySelector(
+    `#item-total-price-${cartItemId}`
+  );
+  const grandItemTotalPrice = document.querySelector(
+    `#grand-item-total-price-${cartItemId}`
+  );
+  const totalCost = document.querySelector(`#total-cost`);
+
+  fetch(`/change-quantity/?cart_item_id=${cartItemId}&quantity=${secectValue}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        showToastify("Item changed quantity.", "success", 1000);
+        liHeaderBasketCount.innerHTML = `
+        <span class="badge">${data.basket_count}</span>
+      `;
+        ItemTotalPrice.innerHTML = data.cart_item_total_price;
+        grandItemTotalPrice.innerHTML = data.cart_item_total_price;
+        totalCost.innerHTML = data.cart_total_price;
+      }
     });
 }
 
