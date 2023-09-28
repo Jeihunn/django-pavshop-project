@@ -94,6 +94,26 @@ class BrandFilter(django_filters.FilterSet):
 
 
 class ProductVersionFilter(django_filters.FilterSet):
+    category__id = django_filters.NumberFilter(
+        field_name="product__product_categories__id", lookup_expr="exact",
+        label="Product Category ID",
+    )
+
+    tag__id = django_filters.NumberFilter(
+        field_name="product__product_tags__id", lookup_expr="exact",
+        label="Product Tag ID",
+    )
+
+    color__id = django_filters.NumberFilter(
+        field_name="colors__id", lookup_expr="exact",
+        label="ProductVersion Color ID",
+    )
+
+    brand__id = django_filters.NumberFilter(
+        field_name="product__brand__id", lookup_expr="exact",
+        label="Product Brand ID",
+    )
+
     is_active = django_filters.BooleanFilter(
         field_name="is_active",
         label="ProductVersion Active",
@@ -116,7 +136,8 @@ class ProductVersionFilter(django_filters.FilterSet):
 
     class Meta:
         model = ProductVersion
-        fields = ["is_active", "order_by"]
+        fields = ["category__id", "tag__id", "brand__id",
+                  "color__id", "is_active", "order_by"]
 
 
 class WishlistFilter(django_filters.FilterSet):

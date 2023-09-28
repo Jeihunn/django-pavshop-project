@@ -239,7 +239,7 @@ class Wishlist(AbstractModel):
 
 class ShoppingCart(AbstractModel):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="shopping_cart")
+        User, on_delete=models.CASCADE, related_name="shopping_cart", verbose_name=_("User"))
     products = models.ManyToManyField(
         ProductVersion, through="CartItem", related_name="carts")
 
@@ -249,9 +249,6 @@ class ShoppingCart(AbstractModel):
         for item in self.items.filter(product_version__is_active=True):
             total_price += item.product_version.discounted_price * item.quantity
         return total_price
-
-    def remove_cart_item(self, cart_item):
-        cart_item.delete()
 
     class Meta:
         verbose_name = _("Shopping Cart")
@@ -263,10 +260,12 @@ class ShoppingCart(AbstractModel):
 
 class CartItem(AbstractModel):
     cart = models.ForeignKey(
-        ShoppingCart, on_delete=models.CASCADE, related_name="items")
+        ShoppingCart, on_delete=models.CASCADE, related_name="items", verbose_name=_("Cart"))
     product_version = models.ForeignKey(
-        ProductVersion, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
+        ProductVersion, on_delete=models.CASCADE, related_name="cart_items", verbose_name=_("Product Version"))
+
+    quantity = models.PositiveIntegerField(
+        verbose_name=_("Quantity"), default=1)
 
     @property
     def total_price(self):

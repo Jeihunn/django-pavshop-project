@@ -21,6 +21,10 @@ class BlogCategory(AbstractModel):
         verbose_name = _("Blog Category")
         verbose_name_plural = _("Blog Categories")
 
+    @property
+    def active_blog_count(self):
+        return self.blogs.filter(is_active=True).count()
+
     def __str__(self):
         return self.name
 
@@ -33,6 +37,10 @@ class BlogTag(AbstractModel):
     class Meta:
         verbose_name = _("Blog Tag")
         verbose_name_plural = _("Blog Tags")
+
+    @property
+    def active_blog_count(self):
+        return self.blogs.filter(is_active=True).count()
 
     def __str__(self):
         return self.name

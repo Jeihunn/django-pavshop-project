@@ -5,7 +5,7 @@ subscribeForm.addEventListener("submit", async function (event) {
   let email = document.getElementById("subscribe-email").value;
 
   try {
-    const response = await fetch("/api/newsletter/", {
+    const response = await fetch(`${location.origin}/api/newsletter/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

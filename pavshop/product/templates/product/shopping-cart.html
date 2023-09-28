@@ -77,7 +77,7 @@
                   <div class="position-center-center">
                     <div class="quinty"> 
                       <!-- QTY -->
-                      <select class="form-control" data-cart-item-id="{{ item.id }}" onchange="selectChangeQuantity(this)">
+                      <select class="form-control" data-cart-item-id="{{ item.id }}" onchange="selectChangeQuantity(this)" style="width: 70px;">
                         {% for i in item.product_version.quantity|get_range|slice:":10" %}
                           <option value="{{ i|add:1 }}" {% if item.quantity == i|add:1 %}selected{% endif %}>{{ i|add:1 }}</option>
                         {% endfor %}

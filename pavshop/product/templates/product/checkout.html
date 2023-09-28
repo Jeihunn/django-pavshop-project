@@ -166,12 +166,15 @@
                 <h6>{% trans "YOUR ORDER" %}</h6>
                 <div class="order-place">
                   <div class="order-detail">
-                    <p>WOOD CHAIR <span>$598 </span></p>
+                    {% comment %} <p>WOOD CHAIR <span>$598 </span></p>
                     <p>STOOL <span>$199 </span></p>
-                    <p>WOOD SPOON <span> $139</span></p>
-                    
+                    <p>WOOD SPOON <span> $139</span></p> {% endcomment %}
+                    {% for item in cart.items.all %}
+                      <p>{{ item.product_version.title }} <span> ${{ item.total_price }}</span></p>
+                    {% endfor %}
+
                     <!-- SUB TOTAL -->
-                    <p class="all-total">{% trans "TOTAL COST" %} <span> $998</span></p>
+                    <p class="all-total">{% trans "TOTAL COST" %} <span> ${{ cart.total_price }}</span></p>
                   </div>
                   <div class="pay-meth">
                     <ul>
@@ -203,7 +206,7 @@
                       <li>
                         <div class="checkbox">
                           <input id="checkbox3-4" class="styled" type="checkbox">
-                          <label for="checkbox3-4"> I’VE READ AND ACCEPT THE <span class="color"> TERMS & CONDITIONS </span> </label>
+                          <label for="checkbox3-4"> {% trans "I’VE READ AND ACCEPT THE TERMS & CONDITIONS" %} </span> </label>
                         </div>
                       </li>
                     </ul>

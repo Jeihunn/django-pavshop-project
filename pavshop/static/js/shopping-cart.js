@@ -14,7 +14,8 @@ function removeCartItem(button) {
   const liHeaderBasketCount = document.querySelector("#header-basket-count");
   const headerBasketCount = document.querySelector("#header-basket-count span");
 
-  fetch(`/remove-from-cart/?cart_item_id=${cartItemId}`)
+  const url = `${location.origin}/remove-from-cart/?cart_item_id=${cartItemId}`;
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
@@ -46,9 +47,8 @@ function addToCartQuantity(button) {
   const quantity = document.querySelector(".qty-select").value;
   const liHeaderBasketCount = document.querySelector("#header-basket-count");
 
-  fetch(
-    `/add-to-cart/?product_version_id=${product_version_id}&quantity=${quantity}`
-  )
+  const url = `${location.origin}/add-to-cart/?product_version_id=${product_version_id}&quantity=${quantity}`;
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
@@ -66,7 +66,8 @@ function addToCart(button) {
   const product_version_id = button.getAttribute("data-product-version-id");
   const liHeaderBasketCount = document.querySelector("#header-basket-count");
 
-  fetch(`/add-to-cart/?product_version_id=${product_version_id}`)
+  const url = `${location.origin}/add-to-cart/?product_version_id=${product_version_id}`;
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
@@ -84,7 +85,8 @@ function showCart() {
   const liHeaderBasket = document.querySelector(".user-basket");
   const userId = liHeaderBasket.getAttribute("data-user-id");
 
-  fetch(`/api/shopping-cart/?user__id=${userId}`)
+  const url = `${location.origin}/api/shopping-cart/?user__id=${userId}`;
+  fetch(url)
     .then((response) => {
       if (!response.ok) {
         throw new Error("API request failed.");
@@ -170,7 +172,8 @@ function selectChangeQuantity(select) {
   );
   const totalCost = document.querySelector(`#total-cost`);
 
-  fetch(`/change-quantity/?cart_item_id=${cartItemId}&quantity=${secectValue}`)
+  const url = `${location.origin}/change-quantity/?cart_item_id=${cartItemId}&quantity=${secectValue}`;
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
