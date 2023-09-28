@@ -7,7 +7,7 @@
         <li class="{% if selected_category.slug == category.slug %}active{% endif %}">
             <a href="{% url 'blog:blog_list_view' %}?category={{ category.slug }}">
                 {{ category.name }}
-                <span>{{ category.blogs.count }}</span>
+                <span>{{ category.active_blog_count }}</span>
             </a>
         </li>
     {% endfor %}

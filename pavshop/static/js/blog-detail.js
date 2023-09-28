@@ -16,7 +16,8 @@ blogReviewForm.addEventListener("submit", function (event) {
     reviewData.email = blogReviewForm.email.value;
   }
 
-  fetch("/api/blog-reviews/", {
+  const url = `${location.origin}/api/blog-reviews/`;
+  fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -73,7 +74,8 @@ replyForms.forEach((form) => {
       replyData.email = form.email.value;
     }
 
-    fetch("/api/blog-reviews/", {
+    const url = `${location.origin}/api/blog-reviews/`;
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -129,7 +131,8 @@ deleteButtons.forEach((button) => {
     if (confirmDelete) {
       const commentId = button.getAttribute("data-id");
 
-      fetch(`/api/blog-review/${commentId}/`, {
+      const url = `${location.origin}/api/blog-review/${commentId}/`;
+      fetch(url, {
         method: "DELETE",
         headers: {
           "X-CSRFToken": getCSRFToken(),
@@ -171,7 +174,8 @@ editForms.forEach((form) => {
       comment: form.comment.value,
     };
 
-    fetch(`/api/blog-review/${commentId}/`, {
+    const url = `${location.origin}/api/blog-review/${commentId}/`;
+    fetch(url, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

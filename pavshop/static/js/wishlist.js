@@ -1,6 +1,8 @@
 function toggleWishlist2x(button) {
   const productVersionId = button.getAttribute("data-product-version-id");
-  fetch(`/toggle-wishlist/?product_version_id=${productVersionId}`)
+
+  const url = `${location.origin}/toggle-wishlist/?product_version_id=${productVersionId}`
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (data.is_added) {
@@ -13,7 +15,9 @@ function toggleWishlist2x(button) {
 
 function toggleWishlist(button) {
   const productVersionId = button.getAttribute("data-product-version-id");
-  fetch(`/toggle-wishlist/?product_version_id=${productVersionId}`)
+
+  const url = `${location.origin}/toggle-wishlist/?product_version_id=${productVersionId}`
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (data.is_added) {
@@ -30,7 +34,8 @@ function removeWishlist(button) {
   const wishlistCount = document.querySelector(".wishlist-count");
   const wishlistContainer = document.querySelector(".wishlist-container");
 
-  fetch(`/remove-wishlist/?product_version_id=${productVersionId}`)
+  const url = `${location.origin}/remove-wishlist/?product_version_id=${productVersionId}`
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {

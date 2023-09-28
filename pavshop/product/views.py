@@ -130,7 +130,7 @@ def remove_from_cart(request):
         return JsonResponse({"error": "Cart item not found."}, status=400)
 
     cart, created = ShoppingCart.objects.get_or_create(user=request.user)
-    cart.remove_cart_item(cart_item)
+    cart_item.delete()
 
     basket_count = 0
     for item in cart.items.filter(product_version__is_active=True):
@@ -196,7 +196,7 @@ def select_change_quantity(request):
         cart_item = CartItem.objects.get(id=cart_item_id)
     except CartItem.DoesNotExist:
         return JsonResponse({"error": "Cart item not found."}, status=400)
-    
+
     cart, created = ShoppingCart.objects.get_or_create(user=request.user)
 
     cart_item.quantity = int(request.GET.get("quantity"))
@@ -217,11 +217,15 @@ def select_change_quantity(request):
 
 
 def checkout_view(request):
-    return render(request, "product/checkout.html")
+    cart = ShoppingCart.objects.filter(user=request.user).first()
+
+    context = {
+        "cart": cart,
+    }
+    return render(request, "product/checkout.html", context)
 
 
 # ===== Generic Views =====
-
 class ProductListView(TemplateView):
     template_name = "product/product-list.html"
 

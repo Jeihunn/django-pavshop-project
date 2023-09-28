@@ -1,17 +1,29 @@
+import calendar
 from django import template
 from datetime import timedelta, date
 from django.db.models import Case, When, IntegerField
 from django.db.models import Count
+from django.urls import reverse
 from blog.models import Blog, BlogTag, BlogCategory
 
 register = template.Library()
 
 
+# ===== Filter =====
 @register.filter(name='get_range')
-def get_range(value):
+def get_range(value: int) -> range:
     return range(value)
+# ===== END Filter =====
 
 
+# ===== Simple Tag =====
+@register.simple_tag
+def get_blog_categories(limit=20):
+    return BlogCategory.objects.filter(is_active=True)[:limit]
+# ===== END Simple Tag =====
+
+
+# ===== Inclusion Tag =====
 @register.inclusion_tag('blog/includes/recent-post.html', takes_context=True)
 def get_recently_viewed_blogs(context):
     request = context['request']
@@ -56,19 +68,26 @@ def get_blog_popular_tags(context, limit=10):
 @register.inclusion_tag('blog/includes/previous-months.html', takes_context=True)
 def get_previous_months(context, limit=6):
     request = context['request']
-    
+
     today = date.today()
-    previous_months_dates = [
-        today - timedelta(days=30 * i) for i in range(limit)]
-    previous_months = [
-        {'month': date.strftime("%B"), 'year': date.year, 'path': f'/blogs/archive/{date.year}/{date.strftime("%B").lower()}/'} for date in previous_months_dates
-    ]
+    previous_months = []
+
+    for i in range(limit):
+        # Get the month and year
+        month = today.strftime("%B")
+        year = today.year
+
+        # Create the URL
+        path = reverse('blog:blog_archive_view', args=[year, month.lower()])
+
+        previous_months.append({'month': month, 'year': year, 'path': path})
+
+        # Calculate the last day of the previous month
+        _, last_day = calendar.monthrange(year, today.month)
+        today -= timedelta(days=last_day)
+
     return {
         'previous_months': previous_months,
         'request': request
     }
-
-
-@register.simple_tag
-def get_blog_categories(limit=20):
-    return BlogCategory.objects.filter(is_active=True)[:limit]
+# ===== END Inclusion Tag =====

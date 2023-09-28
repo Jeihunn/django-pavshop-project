@@ -135,3 +135,8 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
   font-size: 18px;
   font-weight: bold;
 }
+
+.a-active {
+  font-weight: bold;
+  color: #ffe115 !important;
+}

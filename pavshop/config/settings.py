@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from datetime import timedelta
+from django.utils.translation import gettext_lazy as _
 from . import project_secrets
 
 
@@ -230,7 +231,7 @@ JAZZMIN_SETTINGS = {
     # "changeform_format": "vertical_tabs",
     "copyright": "Pavshop",
     "topmenu_links": [
-        {"name": "VIEW SITE", "url": "core:index_view", "new_window": True},
+        {"name": _("VIEW SITE"), "url": "core:index_view", "new_window": True},
     ],
     "icons": {
         "auth": "fas fa-users-cog",
@@ -268,6 +269,8 @@ JAZZMIN_SETTINGS = {
         "product.ProductVersionImage": "fas fa-image",
         "product.ProductVersionReview": "fas fa-comments",
         "product.Wishlist": "fas fa-heart",
+        "product.ShoppingCart": "fas fa-shopping-cart",
+        "product.CartItem": "fas fa-shopping-basket",
     },
 }
 
@@ -386,8 +389,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/day',
-        'user': '1000/day',
+        'anon': '1000/day',
+        'user': '5000/day',
     }
 }
 
