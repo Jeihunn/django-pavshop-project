@@ -96,9 +96,15 @@
           <!-- Shop SideBar -->
           <div class="col-sm-3">
             <div class="shop-sidebar"> 
+
+              <!-- Search -->
+              <form class="search product-search" method="get">
+                <input name="query" class="form-control" type="search" placeholder="{% trans "Search" %}" />
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
               
               <!-- Category -->
-              <h5 class="shop-tittle margin-bottom-30">category</h5>
+              <h5 class="shop-tittle margin-bottom-30">{% trans "category" %}</h5>
               <ul class="shop-cate" id="category-list">
                 {% comment %} <li><a href="#."> Chair <span>24</span></a></li>
                 <li><a href="#."> Bag <span>122</span></a></li>
@@ -114,7 +120,7 @@
               </ul>
               
               <!-- COLORS -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">FILTER BY COLORS</h5>
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">{% trans "FILTER BY COLORS" %}</h5>
               <ul class="colors" id="color-list">
                 {% comment %} <li><a href="#." style="background:#958170;"></a></li>
                 <li><a href="#." style="background:#c9a688;"></a></li>
@@ -137,7 +143,7 @@
               </ul>
               
               <!-- TAGS -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">PAUPLAR TAGS</h5>
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">{% trans "POUPLAR TAGS" %}</h5>
               <ul class="shop-tags" id="tag-list">
                 {% comment %} <li><a href="#.">Towels</a></li>
                 <li><a href="#.">Chair</a></li>
@@ -151,7 +157,7 @@
               </ul>
               
               <!-- BRAND -->
-              <h5 class="shop-tittle margin-top-60 margin-bottom-30">brands</h5>
+              <h5 class="shop-tittle margin-top-60 margin-bottom-30">{% trans "brands" %}</h5>
               <ul class="shop-cate" id="brand-list">
                 {% comment %} <li><a href="#."> G-Furniture BigYellow</a></li>
                 <li><a href="#."> WoodenBazaar</a></li>

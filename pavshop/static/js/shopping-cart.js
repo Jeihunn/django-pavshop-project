@@ -102,7 +102,7 @@ function showCart() {
           cart_itemsHTML += `
           <li id="header-cart-item-${item.id}">
             <div class="media-left">
-              <div class="cart-img"> <a href="#"> <img class="media-object img-responsive" src="${item.product_version.cover_image}" alt=""> </a> </div>
+              <div class="cart-img"> <a> <img class="media-object img-responsive" src="${item.product_version.cover_image}" alt=""> </a> </div>
             </div>
             <div class="media-body">
               <h6 class="media-heading">${item.product_version.title}</h6>

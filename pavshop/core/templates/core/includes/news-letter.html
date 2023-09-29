@@ -4,14 +4,14 @@
   <div class="container">
     <div class="heading light-head text-center margin-bottom-30">
       <h4>{% trans "NEWSLETTER" %}</h4>
-      <span>Phasellus lacinia fermentum bibendum. Interdum et malesuada fames ac
-        ante ipsumien lacus, eu posuere odi
+      <span class="newsletter-sub-heading">
+        {% trans "To receive the latest news and stay up to date, subscribe to our newsletter. Please enter your email address below." %}
       </span>
     </div>
     <!-- <subsform>  -->
     <form action="#" class="subscribe-form" id="subscribe-form" method="post">
       {% csrf_token %}
-      <input type="email" id="subscribe-email" placeholder="Enter your email address" required />
+      <input type="email" id="subscribe-email" placeholder="{% trans "Enter your email address" %}" required />
       <button type="submit">{% trans "SEND ME" %}</button>
       
       <ul class="errorlist"></ul>

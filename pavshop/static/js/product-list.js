@@ -150,24 +150,12 @@ function filterCategory(button) {
     .then((data) => {
       localStorage.setItem("data-url", url);
 
-      getPagination(data);
+      cleanSearchInput();
 
-      const categoryButtons = document.querySelectorAll(".category-buttons");
-      const tagButtons = document.querySelectorAll(".tag-buttons");
-      const brandButtons = document.querySelectorAll(".brand-buttons");
-
-      for (let i = 0; i < categoryButtons.length; i++) {
-        categoryButtons[i].classList.remove("a-active");
-      }
+      cleanActive();
       button.classList.add("a-active");
 
-      for (let i = 0; i < tagButtons.length; i++) {
-        tagButtons[i].classList.remove("a-active");
-      }
-
-      for (let i = 0; i < brandButtons.length; i++) {
-        brandButtons[i].classList.remove("a-active");
-      }
+      getPagination(data);
 
       getVersions(data);
     })
@@ -192,24 +180,12 @@ function filterTag(button) {
     .then((data) => {
       localStorage.setItem("data-url", url);
 
-      getPagination(data);
+      cleanSearchInput();
 
-      const tagButtons = document.querySelectorAll(".tag-buttons");
-      const categoryButtons = document.querySelectorAll(".category-buttons");
-      const brandButtons = document.querySelectorAll(".brand-buttons");
-
-      for (let i = 0; i < tagButtons.length; i++) {
-        tagButtons[i].classList.remove("a-active");
-      }
+      cleanActive();
       button.classList.add("a-active");
 
-      for (let i = 0; i < categoryButtons.length; i++) {
-        categoryButtons[i].classList.remove("a-active");
-      }
-
-      for (let i = 0; i < brandButtons.length; i++) {
-        brandButtons[i].classList.remove("a-active");
-      }
+      getPagination(data);
 
       getVersions(data);
     })
@@ -234,24 +210,12 @@ function filterBrand(button) {
     .then((data) => {
       localStorage.setItem("data-url", url);
 
-      getPagination(data);
+      cleanSearchInput();
 
-      const brandButtons = document.querySelectorAll(".brand-buttons");
-      const categoryButtons = document.querySelectorAll(".category-buttons");
-      const tagButtons = document.querySelectorAll(".tag-buttons");
-
-      for (let i = 0; i < brandButtons.length; i++) {
-        brandButtons[i].classList.remove("a-active");
-      }
+      cleanActive();
       button.classList.add("a-active");
 
-      for (let i = 0; i < categoryButtons.length; i++) {
-        categoryButtons[i].classList.remove("a-active");
-      }
-
-      for (let i = 0; i < tagButtons.length; i++) {
-        tagButtons[i].classList.remove("a-active");
-      }
+      getPagination(data);
 
       getVersions(data);
     })
@@ -276,24 +240,11 @@ function filterColor(button) {
     .then((data) => {
       localStorage.setItem("data-url", url);
 
+      cleanSearchInput();
+
+      cleanActive();
+
       getPagination(data);
-
-      // const colorButtons = document.querySelectorAll(".color-buttons");
-      const categoryButtons = document.querySelectorAll(".category-buttons");
-      const tagButtons = document.querySelectorAll(".tag-buttons");
-      const brandButtons = document.querySelectorAll(".brand-buttons");
-
-      for (let i = 0; i < categoryButtons.length; i++) {
-        categoryButtons[i].classList.remove("a-active");
-      }
-
-      for (let i = 0; i < tagButtons.length; i++) {
-        tagButtons[i].classList.remove("a-active");
-      }
-
-      for (let i = 0; i < brandButtons.length; i++) {
-        brandButtons[i].classList.remove("a-active");
-      }
 
       getVersions(data);
     })
@@ -301,6 +252,36 @@ function filterColor(button) {
       console.error("An error occurred during the API request:", error.message);
     });
 }
+
+// search product
+const searchFOrm = document.querySelector(".product-search");
+const searchInput = searchFOrm.querySelector("input");
+searchFOrm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  let url = `${location.origin}/api/product-versions/?page_size=9&is_active=true&search=${searchInput.value}`;
+  const orderBy = localStorage.getItem("order_by");
+  const urlExtra = url + `&order_by=${orderBy}`;
+  fetch(urlExtra)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("API request failed.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      localStorage.setItem("data-url", url);
+
+      cleanActive();
+
+      getPagination(data);
+
+      getVersions(data);
+    })
+    .catch((error) => {
+      console.error("An error occurred during the API request:", error.message);
+    });
+});
 
 // Pagination Click
 function paginationClick(button) {
@@ -363,6 +344,9 @@ function toggleWishlist(button) {
       } else {
         button.innerHTML = '<i class="fa fa-heart-o"></i>';
       }
+    })
+    .catch((error) => {
+      console.error("An error occurred during the API request:", error.message);
     });
 }
 
@@ -516,4 +500,29 @@ function getPagination(data) {
       nextPageHTML +
       lastPageHTML;
   }
+}
+
+// clean a-active
+function cleanActive() {
+  const categoryButtons = document.querySelectorAll(".category-buttons");
+  const tagButtons = document.querySelectorAll(".tag-buttons");
+  const brandButtons = document.querySelectorAll(".brand-buttons");
+
+  for (let i = 0; i < categoryButtons.length; i++) {
+    categoryButtons[i].classList.remove("a-active");
+  }
+
+  for (let i = 0; i < tagButtons.length; i++) {
+    tagButtons[i].classList.remove("a-active");
+  }
+
+  for (let i = 0; i < brandButtons.length; i++) {
+    brandButtons[i].classList.remove("a-active");
+  }
+}
+
+// clean search input
+function cleanSearchInput() {
+  const searchInput = document.querySelector(".product-search input");
+  searchInput.value = "";
 }
