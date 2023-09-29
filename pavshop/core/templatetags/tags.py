@@ -5,6 +5,7 @@ from django.db.models import Case, When, IntegerField
 from django.db.models import Count
 from django.urls import reverse
 from blog.models import Blog, BlogTag, BlogCategory
+from product.models import Designer, ProductVersion
 
 register = template.Library()
 
@@ -13,6 +14,14 @@ register = template.Library()
 @register.filter(name='get_range')
 def get_range(value: int) -> range:
     return range(value)
+
+
+@register.filter(name='divide')
+def divide(value: float, arg: float) -> float:
+    try:
+        return float(value) / float(arg)
+    except (ValueError, ZeroDivisionError):
+        return None
 # ===== END Filter =====
 
 
@@ -20,6 +29,16 @@ def get_range(value: int) -> range:
 @register.simple_tag
 def get_blog_categories(limit=20):
     return BlogCategory.objects.filter(is_active=True)[:limit]
+
+
+@register.simple_tag
+def get_designers(limit=16):
+    return Designer.objects.filter(is_active=True)[:limit]
+
+
+@register.simple_tag
+def get_most_reviewed_products(limit=3):
+    return ProductVersion.objects.annotate(reviews_count=Count('reviews')).order_by('-reviews_count')[:limit]
 # ===== END Simple Tag =====
 
 

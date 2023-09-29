@@ -1,4 +1,5 @@
 let subscribeForm = document.getElementById("subscribe-form");
+let newsletterSubHeading = document.querySelector(".newsletter-sub-heading");
 
 subscribeForm.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -17,6 +18,7 @@ subscribeForm.addEventListener("submit", async function (event) {
     });
 
     if (response.ok) {
+      newsletterSubHeading.remove();
       subscribeForm.innerHTML = `<h4 class="newsletter-text-success">Great!<br>Thanks for subscribing to our weekly newsletter! We look forward to staying in touch.</h4>`;
       showSuccessToast("You've successfully subscribed to our newsletter. Thank you for joining us!");
     } else {

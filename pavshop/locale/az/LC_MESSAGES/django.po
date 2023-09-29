@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 14:09+0400\n"
-"PO-Revision-Date: 2023-09-28 14:10+0400\n"
+"POT-Creation-Date: 2023-09-29 19:13+0400\n"
+"PO-Revision-Date: 2023-09-29 19:13+0400\n"
 "Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -89,7 +89,7 @@ msgid "New password confirmation"
 msgstr "Yeni şifrə təsdiqi"
 
 #: .\account\forms.py:210 .\account\templates\account\user-profile.html:34
-#: .\blog\models.py:77 .\core\models.py:19 .\core\models.py:33
+#: .\blog\models.py:85 .\core\models.py:19 .\core\models.py:33
 #: .\core\templates\core\contact.html:45 .\product\models.py:198
 msgid "Email"
 msgstr "E-poçt"
@@ -103,7 +103,7 @@ msgstr ""
 "daxil edin."
 
 #: .\account\models.py:14 .\account\models.py:30 .\account\models.py:63
-#: .\blog\models.py:16 .\blog\models.py:29 .\product\models.py:61
+#: .\blog\models.py:16 .\blog\models.py:33 .\product\models.py:61
 #: .\product\models.py:75 .\product\models.py:96
 msgid "Name"
 msgstr "Ad"
@@ -165,7 +165,7 @@ msgstr "Profil şəkli"
 msgid "Ips"
 msgstr "IP-lər"
 
-#: .\account\models.py:90 .\blog\models.py:72 .\product\models.py:193
+#: .\account\models.py:90 .\blog\models.py:80 .\product\models.py:193
 #: .\product\models.py:221 .\product\models.py:242
 msgid "User"
 msgstr "İstifadəçi"
@@ -186,8 +186,8 @@ msgstr "Müddət"
 msgid "Reason"
 msgstr "Səbəb"
 
-#: .\account\models.py:98 .\blog\models.py:17 .\blog\models.py:30
-#: .\blog\models.py:55 .\product\models.py:19 .\product\models.py:32
+#: .\account\models.py:98 .\blog\models.py:17 .\blog\models.py:34
+#: .\blog\models.py:63 .\product\models.py:19 .\product\models.py:32
 #: .\product\models.py:45 .\product\models.py:64 .\product\models.py:76
 #: .\product\models.py:97 .\product\models.py:151 .\product\models.py:179
 msgid "Active"
@@ -511,68 +511,68 @@ msgstr "İstifadəçi göstərilmədikdə e-poçt sahəsi tələb olunur."
 msgid "Blog Category"
 msgstr "Bloq kateqoriyası"
 
-#: .\blog\models.py:22 .\blog\models.py:45
+#: .\blog\models.py:22 .\blog\models.py:53
 msgid "Blog Categories"
 msgstr "Bloq kateqoriyaları"
 
-#: .\blog\models.py:34
+#: .\blog\models.py:38
 msgid "Blog Tag"
 msgstr "Bloq etiketi"
 
-#: .\blog\models.py:35 .\blog\models.py:47
+#: .\blog\models.py:39 .\blog\models.py:55
 msgid "Blog Tags"
 msgstr "Bloq etiketləri"
 
-#: .\blog\models.py:43
+#: .\blog\models.py:51
 msgid "Author"
 msgstr "Müəllif"
 
-#: .\blog\models.py:49 .\product\models.py:124 .\product\models.py:143
+#: .\blog\models.py:57 .\product\models.py:124 .\product\models.py:143
 msgid "Title"
 msgstr "Başlıq"
 
-#: .\blog\models.py:50
+#: .\blog\models.py:58
 msgid "Content"
 msgstr "Məzmun"
 
-#: .\blog\models.py:52 .\product\models.py:150
+#: .\blog\models.py:60 .\product\models.py:150
 msgid "Cover Image"
 msgstr "Qapaq şəkli"
 
-#: .\blog\models.py:54
+#: .\blog\models.py:62
 msgid "Publish Date"
 msgstr "Yayımlanma tarixi"
 
-#: .\blog\models.py:59 .\blog\models.py:68
+#: .\blog\models.py:67 .\blog\models.py:76
 #: .\core\templates\core\includes\header.html:18
 msgid "Blog"
 msgstr "Bloq"
 
-#: .\blog\models.py:60
+#: .\blog\models.py:68
 msgid "Blogs"
 msgstr "Bloqlar"
 
-#: .\blog\models.py:70
+#: .\blog\models.py:78
 msgid "Parent"
 msgstr "Valideyn"
 
-#: .\blog\models.py:75 .\core\models.py:18 .\product\models.py:196
+#: .\blog\models.py:83 .\core\models.py:18 .\product\models.py:196
 msgid "Full Name"
 msgstr "Tam Adınız"
 
-#: .\blog\models.py:78 .\core\models.py:21
+#: .\blog\models.py:86 .\core\models.py:21
 msgid "Subject"
 msgstr "Mövzu"
 
-#: .\blog\models.py:79 .\product\models.py:199
+#: .\blog\models.py:87 .\product\models.py:199
 msgid "Comment"
 msgstr "Şərh"
 
-#: .\blog\models.py:82
+#: .\blog\models.py:90
 msgid "Blog Review"
 msgstr "Bloq rəyi"
 
-#: .\blog\models.py:83
+#: .\blog\models.py:91
 msgid "Blog Reviews"
 msgstr "Bloq rəyləri"
 
@@ -603,12 +603,19 @@ msgid "Please check back later for exciting content"
 msgstr "Maraqlı məzmun üçün sonra yenidən yoxlayın"
 
 #: .\blog\templates\blog\includes\blog-categories.html:3
+#: .\product\templates\product\product-list.html:109
 msgid "category"
 msgstr "Kateqoriya"
 
 #: .\blog\templates\blog\includes\blog-popular-tags.html:3
+#: .\product\templates\product\product-list.html:150
 msgid "POUPLAR TAGS"
 msgstr "POPULAR ETİKETLƏR"
+
+#: .\blog\templates\blog\includes\blog-search.html:4
+#: .\product\templates\product\product-list.html:104
+msgid "Search"
+msgstr "Axtar"
 
 #: .\blog\templates\blog\includes\previous-months.html:3
 msgid "archives"
@@ -628,7 +635,6 @@ msgid "Invalid date format."
 msgstr "Yanlış tarix formatı."
 
 #: .\config\settings.py:234
-#| msgid " VIEW CART"
 msgid "VIEW SITE"
 msgstr " SAYTI ZİYARƏT ET"
 
@@ -644,8 +650,8 @@ msgstr "Yenilənmə vaxtı"
 msgid "Message"
 msgstr "Mesaj"
 
-#: .\core\models.py:25 .\core\templates\core\includes\header.html:106
-#: .\core\templates\core\includes\sub-banner.html:12
+#: .\core\models.py:25 .\core\templates\core\includes\header.html:109
+#: .\core\templates\core\includes\sub-banner.html:11
 msgid "Contact"
 msgstr "Əlaqə"
 
@@ -690,12 +696,16 @@ msgid "SUBJECT"
 msgstr "MÖVZU"
 
 #: .\core\templates\core\contact.html:71
-msgid "SEND MAIL"
-msgstr "MAIL GÖNDƏR"
+msgid "Send Message"
+msgstr "Mesaj Göndər"
 
 #: .\core\templates\core\contact.html:81
 msgid "OUR ADDRESS"
 msgstr "ÜNVANIMIZ"
+
+#: .\core\templates\core\contact.html:88
+msgid "We're here for you and ready to answer all your questions."
+msgstr "Biz sizin üçün buradayıq və bütün suallarınıza cavab verməyə hazırıq."
 
 #: .\core\templates\core\includes\about.html:7
 msgid "about PAVSHOP "
@@ -706,7 +716,7 @@ msgid "PAVSHOP. All right reserved"
 msgstr "Pavshop. Bütün hüquqlar qorunur"
 
 #: .\core\templates\core\includes\header.html:17
-#: .\core\templates\core\includes\sub-banner.html:11
+#: .\core\templates\core\includes\sub-banner.html:10
 msgid "Home"
 msgstr "Ana Səhifə"
 
@@ -715,67 +725,79 @@ msgstr "Ana Səhifə"
 msgid "Designer"
 msgstr "Dizayner"
 
-#: .\core\templates\core\includes\header.html:50
+#: .\core\templates\core\includes\header.html:45
 msgid "store"
 msgstr "Mağaza"
 
-#: .\core\templates\core\includes\header.html:56
-msgid "Top Rate Products"
-msgstr "Yüksək Qiymətli Məhsullar"
+#: .\core\templates\core\includes\header.html:51
+msgid "Most Reviewed Products"
+msgstr "Ən Çox Rəy Yazılan Məhsullar"
 
-#: .\core\templates\core\includes\header.html:92
+#: .\core\templates\core\includes\header.html:93
 msgid "NEW ARRIVAL"
 msgstr "YENİ MƏHSULLAR"
 
-#: .\core\templates\core\includes\header.html:92
+#: .\core\templates\core\includes\header.html:93
 msgid "Best Collection"
 msgstr "Ən yaxşı kolleksiya"
 
+#: .\core\templates\core\includes\header.html:96
+msgid "Explore our latest collection for your style."
+msgstr "Stilinizə uyğun ən son kolleksiyamızı kəşf edin."
+
+#: .\core\templates\core\includes\header.html:97
+msgid "Shop now for the trendiest products."
+msgstr "Ən dəbli məhsullar üçün indi alış-verişə başlayın."
+
 #: .\core\templates\core\includes\header.html:98
+msgid "Don't miss out on discounts!"
+msgstr "Endirimləri qaçırmayın!"
+
+#: .\core\templates\core\includes\header.html:100
 msgid " SHOP NOW "
 msgstr "İNDİ AL"
 
-#: .\core\templates\core\includes\header.html:103
+#: .\core\templates\core\includes\header.html:106
 msgid " About"
 msgstr "Haqqımızda"
 
-#: .\core\templates\core\includes\header.html:120
+#: .\core\templates\core\includes\header.html:123
 msgid "HELLO"
 msgstr "SALAM"
 
-#: .\core\templates\core\includes\header.html:122
+#: .\core\templates\core\includes\header.html:125
 msgid "FAVORITES"
 msgstr "SEÇİLMİŞLƏR"
 
-#: .\core\templates\core\includes\header.html:123
+#: .\core\templates\core\includes\header.html:126
 msgid "ACCOUNT INFO"
 msgstr "ŞƏXSİ MƏLUMATLAR"
 
-#: .\core\templates\core\includes\header.html:124
+#: .\core\templates\core\includes\header.html:127
 msgid "CHANGE PASSWORD"
 msgstr "PAROLU DƏYİŞ"
 
-#: .\core\templates\core\includes\header.html:125
+#: .\core\templates\core\includes\header.html:128
 msgid "LOG OUT"
 msgstr "ÇIXIŞ"
 
-#: .\core\templates\core\includes\header.html:149
+#: .\core\templates\core\includes\header.html:152
 msgid " QTY"
 msgstr "SAY"
 
-#: .\core\templates\core\includes\header.html:157
+#: .\core\templates\core\includes\header.html:160
 msgid " SUBTOTAL"
 msgstr "CƏMİ"
 
-#: .\core\templates\core\includes\header.html:164
+#: .\core\templates\core\includes\header.html:167
 msgid "YOUR BASKET IS EMPTY"
 msgstr "SƏBƏTİNİZ BOŞDUR"
 
-#: .\core\templates\core\includes\header.html:171
+#: .\core\templates\core\includes\header.html:174
 msgid " VIEW CART"
 msgstr "SƏBƏTƏ BAX"
 
-#: .\core\templates\core\includes\header.html:173
+#: .\core\templates\core\includes\header.html:176
 msgid "CHECK OUT "
 msgstr "ÖDƏNİŞƏ KEÇ"
 
@@ -806,6 +828,19 @@ msgstr "İNDİ AL"
 #: .\core\templates\core\includes\news-letter.html:6
 msgid "NEWSLETTER"
 msgstr "XƏBƏRLƏR"
+
+#: .\core\templates\core\includes\news-letter.html:8
+msgid ""
+"To receive the latest news and stay up to date, subscribe to our newsletter."
+" Please enter your email address below."
+msgstr ""
+"Ən son xəbərləri almaq və yeniliklərə qoşulmaq üçün bültenimizə abunə olun. "
+"Zəhmət olmasa, e-poçt ünvanınızı aşağıda daxil edin."
+
+#: .\core\templates\core\includes\news-letter.html:14
+#| msgid "Email Address"
+msgid "Enter your email address"
+msgstr "E-poçt ünvanınızı daxil edin"
 
 #: .\core\templates\core\includes\news-letter.html:15
 msgid "SEND ME"
@@ -1088,6 +1123,14 @@ msgstr "Ən köhnə ilk"
 msgid "Newest First"
 msgstr "Ən yeni ilk"
 
+#: .\product\templates\product\product-list.html:126
+msgid "FILTER BY COLORS"
+msgstr "RƏNGLƏRƏ GÖRƏ FİLTİR"
+
+#: .\product\templates\product\product-list.html:165
+msgid "brands"
+msgstr "Brendlər"
+
 #: .\product\templates\product\shopping-cart.html:28
 msgid "PRODUCTS"
 msgstr "MƏHSULLAR"
@@ -1155,6 +1198,13 @@ msgid ""
 msgstr ""
 "Şərhinizi yadda saxlayarkən xəta baş verdi.\n"
 "Sahələri nəzərdən keçirin və düzgün olduğundan əmin olun."
+
+#~ msgid "SEND MAIL"
+#~ msgstr "MAIL GÖNDƏR"
+
+#, fuzzy
+#~ msgid "PAUPLAR TAGS"
+#~ msgstr "POPULAR ETİKETLƏR"
 
 #~ msgid "contact"
 #~ msgstr "Əlaqə"
