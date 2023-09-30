@@ -1,0 +1,14 @@
+.thumbnail-image {
+  max-height: 50px;
+  max-width: 50px;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 5px;
+  border: 0.5px solid #333;
+}
+
+.thumbnail-image:hover {
+  transform: scale(4);
+  border: 0.5px solid #333;
+}

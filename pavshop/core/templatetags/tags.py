@@ -6,6 +6,7 @@ from django.db.models import Count
 from django.urls import reverse
 from blog.models import Blog, BlogTag, BlogCategory
 from product.models import Designer, ProductVersion
+from core.models import SubBanner
 
 register = template.Library()
 
@@ -22,6 +23,11 @@ def divide(value: float, arg: float) -> float:
         return float(value) / float(arg)
     except (ValueError, ZeroDivisionError):
         return None
+
+
+@register.filter(name='split')
+def split(value: str, arg: str) -> list:
+    return value.split(arg)
 # ===== END Filter =====
 
 
@@ -39,6 +45,16 @@ def get_designers(limit=16):
 @register.simple_tag
 def get_most_reviewed_products(limit=3):
     return ProductVersion.objects.annotate(reviews_count=Count('reviews')).order_by('-reviews_count')[:limit]
+
+
+@register.simple_tag
+def get_sub_banners():
+    sub_banners = SubBanner.objects.filter(is_active=True)
+
+    return {
+        'sub_banners': sub_banners,
+        'page_list': [sub_banner.page for sub_banner in sub_banners]
+    }
 # ===== END Simple Tag =====
 
 

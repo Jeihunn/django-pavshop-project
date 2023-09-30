@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-29 19:13+0400\n"
-"PO-Revision-Date: 2023-09-29 19:13+0400\n"
+"POT-Creation-Date: 2023-09-30 18:13+0400\n"
+"PO-Revision-Date: 2023-09-30 18:14+0400\n"
 "Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -89,7 +89,7 @@ msgid "New password confirmation"
 msgstr "Yeni şifrə təsdiqi"
 
 #: .\account\forms.py:210 .\account\templates\account\user-profile.html:34
-#: .\blog\models.py:85 .\core\models.py:19 .\core\models.py:33
+#: .\blog\models.py:85 .\core\models.py:22 .\core\models.py:37
 #: .\core\templates\core\contact.html:45 .\product\models.py:198
 msgid "Email"
 msgstr "E-poçt"
@@ -153,7 +153,7 @@ msgstr "Vəzifələr"
 msgid "Bio"
 msgstr "Bio"
 
-#: .\account\models.py:81 .\core\models.py:20
+#: .\account\models.py:81 .\core\models.py:23
 msgid "Phone Number"
 msgstr "Telefon nömrəsi"
 
@@ -187,9 +187,10 @@ msgid "Reason"
 msgstr "Səbəb"
 
 #: .\account\models.py:98 .\blog\models.py:17 .\blog\models.py:34
-#: .\blog\models.py:63 .\product\models.py:19 .\product\models.py:32
-#: .\product\models.py:45 .\product\models.py:64 .\product\models.py:76
-#: .\product\models.py:97 .\product\models.py:151 .\product\models.py:179
+#: .\blog\models.py:63 .\core\models.py:93 .\product\models.py:19
+#: .\product\models.py:32 .\product\models.py:45 .\product\models.py:64
+#: .\product\models.py:76 .\product\models.py:97 .\product\models.py:151
+#: .\product\models.py:179
 msgid "Active"
 msgstr "Aktiv"
 
@@ -527,7 +528,8 @@ msgstr "Bloq etiketləri"
 msgid "Author"
 msgstr "Müəllif"
 
-#: .\blog\models.py:57 .\product\models.py:124 .\product\models.py:143
+#: .\blog\models.py:57 .\core\models.py:79 .\product\models.py:124
+#: .\product\models.py:143
 msgid "Title"
 msgstr "Başlıq"
 
@@ -556,11 +558,11 @@ msgstr "Bloqlar"
 msgid "Parent"
 msgstr "Valideyn"
 
-#: .\blog\models.py:83 .\core\models.py:18 .\product\models.py:196
+#: .\blog\models.py:83 .\core\models.py:21 .\product\models.py:196
 msgid "Full Name"
 msgstr "Tam Adınız"
 
-#: .\blog\models.py:86 .\core\models.py:21
+#: .\blog\models.py:86 .\core\models.py:24
 msgid "Subject"
 msgstr "Mövzu"
 
@@ -634,42 +636,138 @@ msgstr "Yanlış səhifə nömrəsi."
 msgid "Invalid date format."
 msgstr "Yanlış tarix formatı."
 
-#: .\config\settings.py:234
+#: .\config\settings.py:235
 msgid "VIEW SITE"
 msgstr " SAYTI ZİYARƏT ET"
 
-#: .\core\models.py:10
+#: .\core\admin.py:63 .\core\models.py:81
+msgid "Title Color"
+msgstr "Başlıq Rəngi"
+
+#: .\core\admin.py:70
+msgid "Title Font Size (px)"
+msgstr "Başlıq Şrift Ölçüsü (px)"
+
+#: .\core\admin.py:78 .\core\models.py:87
+msgid "Description Color"
+msgstr "Açıqlama Rəngi"
+
+#: .\core\admin.py:86
+msgid "Description Font Size (px)"
+msgstr "Açıqlama Şrift Ölçüsü (px)"
+
+#: .\core\admin.py:92 .\core\models.py:92 .\product\admin.py:36
+#: .\product\models.py:178
+msgid "Image"
+msgstr "Şəkil"
+
+#: .\core\admin.py:103 .\core\models.py:91
+msgid "Breadcrumbs"
+msgstr "Breadcrumbs"
+
+#: .\core\models.py:12
 msgid "Created At"
 msgstr "Yaradılma vaxtı"
 
-#: .\core\models.py:11
+#: .\core\models.py:14
 msgid "Updated At"
 msgstr "Yenilənmə vaxtı"
 
-#: .\core\models.py:22 .\core\templates\core\contact.html:65
+#: .\core\models.py:25 .\core\templates\core\contact.html:65
 msgid "Message"
 msgstr "Mesaj"
 
-#: .\core\models.py:25 .\core\templates\core\includes\header.html:109
-#: .\core\templates\core\includes\sub-banner.html:11
+#: .\core\models.py:28 .\core\templates\core\includes\header.html:109
 msgid "Contact"
 msgstr "Əlaqə"
 
-#: .\core\models.py:26
+#: .\core\models.py:29
 msgid "Contacts"
 msgstr "Əlaqələr"
 
-#: .\core\models.py:34
+#: .\core\models.py:39
 msgid "Subscription Status"
 msgstr "Abunəlik statusu"
 
-#: .\core\models.py:37
+#: .\core\models.py:42
 msgid "Newsletter"
 msgstr "Xəbər bülleteni"
 
-#: .\core\models.py:38
+#: .\core\models.py:43
 msgid "Newsletters"
 msgstr "Xəbər bülletenləri"
+
+#: .\core\models.py:51
+msgid "All Pages"
+msgstr "Bütün Səhifələr"
+
+#: .\core\models.py:52
+msgid "About Us Page"
+msgstr "Haqqımızda Səhifə"
+
+#: .\core\models.py:53
+msgid "Contact Page"
+msgstr "Əlaqə Səhifəsi"
+
+#: .\core\models.py:54
+msgid "Wishlist Page"
+msgstr "İstək Siyahısı Səhifəsi"
+
+#: .\core\models.py:55
+msgid "Login Page"
+msgstr "Daxil Ol Səhifəsi"
+
+#: .\core\models.py:56
+msgid "Register Page"
+msgstr "Qeydiyyat Səhifəsi"
+
+#: .\core\models.py:57
+msgid "Blog List Page"
+msgstr "Bloq Siyahısı Səhifəsi"
+
+#: .\core\models.py:58
+msgid "Blog Detail Page"
+msgstr "Bloq Təfərrüatları Səhifəsi"
+
+#: .\core\models.py:59
+msgid "Product List Page"
+msgstr "Məhsul Siyahısı Səhifəsi"
+
+#: .\core\models.py:60
+msgid "Product Detail Page"
+msgstr "Məhsul Təfərrüatları Səhifəsi"
+
+#: .\core\models.py:61
+msgid "Shopping Cart Page"
+msgstr "Alış-veriş Səbəti Səhifəsi"
+
+#: .\core\models.py:62
+msgid "Checkout Page"
+msgstr "Ödəniş Səhifəsi"
+
+#: .\core\models.py:77
+msgid "Page"
+msgstr "Səhifə"
+
+#: .\core\models.py:83
+msgid "Title Font Size"
+msgstr "Başlıq Şrift Ölçüsü"
+
+#: .\core\models.py:85 .\product\models.py:148
+msgid "Description"
+msgstr "Açıqlama"
+
+#: .\core\models.py:89
+msgid "Description Font Size"
+msgstr "Açıqlama Şrift Ölçüsü"
+
+#: .\core\models.py:96
+msgid "Sub Banner"
+msgstr "Alt Banner"
+
+#: .\core\models.py:97
+msgid "Sub Banners"
+msgstr "Alt Bannerlər"
 
 #: .\core\templates\core\about-us.html:23
 msgid "A Brief History"
@@ -716,7 +814,6 @@ msgid "PAVSHOP. All right reserved"
 msgstr "Pavshop. Bütün hüquqlar qorunur"
 
 #: .\core\templates\core\includes\header.html:17
-#: .\core\templates\core\includes\sub-banner.html:10
 msgid "Home"
 msgstr "Ana Səhifə"
 
@@ -781,26 +878,6 @@ msgstr "PAROLU DƏYİŞ"
 msgid "LOG OUT"
 msgstr "ÇIXIŞ"
 
-#: .\core\templates\core\includes\header.html:152
-msgid " QTY"
-msgstr "SAY"
-
-#: .\core\templates\core\includes\header.html:160
-msgid " SUBTOTAL"
-msgstr "CƏMİ"
-
-#: .\core\templates\core\includes\header.html:167
-msgid "YOUR BASKET IS EMPTY"
-msgstr "SƏBƏTİNİZ BOŞDUR"
-
-#: .\core\templates\core\includes\header.html:174
-msgid " VIEW CART"
-msgstr "SƏBƏTƏ BAX"
-
-#: .\core\templates\core\includes\header.html:176
-msgid "CHECK OUT "
-msgstr "ÖDƏNİŞƏ KEÇ"
-
 #: .\core\templates\core\includes\home-main-slider.html:26
 msgid " The Latest Product from PAVSHOP "
 msgstr "PAVSHOP-dan Ən Son Məhsul"
@@ -838,17 +915,12 @@ msgstr ""
 "Zəhmət olmasa, e-poçt ünvanınızı aşağıda daxil edin."
 
 #: .\core\templates\core\includes\news-letter.html:14
-#| msgid "Email Address"
 msgid "Enter your email address"
 msgstr "E-poçt ünvanınızı daxil edin"
 
 #: .\core\templates\core\includes\news-letter.html:15
 msgid "SEND ME"
 msgstr "GÖNDƏR MƏNƏ"
-
-#: .\core\templates\core\includes\sub-banner.html:5
-msgid "Contact us now"
-msgstr "Bizimlə indi əlaqə saxlayın"
 
 #: .\core\views.py:25
 msgid "Thank You. Your message has been sent successfully!"
@@ -873,10 +945,6 @@ msgstr "Endirim"
 #: .\product\admin.py:30 .\product\admin.py:193 .\product\models.py:68
 msgid "Discounts"
 msgstr "Endirimlər"
-
-#: .\product\admin.py:36 .\product\models.py:178
-msgid "Image"
-msgstr "Şəkil"
 
 #: .\product\admin.py:37
 msgid "Images"
@@ -974,10 +1042,6 @@ msgstr "Qiymət"
 #: .\product\models.py:146 .\product\models.py:268
 msgid "Quantity"
 msgstr "Miqdar"
-
-#: .\product\models.py:148
-msgid "Description"
-msgstr "Açıqlama"
 
 #: .\product\models.py:166 .\product\models.py:175 .\product\models.py:191
 #: .\product\models.py:265
@@ -1198,6 +1262,24 @@ msgid ""
 msgstr ""
 "Şərhinizi yadda saxlayarkən xəta baş verdi.\n"
 "Sahələri nəzərdən keçirin və düzgün olduğundan əmin olun."
+
+#~ msgid " QTY"
+#~ msgstr "SAY"
+
+#~ msgid " SUBTOTAL"
+#~ msgstr "CƏMİ"
+
+#~ msgid "YOUR BASKET IS EMPTY"
+#~ msgstr "SƏBƏTİNİZ BOŞDUR"
+
+#~ msgid " VIEW CART"
+#~ msgstr "SƏBƏTƏ BAX"
+
+#~ msgid "CHECK OUT "
+#~ msgstr "ÖDƏNİŞƏ KEÇ"
+
+#~ msgid "Contact us now"
+#~ msgstr "Bizimlə indi əlaqə saxlayın"
 
 #~ msgid "SEND MAIL"
 #~ msgstr "MAIL GÖNDƏR"
