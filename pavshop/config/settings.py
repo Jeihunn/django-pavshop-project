@@ -62,7 +62,8 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "rest_framework_simplejwt",
     "drf_yasg",
-    "corsheaders"
+    "corsheaders",
+    "colorfield"
 ]
 
 MY_APPS = [
@@ -256,6 +257,7 @@ JAZZMIN_SETTINGS = {
         # core APP
         "core.Contact": "fas fa-envelope",
         "core.Newsletter": "fas fa-newspaper",
+        "core.SubBanner": "fas fa-image",
 
         # product APP
         "product.Color": "fas fa-palette",
@@ -266,7 +268,7 @@ JAZZMIN_SETTINGS = {
         "product.ProductTag": "fas fa-tag",
         "product.Product": "fas fa-cubes",
         "product.ProductVersion": "fas fa-cube",
-        "product.ProductVersionImage": "fas fa-image",
+        "product.ProductVersionImage": "fas fa-images",
         "product.ProductVersionReview": "fas fa-comments",
         "product.Wishlist": "fas fa-heart",
         "product.ShoppingCart": "fas fa-shopping-cart",

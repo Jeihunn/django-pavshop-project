@@ -1,15 +1,60 @@
-{%load static i18n %}
-<section class="sub-bnr" data-stellar-background-ratio="0.5">
-  <div class="position-center-center">
-    <div class="container">
-      <h4>{% trans "Contact us now" %}</h4>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ex quidem vel veritatis, voluptates perferendis incidunt ipsa qui veniam possimus dignissimos molestias itaque tempora ullam laboriosam numquam saepe reprehenderit quos!
-      </p>
-      <ol class="breadcrumb">
-        <li><a href="#">{% trans "Home" %}</a></li>
-        <li class="active">{% trans "Contact" %}</li>
-      </ol>
-    </div>
-  </div>
-</section>
+{%load static tags i18n %}
+
+{% get_sub_banners as sub_banners_info %}
+{% if request.resolver_match.view_name in sub_banners_info.page_list %}
+  {% for sub_banner in sub_banners_info.sub_banners %}
+    {% if request.resolver_match.view_name == sub_banner.page %}
+      <section class="sub-bnr" data-stellar-background-ratio="0.5" style="background-image: url({{ sub_banner.image.url }});">
+        <div class="position-center-center">
+          <div class="container">
+            {% if sub_banner.title %}
+              <h4 style="font-size: {{ sub_banner.title_font_size}}px; color: {{ sub_banner.title_color }}">{{ sub_banner.title }}</h4>
+            {% endif %}
+            {% if sub_banner.description %}
+              <p style="font-size: {{ sub_banner.description_font_size}}px; color: {{ sub_banner.description_color }}">
+                {{ sub_banner.description }}
+              </p>
+            {% endif %}
+            {% if sub_banner.breadcrumbs %}
+              <ol class="breadcrumb">
+                  {% for breadcrumb in sub_banner.breadcrumbs|split:" > " %}
+                    <li>{{ breadcrumb }}</li>
+                  {% endfor %}
+              </ol>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+{% elif "all_pages" in sub_banners_info.page_list %}
+  {% for sub_banner in sub_banners_info.sub_banners %}
+    {% if "all_pages" == sub_banner.page %}
+      <section class="sub-bnr" data-stellar-background-ratio="0.5" style="background-image: url({{ sub_banner.image.url }});">
+        <div class="position-center-center">
+          <div class="container">
+            {% if sub_banner.title %}
+              <h4>{{ sub_banner.title }}</h4>
+            {% endif %}
+            {% if sub_banner.description %}
+              <p>
+                {{ sub_banner.description }}
+              </p>
+            {% endif %}
+            {% if sub_banner.breadcrumbs %}
+              <ol class="breadcrumb">
+                  {% for breadcrumb in sub_banner.breadcrumbs|split:" > " %}
+                    <li>{{ breadcrumb }}</li>
+                  {% endfor %}
+              </ol>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+{% else %}
+  <section class="sub-bnr" data-stellar-background-ratio="0.5" style="background-image: url({% static "imgs/default_sub_banner.jpg" %});">
+  </section>
+{% endif %}
+  
