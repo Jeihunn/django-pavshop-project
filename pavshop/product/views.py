@@ -216,16 +216,8 @@ def select_change_quantity(request):
     return JsonResponse(response_data)
 
 
-def checkout_view(request):
-    cart = ShoppingCart.objects.filter(user=request.user).first()
-
-    context = {
-        "cart": cart,
-    }
-    return render(request, "product/checkout.html", context)
-
-
 # ===== Generic Views =====
+
 class ProductListView(TemplateView):
     template_name = "product/product-list.html"
 

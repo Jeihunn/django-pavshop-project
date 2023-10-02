@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-30 18:13+0400\n"
-"PO-Revision-Date: 2023-09-30 18:14+0400\n"
+"POT-Creation-Date: 2023-10-02 11:49+0400\n"
+"PO-Revision-Date: 2023-10-02 11:54+0400\n"
 "Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -90,7 +90,8 @@ msgstr "Yeni şifrə təsdiqi"
 
 #: .\account\forms.py:210 .\account\templates\account\user-profile.html:34
 #: .\blog\models.py:85 .\core\models.py:22 .\core\models.py:37
-#: .\core\templates\core\contact.html:45 .\product\models.py:198
+#: .\core\templates\core\contact.html:45 .\order\models.py:21
+#: .\order\models.py:39 .\product\models.py:198
 msgid "Email"
 msgstr "E-poçt"
 
@@ -113,6 +114,7 @@ msgid "Country Code"
 msgstr "Ölkə kodu"
 
 #: .\account\models.py:19 .\account\models.py:28 .\account\models.py:42
+#: .\order\models.py:20 .\order\models.py:38
 msgid "Country"
 msgstr "Ölkə"
 
@@ -120,7 +122,8 @@ msgstr "Ölkə"
 msgid "Countries"
 msgstr "Ölkələr"
 
-#: .\account\models.py:33 .\account\models.py:44
+#: .\account\models.py:33 .\account\models.py:44 .\order\models.py:19
+#: .\order\models.py:37
 msgid "City"
 msgstr "Şəhər"
 
@@ -132,7 +135,8 @@ msgstr "Şəhərlər"
 msgid "Street Address"
 msgstr "Küçə ünvanı"
 
-#: .\account\models.py:50 .\account\models.py:75
+#: .\account\models.py:50 .\account\models.py:75 .\order\models.py:18
+#: .\order\models.py:36
 msgid "Address"
 msgstr "Ünvan"
 
@@ -153,7 +157,8 @@ msgstr "Vəzifələr"
 msgid "Bio"
 msgstr "Bio"
 
-#: .\account\models.py:81 .\core\models.py:23
+#: .\account\models.py:81 .\core\models.py:23 .\order\models.py:22
+#: .\order\models.py:40
 msgid "Phone Number"
 msgstr "Telefon nömrəsi"
 
@@ -165,8 +170,8 @@ msgstr "Profil şəkli"
 msgid "Ips"
 msgstr "IP-lər"
 
-#: .\account\models.py:90 .\blog\models.py:80 .\product\models.py:193
-#: .\product\models.py:221 .\product\models.py:242
+#: .\account\models.py:90 .\blog\models.py:80 .\order\models.py:52
+#: .\product\models.py:193 .\product\models.py:221 .\product\models.py:242
 msgid "User"
 msgstr "İstifadəçi"
 
@@ -347,19 +352,18 @@ msgid "REGISTER"
 msgstr "QEYDİYYATDAN KEÇİN"
 
 #: .\account\templates\account\register.html:47
-#: .\product\templates\product\checkout.html:145
 msgid "EMAIL ADDRESS"
 msgstr "E-poçt ünvanı"
 
 #: .\account\templates\account\register.html:55
-#: .\product\templates\product\checkout.html:36
-#: .\product\templates\product\checkout.html:107
+#: .\order\templates\order\checkout.html:37
+#: .\order\templates\order\checkout.html:112
 msgid "FIRST NAME"
 msgstr "AD"
 
 #: .\account\templates\account\register.html:63
-#: .\product\templates\product\checkout.html:42
-#: .\product\templates\product\checkout.html:113
+#: .\order\templates\order\checkout.html:43
+#: .\order\templates\order\checkout.html:118
 msgid "LAST NAME"
 msgstr "SOYAD"
 
@@ -368,7 +372,6 @@ msgid "CONFIRM PASSWORD"
 msgstr "ŞİFRƏNİ TƏQDİM EDİN"
 
 #: .\account\templates\account\register.html:87
-#: .\product\templates\product\checkout.html:151
 msgid "PHONE"
 msgstr "TELEFON"
 
@@ -377,13 +380,12 @@ msgid "STREET ADDRESS"
 msgstr "KÜÇƏ ÜNVANI"
 
 #: .\account\templates\account\register.html:105
-#: .\product\templates\product\checkout.html:138
 msgid "COUNTRY"
 msgstr "ÖLKƏ"
 
 #: .\account\templates\account\register.html:113
-#: .\product\templates\product\checkout.html:60
-#: .\product\templates\product\checkout.html:131
+#: .\order\templates\order\checkout.html:61
+#: .\order\templates\order\checkout.html:136
 msgid "TOWN/CITY"
 msgstr "ŞƏHƏR"
 
@@ -411,11 +413,13 @@ msgstr "Qeydiyyatdan keçib"
 msgid "Last Login"
 msgstr "Son giriş"
 
-#: .\account\templates\account\user-profile.html:48
+#: .\account\templates\account\user-profile.html:48 .\order\models.py:15
+#: .\order\models.py:33
 msgid "First Name"
 msgstr "Ad"
 
-#: .\account\templates\account\user-profile.html:52
+#: .\account\templates\account\user-profile.html:52 .\order\models.py:16
+#: .\order\models.py:34
 msgid "Last Name"
 msgstr "Soyad"
 
@@ -636,7 +640,7 @@ msgstr "Yanlış səhifə nömrəsi."
 msgid "Invalid date format."
 msgstr "Yanlış tarix formatı."
 
-#: .\config\settings.py:235
+#: .\config\settings.py:237
 msgid "VIEW SITE"
 msgstr " SAYTI ZİYARƏT ET"
 
@@ -938,6 +942,124 @@ msgstr ""
 msgid "Successfully sent!"
 msgstr "Uğurla göndərildi!"
 
+#: .\order\admin.py:19 .\order\models.py:85
+#| msgid "Cart Item"
+msgid "Order Item"
+msgstr "Sifariş Elementi"
+
+#: .\order\admin.py:20 .\order\models.py:86
+#| msgid "Cart Items"
+msgid "Order Items"
+msgstr "Sifariş Elementləri"
+
+#: .\order\models.py:17 .\order\models.py:35
+msgid "Company Name"
+msgstr "Şirkət Adı"
+
+#: .\order\models.py:25 .\order\models.py:54
+#| msgid "Email Address"
+msgid "Billing Address"
+msgstr "Faktura Ünvanı"
+
+#: .\order\models.py:26
+#| msgid "Addresses"
+msgid "Billing Addresses"
+msgstr "Faktura Ünvanları"
+
+#: .\order\models.py:43 .\order\models.py:56
+#| msgid "Shopping Carts"
+msgid "Shipping Address"
+msgstr "Çatdırılma Ünvanı"
+
+#: .\order\models.py:44
+#| msgid "Addresses"
+msgid "Shipping Addresses"
+msgstr "Çatdırılma Ünvanları"
+
+#: .\order\models.py:58
+msgid "Ordered Date"
+msgstr "Sifariş Tarixi"
+
+#: .\order\models.py:59
+msgid "Paid"
+msgstr "Ödənildi"
+
+#: .\order\models.py:62 .\order\models.py:71
+msgid "Order"
+msgstr "Sifariş"
+
+#: .\order\models.py:63
+msgid "Orders"
+msgstr "Sifarişlər"
+
+#: .\order\models.py:73 .\product\models.py:166 .\product\models.py:175
+#: .\product\models.py:191 .\product\models.py:265
+msgid "Product Version"
+msgstr "Məhsul versiyası"
+
+#: .\order\models.py:76 .\product\models.py:146 .\product\models.py:268
+msgid "Quantity"
+msgstr "Miqdar"
+
+#: .\order\models.py:78 .\product\models.py:145
+msgid "Price"
+msgstr "Qiymət"
+
+#: .\order\templates\order\checkout.html:30
+msgid "BILLING DETAILS"
+msgstr "FAKTURA TƏFƏRRÜATLARI"
+
+#: .\order\templates\order\checkout.html:49
+#: .\order\templates\order\checkout.html:124
+msgid "COMPANY NAME"
+msgstr "ŞİRKƏT ADI"
+
+#: .\order\templates\order\checkout.html:55
+#: .\order\templates\order\checkout.html:130
+msgid "ADDRESS"
+msgstr "ÜNVAN"
+
+#: .\order\templates\order\checkout.html:68
+#: .\order\templates\order\checkout.html:143
+msgid "COUNTRY "
+msgstr "ÖLKƏ"
+
+#: .\order\templates\order\checkout.html:75
+#: .\order\templates\order\checkout.html:150
+msgid " EMAIL ADDRESS"
+msgstr "E-poçt ünvanı"
+
+#: .\order\templates\order\checkout.html:81
+#: .\order\templates\order\checkout.html:156
+msgid "PHONE "
+msgstr "TELEFON"
+
+#: .\order\templates\order\checkout.html:97
+#| msgid "Ship to a different address"
+msgid "Ship to the same address"
+msgstr "Eyni ünvana göndərin"
+
+#: .\order\templates\order\checkout.html:104
+msgid "SHIPPING info"
+msgstr "GÖNDƏRİLMƏ məlumatı"
+
+#: .\order\templates\order\checkout.html:172
+msgid "YOUR ORDER"
+msgstr "SİZİN ÜÇÜN"
+
+#: .\order\templates\order\checkout.html:180
+#: .\product\templates\product\shopping-cart.html:151
+msgid "TOTAL COST"
+msgstr "ÜMUMİ XƏRC"
+
+#: .\order\templates\order\checkout.html:194
+msgid "I’VE READ AND ACCEPT THE TERMS & CONDITIONS"
+msgstr "MƏN ŞƏRTLƏRİ OXUMUŞAM VƏ QƏBUL EDİRƏM"
+
+#: .\order\templates\order\checkout.html:198
+msgid " PLACE ORDER"
+msgstr "SİFARİŞ VERİN"
+
 #: .\product\admin.py:29 .\product\models.py:67
 msgid "Discount"
 msgstr "Endirim"
@@ -1035,19 +1157,6 @@ msgstr "Məhsul etiketləri"
 msgid "Product"
 msgstr "Məhsul"
 
-#: .\product\models.py:145
-msgid "Price"
-msgstr "Qiymət"
-
-#: .\product\models.py:146 .\product\models.py:268
-msgid "Quantity"
-msgstr "Miqdar"
-
-#: .\product\models.py:166 .\product\models.py:175 .\product\models.py:191
-#: .\product\models.py:265
-msgid "Product Version"
-msgstr "Məhsul versiyası"
-
 #: .\product\models.py:167 .\product\models.py:223
 msgid "Product Versions"
 msgstr "Məhsul versiyaları"
@@ -1087,77 +1196,6 @@ msgstr "Səbətlər"
 #: .\product\models.py:263
 msgid "Cart"
 msgstr "Səbət"
-
-#: .\product\templates\product\checkout.html:30
-msgid "BILLING DETAILS"
-msgstr "FAKTURA TƏFƏRRÜATLARI"
-
-#: .\product\templates\product\checkout.html:48
-#: .\product\templates\product\checkout.html:119
-msgid "COMPANY NAME"
-msgstr "ŞİRKƏT ADI"
-
-#: .\product\templates\product\checkout.html:54
-#: .\product\templates\product\checkout.html:125
-msgid "ADDRESS"
-msgstr "ÜNVAN"
-
-#: .\product\templates\product\checkout.html:67
-msgid "COUNTRY "
-msgstr "ÖLKƏ"
-
-#: .\product\templates\product\checkout.html:74
-msgid " EMAIL ADDRESS"
-msgstr "E-poçt ünvanı"
-
-#: .\product\templates\product\checkout.html:80
-msgid "PHONE "
-msgstr "TELEFON"
-
-#: .\product\templates\product\checkout.html:87
-msgid "continue"
-msgstr "davam et"
-
-#: .\product\templates\product\checkout.html:94
-msgid "Ship to a different address"
-msgstr "Fərqli ünvana göndərin"
-
-#: .\product\templates\product\checkout.html:101
-msgid "SHIPPING info"
-msgstr "GÖNDƏRİLMƏ məlumatı"
-
-#: .\product\templates\product\checkout.html:158
-msgid "SUBMIT"
-msgstr "GÖNDƏRMƏK"
-
-#: .\product\templates\product\checkout.html:166
-msgid "YOUR ORDER"
-msgstr "SİZİN ÜÇÜN"
-
-#: .\product\templates\product\checkout.html:178
-#: .\product\templates\product\shopping-cart.html:151
-msgid "TOTAL COST"
-msgstr "ÜMUMİ XƏRC"
-
-#: .\product\templates\product\checkout.html:185
-msgid " DIRECT BANK TRANSFER"
-msgstr "BİRBAŞA BANK Köçürmə"
-
-#: .\product\templates\product\checkout.html:192
-msgid "CASH ON DELIVERY"
-msgstr "Çatdırılmada NƏĞD"
-
-#: .\product\templates\product\checkout.html:198
-msgid "CHEQUE PAYMENT"
-msgstr "ÖDƏNİŞ ÇEK"
-
-#: .\product\templates\product\checkout.html:210
-msgid "I’VE READ AND ACCEPT THE TERMS & CONDITIONS"
-msgstr "MƏN ŞƏRTLƏRİ OXUMUŞAM VƏ QƏBUL EDİRƏM"
-
-#: .\product\templates\product\checkout.html:214
-msgid " PLACE ORDER"
-msgstr "SİFARİŞ VERİN"
 
 #: .\product\templates\product\product-list.html:32
 msgid "Sort By"
@@ -1243,7 +1281,7 @@ msgstr "MƏHSULLAR"
 msgid " NAME"
 msgstr "AD"
 
-#: .\product\views.py:42 .\product\views.py:257
+#: .\product\views.py:42 .\product\views.py:249
 msgid "Your comment has been successfully saved."
 msgstr "Şərhiniz uğurla yadda saxlanıldı."
 
@@ -1255,13 +1293,28 @@ msgstr ""
 "Şərhinizi yadda saxlayarkən xəta baş verdi. Sahələri nəzərdən keçirin və "
 "düzgün olduğundan əmin olun."
 
-#: .\product\views.py:263
+#: .\product\views.py:255
 msgid ""
 "There was an error saving your comment. \n"
 "                    Please review the fields and make sure they are correct."
 msgstr ""
 "Şərhinizi yadda saxlayarkən xəta baş verdi.\n"
 "Sahələri nəzərdən keçirin və düzgün olduğundan əmin olun."
+
+#~ msgid "continue"
+#~ msgstr "davam et"
+
+#~ msgid "SUBMIT"
+#~ msgstr "GÖNDƏRMƏK"
+
+#~ msgid " DIRECT BANK TRANSFER"
+#~ msgstr "BİRBAŞA BANK Köçürmə"
+
+#~ msgid "CASH ON DELIVERY"
+#~ msgstr "Çatdırılmada NƏĞD"
+
+#~ msgid "CHEQUE PAYMENT"
+#~ msgstr "ÖDƏNİŞ ÇEK"
 
 #~ msgid " QTY"
 #~ msgstr "SAY"

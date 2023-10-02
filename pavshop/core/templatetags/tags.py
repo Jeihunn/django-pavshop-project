@@ -44,7 +44,7 @@ def get_designers(limit=16):
 
 @register.simple_tag
 def get_most_reviewed_products(limit=3):
-    return ProductVersion.objects.annotate(reviews_count=Count('reviews')).order_by('-reviews_count')[:limit]
+    return ProductVersion.objects.filter(is_active=True).annotate(reviews_count=Count('reviews')).order_by('-reviews_count')[:limit]
 
 
 @register.simple_tag

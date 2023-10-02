@@ -24,7 +24,6 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-
 schema_view = get_schema_view(
     openapi.Info(
         title="Pavshop API",
@@ -56,10 +55,14 @@ urlpatterns = [
     path('api-docs/', schema_view.with_ui('swagger',
          cache_timeout=0), name='schema-swagger-ui'),
 
+    # Paypal
+    path('paypal/', include("paypal.standard.ipn.urls")),
+
     # API APP
     path("api/", include('blog.api.urls', namespace="api_blog")),
     path("api/", include('product.api.urls', namespace="api_product")),
     path("api/", include("core.api.urls", namespace="api_core")),
+    path("api/", include("order.api.urls", namespace="api_order")),
 ]
 
 
@@ -73,6 +76,7 @@ urlpatterns += i18n_patterns(
     path("", include("core.urls", namespace="core")),
     path("", include("product.urls", namespace="product")),
     path("", include("blog.urls", namespace="blog")),
+    path("", include("order.urls", namespace="order")),
 )
 
 
