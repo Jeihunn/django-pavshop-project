@@ -19,8 +19,6 @@ urlpatterns = [
     path("add-to-cart/", views.add_to_cart, name="add_to_cart"),
     path("change-quantity/", views.select_change_quantity, name="select_change_quantity"),
 
-    path("checkout/", views.checkout_view, name="checkout_view"),
-
     # # # Generic # # #
     #     path("products/", views.ProductListView.as_view(), name="product_list_view"),
     #     path("product/<slug:slug>/",

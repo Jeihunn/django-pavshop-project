@@ -63,7 +63,8 @@ THIRD_PARTY_APPS = [
     "rest_framework_simplejwt",
     "drf_yasg",
     "corsheaders",
-    "colorfield"
+    "colorfield",
+    "paypal.standard.ipn",
 ]
 
 MY_APPS = [
@@ -71,6 +72,7 @@ MY_APPS = [
     "account.apps.AccountConfig",
     "product.apps.ProductConfig",
     "blog.apps.BlogConfig",
+    "order.apps.OrderConfig",
 ]
 
 INSTALLED_APPS = INITIAL_APPS + BASE_APPS + THIRD_PARTY_APPS + MY_APPS
@@ -109,7 +111,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # ========== MY CONTEXT PROCESSORS ==========
-                "core.context_processors.shopping_cart_context", # Custom Context Processors
+                "core.context_processors.shopping_cart_context",  # Custom Context Processors
                 # Social Auth
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
@@ -273,6 +275,12 @@ JAZZMIN_SETTINGS = {
         "product.Wishlist": "fas fa-heart",
         "product.ShoppingCart": "fas fa-shopping-cart",
         "product.CartItem": "fas fa-shopping-basket",
+
+        # order APP
+        "order.BillingAddress": "fas fa-address-card",
+        "order.ShippingAddress": "fas fa-shipping-fast",
+        "order.Order": "fas fa-clipboard-list",
+        "order.OrderItem": "fas fa-shopping-bag",
     },
 }
 
@@ -414,7 +422,13 @@ SESSION_COOKIE_AGE = timedelta(days=14).total_seconds()
 CORS_ALLOW_ALL_ORIGINS: True
 
 
+# Paypal config
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = "pavshop.project@business.example.com"
+# PAYPAL_CURRENCY_CODE = "USD"
+
+
 # Custom Variables config
 CUSTOM_VARIABLES = {
-    "MAX_PARENT_NESTING": 1, # Specifies the maximum nesting level for parent comments
+    "MAX_PARENT_NESTING": 1,  # Specifies the maximum nesting level for parent comments
 }
