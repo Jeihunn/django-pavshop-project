@@ -260,6 +260,7 @@ JAZZMIN_SETTINGS = {
         "core.Contact": "fas fa-envelope",
         "core.Newsletter": "fas fa-newspaper",
         "core.SubBanner": "fas fa-image",
+        "core.ReklamBanner": "fas fa-bullhorn",
 
         # product APP
         "product.Color": "fas fa-palette",

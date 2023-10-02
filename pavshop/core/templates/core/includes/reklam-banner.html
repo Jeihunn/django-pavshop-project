@@ -1,0 +1,65 @@
+{% load static tags i18n %}
+
+
+{% get_reklam_banner as reklam_banner %}
+
+
+{% if reklam_banner %}
+    {% if reklam_banner.product_version %}
+        <a href="{% url 'product:product_detail_view' reklam_banner.product_version.slug %}">
+            <div class="side-bnr margin-top-50">
+                <img
+                    class="img-responsive"
+                    src=" {{ reklam_banner.product_version.cover_image.url }}"
+                    alt=""
+                />
+                {% if reklam_banner.title %}
+                    <div class="position-center-center">
+                        <div 
+                            class="bnr-text"
+                            style="{% if reklam_banner.title_font_size %}font-size: {{ reklam_banner.title_font_size }}px; {% endif %}{% if reklam_banner.title_color %}color: {{ reklam_banner.title_color }}; %}{% endif %}"
+                        >
+                            {{ reklam_banner.title }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </a>
+    {% else %}
+        <a {% if reklam_banner.link %} href="{{ reklam_banner.link }}" target="_blank" {% endif %}>
+            <div class="side-bnr margin-top-50">
+                <img
+                    class="img-responsive"
+                    src=" {{ reklam_banner.image.url }}"
+                    alt=""
+                />
+                {% if reklam_banner.title %}
+                    <div class="position-center-center">
+                        <div 
+                            class="bnr-text"
+                            style="{% if reklam_banner.title_font_size %}font-size: {{ reklam_banner.title_font_size }}px; {% endif %}{% if reklam_banner.title_color %}color: {{ reklam_banner.title_color }}; %}{% endif %}"
+                        >
+                            {{ reklam_banner.title }}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </a>
+    {% endif %}
+{% else %}
+    {% get_most_reviewed_products 1 as most_reviewed_products %}
+    {% for product_version in most_reviewed_products %}
+        <a href="{% url 'product:product_detail_view' product_version.slug %}">
+            <div class="side-bnr margin-top-50">
+                <img
+                    class="img-responsive"
+                    src=" {{ product_version.cover_image.url }}"
+                    alt=""
+                />
+                <div class="position-center-center">
+                    <div class="bnr-text" style="font-size: 30px; color: #2d3a4b">Burada Reklamınız Ola Bilər!</div>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+{% endif %}

@@ -2,9 +2,22 @@ from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from colorfield.fields import ColorField
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 # Create your models here.
+
+
+COLOR_PALETTE = (
+        ("#000000", "Black"),
+        ("#FFFFFF", "White"),
+        ("#FF0000", "Red"),
+        ("#0000FF", "Blue"),
+        ("#00FF00", "Green"),
+        ("#FFFF00", "Yellow"),
+        ("#800080", "Purple"),
+        ("#008080", "Teal"),
+    )
 
 
 class AbstractModel(models.Model):
@@ -62,17 +75,6 @@ class SubBanner(AbstractModel):
         ("product:checkout_view", _("Checkout Page")),
     )
 
-    COLOR_PALETTE = (
-        ("#000000", "Black"),
-        ("#FFFFFF", "White"),
-        ("#FF0000", "Red"),
-        ("#0000FF", "Blue"),
-        ("#00FF00", "Green"),
-        ("#FFFF00", "Yellow"),
-        ("#800080", "Purple"),
-        ("#008080", "Teal"),
-    )
-
     page = models.CharField(verbose_name=_(
         "Page"), max_length=250, unique=True, choices=PAGE_CHOICES)
     title = models.CharField(verbose_name=_(
@@ -98,3 +100,42 @@ class SubBanner(AbstractModel):
 
     def __str__(self):
         return f"{self.page} - {self.title}"
+    
+
+from product.models import ProductVersion
+
+class ReklamBanner(AbstractModel):
+    product_version = models.ForeignKey(
+        ProductVersion, on_delete=models.CASCADE, null=True, blank=True, related_name="reklam_banners", verbose_name=_("Product Version"))
+    
+    name = models.CharField(verbose_name=_("Name"), max_length=100)
+    title = models.CharField(verbose_name=_("Title"), max_length=100, blank=True, null=True)
+    title_color = ColorField(verbose_name=_("Title Color"), format="hex", samples=COLOR_PALETTE, blank=True, null=True)
+    title_font_size = models.PositiveIntegerField(verbose_name=_("Title Font Size"), blank=True, null=True)
+    link = models.URLField(verbose_name=_("Link"), max_length=255, blank=True, null=True)
+    image = models.ImageField(verbose_name=_("Image"), upload_to="reklam_banners", blank=True, null=True)
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
+
+    def clean(self):
+        if self.product_version:
+            if ReklamBanner.objects.filter(product_version=self.product_version).exclude(id=self.id).exists():
+                raise ValidationError({
+                    "product_version": _("An advertisement already exists for this product version."),
+                })
+            if self.image or self.link:
+                raise ValidationError({
+                    "image": _("If a product version is selected, image must be empty."),
+                    "link": _("If a product version is selected, link must be empty."),
+                })
+        else:
+            if not self.image:
+                raise ValidationError({
+                    "image": _("If no product version is selected, the image must be provided."),
+                })
+
+    class Meta:
+        verbose_name = _("Reklam Banner")
+        verbose_name_plural = _("Reklam Banners")
+
+    def __str__(self):
+        return f"{self.id} - reklam banner"
