@@ -6,7 +6,8 @@ from django.db.models import Count
 from django.urls import reverse
 from blog.models import Blog, BlogTag, BlogCategory
 from product.models import Designer, ProductVersion
-from core.models import SubBanner
+from core.models import SubBanner, ReklamBanner
+from django.db.models import Q
 
 register = template.Library()
 
@@ -55,6 +56,14 @@ def get_sub_banners():
         'sub_banners': sub_banners,
         'page_list': [sub_banner.page for sub_banner in sub_banners]
     }
+
+
+@register.simple_tag
+def get_reklam_banner():
+    return ReklamBanner.objects.filter(
+        Q(is_active=True) & (Q(product_version__is_active=True)
+                             | Q(product_version__isnull=True))
+    ).last()
 # ===== END Simple Tag =====
 
 
