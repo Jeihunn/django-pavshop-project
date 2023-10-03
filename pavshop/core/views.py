@@ -7,13 +7,27 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import gettext_lazy as _
 from .forms import ContactForm
 from django.views.generic import CreateView
+from product.models import ProductVersion
+from blog.models import Blog
+from random import sample
 
 
 # Create your views here.
 
 
 def index_view(request):
-    return render(request, "core/index.html")
+    active_product_versions = ProductVersion.objects.filter(is_active=True)
+    product_versions = active_product_versions.order_by("-created_at")[:8]
+    random_product_versions = sample(list(active_product_versions), 3)
+    
+    blogs = Blog.objects.filter(is_active=True).order_by("-created_at")[:2]
+
+    context = {
+        "product_versions": product_versions,
+        "random_product_versions": random_product_versions,
+        "blogs": blogs,
+    }
+    return render(request, "core/index.html", context)
 
 
 def contact_view(request):

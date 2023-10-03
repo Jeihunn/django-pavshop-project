@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-02 21:41+0400\n"
-"PO-Revision-Date: 2023-10-02 21:44+0400\n"
+"POT-Creation-Date: 2023-10-03 16:27+0400\n"
+"PO-Revision-Date: 2023-10-03 16:28+0400\n"
 "Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -671,7 +671,6 @@ msgid "Breadcrumbs"
 msgstr "Breadcrumbs"
 
 #: .\core\admin.py:135
-#| msgid "Product Version is Active"
 msgid "Product Version Active"
 msgstr "Məhsul Versiyası Aktiv"
 
@@ -805,12 +804,10 @@ msgid "If no product version is selected, the image must be provided."
 msgstr "Heç bir məhsul versiyası seçilməyibsə, şəkil təqdim edilməlidir."
 
 #: .\core\models.py:137
-#| msgid "Sub Banner"
 msgid "Reklam Banner"
 msgstr "Reklam Banner"
 
 #: .\core\models.py:138
-#| msgid "Sub Banners"
 msgid "Reklam Banners"
 msgstr "Reklam Bannerlər"
 
@@ -967,11 +964,32 @@ msgstr "E-poçt ünvanınızı daxil edin"
 msgid "SEND ME"
 msgstr "GÖNDƏR MƏNƏ"
 
-#: .\core\views.py:25
+#: .\core\templates\core\index.html:29
+msgid "Discover Our Latest Products"
+msgstr "Ən Son Məhsullarımızı kəşf edin"
+
+#: .\core\templates\core\index.html:64
+msgid ""
+"Explore our most sought-after products carefully curated to meet your needs."
+" Find the perfect items that match your style and preferences."
+msgstr ""
+"Ehtiyaclarınızı ödəmək üçün diqqətlə seçilmiş ən çox axtarılan "
+"məhsullarımızı araşdırın. Üslubunuza və seçimlərinizə uyğun mükəmməl "
+"əşyaları tapın."
+
+#: .\core\templates\core\index.html:110
+msgid ""
+"We share forward-looking knowledge and experiences with you. We are "
+"constantly learning to provide you with better service."
+msgstr ""
+"Gələcəyə dair bilik və təcrübələrimizi sizinlə bölüşürük. Biz sizə daha "
+"yaxşı xidmət göstərmək üçün daim öyrənirik."
+
+#: .\core\views.py:34
 msgid "Thank You. Your message has been sent successfully!"
 msgstr "Təşəkkür edirik. Mesajınız uğurla göndərildi!"
 
-#: .\core\views.py:29 .\core\views.py:67
+#: .\core\views.py:38 .\core\views.py:76
 msgid ""
 "Oops! Something went wrong. Please review your message and make sure all the"
 " required fields are filled correctly."
@@ -979,7 +997,7 @@ msgstr ""
 "Vay! Nəsə xəta baş verdi. Mesajınızı nəzərdən keçirin və bütün tələb olunan "
 "sahələrin düzgün doldurulduğundan əmin olun."
 
-#: .\core\views.py:62
+#: .\core\views.py:71
 msgid "Successfully sent!"
 msgstr "Uğurla göndərildi!"
 
