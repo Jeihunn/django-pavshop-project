@@ -15,12 +15,14 @@
             data-saveperformance="off"
             >
             <!-- MAIN IMAGE -->
+            {% random_home_slider_img as random_home_slider_img %}
             <img
-                src="{{ random_product_version.cover_image.url }}"
+                src="{% static random_home_slider_img %}"
                 alt="slider"
                 data-bgposition="center center"
                 data-bgfit="cover"
                 data-bgrepeat="no-repeat"
+                class="home-slider-img"
             />
             <!-- LAYERS -->
             <!-- LAYER NR. 1 -->

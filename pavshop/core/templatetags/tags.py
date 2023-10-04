@@ -1,4 +1,5 @@
 import calendar
+import random
 from django import template
 from datetime import timedelta, date
 from django.db.models import Case, When, IntegerField
@@ -64,6 +65,12 @@ def get_reklam_banner():
         Q(is_active=True) & (Q(product_version__is_active=True)
                              | Q(product_version__isnull=True))
     ).last()
+
+
+@register.simple_tag
+def random_home_slider_img():
+    num = random.randint(1, 19)
+    return f'imgs/home-slider-{num}.jpg'
 # ===== END Simple Tag =====
 
 

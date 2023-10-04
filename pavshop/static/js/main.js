@@ -65,7 +65,7 @@ jQuery('.tp-banner').show().revolution({
 	dottedOverlay:"none",
 	delay:10000,
 	startwidth:1170,
-	startheight:900,
+	startheight:800,
 	navigationType:"",
 	navigationArrows:"solo",
 	navigationStyle:"preview1",

@@ -26,7 +26,7 @@
                 Nam sit amet sapien vitae enim vehicula tincidunt. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc faucibus imperdiet vulputate. Morbi volutpat leo iaculis elit vehicula, eu convallis magna finibus. Suspendisse tristique ullamcorper erat a elementum. Cras eget elit non nunc aliquam ullamcorper quis sed metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada, erat in ullamcorper bibendum, elit lacus mattis lorem, quis luctus diam lorem vel ligula. </p>
               
               <!-- IMG -->
-              <div class="relative"> <img class="img-responsive margin-top-80 margin-bottom-80" src="{% static 'images/about-img-1.jpg' %}" alt="">
+              <div class="relative"> <img class="img-responsive margin-top-80 margin-bottom-80" src="{% static 'imgs/about-img.jpg' %}" alt="">
                 <div class="position-center-center"> <span class="huge-text">our team
                   united by love</span> </div>
               </div>
@@ -42,10 +42,10 @@
     <!-- Culture BLOCK -->
     <section class="cultur-block">
       <ul>
-        <li> <img src="{% static 'images/cultur-img-1.jpg' %}" alt="" > </li>
-        <li> <img src="{% static 'images/cultur-img-2.jpg' %}" alt="" > </li>
-        <li> <img src="{% static 'images/cultur-img-3.jpg' %}" alt="" > </li>
-        <li> <img src="{% static 'images/cultur-img-4.jpg' %}" alt="" > </li>
+        <li> <img src="{% static 'imgs/cultur-img-1.jpg' %}" alt="" > </li>
+        <li> <img src="{% static 'imgs/cultur-img-2.jpg' %}" alt="" > </li>
+        <li> <img src="{% static 'imgs/cultur-img-3.jpg' %}" alt="" > </li>
+        <li> <img src="{% static 'imgs/cultur-img-4.jpg' %}" alt="" > </li>
       </ul>
       
       <!-- Culture Text -->
@@ -53,8 +53,7 @@
         <div class="container">
           <div class="col-sm-6 center-block">
             <h4>awesome work culture</h4>
-            <p>Phasellus lacinia fermentutm bibendum. Interdum et malante ipuctus non. Nulla lacinia,
-              eros vel fermentum consectetur, ris dolor in ex. </p>
+            <p>Successes and experiences are important for you to enjoy life. Look to the future with hope!</p>
           </div>
         </div>
       </div>
@@ -76,125 +75,38 @@
           <div class="col-lg-8">
             <ul class="row">
               
-              <!-- Member -->
-              <li class="col-md-4 text-center animate fadeInUp" data-wow-delay="0.4s">
-                <article> 
-                  <!-- abatar -->
-                  <div class="avatar"> <img class="img-circle" src="{% static 'images/team-1.jpg' %}" alt="" > 
-                    <!-- Team hover -->
-                    <div class="team-hover">
-                      <div class="position-center-center">
-                        <div class="social-icons"> <a href="#."><i class="icon-social-facebook"></i></a> <a href="#."><i class="icon-social-twitter"></i></a> <a href="#."><i class="icon-social-dribbble"></i></a> </div>
+              {% for member in team_members %}
+                <!-- Member -->
+                <li class="col-md-4 text-center animate fadeInUp" data-wow-delay="0.4s">
+                  <article> 
+                    <!-- abatar -->
+                    <div class="avatar"> <img class="img-circle" src="{{ member.image.url }}" alt="" > 
+                      <!-- Team hover -->
+                      <div class="team-hover">
+                        <div class="position-center-center">
+                          <div class="social-icons">
+                            {% if member.facebook_url %}
+                              <a href="{{ member.facebook_url }}" target="_blank"><i class="fa fa-facebook"></i></a>
+                            {% endif %}
+                            {% if member.github_url %}
+                              <a href="{{ member.github_url }}" target="_blank"><i class="fa fa-github"></i></a>
+                            {% endif %}
+                            {% if member.linkedin_url %}
+                              <a href="{{ member.linkedin_url }}" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            {% endif %}
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <!-- Team Detail -->
-                  <div class="team-names">
-                    <h6>JOSEPH MARK</h6>
-                    <p>CEO & FOUNDER</p>
-                  </div>
-                </article>
-              </li>
-              
-              <!-- Member -->
-              <li class="col-md-4 text-center animate fadeInUp" data-wow-delay="0.6s">
-                <article> 
-                  <!-- abatar -->
-                  <div class="avatar"> <img class="img-circle" src="{% static 'images/team-2.jpg' %}" alt="" > 
-                    <!-- Team hover -->
-                    <div class="team-hover">
-                      <div class="position-center-center">
-                        <div class="social-icons"> <a href="#."><i class="icon-social-facebook"></i></a> <a href="#."><i class="icon-social-twitter"></i></a> <a href="#."><i class="icon-social-dribbble"></i></a> </div>
-                      </div>
+                    <!-- Team Detail -->
+                    <div class="team-names">
+                      <h6>{{ member.full_name }}</h6>
+                      <p>{{ member.position }}</p>
                     </div>
-                  </div>
-                  <!-- Team Detail -->
-                  <div class="team-names">
-                    <h6>jennifer rod</h6>
-                    <p>DESIGNER</p>
-                  </div>
-                </article>
-              </li>
-              
-              <!-- Member -->
-              <li class="col-md-4 text-center animate fadeInUp" data-wow-delay="0.8s">
-                <article> 
-                  <!-- abatar -->
-                  <div class="avatar"> <img class="img-circle" src="{% static 'images/team-3.jpg' %}" alt="" > 
-                    <!-- Team hover -->
-                    <div class="team-hover">
-                      <div class="position-center-center">
-                        <div class="social-icons"> <a href="#."><i class="icon-social-facebook"></i></a> <a href="#."><i class="icon-social-twitter"></i></a> <a href="#."><i class="icon-social-dribbble"></i></a> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Team Detail -->
-                  <div class="team-names">
-                    <h6>natasha singh</h6>
-                    <p>DEVELOPER</p>
-                  </div>
-                </article>
-              </li>
-              
-              <!-- Member -->
-              <li class="col-md-4 text-center">
-                <article> 
-                  <!-- abatar -->
-                  <div class="avatar"> <img class="img-circle" src="{% static 'images/team-4.jpg' %}" alt="" > 
-                    <!-- Team hover -->
-                    <div class="team-hover">
-                      <div class="position-center-center">
-                        <div class="social-icons"> <a href="#."><i class="icon-social-facebook"></i></a> <a href="#."><i class="icon-social-twitter"></i></a> <a href="#."><i class="icon-social-dribbble"></i></a> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Team Detail -->
-                  <div class="team-names">
-                    <h6>JOSEPH MARK</h6>
-                    <p>Product Designer</p>
-                  </div>
-                </article>
-              </li>
-              
-              <!-- Member -->
-              <li class="col-md-4 text-center">
-                <article> 
-                  <!-- abatar -->
-                  <div class="avatar"> <img class="img-circle" src="{% static 'images/team-5.jpg' %}" alt="" > 
-                    <!-- Team hover -->
-                    <div class="team-hover">
-                      <div class="position-center-center">
-                        <div class="social-icons"> <a href="#."><i class="icon-social-facebook"></i></a> <a href="#."><i class="icon-social-twitter"></i></a> <a href="#."><i class="icon-social-dribbble"></i></a> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Team Detail -->
-                  <div class="team-names">
-                    <h6>jennifer rod</h6>
-                    <p>Quality Head</p>
-                  </div>
-                </article>
-              </li>
-              
-              <!-- Member -->
-              <li class="col-md-4 text-center">
-                <article> 
-                  <!-- abatar -->
-                  <div class="avatar"> <img class="img-circle" src="{% static 'images/team-6.jpg' %}" alt="" > 
-                    <!-- Team hover -->
-                    <div class="team-hover">
-                      <div class="position-center-center">
-                        <div class="social-icons"> <a href="#."><i class="icon-social-facebook"></i></a> <a href="#."><i class="icon-social-twitter"></i></a> <a href="#."><i class="icon-social-dribbble"></i></a> </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Team Detail -->
-                  <div class="team-names">
-                    <h6>natasha singh</h6>
-                    <p>DEVELOPER</p>
-                  </div>
-                </article>
-              </li>
+                  </article>
+                </li>
+              {% endfor %}
+
             </ul>
           </div>
         </div>
@@ -216,9 +128,9 @@
           <!-- TEAM -->
           <div class="col-lg-8">
             <ul class="row">
-              <li class="col-sm-4"> <img src="{% static 'images/c-mg-1.png' %}" alt=""> </li>
-              <li class="col-sm-4"> <img src="{% static 'images/c-mg-2.png' %}" alt=""> </li>
-              <li class="col-sm-4"> <img src="{% static 'images/c-mg-3.png' %}" alt=""> </li>
+              <li class="col-sm-4"> <img src="{% static 'imgs/c-img-1.jpg' %}" alt=""> </li>
+              <li class="col-sm-4"> <img src="{% static 'imgs/c-img-2.jpg' %}" alt=""> </li>
+              <li class="col-sm-4"> <img src="{% static 'imgs/c-img-3.jpg' %}" alt=""> </li>
             </ul>
           </div>
         </div>
@@ -247,7 +159,7 @@
               </li>
               
               <!-- Products -->
-              <li class="col-sm-4"> <i class="icon-grid"></i> <span>571</span>
+              <li class="col-sm-4"> <i class="icon-grid"></i> <span>{{ product_versions_count }}</span>
                 <h5>products</h5>
               </li>
               

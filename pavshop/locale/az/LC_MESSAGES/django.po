@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-03 16:27+0400\n"
-"PO-Revision-Date: 2023-10-03 16:28+0400\n"
+"POT-Creation-Date: 2023-10-04 19:46+0400\n"
+"PO-Revision-Date: 2023-10-04 19:11+0400\n"
 "Last-Translator: Ceyhun Super <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,17 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: .\account\admin.py:92
+#: .\account\admin.py:93
 msgid "Personal info"
 msgstr "Şəxsi məlumat"
 
-#: .\account\admin.py:94
+#: .\account\admin.py:95
 msgid "Permissions"
 msgstr "İcazələr"
 
-#: .\account\admin.py:96
+#: .\account\admin.py:97
 msgid "Important dates"
 msgstr "Vacib tarixlər"
+
+#: .\account\admin.py:112 .\account\models.py:83
+#: .\account\templates\account\user-profile.html:60
+msgid "Profile Image"
+msgstr "Profil şəkli"
 
 #: .\account\forms.py:30 .\account\forms.py:31
 msgid ""
@@ -91,7 +96,7 @@ msgstr "Yeni şifrə təsdiqi"
 #: .\account\forms.py:210 .\account\templates\account\user-profile.html:34
 #: .\blog\models.py:85 .\core\models.py:35 .\core\models.py:50
 #: .\core\templates\core\contact.html:45 .\order\models.py:21
-#: .\order\models.py:39 .\product\models.py:198
+#: .\order\models.py:39 .\product\models.py:200
 msgid "Email"
 msgstr "E-poçt"
 
@@ -105,7 +110,7 @@ msgstr ""
 
 #: .\account\models.py:14 .\account\models.py:30 .\account\models.py:63
 #: .\blog\models.py:16 .\blog\models.py:33 .\core\models.py:111
-#: .\product\models.py:61 .\product\models.py:75 .\product\models.py:96
+#: .\product\models.py:63 .\product\models.py:77 .\product\models.py:98
 msgid "Name"
 msgstr "Ad"
 
@@ -145,7 +150,7 @@ msgid "Addresses"
 msgstr "Ünvanlar"
 
 #: .\account\models.py:66 .\account\models.py:77
-#: .\account\templates\account\user-profile.html:43
+#: .\account\templates\account\user-profile.html:43 .\core\models.py:153
 msgid "Position"
 msgstr "Vəzifə"
 
@@ -162,16 +167,12 @@ msgstr "Bio"
 msgid "Phone Number"
 msgstr "Telefon nömrəsi"
 
-#: .\account\models.py:83 .\account\templates\account\user-profile.html:60
-msgid "Profile Image"
-msgstr "Profil şəkli"
-
 #: .\account\models.py:85
 msgid "Ips"
 msgstr "IP-lər"
 
 #: .\account\models.py:90 .\blog\models.py:80 .\order\models.py:52
-#: .\product\models.py:193 .\product\models.py:221 .\product\models.py:242
+#: .\product\models.py:195 .\product\models.py:223 .\product\models.py:244
 msgid "User"
 msgstr "İstifadəçi"
 
@@ -192,10 +193,10 @@ msgid "Reason"
 msgstr "Səbəb"
 
 #: .\account\models.py:98 .\blog\models.py:17 .\blog\models.py:34
-#: .\blog\models.py:63 .\core\models.py:95 .\core\models.py:117
-#: .\product\models.py:19 .\product\models.py:32 .\product\models.py:45
-#: .\product\models.py:64 .\product\models.py:76 .\product\models.py:97
-#: .\product\models.py:151 .\product\models.py:179
+#: .\blog\models.py:63 .\core\models.py:95 .\core\models.py:122
+#: .\core\models.py:166 .\product\models.py:21 .\product\models.py:34
+#: .\product\models.py:47 .\product\models.py:66 .\product\models.py:78
+#: .\product\models.py:99 .\product\models.py:153 .\product\models.py:181
 msgid "Active"
 msgstr "Aktiv"
 
@@ -249,8 +250,8 @@ msgstr "Giriş Bloklandı"
 #: .\account\templates\account\blacklist.html:52
 msgid ""
 "Your access to this page has been blocked due to security reasons. If you "
-"believe this is an error or need further assistance, please reach out to our"
-" support team."
+"believe this is an error or need further assistance, please reach out to our "
+"support team."
 msgstr ""
 "Bu səhifəyə girişiniz təhlükəsizlik səbəbi ilə bloklanıb. Bunun xəta "
 "olduğuna inanırsınızsa və ya əlavə yardıma ehtiyacınız varsa, dəstək "
@@ -298,16 +299,16 @@ msgstr "Şifrə"
 msgid "LOGIN"
 msgstr "DAXİL OL"
 
-#: .\account\templates\account\login.html:83
+#: .\account\templates\account\login.html:76
 msgid "Forgot Password"
 msgstr "Şifrəni unutmusunuz"
 
-#: .\account\templates\account\login.html:86
+#: .\account\templates\account\login.html:79
 #: .\account\templates\account\request_new_token.html:128
 msgid "Get New Account Activation Link"
 msgstr "Yeni Hesab Aktivləşdirmə Linkini əldə edin"
 
-#: .\account\templates\account\login.html:92
+#: .\account\templates\account\login.html:85
 msgid "LOGIN WITH"
 msgstr "İLƏ GİRİN"
 
@@ -319,8 +320,8 @@ msgstr "Şifrəni sıfırlamaq"
 
 #: .\account\templates\account\password_reset.html:40
 msgid ""
-"Please enter your registered email address below. A password reset link will"
-" be sent to your email address"
+"Please enter your registered email address below. A password reset link will "
+"be sent to your email address"
 msgstr ""
 "Zəhmət olmasa qeydiyyatdan keçmiş e-poçt ünvanınızı aşağıya daxil edin. "
 "Şifrə sıfırlama linki e-poçt ünvanınıza göndəriləcək"
@@ -369,7 +370,7 @@ msgstr "SOYAD"
 
 #: .\account\templates\account\register.html:79
 msgid "CONFIRM PASSWORD"
-msgstr "ŞİFRƏNİ TƏQDİM EDİN"
+msgstr "Şifrəni Təsdiqlə"
 
 #: .\account\templates\account\register.html:87
 msgid "PHONE"
@@ -456,19 +457,24 @@ msgstr ""
 "gələnlər qutusunu yoxlayın və hesabınızı aktivləşdirmək üçün təlimatlara "
 "əməl edin."
 
-#: .\blog\admin.py:58 .\product\admin.py:149
+#: .\blog\admin.py:57 .\product\admin.py:146
 msgid "Categories"
 msgstr "Kateqoriyalar"
 
-#: .\blog\admin.py:65 .\product\admin.py:156
+#: .\blog\admin.py:64 .\product\admin.py:153
 msgid "Tags"
 msgstr "Etiketlər"
 
-#: .\blog\admin.py:91
+#: .\blog\admin.py:70 .\blog\models.py:60 .\product\admin.py:196
+#: .\product\models.py:152
+msgid "Cover Image"
+msgstr "Qapaq şəkli"
+
+#: .\blog\admin.py:97
 msgid "Blog ID"
 msgstr "Bloq ID"
 
-#: .\blog\admin.py:96
+#: .\blog\admin.py:102
 msgid "Blog Title"
 msgstr "Bloq Başlığı"
 
@@ -532,18 +538,14 @@ msgstr "Bloq etiketləri"
 msgid "Author"
 msgstr "Müəllif"
 
-#: .\blog\models.py:57 .\core\models.py:81 .\core\models.py:112
-#: .\product\models.py:124 .\product\models.py:143
+#: .\blog\models.py:57 .\core\models.py:81 .\core\models.py:113
+#: .\product\models.py:126 .\product\models.py:145
 msgid "Title"
 msgstr "Başlıq"
 
 #: .\blog\models.py:58
 msgid "Content"
 msgstr "Məzmun"
-
-#: .\blog\models.py:60 .\product\models.py:150
-msgid "Cover Image"
-msgstr "Qapaq şəkli"
 
 #: .\blog\models.py:62
 msgid "Publish Date"
@@ -562,7 +564,8 @@ msgstr "Bloqlar"
 msgid "Parent"
 msgstr "Valideyn"
 
-#: .\blog\models.py:83 .\core\models.py:34 .\product\models.py:196
+#: .\blog\models.py:83 .\core\models.py:34 .\core\models.py:155
+#: .\product\models.py:198
 msgid "Full Name"
 msgstr "Tam Adınız"
 
@@ -570,7 +573,7 @@ msgstr "Tam Adınız"
 msgid "Subject"
 msgstr "Mövzu"
 
-#: .\blog\models.py:87 .\product\models.py:199
+#: .\blog\models.py:87 .\product\models.py:201
 msgid "Comment"
 msgstr "Şərh"
 
@@ -644,35 +647,40 @@ msgstr "Yanlış tarix formatı."
 msgid "VIEW SITE"
 msgstr " SAYTI ZİYARƏT ET"
 
-#: .\core\admin.py:63 .\core\admin.py:142 .\core\models.py:83
-#: .\core\models.py:113
+#: .\core\admin.py:70 .\core\admin.py:149 .\core\models.py:83
+#: .\core\models.py:115
 msgid "Title Color"
 msgstr "Başlıq Rəngi"
 
-#: .\core\admin.py:70 .\core\admin.py:149
+#: .\core\admin.py:77 .\core\admin.py:156
 msgid "Title Font Size (px)"
 msgstr "Başlıq Şrift Ölçüsü (px)"
 
-#: .\core\admin.py:78 .\core\models.py:89
+#: .\core\admin.py:85 .\core\models.py:89
 msgid "Description Color"
 msgstr "Açıqlama Rəngi"
 
-#: .\core\admin.py:86
+#: .\core\admin.py:93
 msgid "Description Font Size (px)"
 msgstr "Açıqlama Şrift Ölçüsü (px)"
 
-#: .\core\admin.py:92 .\core\admin.py:155 .\core\models.py:94
-#: .\core\models.py:116 .\product\admin.py:36 .\product\models.py:178
+#: .\core\admin.py:99 .\core\admin.py:162 .\core\admin.py:212
+#: .\core\models.py:94 .\core\models.py:121 .\core\models.py:157
+#: .\product\admin.py:37 .\product\admin.py:221 .\product\models.py:180
 msgid "Image"
 msgstr "Şəkil"
 
-#: .\core\admin.py:103 .\core\models.py:93
+#: .\core\admin.py:110 .\core\models.py:93
 msgid "Breadcrumbs"
 msgstr "Breadcrumbs"
 
-#: .\core\admin.py:135
+#: .\core\admin.py:142
 msgid "Product Version Active"
 msgstr "Məhsul Versiyası Aktiv"
+
+#: .\core\admin.py:181 .\core\admin.py:206
+msgid "Social Media Links"
+msgstr "Sosial Media Linkləri"
 
 #: .\core\models.py:25
 msgid "Created At"
@@ -758,11 +766,11 @@ msgstr "Ödəniş Səhifəsi"
 msgid "Page"
 msgstr "Səhifə"
 
-#: .\core\models.py:85 .\core\models.py:114
+#: .\core\models.py:85 .\core\models.py:117
 msgid "Title Font Size"
 msgstr "Başlıq Şrift Ölçüsü"
 
-#: .\core\models.py:87 .\product\models.py:148
+#: .\core\models.py:87 .\product\models.py:150
 msgid "Description"
 msgstr "Açıqlama"
 
@@ -772,44 +780,60 @@ msgstr "Açıqlama Şrift Ölçüsü"
 
 #: .\core\models.py:98
 msgid "Sub Banner"
-msgstr "Alt Banner"
+msgstr "Alt banner"
 
 #: .\core\models.py:99
 msgid "Sub Banners"
-msgstr "Alt Bannerlər"
+msgstr "Alt bannerlər"
 
-#: .\core\models.py:109 .\order\models.py:73 .\product\models.py:166
-#: .\product\models.py:175 .\product\models.py:191 .\product\models.py:265
+#: .\core\models.py:109 .\order\models.py:73 .\product\models.py:168
+#: .\product\models.py:177 .\product\models.py:193 .\product\models.py:267
 msgid "Product Version"
 msgstr "Məhsul versiyası"
 
-#: .\core\models.py:115
+#: .\core\models.py:119
 msgid "Link"
 msgstr "Link"
 
-#: .\core\models.py:123
+#: .\core\models.py:128
 msgid "An advertisement already exists for this product version."
 msgstr "Bu məhsul versiyası üçün reklam artıq mövcuddur."
 
-#: .\core\models.py:127
+#: .\core\models.py:132
 msgid "If a product version is selected, image must be empty."
 msgstr "Məhsul versiyası seçilibsə, şəkil boş olmalıdır."
 
-#: .\core\models.py:128
+#: .\core\models.py:133
 msgid "If a product version is selected, link must be empty."
 msgstr "Məhsul versiyası seçilibsə, link boş olmalıdır."
 
-#: .\core\models.py:133
+#: .\core\models.py:138
 msgid "If no product version is selected, the image must be provided."
 msgstr "Heç bir məhsul versiyası seçilməyibsə, şəkil təqdim edilməlidir."
 
-#: .\core\models.py:137
+#: .\core\models.py:142
 msgid "Reklam Banner"
-msgstr "Reklam Banner"
+msgstr "Reklam banner"
 
-#: .\core\models.py:138
+#: .\core\models.py:143
 msgid "Reklam Banners"
-msgstr "Reklam Bannerlər"
+msgstr "Reklam bannerlər"
+
+#: .\core\models.py:165
+msgid "Display Order"
+msgstr "Görüntüləmə Sırası"
+
+#: .\core\models.py:165
+msgid "Order in which this member will be displayed on the page"
+msgstr "Bu üzvün səhifədə göstəriləcəyi sıra"
+
+#: .\core\models.py:169
+msgid "Team Member"
+msgstr "Komanda üzvü"
+
+#: .\core\models.py:170
+msgid "Team Members"
+msgstr "Komanda üzvləri"
 
 #: .\core\templates\core\about-us.html:23
 msgid "A Brief History"
@@ -859,8 +883,8 @@ msgstr "Pavshop. Bütün hüquqlar qorunur"
 msgid "Home"
 msgstr "Ana Səhifə"
 
-#: .\core\templates\core\includes\header.html:21 .\product\models.py:30
-#: .\product\models.py:35 .\product\models.py:139
+#: .\core\templates\core\includes\header.html:21 .\product\models.py:32
+#: .\product\models.py:37 .\product\models.py:141
 msgid "Designer"
 msgstr "Dizayner"
 
@@ -920,28 +944,8 @@ msgstr "PAROLU DƏYİŞ"
 msgid "LOG OUT"
 msgstr "ÇIXIŞ"
 
-#: .\core\templates\core\includes\home-main-slider.html:26
-msgid " The Latest Product from PAVSHOP "
-msgstr "PAVSHOP-dan Ən Son Məhsul"
-
-#: .\core\templates\core\includes\home-main-slider.html:77
+#: .\core\templates\core\includes\home-main-slider.html:144
 msgid "SHOP NOW "
-msgstr "İNDİ AL"
-
-#: .\core\templates\core\includes\home-main-slider.html:97
-msgid "The Latest Product from PAVSHOP "
-msgstr "PAVSHOP-dan Ən Son Məhsul"
-
-#: .\core\templates\core\includes\home-main-slider.html:110
-msgid " look beautiful"
-msgstr "gözəl görün"
-
-#: .\core\templates\core\includes\home-main-slider.html:123
-msgid " this season"
-msgstr "bu mövsüm"
-
-#: .\core\templates\core\includes\home-main-slider.html:148
-msgid "BUY NOW"
 msgstr "İNDİ AL"
 
 #: .\core\templates\core\includes\news-letter.html:6
@@ -950,8 +954,8 @@ msgstr "XƏBƏRLƏR"
 
 #: .\core\templates\core\includes\news-letter.html:8
 msgid ""
-"To receive the latest news and stay up to date, subscribe to our newsletter."
-" Please enter your email address below."
+"To receive the latest news and stay up to date, subscribe to our newsletter. "
+"Please enter your email address below."
 msgstr ""
 "Ən son xəbərləri almaq və yeniliklərə qoşulmaq üçün bültenimizə abunə olun. "
 "Zəhmət olmasa, e-poçt ünvanınızı aşağıda daxil edin."
@@ -970,8 +974,8 @@ msgstr "Ən Son Məhsullarımızı kəşf edin"
 
 #: .\core\templates\core\index.html:64
 msgid ""
-"Explore our most sought-after products carefully curated to meet your needs."
-" Find the perfect items that match your style and preferences."
+"Explore our most sought-after products carefully curated to meet your needs. "
+"Find the perfect items that match your style and preferences."
 msgstr ""
 "Ehtiyaclarınızı ödəmək üçün diqqətlə seçilmiş ən çox axtarılan "
 "məhsullarımızı araşdırın. Üslubunuza və seçimlərinizə uyğun mükəmməl "
@@ -985,29 +989,29 @@ msgstr ""
 "Gələcəyə dair bilik və təcrübələrimizi sizinlə bölüşürük. Biz sizə daha "
 "yaxşı xidmət göstərmək üçün daim öyrənirik."
 
-#: .\core\views.py:34
+#: .\core\views.py:40
 msgid "Thank You. Your message has been sent successfully!"
 msgstr "Təşəkkür edirik. Mesajınız uğurla göndərildi!"
 
-#: .\core\views.py:38 .\core\views.py:76
+#: .\core\views.py:44 .\core\views.py:89
 msgid ""
-"Oops! Something went wrong. Please review your message and make sure all the"
-" required fields are filled correctly."
+"Oops! Something went wrong. Please review your message and make sure all the "
+"required fields are filled correctly."
 msgstr ""
 "Vay! Nəsə xəta baş verdi. Mesajınızı nəzərdən keçirin və bütün tələb olunan "
 "sahələrin düzgün doldurulduğundan əmin olun."
 
-#: .\core\views.py:71
+#: .\core\views.py:84
 msgid "Successfully sent!"
 msgstr "Uğurla göndərildi!"
 
 #: .\order\admin.py:19 .\order\models.py:85
 msgid "Order Item"
-msgstr "Sifariş Elementi"
+msgstr "Sifariş elementi"
 
 #: .\order\admin.py:20 .\order\models.py:86
 msgid "Order Items"
-msgstr "Sifariş Elementləri"
+msgstr "Sifariş elementləri"
 
 #: .\order\models.py:17 .\order\models.py:35
 msgid "Company Name"
@@ -1015,19 +1019,19 @@ msgstr "Şirkət Adı"
 
 #: .\order\models.py:25 .\order\models.py:54
 msgid "Billing Address"
-msgstr "Faktura Ünvanı"
+msgstr "Faktura ünvanı"
 
 #: .\order\models.py:26
 msgid "Billing Addresses"
-msgstr "Faktura Ünvanları"
+msgstr "Faktura ünvanları"
 
 #: .\order\models.py:43 .\order\models.py:56
 msgid "Shipping Address"
-msgstr "Çatdırılma Ünvanı"
+msgstr "Çatdırılma ünvanı"
 
 #: .\order\models.py:44
 msgid "Shipping Addresses"
-msgstr "Çatdırılma Ünvanları"
+msgstr "Çatdırılma ünvanları"
 
 #: .\order\models.py:58
 msgid "Ordered Date"
@@ -1045,11 +1049,11 @@ msgstr "Sifariş"
 msgid "Orders"
 msgstr "Sifarişlər"
 
-#: .\order\models.py:76 .\product\models.py:146 .\product\models.py:268
+#: .\order\models.py:76 .\product\models.py:148 .\product\models.py:270
 msgid "Quantity"
 msgstr "Miqdar"
 
-#: .\order\models.py:78 .\product\models.py:145
+#: .\order\models.py:78 .\product\models.py:147
 msgid "Price"
 msgstr "Qiymət"
 
@@ -1095,7 +1099,7 @@ msgid "YOUR ORDER"
 msgstr "SİZİN ÜÇÜN"
 
 #: .\order\templates\order\checkout.html:180
-#: .\product\templates\product\shopping-cart.html:151
+#: .\product\templates\product\shopping-cart.html:141
 msgid "TOTAL COST"
 msgstr "ÜMUMİ XƏRC"
 
@@ -1107,35 +1111,39 @@ msgstr "MƏN ŞƏRTLƏRİ OXUMUŞAM VƏ QƏBUL EDİRƏM"
 msgid " PLACE ORDER"
 msgstr "SİFARİŞ VERİN"
 
-#: .\product\admin.py:29 .\product\models.py:67
+#: .\product\admin.py:30 .\product\models.py:69
 msgid "Discount"
 msgstr "Endirim"
 
-#: .\product\admin.py:30 .\product\admin.py:193 .\product\models.py:68
+#: .\product\admin.py:31 .\product\admin.py:190 .\product\models.py:70
 msgid "Discounts"
 msgstr "Endirimlər"
 
-#: .\product\admin.py:37
+#: .\product\admin.py:38
 msgid "Images"
 msgstr "Şəkillər"
 
-#: .\product\admin.py:43 .\product\models.py:275
+#: .\product\admin.py:44 .\product\models.py:277
 msgid "Cart Item"
-msgstr "Səbət Elementi"
+msgstr "Səbət elementi"
 
-#: .\product\admin.py:44 .\product\models.py:276
+#: .\product\admin.py:45 .\product\models.py:278
 msgid "Cart Items"
-msgstr "Səbət Elementləri"
+msgstr "Səbət elementləri"
 
-#: .\product\admin.py:101 .\product\models.py:63
+#: .\product\admin.py:62 .\product\models.py:24
+msgid "Color"
+msgstr "Rəng"
+
+#: .\product\admin.py:98 .\product\models.py:65
 msgid "Percent"
 msgstr "Faiz"
 
-#: .\product\admin.py:186 .\product\models.py:23 .\product\models.py:141
+#: .\product\admin.py:183 .\product\models.py:25 .\product\models.py:143
 msgid "Colors"
 msgstr "Rənglər"
 
-#: .\product\admin.py:251
+#: .\product\admin.py:267
 msgid "Product Version is Active"
 msgstr "Məhsul Versiyası Aktiv"
 
@@ -1159,88 +1167,88 @@ msgstr "Miqdar mənfi ola bilməz."
 msgid "You already have a wishlist."
 msgstr "Artıq istək siyahınız var."
 
-#: .\product\models.py:16 .\product\models.py:22
-msgid "Color"
-msgstr "Rəng"
-
 #: .\product\models.py:18
-msgid "HEX Code"
+msgid "Color Name"
+msgstr "Rəng Adı"
+
+#: .\product\models.py:19
+msgid "Hex Code"
 msgstr "HEX Kodu"
 
-#: .\product\models.py:36
+#: .\product\models.py:38
 msgid "Designers"
 msgstr "Dizaynerlər"
 
-#: .\product\models.py:44 .\product\models.py:46 .\product\models.py:50
-#: .\product\models.py:118
+#: .\product\models.py:46 .\product\models.py:48 .\product\models.py:52
+#: .\product\models.py:120
 msgid "Brand"
 msgstr "Brend"
 
-#: .\product\models.py:51
+#: .\product\models.py:53
 msgid "Brands"
 msgstr "Brendlər"
 
-#: .\product\models.py:59 .\product\models.py:129
+#: .\product\models.py:61 .\product\models.py:131
 msgid "Products"
 msgstr "Məhsullar"
 
-#: .\product\models.py:80
+#: .\product\models.py:82
 msgid "Product Category"
 msgstr "Məhsul kateqoriyası"
 
-#: .\product\models.py:81 .\product\models.py:120
+#: .\product\models.py:83 .\product\models.py:122
 msgid "Product Categories"
 msgstr "Məhsul kateqoriyaları"
 
-#: .\product\models.py:101
+#: .\product\models.py:103
 msgid "Product Tag"
 msgstr "Məhsul etiketi"
 
-#: .\product\models.py:102 .\product\models.py:122
+#: .\product\models.py:104 .\product\models.py:124
 msgid "Product Tags"
 msgstr "Məhsul etiketləri"
 
-#: .\product\models.py:128 .\product\models.py:137
+#: .\product\models.py:130 .\product\models.py:139
 msgid "Product"
 msgstr "Məhsul"
 
-#: .\product\models.py:167 .\product\models.py:223
+#: .\product\models.py:169 .\product\models.py:225
 msgid "Product Versions"
 msgstr "Məhsul versiyaları"
 
-#: .\product\models.py:182
+#: .\product\models.py:184
 msgid "Product Version Image"
 msgstr "Məhsul versiyası şəkili"
 
-#: .\product\models.py:183
+#: .\product\models.py:185
 msgid "Product Version Images"
 msgstr "Məhsul versiyası şəkilləri"
 
-#: .\product\models.py:202
+#: .\product\models.py:204
 msgid "Product Version Review"
 msgstr "Məhsul versiyası rəyi"
 
-#: .\product\models.py:203
+#: .\product\models.py:205
 msgid "Product Version Reviews"
 msgstr "Məhsul versiyası rəyləri"
 
-#: .\product\models.py:233
+#: .\product\models.py:235
 msgid "Wishlist"
 msgstr "İstək siyahısı"
 
-#: .\product\models.py:234
+#: .\product\models.py:236
 msgid "Wishlists"
 msgstr "İstək siyahıları"
 
-#: .\product\models.py:254
+#: .\product\models.py:256
 msgid "Shopping Cart"
 msgstr "Səbət"
 
-#: .\product\models.py:255
+#: .\product\models.py:257
 msgid "Shopping Carts"
 msgstr "Səbətlər"
 
-#: .\product\models.py:263
+#: .\product\models.py:265
 msgid "Cart"
 msgstr "Səbət"
 
@@ -1301,22 +1309,6 @@ msgid "TOTAL"
 msgstr "ÜMUMİ"
 
 #: .\product\templates\product\shopping-cart.html:132
-msgid "DISCOUNT CODE "
-msgstr "ENDİRİM KODU"
-
-#: .\product\templates\product\shopping-cart.html:135
-msgid " APPLY CODE"
-msgstr "TƏTBİQ EDİN"
-
-#: .\product\templates\product\shopping-cart.html:137
-msgid " continue shopping"
-msgstr "alış-verişə davam edin"
-
-#: .\product\templates\product\shopping-cart.html:137
-msgid " update cart"
-msgstr "səbəti yeniləyin"
-
-#: .\product\templates\product\shopping-cart.html:142
 msgid "grand total "
 msgstr "ümumi cəmi"
 
@@ -1347,6 +1339,33 @@ msgid ""
 msgstr ""
 "Şərhinizi yadda saxlayarkən xəta baş verdi.\n"
 "Sahələri nəzərdən keçirin və düzgün olduğundan əmin olun."
+
+#~ msgid "DISCOUNT CODE "
+#~ msgstr "ENDİRİM KODU"
+
+#~ msgid " APPLY CODE"
+#~ msgstr "TƏTBİQ EDİN"
+
+#~ msgid " continue shopping"
+#~ msgstr "alış-verişə davam edin"
+
+#~ msgid " update cart"
+#~ msgstr "səbəti yeniləyin"
+
+#~ msgid " The Latest Product from PAVSHOP "
+#~ msgstr "PAVSHOP-dan Ən Son Məhsul"
+
+#~ msgid "The Latest Product from PAVSHOP "
+#~ msgstr "PAVSHOP-dan Ən Son Məhsul"
+
+#~ msgid " look beautiful"
+#~ msgstr "gözəl görün"
+
+#~ msgid " this season"
+#~ msgstr "bu mövsüm"
+
+#~ msgid "BUY NOW"
+#~ msgstr "İNDİ AL"
 
 #~ msgid "continue"
 #~ msgstr "davam et"

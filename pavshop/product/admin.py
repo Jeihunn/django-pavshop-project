@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import format_html
 from modeltranslation.admin import TranslationAdmin
 from .forms import ProductVersionReviewAdminForm
 from .models import (
@@ -47,22 +48,18 @@ class CartItemInline(admin.TabularInline):
 
 @admin.register(Color)
 class ColorAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "hex_code",
-                    "is_active", "created_at", "updated_at"]
+    list_display = ["id", "name", "hex_code", "colored_hex_code", "is_active", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     list_editable = ["is_active"]
     list_filter = ["is_active"]
     search_fields = ["name"]
 
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
+    def colored_hex_code(self, obj):
+        if obj.hex_code:
+            return format_html('<div style="background-color:{}; width:30px; height:30px; border:1px solid #000; border-radius:50%;"></div>', obj.hex_code)
+        return None
+    colored_hex_code.admin_order_field = "hex_code"
+    colored_hex_code.short_description = _("Color")
 
 
 @admin.register(Designer)
@@ -171,7 +168,7 @@ class ProductVersionAdmin(TranslationAdmin):
     inlines = [DiscountInline, ProductVersionImageInline]
     filter_horizontal = ["colors"]
 
-    list_display = ["id", "title",  "designer", "product", "price", "quantity",
+    list_display = ["id", "title", "cover_image_thumbnail", "designer", "product", "price", "quantity",
                     "is_active", "get_colors", "get_discounts", "slug", "created_at", "updated_at"]
     list_display_links = ["id", "title"]
     list_filter = ["is_active", "product",
@@ -192,6 +189,12 @@ class ProductVersionAdmin(TranslationAdmin):
         return arr
     get_discounts.short_description = _("Discounts")
 
+    def cover_image_thumbnail(self, obj):
+        if obj.cover_image:
+            return format_html('<img src="{}" class="thumbnail-image" />', obj.cover_image.url)
+        return None
+    cover_image_thumbnail.short_description = _("Cover Image")
+
     class Media:
         js = (
             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
@@ -200,15 +203,28 @@ class ProductVersionAdmin(TranslationAdmin):
         )
         css = {
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+            'all': ('css/admin_custom.css',),
         }
 
 
 @admin.register(ProductVersionImage)
 class ProductVersionImageAdmin(admin.ModelAdmin):
     list_display = ["id", "product_version", "is_active",
-                    "image", "created_at", "updated_at"]
+                    "image_thumbnail", "created_at", "updated_at"]
     list_display_links = ["id", "product_version"]
     list_filter = ["is_active", "product_version"]
+
+    def image_thumbnail(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" class="thumbnail-image" />', obj.image.url)
+        return None
+    image_thumbnail.short_description = _("Image")
+
+    class Media:
+        css = {
+            'all': ('css/admin_custom.css',),
+        }
+
 
 
 @admin.register(ProductVersionReview)
