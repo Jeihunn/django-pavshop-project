@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Contact, Newsletter, SubBanner, ReklamBanner
+from .models import (
+    Contact,
+    Newsletter,
+    SubBanner,
+    ReklamBanner,
+    TeamMember
+)
 from .forms import SubBannerAdminForm
 from django.contrib.admin.models import LogEntry
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
@@ -7,6 +13,7 @@ from django.contrib.admin.widgets import AdminTextInputWidget
 from modeltranslation.admin import TranslationAdmin
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 
 
 # Register your models here.
@@ -162,5 +169,49 @@ class ReklamBannerAdmin(TranslationAdmin):
         )
         css = {
             'screen': ('modeltranslation/css/tabbed_translation_fields.css', 'admin_custom.css'),
+            'all': ('css/admin_custom.css',),
+        }
+
+
+@admin.register(TeamMember)
+class TeamMemberAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {"fields": ["full_name", "position",
+         "image", "display_order", "is_active"]}),
+        (_("Social Media Links"), {"fields": [
+         "facebook_url", "github_url", "linkedin_url"]}),
+    ]
+
+    list_display = ["id", "full_name",
+                    "image_thumbnail", "position", "display_order", "display_links", "is_active"]
+    list_display_links = ["id", "full_name"]
+    list_editable = ["display_order", "is_active"]
+    list_filter = ["position"]
+    search_fields = ["full_name"]
+
+    def display_links(self, obj):
+        if obj.facebook_url or obj.github_url or obj.linkedin_url:
+            links = []
+            if obj.facebook_url:
+                links.append(format_html(
+                    '<a href="{}" target="_blank" style="font-size: 18px; color: #1877f2; margin-right: 3px;"><i class="fab fa-facebook"></i></a>', obj.facebook_url))
+            if obj.github_url:
+                links.append(format_html(
+                    '<a href="{}" target="_blank" style="font-size: 18px; color: #333; margin-right: 3px;"><i class="fab fa-github"></i></a>', obj.github_url))
+            if obj.linkedin_url:
+                links.append(format_html(
+                    '<a href="{}" target="_blank" style="font-size: 18px; color: #0077b5; margin-right: 3px;"><i class="fab fa-linkedin"></i></a>', obj.linkedin_url))
+            return mark_safe(' '.join(links))
+        return None
+    display_links.short_description = _("Social Media Links")
+
+    def image_thumbnail(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" class="thumbnail-img" />', obj.image.url)
+        return None
+    image_thumbnail.short_description = _("Image")
+
+    class Media:
+        css = {
             'all': ('css/admin_custom.css',),
         }

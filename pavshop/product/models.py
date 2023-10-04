@@ -1,6 +1,8 @@
 from django.db import models
 from core.models import AbstractModel
 from autoslug import AutoSlugField
+from colorfield.fields import ColorField
+from core.models import COLOR_PALETTE
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -13,9 +15,9 @@ User = get_user_model()
 
 class Color(AbstractModel):
     name = models.CharField(verbose_name=_(
-        "Color"), max_length=50, unique=True)
-    hex_code = models.CharField(verbose_name=_(
-        "HEX Code"), max_length=7, unique=True)
+        "Color Name"), max_length=50, unique=True)
+    hex_code = ColorField(verbose_name=_("Hex Code"),
+                          format="hex", samples=COLOR_PALETTE)
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:

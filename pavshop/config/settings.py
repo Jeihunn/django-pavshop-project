@@ -261,6 +261,7 @@ JAZZMIN_SETTINGS = {
         "core.Newsletter": "fas fa-newspaper",
         "core.SubBanner": "fas fa-image",
         "core.ReklamBanner": "fas fa-bullhorn",
+        "core.TeamMember": "fas fa-users",
 
         # product APP
         "product.Color": "fas fa-palette",

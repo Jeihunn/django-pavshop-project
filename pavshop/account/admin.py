@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from django.contrib.admin.widgets import AdminTextInputWidget
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import format_html
 from modeltranslation.admin import TranslationAdmin
 from django.contrib.auth import get_user_model
 
@@ -78,7 +79,7 @@ class PositionAdmin(TranslationAdmin):
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    list_display = ["id", "username", "email", "first_name",
+    list_display = ["id", "username", "email", "first_name", "profile_image_thumbnail",
                     "last_name", "position", "is_active", "is_staff", "is_superuser"]
     list_display_links = ["id", "username"]
     list_filter = ["is_active", "is_staff", "is_superuser", "position"]
@@ -103,6 +104,17 @@ class CustomUserAdmin(UserAdmin):
             kwargs['widget'].widget = AdminTextInputWidget(
                 attrs={'class': 'vTextField'})
         return super().formfield_for_dbfield(db_field, **kwargs)
+
+    def profile_image_thumbnail(self, obj):
+        if obj.profile_image:
+            return format_html('<img src="{}" class="thumbnail-img" />', obj.profile_image.url)
+        return None
+    profile_image_thumbnail.short_description = _("Profile Image")
+
+    class Media:
+        css = {
+            'all': ('css/admin_custom.css',),
+        }
 
 
 @admin.register(Blacklist)

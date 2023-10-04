@@ -9,6 +9,7 @@ from .forms import ContactForm
 from django.views.generic import CreateView
 from product.models import ProductVersion
 from blog.models import Blog
+from core.models import TeamMember
 from random import sample
 
 
@@ -51,7 +52,14 @@ def contact_view(request):
 
 
 def about_us_view(request):
-    return render(request, "core/about-us.html")
+    product_versions_count = ProductVersion.objects.filter(is_active=True).count()
+    team_members = TeamMember.objects.filter(is_active=True).order_by("display_order")
+
+    context = {
+        "product_versions_count": product_versions_count,
+        "team_members": team_members,
+    }
+    return render(request, "core/about-us.html", context)
 
 
 # ===== Generic Views =====

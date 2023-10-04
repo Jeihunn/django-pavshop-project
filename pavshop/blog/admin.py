@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import BlogCategory, BlogTag, Blog, BlogReview
 from .forms import BlogReviewAdminForm
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import format_html
 from modeltranslation.admin import TranslationAdmin
 
 
@@ -10,8 +11,7 @@ from modeltranslation.admin import TranslationAdmin
 
 @admin.register(BlogCategory)
 class BlogCategoryAdmin(TranslationAdmin):
-    list_display = ["id", "name", "is_active",
-                    "slug", "created_at", "updated_at"]
+    list_display = ["id", "name", "is_active", "slug", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     list_editable = ["is_active"]
     list_filter = ["is_active"]
@@ -42,8 +42,7 @@ class BlogTagAdmin(admin.ModelAdmin):
 class BlogAdmin(TranslationAdmin):
     filter_horizontal = ["blog_categories", "blog_tags"]
 
-    list_display = ["id", "title", "is_active",
-                    "publish_date", "get_categories", "get_tags", "author", "created_at", "updated_at"]
+    list_display = ["id", "title", "cover_image_thumbnail", "is_active", "publish_date", "get_categories", "get_tags", "author", "created_at", "updated_at"]
     list_display_links = ["id", "title"]
     list_editable = ["is_active"]
     list_filter = ["is_active", "publish_date",
@@ -64,6 +63,12 @@ class BlogAdmin(TranslationAdmin):
         return arr
     get_tags.short_description = _("Tags")
 
+    def cover_image_thumbnail(self, obj):
+        if obj.cover_image:
+            return format_html('<img src="{}" class="thumbnail-image" />', obj.cover_image.url)
+        return None
+    cover_image_thumbnail.short_description = _("Cover Image")
+
     class Media:
         js = (
             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
@@ -72,6 +77,7 @@ class BlogAdmin(TranslationAdmin):
         )
         css = {
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+            'all': ('css/admin_custom.css',),
         }
 
 

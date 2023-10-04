@@ -22,8 +22,6 @@ function removeCartItem(button) {
         itemDetail.remove();
         pItemDetail.remove();
         totalCost.innerHTML = data.cart_total_price;
-        headerItemDetail.remove();
-        subtotal.innerHTML = data.cart_total_price;
         headerBasketCount.innerHTML = data.basket_count;
       }
 

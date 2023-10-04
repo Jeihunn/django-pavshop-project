@@ -9,15 +9,15 @@ from django.core.exceptions import ValidationError
 
 
 COLOR_PALETTE = (
-        ("#000000", "Black"),
-        ("#FFFFFF", "White"),
-        ("#FF0000", "Red"),
-        ("#0000FF", "Blue"),
-        ("#00FF00", "Green"),
-        ("#FFFF00", "Yellow"),
-        ("#800080", "Purple"),
-        ("#008080", "Teal"),
-    )
+    ("#000000", "Black"),
+    ("#FFFFFF", "White"),
+    ("#FF0000", "Red"),
+    ("#0000FF", "Blue"),
+    ("#00FF00", "Green"),
+    ("#FFFF00", "Yellow"),
+    ("#800080", "Purple"),
+    ("#008080", "Teal"),
+)
 
 
 class AbstractModel(models.Model):
@@ -102,18 +102,23 @@ class SubBanner(AbstractModel):
         return f"{self.page} - {self.title}"
     
 
-from product.models import ProductVersion
+from product.models import ProductVersion  # circular import error
 
 class ReklamBanner(AbstractModel):
     product_version = models.ForeignKey(
         ProductVersion, on_delete=models.CASCADE, null=True, blank=True, related_name="reklam_banners", verbose_name=_("Product Version"))
-    
+
     name = models.CharField(verbose_name=_("Name"), max_length=100)
-    title = models.CharField(verbose_name=_("Title"), max_length=100, blank=True, null=True)
-    title_color = ColorField(verbose_name=_("Title Color"), format="hex", samples=COLOR_PALETTE, blank=True, null=True)
-    title_font_size = models.PositiveIntegerField(verbose_name=_("Title Font Size"), blank=True, null=True)
-    link = models.URLField(verbose_name=_("Link"), max_length=255, blank=True, null=True)
-    image = models.ImageField(verbose_name=_("Image"), upload_to="reklam_banners", blank=True, null=True)
+    title = models.CharField(verbose_name=_(
+        "Title"), max_length=100, blank=True, null=True)
+    title_color = ColorField(verbose_name=_(
+        "Title Color"), format="hex", samples=COLOR_PALETTE, blank=True, null=True)
+    title_font_size = models.PositiveIntegerField(
+        verbose_name=_("Title Font Size"), blank=True, null=True)
+    link = models.URLField(verbose_name=_(
+        "Link"), max_length=255, blank=True, null=True)
+    image = models.ImageField(verbose_name=_(
+        "Image"), upload_to="reklam_banners", blank=True, null=True)
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     def clean(self):
@@ -139,3 +144,32 @@ class ReklamBanner(AbstractModel):
 
     def __str__(self):
         return f"{self.id} - reklam banner"
+
+
+from account.models import Position  # circular import error
+
+class TeamMember(AbstractModel):
+    position = models.ForeignKey(
+        Position, on_delete=models.SET_NULL, null=True, verbose_name=_("Position"))
+
+    full_name = models.CharField(verbose_name=_("Full Name"), max_length=100)
+    image = models.ImageField(verbose_name=_(
+        "Image"), upload_to='team_images/')
+    facebook_url = models.URLField(
+        verbose_name="Facebook URL", blank=True, null=True)
+    github_url = models.URLField(
+        verbose_name="Github URL", blank=True, null=True)
+    linkedin_url = models.URLField(
+        verbose_name="Linkedin URL", blank=True, null=True)
+    display_order = models.PositiveIntegerField(
+        verbose_name=_("Display Order"), unique=True, help_text=_("Order in which this member will be displayed on the page"))
+    is_active = models.BooleanField(verbose_name=_("Active"), default=True)
+
+    class Meta:
+        verbose_name = _("Team Member")
+        verbose_name_plural = _("Team Members")
+
+    def __str__(self):
+        if self.position:
+            return f"{self.full_name} - {self.position}"
+        return self.full_name
