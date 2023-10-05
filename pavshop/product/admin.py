@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
+from django.contrib import messages
 from modeltranslation.admin import TranslationAdmin
 from .forms import ProductVersionReviewAdminForm
 from .models import (
@@ -167,6 +168,7 @@ class ProductAdmin(TranslationAdmin):
 class ProductVersionAdmin(TranslationAdmin):
     inlines = [DiscountInline, ProductVersionImageInline]
     filter_horizontal = ["colors"]
+    actions = ["action_clear_discounts"]
 
     list_display = ["id", "title", "cover_image_thumbnail", "designer", "product", "price", "quantity",
                     "is_active", "get_colors", "get_discounts", "slug", "created_at", "updated_at"]
@@ -194,6 +196,17 @@ class ProductVersionAdmin(TranslationAdmin):
             return format_html('<img src="{}" class="thumbnail-image" />', obj.cover_image.url)
         return None
     cover_image_thumbnail.short_description = _("Cover Image")
+
+    def action_clear_discounts(modeladmin, request, queryset):
+        num_selected_products = queryset.count()
+        
+        for product_version in queryset:
+            product_version.discounts.clear()
+        
+        if num_selected_products > 0:
+            message = _("{} selected product(s) have had their discounts cleared.".format(num_selected_products))
+            modeladmin.message_user(request, message, level=messages.SUCCESS)
+    action_clear_discounts.short_description = _("Clear selected discounts")
 
     class Media:
         js = (

@@ -93,7 +93,10 @@ class Blacklist(AbstractModel):
         "IP Address"), protocol="both", unpack_ipv4=False, null=True, blank=True)
     start_time = models.DateTimeField(
         verbose_name=_("Start Time"), default=timezone.now)
-    duration = models.DurationField(verbose_name=_("Duration"))
+    duration = models.DurationField(
+        verbose_name=_("Duration"),
+        help_text=_("Specify the duration in the format '45 days 15:29:40'."),
+    )
     reason = models.TextField(verbose_name=_("Reason"), null=True, blank=True)
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
