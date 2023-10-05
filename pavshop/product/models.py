@@ -17,7 +17,7 @@ class Color(AbstractModel):
     name = models.CharField(verbose_name=_(
         "Color Name"), max_length=50, unique=True)
     hex_code = ColorField(verbose_name=_("Hex Code"),
-                          format="hex", samples=COLOR_PALETTE)
+                          format="hex", unique=True, samples=COLOR_PALETTE)
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
