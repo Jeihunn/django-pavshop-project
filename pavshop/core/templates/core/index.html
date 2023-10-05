@@ -110,7 +110,7 @@
               <div class="item-name text-nowrap"> <a href="{% url "product:product_detail_view" product_version.slug %}">{{ product_version.title }}</a>
               </div>
               <!-- Price --> 
-              <span class="price"><small>$</small>299</span> 
+              <span class="price"><small>$</small>{{ product_version.price }}</span> 
             </div>
           {% endfor %}
 
