@@ -11,7 +11,8 @@ from product.models import ProductVersion
 from blog.models import Blog
 from core.models import TeamMember
 from random import sample
-
+from core.tasks import (export_data, send_email_to_subscribers,
+                        send_email_to_subscribers_last_popular_products)
 
 # Create your views here.
 
@@ -19,7 +20,10 @@ from random import sample
 def index_view(request):
     active_product_versions = ProductVersion.objects.filter(is_active=True)
     product_versions = active_product_versions.order_by("-created_at")[:8]
-    random_product_versions = sample(list(active_product_versions), 3)
+    if active_product_versions.count() < 3:
+        random_product_versions = active_product_versions
+    else:
+        random_product_versions = sample(list(active_product_versions), 3)
     
     blogs = Blog.objects.filter(is_active=True).order_by("-created_at")[:2]
 
@@ -88,3 +92,10 @@ class ContactView(CreateView):
         messages.error(self.request, _(
             "Oops! Something went wrong. Please review your message and make sure all the required fields are filled correctly."))
         return super().form_invalid(form)
+
+
+def export_reviews(request):  # for testing celery
+    export_data.delay()
+    send_email_to_subscribers.delay()
+    send_email_to_subscribers_last_popular_products.delay()
+    return HttpResponse("All tasks submitted")
