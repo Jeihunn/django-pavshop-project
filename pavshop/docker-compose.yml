@@ -28,7 +28,7 @@ services:
     env_file: .env
     depends_on:
       - db
-      # - redis
+      - redis
 
   adminer:
     container_name: adminer
@@ -37,23 +37,23 @@ services:
     ports:
       - 8080:8080
 
-  # celery:
-  #   container_name: celery
-  #   command: celery -A config worker
-  #   build:
-  #     context: .
-  #     dockerfile: celery.dockerfile
-  #   depends_on:
-  #     - db
-  #     - redis
-  #   env_file: .env
+  celery:
+    container_name: celery
+    command: celery -A config worker --beat --scheduler django --loglevel=info
+    build:
+      context: .
+      dockerfile: celery.dockerfile
+    depends_on:
+      - db
+      - redis
+    env_file: .env
 
-  # redis:
-  #   container_name: redis
-  #   image: redis
-  #   restart: always
-  #   ports:
-  #     - 6379:6379
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
 
 networks:
   default:

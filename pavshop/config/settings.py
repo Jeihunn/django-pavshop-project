@@ -440,9 +440,9 @@ CUSTOM_VARIABLES = {
 }
 
 
-# # Celery config
-# CELERY_BROKER_URL = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
-# CELERY_RESULT_BACKEND = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
+# Celery config
+CELERY_BROKER_URL = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
+CELERY_RESULT_BACKEND = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
 
 
 # CSRF TRUSTED ORIGINS config
