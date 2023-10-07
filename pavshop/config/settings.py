@@ -25,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-kfb$#u9jo&gkpjai7i+l$y00gbu_-ro(sn)&3_@5f^fk4j!(ly'
+SECRET_KEY = os.environ.get("SECRET_KEY", "p!@#-i(@zfp(ur!ba5w83q1n8f^bz$!+b+9ht*u-ki)+wyve*5")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ["*"]
+DEBUG = int(os.environ.get("DEBUG", default=1))
+PROD = not DEBUG
+ALLOWED_HOSTS = ['*'] # os.environ.get("ALLOWED_HOSTS", "*").split(",")
 
 
 # Application definition
@@ -65,6 +65,7 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "colorfield",
     "paypal.standard.ipn",
+    "django_celery_beat",
 ]
 
 MY_APPS = [
@@ -126,25 +127,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# SQLite
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-# # PostgreSQL
+# # SQLite
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'pavshop',
-#         'USER': 'root',
-#         'PASSWORD': 12345,
-#         'HOST': 'localhost',
-#         'PORT': 5432
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+# PostgreSQL
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("POSTGRES_DB", 'pavshop'),
+        'USER': os.environ.get("POSTGRES_USER", 'root'),
+        'PASSWORD': os.environ.get("POSTGRES_PASSWORD", 12345),
+        'HOST': os.environ.get("POSTGRES_HOST", 'localhost'), # 'localhost' or droplet_ip
+        'PORT': os.environ.get("POSTGRES_PORT", 5432),
+    }
+}
 
 
 # Custom User model
@@ -201,9 +202,12 @@ MODELTRANSLATION_LANGUAGES = ('en', 'az')
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+if PROD:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static")
+    ]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
@@ -434,3 +438,12 @@ PAYPAL_RECEIVER_EMAIL = "pavshop.project@business.example.com"
 CUSTOM_VARIABLES = {
     "MAX_PARENT_NESTING": 1,  # Specifies the maximum nesting level for parent comments
 }
+
+
+# # Celery config
+# CELERY_BROKER_URL = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
+# CELERY_RESULT_BACKEND = f"redis://{os.environ.get('REDIS_HOST', 'localhost')}:6379"
+
+
+# CSRF TRUSTED ORIGINS config
+# CSRF_TRUSTED_ORIGINS=['https://*.mgegrouplawfirm.com', 'https://mgegrouplawfirm.com']
