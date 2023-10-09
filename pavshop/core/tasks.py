@@ -39,15 +39,21 @@ def send_email_to_subscribers():
             'price': product.price,
             'description': product.description,
             'designer': product.designer,
-            'cover_image_cid': f'product_{product.pk}_cover',
+            'cover_image_cid': f'http://130.162.169.13{product.cover_image.url}',
         }
 
         product_data_list.append(product_data)
+        mail.attach_alternative(f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
+
+
+ #       image_path = product.cover_image.path
+#        mail.attach_file(image_path, mimetype='image/jpeg')
 
         #image_path = product.cover_image.path
         #mail.attach_file(image_path, mimetype='image/jpeg')
         mail.attach_alternative(
             f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
+
 
     message = render_to_string(
         'core/email-subscribers.html', {'products': product_data_list})
@@ -57,6 +63,7 @@ def send_email_to_subscribers():
 
     mail.attach_alternative(message, "text/html")
     mail.send()
+    print("* ", "Emails successfully sent!")
 
 
 @shared_task        # periodik task testing
