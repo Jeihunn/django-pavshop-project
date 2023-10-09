@@ -1,7 +1,7 @@
 amqp==5.1.1
 asgiref==3.7.2
 asttokens==2.2.1
-autopep8==2.0.2
+async-timeout==4.0.3
 Babel==2.12.1
 backcall==0.2.0
 billiard==4.1.0
@@ -33,8 +33,6 @@ django-modeltranslation==0.18.11
 django-paypal==2.0
 django-phonenumber-field==7.1.0
 django-rosetta==0.9.9
-django-smart-selects==1.6.0
-django-sslserver==0.22
 django-timezone-field==6.0.1
 django-werkzeug-debugger-runserver==0.3.1
 djangorestframework==3.14.0
@@ -57,11 +55,8 @@ pickleshare==0.7.5
 Pillow==9.5.0
 polib==1.2.0
 prompt-toolkit==3.0.38
-psycopg==3.1.9
-psycopg2==2.9.6
 psycopg2-binary==2.9.6
 pure-eval==0.2.2
-pycodestyle==2.10.0
 pycparser==2.21
 Pygments==2.15.1
 PyJWT==2.8.0
@@ -71,6 +66,7 @@ python-dateutil==2.8.2
 python3-openid==3.2.0
 pytz==2023.3
 PyYAML==6.0.1
+redis==5.0.1
 requests==2.31.0
 requests-oauthlib==1.3.1
 six==1.16.0

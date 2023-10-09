@@ -45,8 +45,15 @@ def send_email_to_subscribers():
         product_data_list.append(product_data)
         mail.attach_alternative(f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
 
+
  #       image_path = product.cover_image.path
 #        mail.attach_file(image_path, mimetype='image/jpeg')
+
+        #image_path = product.cover_image.path
+        #mail.attach_file(image_path, mimetype='image/jpeg')
+        mail.attach_alternative(
+            f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
+
 
     message = render_to_string(
         'core/email-subscribers.html', {'products': product_data_list})
@@ -86,8 +93,8 @@ def send_email_to_subscribers_last_popular_products():
 
         product_data_list.append(product_data)
 
-        image_path = product.cover_image.path
-        mail.attach_file(image_path, mimetype='image/jpeg')
+        #image_path = product.cover_image.path
+        #mail.attach_file(image_path, mimetype='image/jpeg')
         mail.attach_alternative(
             f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
 
