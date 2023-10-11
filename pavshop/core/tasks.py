@@ -7,7 +7,7 @@ from product.models import ProductVersion, ProductVersionImage
 from account.models import User
 from django.db.models import Count
 from django.core.mail import EmailMultiAlternatives, SafeMIMEMultipart
-#from email.mime.image import MIMEImage
+# from email.mime.image import MIMEImage
 from datetime import timedelta
 from django.utils import timezone
 from django.db.models import F
@@ -39,21 +39,17 @@ def send_email_to_subscribers():
             'price': product.price,
             'description': product.description,
             'designer': product.designer,
-            'cover_image_cid': f'http://130.162.169.13{product.cover_image.url}',
+            'cover_image_cid': f'https://technest-pav.shop{product.cover_image.url}',
         }
 
         product_data_list.append(product_data)
-        mail.attach_alternative(f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
-
-
- #       image_path = product.cover_image.path
-#        mail.attach_file(image_path, mimetype='image/jpeg')
-
-        #image_path = product.cover_image.path
-        #mail.attach_file(image_path, mimetype='image/jpeg')
         mail.attach_alternative(
             f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
 
+        # image_path = product.cover_image.path
+        # mail.attach_file(image_path, mimetype='image/jpeg')
+        mail.attach_alternative(
+            f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
 
     message = render_to_string(
         'core/email-subscribers.html', {'products': product_data_list})
@@ -72,8 +68,8 @@ def send_email_to_subscribers_last_popular_products():
     inactive_users = User.objects.filter(
         last_login__lte=F('date_joined') + timedelta(days=30))
     inactive_users = inactive_users.filter(last_login__lte=one_month_ago)
-    inactive_user_emails = list(inactive_users.values_list('email', flat=True))  
-    products = ProductVersion.objects.filter(is_active=True, 
+    inactive_user_emails = list(inactive_users.values_list('email', flat=True))
+    products = ProductVersion.objects.filter(is_active=True,
                                              created_at__gte=one_month_ago).annotate(
         reviews_count=Count('reviews')).order_by('-reviews_count')[:3]
     subject = 'Most popular products of last month'
@@ -88,13 +84,15 @@ def send_email_to_subscribers_last_popular_products():
             'price': product.price,
             'description': product.description,
             'designer': product.designer,
-            'cover_image_cid': f'product_{product.pk}_cover',
+            'cover_image_cid': f'https://technest-pav.shop{product.cover_image.url}',
         }
 
         product_data_list.append(product_data)
+        mail.attach_alternative(
+            f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
 
-        #image_path = product.cover_image.path
-        #mail.attach_file(image_path, mimetype='image/jpeg')
+        # image_path = product.cover_image.path
+        # mail.attach_file(image_path, mimetype='image/jpeg')
         mail.attach_alternative(
             f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
 
