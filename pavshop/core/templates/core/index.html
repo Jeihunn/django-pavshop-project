@@ -29,14 +29,13 @@
           <span>{% trans "Discover Our Latest Products" %}</span> </div>
       </div>
       
-      <!-- New Arrival -->
+      <!-- New Arrival --> 
       <div class="arrival-block single-img-demos"> 
-        
         {% for product_version in product_versions %}
           <!-- Item -->
           <div class="item"> 
             <!-- Images --> 
-            <img class="img-1" src="{{ product_version.cover_image.url }}" alt="" style="max-height: 400px; background-size: cover; background-position: center;"> 
+            <img class="img-1" src="{{ product_version.cover_image.url }}" alt="" style="max-height: 350px; background-size: cover; background-position: center;"> 
             <!-- Overlay  -->
             <div class="overlay"> 
               <!-- Price --> 
@@ -49,7 +48,6 @@
             </div>
           </div>
         {% endfor %}
-        
       </div>
     </section>
     

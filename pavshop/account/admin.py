@@ -79,8 +79,8 @@ class PositionAdmin(TranslationAdmin):
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    list_display = ["id", "username", "email", "first_name", "profile_image_thumbnail",
-                    "last_name", "position", "is_active", "is_staff", "is_superuser"]
+    list_display = ["id", "username", "email", "first_name", "last_name", "profile_image_thumbnail",
+                    "position", "is_active", "is_staff", "is_superuser"]
     list_display_links = ["id", "username"]
     list_filter = ["is_active", "is_staff", "is_superuser", "position"]
     search_fields = ["username", "email",
