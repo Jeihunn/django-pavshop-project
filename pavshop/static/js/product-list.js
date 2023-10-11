@@ -110,7 +110,7 @@ function fetchColors() {
 }
 
 function fetchProductVersions() {
-  let url = `${location.origin}/api/product-versions/?page_size=9&is_active=true`;
+  let url = `${location.origin}/api/product-versions/?page_size=12&is_active=true`;
   const orderBy = localStorage.getItem("order_by");
   const urlExtra = url + `&order_by=${orderBy}`;
 
@@ -136,7 +136,7 @@ function fetchProductVersions() {
 // Filters
 function filterCategory(button) {
   const categoryId = button.getAttribute("data-category-id");
-  const url = `${location.origin}/api/product-versions/?page_size=9&is_active=true&category__id=${categoryId}`;
+  const url = `${location.origin}/api/product-versions/?page_size=12&is_active=true&category__id=${categoryId}`;
   const orderBy = localStorage.getItem("order_by");
   const urlExtra = url + `&order_by=${orderBy}`;
 
@@ -166,7 +166,7 @@ function filterCategory(button) {
 
 function filterTag(button) {
   const tagId = button.getAttribute("data-tag-id");
-  const url = `${location.origin}/api/product-versions/?page_size=9&is_active=true&tag__id=${tagId}`;
+  const url = `${location.origin}/api/product-versions/?page_size=12&is_active=true&tag__id=${tagId}`;
   const orderBy = localStorage.getItem("order_by");
   const urlExtra = url + `&order_by=${orderBy}`;
 
@@ -196,7 +196,7 @@ function filterTag(button) {
 
 function filterBrand(button) {
   const brandId = button.getAttribute("data-brand-id");
-  const url = `${location.origin}/api/product-versions/?page_size=9&is_active=true&brand__id=${brandId}`;
+  const url = `${location.origin}/api/product-versions/?page_size=12&is_active=true&brand__id=${brandId}`;
   const orderBy = localStorage.getItem("order_by");
   const urlExtra = url + `&order_by=${orderBy}`;
 
@@ -226,7 +226,7 @@ function filterBrand(button) {
 
 function filterColor(button) {
   const colorId = button.getAttribute("data-color-id");
-  const url = `${location.origin}/api/product-versions/?page_size=9&is_active=true&color__id=${colorId}`;
+  const url = `${location.origin}/api/product-versions/?page_size=12&is_active=true&color__id=${colorId}`;
   const orderBy = localStorage.getItem("order_by");
   const urlExtra = url + `&order_by=${orderBy}`;
 
@@ -259,7 +259,7 @@ const searchInput = searchFOrm.querySelector("input");
 searchFOrm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  let url = `${location.origin}/api/product-versions/?page_size=9&is_active=true&search=${searchInput.value}`;
+  let url = `${location.origin}/api/product-versions/?page_size=12&is_active=true&search=${searchInput.value}`;
   const orderBy = localStorage.getItem("order_by");
   const urlExtra = url + `&order_by=${orderBy}`;
   fetch(urlExtra)
@@ -420,7 +420,7 @@ function getVersions(data) {
           <!-- Price --> 
           <div class="flex-container">
             <span class="price"><small>$</small>${
-              (versions[i].price * (100 - discount)) / 100
+              ((versions[i].price * (100 - discount)) / 100).toFixed(2)
             }</span>
             ${oldPriceHtml}
           </div>
