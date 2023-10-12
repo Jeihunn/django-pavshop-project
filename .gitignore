@@ -1,6 +1,7 @@
 #MY
 env_*/
-*migrations*/
+# migrations/*
+# !migrations/__init__.py
 pgdb/
 *.pem
 
