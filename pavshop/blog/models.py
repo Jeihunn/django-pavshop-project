@@ -4,6 +4,7 @@ from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from core.models import AbstractModel
 from django.utils.translation import gettext_lazy as _
+from core.models import CustomImageField
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -56,7 +57,7 @@ class Blog(AbstractModel):
 
     title = models.CharField(verbose_name=_("Title"), max_length=250)
     content = RichTextField(verbose_name=_("Content"))
-    cover_image = models.ImageField(verbose_name=_(
+    cover_image = CustomImageField(verbose_name=_(
         "Cover Image"), upload_to="blog_cover_images", default="blog_cover_images/default_blog_cover.jpg")
     publish_date = models.DateTimeField(
         verbose_name=_("Publish Date"), default=timezone.now)

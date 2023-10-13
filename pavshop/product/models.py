@@ -5,6 +5,7 @@ from colorfield.fields import ColorField
 from core.models import COLOR_PALETTE
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
+from core.models import CustomImageField
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -148,7 +149,7 @@ class ProductVersion(AbstractModel):
     quantity = models.PositiveIntegerField(verbose_name=_("Quantity"))
     description = models.TextField(verbose_name=_(
         "Description"), null=True, blank=True)
-    cover_image = models.ImageField(verbose_name=_(
+    cover_image = CustomImageField(verbose_name=_(
         "Cover Image"), upload_to="product_cover_images", default="product_cover_images/default_product_cover.jpg")
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
     slug = AutoSlugField(populate_from="title", unique=True)
@@ -176,7 +177,7 @@ class ProductVersionImage(AbstractModel):
     product_version = models.ForeignKey(
         ProductVersion, on_delete=models.CASCADE, related_name="images", verbose_name=_("Product Version"))
 
-    image = models.ImageField(verbose_name=_(
+    image = CustomImageField(verbose_name=_(
         "Image"), upload_to="product_images", default="product_images/default_product.jpg")
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 

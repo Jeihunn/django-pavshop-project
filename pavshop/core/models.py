@@ -8,6 +8,13 @@ from django.core.exceptions import ValidationError
 # Create your models here.
 
 
+class CustomImageField(models.ImageField):
+    def validate(self, value, model_instance):
+        super().validate(value, model_instance)
+        if not value.name.isascii():
+            raise ValidationError(_("The image name {} contains non-ASCII characters. The image name can only contain basic English letters (A-Z, a-z), numbers, and special characters. Please enter a valid image name.").format(value.name))
+
+
 COLOR_PALETTE = (
     ("#000000", "Black"),
     ("#FFFFFF", "White"),
@@ -91,7 +98,7 @@ class SubBanner(AbstractModel):
         "Description Font Size"), blank=True, null=True)
     breadcrumbs = models.CharField(verbose_name=_(
         "Breadcrumbs"), max_length=255, blank=True, null=True)
-    image = models.ImageField(verbose_name=_("Image"), upload_to="sub_banners")
+    image = CustomImageField(verbose_name=_("Image"), upload_to="sub_banners")
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
     class Meta:
@@ -117,7 +124,7 @@ class ReklamBanner(AbstractModel):
         verbose_name=_("Title Font Size"), blank=True, null=True)
     link = models.URLField(verbose_name=_(
         "Link"), max_length=255, blank=True, null=True)
-    image = models.ImageField(verbose_name=_(
+    image = CustomImageField(verbose_name=_(
         "Image"), upload_to="reklam_banners", blank=True, null=True)
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
 
@@ -153,7 +160,7 @@ class TeamMember(AbstractModel):
         Position, on_delete=models.SET_NULL, null=True, verbose_name=_("Position"))
 
     full_name = models.CharField(verbose_name=_("Full Name"), max_length=100)
-    image = models.ImageField(verbose_name=_(
+    image = CustomImageField(verbose_name=_(
         "Image"), upload_to='team_images/')
     facebook_url = models.URLField(
         verbose_name="Facebook URL", blank=True, null=True)

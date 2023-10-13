@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from core.models import AbstractModel
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import gettext_lazy as _
+from core.models import CustomImageField
 
 
 # Create your models here.
@@ -79,7 +80,7 @@ class User(AbstractUser):
     bio = models.TextField(verbose_name=_("Bio"), null=True, blank=True)
     phone_number = PhoneNumberField(verbose_name=_(
         "Phone Number"), null=True, blank=True, unique=True)
-    profile_image = models.ImageField(verbose_name=_(
+    profile_image = CustomImageField(verbose_name=_(
         "Profile Image"), upload_to="profile_images", default="profile_images/default_profile.jpg")
     ips = models.JSONField(verbose_name=_(
         "Ips"), default=list, null=True, blank=True)
