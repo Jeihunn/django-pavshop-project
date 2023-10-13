@@ -1,11 +1,9 @@
 from django.db import models
-from core.models import AbstractModel
+from core.models import AbstractModel, CustomImageField, COLOR_PALETTE
 from autoslug import AutoSlugField
 from colorfield.fields import ColorField
-from core.models import COLOR_PALETTE
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
-from core.models import CustomImageField
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
