@@ -3,15 +3,13 @@ import time
 from django.template.loader import render_to_string
 from django.conf import settings
 from core.models import Newsletter
-from product.models import ProductVersion, ProductVersionImage
+from product.models import ProductVersion
 from account.models import User
 from django.db.models import Count
-from django.core.mail import EmailMultiAlternatives, SafeMIMEMultipart
-# from email.mime.image import MIMEImage
+from django.core.mail import EmailMultiAlternatives
 from datetime import timedelta
 from django.utils import timezone
-from django.db.models import F
-
+SERVER_BASE_URL = "https://technest-pav.shop"
 
 @shared_task  # background task testing
 def export_data():
@@ -39,7 +37,8 @@ def send_email_to_subscribers():
             'price': product.price,
             'description': product.description,
             'designer': product.designer,
-            'cover_image_cid': f'https://technest-pav.shop{product.cover_image.url}',
+            'url': f'{SERVER_BASE_URL}/product/{product.slug}',
+            'cover_image_cid': f'{SERVER_BASE_URL}{product.cover_image.url}',
         }
 
         product_data_list.append(product_data)
@@ -65,9 +64,10 @@ def send_email_to_subscribers():
 @shared_task        # periodik task testing
 def send_email_to_subscribers_last_popular_products():
     one_month_ago = timezone.now() - timedelta(days=30)
-    inactive_users = User.objects.filter(
-        last_login__lte=F('date_joined') + timedelta(days=30))
-    inactive_users = inactive_users.filter(last_login__lte=one_month_ago)
+    # inactive_users = User.objects.filter(
+    #     last_login__lte=F('date_joined') + timedelta(days=30))
+    # inactive_users = inactive_users.filter(last_login__lte=one_month_ago)
+    inactive_users = User.objects.filter(last_login=one_month_ago)
     inactive_user_emails = list(inactive_users.values_list('email', flat=True))
     products = ProductVersion.objects.filter(is_active=True,
                                              created_at__gte=one_month_ago).annotate(
@@ -84,7 +84,8 @@ def send_email_to_subscribers_last_popular_products():
             'price': product.price,
             'description': product.description,
             'designer': product.designer,
-            'cover_image_cid': f'https://technest-pav.shop{product.cover_image.url}',
+            'url': f'{SERVER_BASE_URL}/product/{product.slug}',
+            'cover_image_cid': f'{SERVER_BASE_URL}{product.cover_image.url}',
         }
 
         product_data_list.append(product_data)
