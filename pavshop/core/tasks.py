@@ -60,7 +60,7 @@ def send_email_to_subscribers():
 
 
 @shared_task        # periodik task testing
-def send_email_to_subscribers_last_popular_products():
+def send_email_to_inactive_users():
     one_month_ago = (timezone.now() - timedelta(days=30)).date()
     inactive_users = User.objects.filter(last_login__date=one_month_ago)
     inactive_user_emails = list(inactive_users.values_list('email', flat=True))
