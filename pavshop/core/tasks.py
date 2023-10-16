@@ -11,6 +11,7 @@ from datetime import timedelta
 from django.utils import timezone
 SERVER_BASE_URL = "https://technest-pav.shop"
 
+
 @shared_task  # background task testing
 def export_data():
     print("export data Starts")
@@ -44,9 +45,6 @@ def send_email_to_subscribers():
         product_data_list.append(product_data)
         mail.attach_alternative(
             f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
-
-        # image_path = product.cover_image.path
-        # mail.attach_file(image_path, mimetype='image/jpeg')
         mail.attach_alternative(
             f'<img src="cid:{product_data["cover_image_cid"]}" alt="Product Image">', "text/html")
 
@@ -63,11 +61,8 @@ def send_email_to_subscribers():
 
 @shared_task        # periodik task testing
 def send_email_to_subscribers_last_popular_products():
-    one_month_ago = timezone.now() - timedelta(days=30)
-    # inactive_users = User.objects.filter(
-    #     last_login__lte=F('date_joined') + timedelta(days=30))
-    # inactive_users = inactive_users.filter(last_login__lte=one_month_ago)
-    inactive_users = User.objects.filter(last_login=one_month_ago)
+    one_month_ago = (timezone.now() - timedelta(days=30)).date()
+    inactive_users = User.objects.filter(last_login__date=one_month_ago)
     inactive_user_emails = list(inactive_users.values_list('email', flat=True))
     products = ProductVersion.objects.filter(is_active=True,
                                              created_at__gte=one_month_ago).annotate(
