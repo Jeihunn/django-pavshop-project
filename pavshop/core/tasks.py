@@ -13,10 +13,10 @@ SERVER_BASE_URL = "https://technest-pav.shop"
 
 
 @shared_task  # background task testing
-def export_data():
-    print("export data Starts")
+def backgound_task_testing():
+    print("Testing starts...")
     time.sleep(1)
-    print("export data Ends")
+    print("Testing ends...")
 
 
 @shared_task        # periodik task testing
