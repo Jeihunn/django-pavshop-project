@@ -11,8 +11,7 @@ from product.models import ProductVersion
 from blog.models import Blog
 from core.models import TeamMember
 from random import sample
-from core.tasks import (export_data, send_email_to_subscribers,
-                        send_email_to_subscribers_last_popular_products)
+from core.tasks import (backgound_task_testing, send_email_to_subscribers)
 
 # Create your views here.
 
@@ -94,8 +93,7 @@ class ContactView(CreateView):
         return super().form_invalid(form)
 
 
-def export_reviews(request):  # for testing celery
-    export_data.delay()
+def backgound_task_view(request):  # for testing celery
     send_email_to_subscribers.delay()
-    send_email_to_subscribers_last_popular_products.delay()
+    backgound_task_testing.delay()
     return HttpResponse("All tasks submitted")
