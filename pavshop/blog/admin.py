@@ -11,7 +11,8 @@ from modeltranslation.admin import TranslationAdmin
 
 @admin.register(BlogCategory)
 class BlogCategoryAdmin(TranslationAdmin):
-    list_display = ["id", "name", "is_active", "slug", "created_at", "updated_at"]
+    list_display = ["id", "name", "is_active",
+                    "slug", "created_at", "updated_at"]
     list_display_links = ["id", "name"]
     list_editable = ["is_active"]
     list_filter = ["is_active"]
@@ -42,7 +43,8 @@ class BlogTagAdmin(admin.ModelAdmin):
 class BlogAdmin(TranslationAdmin):
     filter_horizontal = ["blog_categories", "blog_tags"]
 
-    list_display = ["id", "title", "cover_image_thumbnail", "is_active", "publish_date", "get_categories", "get_tags", "author", "created_at", "updated_at"]
+    list_display = ["id", "title", "cover_image_thumbnail", "is_active", "publish_date",
+                    "get_categories", "get_tags", "author", "view_count", "created_at", "updated_at"]
     list_display_links = ["id", "title"]
     list_editable = ["is_active"]
     list_filter = ["is_active", "publish_date",

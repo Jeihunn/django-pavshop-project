@@ -38,6 +38,15 @@
                   {% endfor %}
                 </span>
               </div>
+
+              <!-- Blog View Count -->
+              <div class="blog-view-count pull-left">
+                <i class="fa fa-eye"></i>
+                <span id="view-count">{{ blog.view_count }}</span>
+              </div>
+
+              <div style="clear: both;"></div>
+      
               <!-- Post Content -->
               <div class="text-left">
                 {{ blog.content|safe }}

@@ -140,3 +140,22 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
   font-weight: bold;
   color: #ffe115 !important;
 }
+
+.blog-view-count {
+  background-color: #3498db;
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+#view-count {
+  font-size: 12px;
+  margin-left: 1px;
+}
+
+.fa-eye {
+  color: #fff;
+  margin-right: 1px;
+}

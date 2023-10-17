@@ -61,6 +61,7 @@ class Blog(AbstractModel):
     publish_date = models.DateTimeField(
         verbose_name=_("Publish Date"), default=timezone.now)
     is_active = models.BooleanField(verbose_name=_("Active"), default=True)
+    view_count = models.PositiveIntegerField(verbose_name=_("View Count"), default=0)
     slug = AutoSlugField(populate_from="title", unique=True)
 
     class Meta:

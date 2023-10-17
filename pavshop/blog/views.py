@@ -80,6 +80,9 @@ def blog_detail_view(request, blog_slug):
         request.session["recently_viewed"] = [blog.id]
     request.session.modified = True
 
+    blog.view_count += 1
+    blog.save()
+
     context = {
         "blog": blog,
         "related_blogs": related_blogs,
