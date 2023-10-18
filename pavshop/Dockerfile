@@ -9,6 +9,8 @@ COPY requirements.txt ./
 
 RUN python3 -m pip install --upgrade pip
 
+RUN apt-get install nano -y
+
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
 COPY . .
