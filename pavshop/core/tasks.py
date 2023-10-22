@@ -26,6 +26,10 @@ def send_email_to_subscribers():
         subscription_status=True).values_list('email', flat=True)
     products = ProductVersion.objects.filter(is_active=True, created_at__gte=one_week_ago).annotate(
         reviews_count=Count('reviews')).order_by('-reviews_count')[:3]
+    if len(products) < 2:
+        products = ProductVersion.objects.filter(is_active=True).annotate(
+            reviews_count=Count('reviews')).order_by('-reviews_count')[:2]
+        subject = 'Most popular products'
     subject = 'Most popular products of this week'
     mail = EmailMultiAlternatives(
         subject=subject, from_email=settings.EMAIL_HOST_USER, to=email_list)
@@ -67,6 +71,10 @@ def send_email_to_inactive_users():
     products = ProductVersion.objects.filter(is_active=True,
                                              created_at__gte=one_month_ago).annotate(
         reviews_count=Count('reviews')).order_by('-reviews_count')[:3]
+    if len(products) < 2:
+        products = ProductVersion.objects.filter(is_active=True).annotate(
+            reviews_count=Count('reviews')).order_by('-reviews_count')[:2]
+        subject = 'Most popular products'
     subject = 'Most popular products of last month'
     mail = EmailMultiAlternatives(
         subject=subject, from_email=settings.EMAIL_HOST_USER, to=inactive_user_emails)
